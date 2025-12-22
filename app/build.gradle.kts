@@ -21,7 +21,7 @@ fun getGitHashCommit(): String {
 val gitHash: String = getGitHashCommit().uppercase(Locale.getDefault())
 
 android {
-    namespace = "com.wmods.wppenhacer"
+    namespace = "com.wmods.tiktokenhancer"
     compileSdk = 36
     ndkVersion = "27.0.11902837 rc2"
 
@@ -35,7 +35,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.wmods.wppenhacer"
+        applicationId = "com.wmods.tiktokenhancer"
         minSdk = 28
         targetSdk = 34
         versionCode = 152

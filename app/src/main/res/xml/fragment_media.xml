@@ -17,7 +17,7 @@
         app:iconSpaceReserved="false"
         app:title="@string/download_title">
 
-        <com.wmods.wppenhacer.preference.FileSelectPreference
+        <com.wmods.tiktokenhancer.preference.FileSelectPreference
             android:defaultValue="/sdcard/Download"
             app:directory="true"
             app:key="download_local"
@@ -39,7 +39,7 @@
         app:iconSpaceReserved="false"
         app:title="@string/title_video">
 
-        <com.wmods.wppenhacer.preference.FloatSeekBarPreference
+        <com.wmods.tiktokenhancer.preference.FloatSeekBarPreference
             android:defaultValue="60"
             app:key="video_limit_size"
             app:maxValue="120"
@@ -88,7 +88,7 @@
             app:key="audio_type"
             app:title="@string/send_audio_as_voice_audio_note" />
 
-        <com.wmods.wppenhacer.preference.FloatSeekBarPreference
+        <com.wmods.tiktokenhancer.preference.FloatSeekBarPreference
             android:defaultValue="2"
             app:key="voicenote_speed"
             app:maxValue="5"

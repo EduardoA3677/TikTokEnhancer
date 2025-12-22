@@ -1,0 +1,259 @@
+package com.wmods.tiktokenhancer.ui.fragments;
+
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.preference.PreferenceManager;
+
+import com.wmods.tiktokenhancer.App;
+import com.wmods.tiktokenhancer.BuildConfig;
+import com.wmods.tiktokenhancer.R;
+import com.wmods.tiktokenhancer.activities.MainActivity;
+import com.wmods.tiktokenhancer.databinding.FragmentHomeBinding;
+import com.wmods.tiktokenhancer.ui.fragments.base.BaseFragment;
+import com.wmods.tiktokenhancer.utils.FilePicker;
+import com.wmods.tiktokenhancer.xposed.core.FeatureLoader;
+import com.wmods.tiktokenhancer.xposed.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Objects;
+
+import rikka.core.util.IOUtils;
+
+public class HomeFragment extends BaseFragment {
+
+    private FragmentHomeBinding binding;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        var intentFilter = new IntentFilter(BuildConfig.APPLICATION_ID + ".RECEIVER_WPP");
+        ContextCompat.registerReceiver(requireContext(), new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                try {
+                    receiverBroadcastWpp(context, intent);
+                } catch (Exception ignored) {
+                }
+            }
+        }, intentFilter, ContextCompat.RECEIVER_EXPORTED);
+    }
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+        checkStateWpp(requireActivity());
+
+        binding.rebootBtn.setOnClickListener(view -> {
+            App.getInstance().restartApp(FeatureLoader.PACKAGE_WPP);
+            disableWpp(requireActivity());
+        });
+
+        binding.exportBtn.setOnClickListener(view -> saveConfigs(this.getContext()));
+        binding.importBtn.setOnClickListener(view -> importConfigs(this.getContext()));
+        binding.resetBtn.setOnClickListener(view -> resetConfigs(this.getContext()));
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setDisplayHomeAsUpEnabled(false);
+    }
+
+    @SuppressLint("StringFormatInvalid")
+    private void receiverBroadcastWpp(Context context, Intent intent) {
+        binding.statusTitle2.setText(R.string.whatsapp_in_background);
+        var version = intent.getStringExtra("VERSION");
+        var supported_list = Arrays.asList(context.getResources().getStringArray(R.array.supported_versions_wpp));
+
+        if (version != null && supported_list.stream().anyMatch(s -> version.startsWith(s.replace(".xx", "")))) {
+            binding.statusSummary1.setText(getString(R.string.version_s, version));
+            binding.status2.setCardBackgroundColor(context.getColor(R.color.material_state_green));
+        } else {
+            binding.statusSummary1.setText(getString(R.string.version_s_not_listed, version));
+            binding.status2.setCardBackgroundColor(context.getColor(R.color.material_state_yellow));
+        }
+        binding.rebootBtn.setVisibility(View.VISIBLE);
+        binding.statusSummary1.setVisibility(View.VISIBLE);
+        binding.statusIcon2.setImageResource(R.drawable.ic_round_check_circle_24);
+    }
+
+    private void resetConfigs(Context context) {
+        var prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs.getAll().forEach((key, value) -> prefs.edit().remove(key).apply());
+        App.getInstance().restartApp(FeatureLoader.PACKAGE_WPP);
+        Utils.showToast(context.getString(R.string.configs_reset), Toast.LENGTH_SHORT);
+    }
+
+    private static @NonNull JSONObject getJsonObject(SharedPreferences prefs) throws JSONException {
+        var entries = prefs.getAll();
+        var JSOjsonObject = new JSONObject();
+        for (var entry : entries.entrySet()) {
+            var type = new JSONObject();
+            var keyValue = entry.getValue();
+            if (keyValue instanceof HashSet<?> hashSet) {
+                keyValue = new JSONArray(new ArrayList<>(hashSet));
+            }
+            type.put("type", keyValue.getClass().getSimpleName());
+            type.put("value", keyValue);
+            JSOjsonObject.put(entry.getKey(), type);
+        }
+        return JSOjsonObject;
+    }
+
+    private void saveConfigs(Context context) {
+        FilePicker.setOnUriPickedListener((uri) -> {
+            try {
+                try (var output = context.getContentResolver().openOutputStream(uri)) {
+                    var prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                    var JSOjsonObject = getJsonObject(prefs);
+                    Objects.requireNonNull(output).write(JSOjsonObject.toString(4).getBytes());
+                }
+                Toast.makeText(context, context.getString(R.string.configs_saved), Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US);
+        String formattedDate = dateFormat.format(new Date());
+        FilePicker.fileSalve.launch("wpp_enhacer_configs_" + formattedDate + ".json");
+    }
+
+    private void importConfigs(Context context) {
+        FilePicker.setOnUriPickedListener((uri) -> {
+            try {
+                try (var input = context.getContentResolver().openInputStream(uri)) {
+                    var data = IOUtils.toString(input);
+                    var prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                    var jsonObject = new JSONObject(data);
+                    prefs.getAll().forEach((key, value) -> prefs.edit().remove(key).apply());
+                    var key = jsonObject.keys();
+                    while (key.hasNext()) {
+                        var keyName = key.next();
+                        var value = jsonObject.get(keyName);
+                        var type = value.getClass().getSimpleName();
+                        if (value instanceof JSONObject valueJson) {
+                            value = valueJson.get("value");
+                            type = valueJson.getString("type");
+                        }
+
+                        if (type.equals(JSONArray.class.getSimpleName())) {
+                            var jsonArray = (JSONArray) value;
+                            HashSet<String> hashSet = new HashSet<>();
+                            for (var i = 0; i < jsonArray.length(); i++) {
+                                hashSet.add(jsonArray.getString(i));
+                            }
+                            prefs.edit().putStringSet(keyName, hashSet).apply();
+                        } else if (type.equals(String.class.getSimpleName())) {
+                            prefs.edit().putString(keyName, (String) value).apply();
+                        } else if (type.equals(Boolean.class.getSimpleName())) {
+                            prefs.edit().putBoolean(keyName, (boolean) value).apply();
+                        } else if (type.equals(Integer.class.getSimpleName())) {
+                            prefs.edit().putInt(keyName, (int) value).apply();
+                        } else if (type.equals(Long.class.getSimpleName())) {
+                            prefs.edit().putLong(keyName, (long) value).apply();
+                        } else if (type.equals(Double.class.getSimpleName())) {
+                            prefs.edit().putFloat(keyName, Float.parseFloat(String.valueOf(value))).apply();
+                        } else if (type.equals(Float.class.getSimpleName())) {
+                            prefs.edit().putFloat(keyName, Float.parseFloat(String.valueOf(value))).apply();
+                        }
+                    }
+                }
+                Toast.makeText(context, context.getString(R.string.configs_imported), Toast.LENGTH_SHORT).show();
+                App.getInstance().restartApp(FeatureLoader.PACKAGE_WPP);
+            } catch (Exception e) {
+                Log.e("importConfigs", e.getMessage(), e);
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        FilePicker.fileCapture.launch(new String[]{"application/json"});
+    }
+
+    @SuppressLint("StringFormatInvalid")
+    private void checkStateWpp(FragmentActivity activity) {
+
+        if (MainActivity.isXposedEnabled()) {
+            binding.statusIcon.setImageResource(R.drawable.ic_round_check_circle_24);
+            binding.statusTitle.setText(R.string.module_enabled);
+            binding.statusSummary.setText(String.format(getString(R.string.version_s), BuildConfig.VERSION_NAME));
+            binding.status.setCardBackgroundColor(activity.getColor(R.color.material_state_green));
+        } else {
+            binding.statusIcon.setImageResource(R.drawable.ic_round_error_outline_24);
+            binding.statusTitle.setText(R.string.module_disabled);
+            binding.status.setCardBackgroundColor(activity.getColor(R.color.material_state_red));
+            binding.statusSummary.setVisibility(View.GONE);
+        }
+        if (isInstalled(FeatureLoader.PACKAGE_WPP) && App.isOriginalPackage()) {
+            disableWpp(activity);
+        } else {
+            binding.status2.setVisibility(View.GONE);
+        }
+        checkWpp(activity);
+        binding.deviceName.setText(Build.MANUFACTURER);
+        binding.sdk.setText(String.valueOf(Build.VERSION.SDK_INT));
+        binding.modelName.setText(Build.DEVICE);
+        if (App.isOriginalPackage()) {
+            binding.listWpp.setText(Arrays.toString(activity.getResources().getStringArray(R.array.supported_versions_wpp)));
+        } else {
+            binding.listWppTitle.setVisibility(View.GONE);
+            binding.listWpp.setVisibility(View.GONE);
+        }
+    }
+
+    private boolean isInstalled(String packageWpp) {
+        try {
+            App.getInstance().getPackageManager().getPackageInfo(packageWpp, 0);
+            return true;
+        } catch (Exception ignored) {
+        }
+        return false;
+    }
+
+    private void disableWpp(FragmentActivity activity) {
+        binding.statusIcon2.setImageResource(R.drawable.ic_round_error_outline_24);
+        binding.statusTitle2.setText(R.string.whatsapp_is_not_running_or_has_not_been_activated_in_lsposed);
+        binding.status2.setCardBackgroundColor(activity.getColor(R.color.material_state_red));
+        binding.statusSummary1.setVisibility(View.GONE);
+        binding.rebootBtn.setVisibility(View.GONE);
+    }
+
+    private static void checkWpp(FragmentActivity activity) {
+        Intent checkWpp = new Intent(BuildConfig.APPLICATION_ID + ".CHECK_WPP");
+        activity.sendBroadcast(checkWpp);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+}

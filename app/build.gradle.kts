@@ -32,11 +32,6 @@ android {
             dimension = "version"
             applicationIdSuffix = ""
         }
-        create("business") {
-            dimension = "version"
-            applicationIdSuffix = ".w4b"
-            resValue("string", "app_name", "Wa Enhancer Business")
-        }
     }
 
     defaultConfig {
@@ -175,7 +170,7 @@ interface InjectedExecOps {
 
 
 afterEvaluate {
-    listOf("installWhatsappDebug", "installBusinessDebug").forEach { taskName ->
+    listOf("installWhatsappDebug").forEach { taskName ->
         tasks.findByName(taskName)?.doLast {
             runCatching {
                 val injected  = project.objects.newInstance<InjectedExecOps>()

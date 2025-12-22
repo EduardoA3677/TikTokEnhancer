@@ -120,14 +120,12 @@
     <string name="module_disabled">الوحدة معطلة🚫</string>
     <string name="whatsapp_in_background">واتساب في الخلفية</string>
     <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">لا يعمل Whatsapp أو لم يتم تفعيله في Lsposed</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">واتساب أعمال لا يعمل أو لم يتم تفعيل أداة Lsposed </string>
     <string name="restart_wpp">من الضروري إعادة تشغيل WhatsApp لتفعيل التغييرات في Wa Encer. هل تريد إعادة التشغيل؟</string>
     <string name="version_s_not_listed">الإصدار %s غير مدرج في الإصدارات المدعومة!\nالرجاء استخدام إصدار WhatsApp المدعوم!</string>
     <string name="media">الوسائط</string>
     <string name="show_button_to_send_blue_tick">إظهار أيقونة لإرسال علامة زرقاء✔️✔️</string>
     <string name="show_button_to_send_blue_tick_sum">إظهار أيقونة لإرسال علامة زرقاء (ضع علامة كمقروء/مشاهدة)</string>
     <string name="send_blue_tick">وضع علامة كمقروء/مشاهدة</string>
-    <string name="business_in_background">واتساب أعمال في الخلفية</string>
     <string name="sending_read_blue_tick">إرسال علامة زرقاء (ضع علامة كمقروءة/مشاهدة)</string>
     <string name="enable_facebook_style_for_status">تمكين نمط الفيس بوك للحالة</string>
     <string name="enable_facebook_style_for_status_sum">تغيير نمط الحالة الأصلية إلى نمط الفيس بوك</string>
@@ -166,7 +164,6 @@
     <string name="device_name">اسم الجهاز</string>
     <string name="disable_metaai">تعطيل وظائف Meta Ai</string>
     <string name="disable_metaai_sum">تعطيل ميتا آي فقط لأولئك الذين قاموا بتمكينه بشكل افتراضي</string>
-    <string name="list_business">قائمة واتساب أعمال المدعومة:</string>
     <string name="list_wpp">قائمة واتساب المدعومة:</string>
     <string name="title_image">صورة</string>
     <string name="title_video">فيديو</string>

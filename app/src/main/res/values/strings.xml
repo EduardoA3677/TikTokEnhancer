@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Wa Enhancer</string>
+    <string name="app_name" translatable="false">TikTokEnhancer</string>
     <string name="app_desc">WhatsApp Enhancer Module</string>
     <string name="antirevoke">Anti-Revoke Messages</string>
     <string name="antirevoke_sum">Messages will not be deleted for you</string>
@@ -121,14 +121,12 @@
     <string name="module_disabled">Module disabled</string>
     <string name="whatsapp_in_background">WhatsApp in background</string>
     <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">Whatsapp is not running or has not been activated in Lsposed</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">Business is not running or has not been activated in Lsposed</string>
     <string name="restart_wpp">It is necessary to restart WhatsApp for the changes in Wa Enhancer to take effect.\n\nDo you want to restart?</string>
     <string name="version_s_not_listed">Version %s not listed in supported versions!\nPlease use supported WhatsApp version!</string>
     <string name="media">Media</string>
     <string name="show_button_to_send_blue_tick">Show Button to send blue tick</string>
     <string name="show_button_to_send_blue_tick_sum">Show Button to send blue tick (mark as read/viewed)</string>
     <string name="send_blue_tick">Mark as Read/Viewed</string>
-    <string name="business_in_background">Business in background</string>
     <string name="sending_read_blue_tick">Sending blue tick (mark as read/viewed)</string>
     <string name="enable_facebook_style_for_status">Enable Facebook Style for Status</string>
     <string name="enable_facebook_style_for_status_sum">Change original Status Style to Facebook Style</string>
@@ -167,7 +165,6 @@
     <string name="device_name">Device Name</string>
     <string name="disable_metaai">Disable Meta Ai Functions</string>
     <string name="disable_metaai_sum">Disable meta ai only for those who have it enabled by default</string>
-    <string name="list_business">Business Supported List:</string>
     <string name="list_wpp">WhatsApp Supported List:</string>
     <string name="title_image">Image</string>
     <string name="title_video">Video</string>

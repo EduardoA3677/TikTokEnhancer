@@ -119,14 +119,12 @@
     <string name="module_disabled">Module désactivé</string>
     <string name="whatsapp_in_background">WhatsApp en arrière-plan</string>
     <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp ne fonctionne pas ou n\'a pas été activé dans Lsposed</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">Business ne fonctionne pas ou n\'a pas été activée dans Lsposed</string>
     <string name="restart_wpp">Il est nécessaire de redémarrer WhatsApp pour que les modifications dans Wa Enhancer prennent effet.\n\nVoulez-vous redémarrer ?</string>
     <string name="version_s_not_listed">La version %s n\'est pas répertoriée dans les versions prises en charge !\nVeuillez utiliser la version WhatsApp prise en charge !</string>
     <string name="media">Médias</string>
     <string name="show_button_to_send_blue_tick">Afficher le bouton pour envoyer la coche bleue</string>
     <string name="show_button_to_send_blue_tick_sum">Afficher le bouton pour envoyer une coche bleue (marquer comme lu/visualisé)</string>
     <string name="send_blue_tick">Marquer comme lu/vu</string>
-    <string name="business_in_background">Business en arrière-plan</string>
     <string name="sending_read_blue_tick">Envoi coche bleue (marquer comme lu/vu)</string>
     <string name="enable_facebook_style_for_status">Activer le style Facebook pour le statut</string>
     <string name="enable_facebook_style_for_status_sum">Changer le style de statut d\'origine en style Facebook</string>
@@ -165,7 +163,6 @@
     <string name="device_name">Nom de l\'appareil</string>
     <string name="disable_metaai">Désactiver les fonctions Meta Ai intelligence artificielle</string>
     <string name="disable_metaai_sum">Désactivez meta IA uniquement pour ceux qui l\'ont activée par défaut</string>
-    <string name="list_business">Liste wa Business prises en charge :</string>
     <string name="list_wpp">Liste WhatsApp prise en charge :</string>
     <string name="title_image">Image</string>
     <string name="title_video">Vidéo</string>

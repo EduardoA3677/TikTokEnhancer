@@ -105,7 +105,6 @@ public class FeatureLoader {
     public static Application mApp;
 
     public final static String PACKAGE_WPP = "com.whatsapp";
-    public final static String PACKAGE_BUSINESS = "com.whatsapp.w4b";
 
     private static final ArrayList<ErrorItem> list = new ArrayList<>();
     private static List<String> supportedVersions;

@@ -119,14 +119,12 @@
     <string name="module_disabled">Módulo Desactivado❗\nVe a LSPosed y actívalo</string>
     <string name="whatsapp_in_background">WhatsApp activo en segundo plano</string>
     <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp no esta abierto o no se ha activado en LSPosed</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">Business no está abierto o no se ha activado en Lsposed</string>
     <string name="restart_wpp">Es necesario reiniciar WhatsApp para que los cambios de Wa Enhancer hagan efecto.\n\n¿Quieres reiniciar?</string>
     <string name="version_s_not_listed">¡La versión %s no aparece en las versiones compatibles!\n¡Por favor, usa una versión de WhatsApp compatible para evitar errores!</string>
     <string name="media">Multimedia</string>
     <string name="show_button_to_send_blue_tick">Mostrar botón para enviar el tick azul</string>
     <string name="show_button_to_send_blue_tick_sum">Mostrar botón para enviar tick azul (marcar como leído/visto)</string>
     <string name="send_blue_tick">Marcar como leído/visto</string>
-    <string name="business_in_background">Business en segundo plano</string>
     <string name="sending_read_blue_tick">Enviando tick azul (marcar como leído/visto)</string>
     <string name="enable_facebook_style_for_status">Habilitar el estilo de Facebook para el estado</string>
     <string name="enable_facebook_style_for_status_sum">Cambiar el estilo de estado original al estilo de Facebook</string>
@@ -165,7 +163,6 @@
     <string name="device_name">Marca</string>
     <string name="disable_metaai">Deshabilitar las funciones Meta Ai</string>
     <string name="disable_metaai_sum">Deshabilite Meta Ai solo para aquellos que lo tengan habilitado de forma predeterminada</string>
-    <string name="list_business">WhatsApp Business compatibles:</string>
     <string name="list_wpp">WhatsApp compatibles:</string>
     <string name="title_image">Imagen</string>
     <string name="title_video">Video</string>

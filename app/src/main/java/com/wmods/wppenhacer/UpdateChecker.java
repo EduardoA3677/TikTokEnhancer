@@ -31,7 +31,7 @@ public class UpdateChecker implements Runnable {
             var body = response.body();
             if (body == null) return;
             var content = body.string();
-            var findText = "WaEnhancer_Business_";
+            var findText = "WaEnhancer_";
             var indexHash = content.lastIndexOf(findText);
             var lastindexHash = content.indexOf(".apk", indexHash);
             var hash = content.substring(indexHash + findText.length(), lastindexHash);

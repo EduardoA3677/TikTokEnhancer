@@ -170,70 +170,6 @@
                     </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/status3"
-                    style="@style/Widget.Material3.CardView.Elevated"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:outlineAmbientShadowColor="?colorPrimary"
-                    android:outlineSpotShadowColor="?colorPrimary"
-                    android:stateListAnimator="@null"
-                    app:cardBackgroundColor="?colorPrimary"
-                    app:cardElevation="@dimen/home_primary_elevation"
-                    app:cardPreventCornerOverlap="false"
-                    tools:targetApi="p">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="?dialogPreferredPadding">
-
-                        <ImageView
-                            android:id="@+id/status_icon3"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerVertical="true"
-                            android:tint="?colorOnPrimary"
-                            app:srcCompat="@drawable/ic_round_check_circle_24"
-                            tools:ignore="ContentDescription" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/status_title3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_toStartOf="@+id/reboot_btn2"
-                            android:layout_toEndOf="@id/status_icon3"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/business_in_background"
-                            android:textAppearance="?textAppearanceTitleMedium"
-                            android:textColor="?colorOnPrimary"
-                            android:textSize="16sp" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/status_summary3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/status_title3"
-                            android:layout_alignStart="@id/status_title3"
-                            android:text=""
-                            android:textAppearance="?textAppearanceBodyMedium"
-                            android:textColor="?colorOnPrimary" />
-
-                        <ImageView
-                            android:id="@+id/reboot_btn2"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentEnd="true"
-                            android:src="@drawable/ic_reload"
-                            android:textAlignment="center" />
-
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
-
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/developer_warning_card"
@@ -332,19 +268,6 @@
                             android:layout_height="wrap_content"
                             android:text=""
                             android:gravity="center_vertical" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            style="@style/DeviceInfoDialogLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/list_business" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/list_business"
-                            style="@style/DeviceInfoDialogValue"
-                            android:layout_width="match_parent"
-                            android:text=""
-                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 

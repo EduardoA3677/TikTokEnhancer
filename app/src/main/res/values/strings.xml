@@ -193,7 +193,7 @@
     <string name="backup_settings">Backup Settings</string>
     <string name="import_settings">Import</string>
     <string name="export_settings">Export</string>
-    <string name="version_error">The version of Whatsapp you are using is not compatible and is throwing an error in the following features:\n\n</string>
+    <string name="version_error">The version of TikTok you are using is not compatible and is throwing an error in the following features:\n\n</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="error_detected">Error detected</string>
@@ -227,7 +227,7 @@
     <string name="disable_default_emojis">Disable Default Emojis</string>
     <string name="theme_mode">Dark Theme Wa Enhancer</string>
     <string name="theme_mode_sum">Force a theme mode in the Wa Enhancer</string>
-    <string name="disable_default_emojis_sum">Disables Whatsapp\'s default emojis and uses system emojis\n(NOTE: Whatsapp emojis will disappear from the selector, use the keyboard to insert).</string>
+    <string name="disable_default_emojis_sum">Disables TikTok\'s default emojis and uses system emojis\n(NOTE: TikTok emojis will disappear from the selector, use the keyboard to insert).</string>
     <string name="other">Other</string>
     <string name="enable_media_preview">Enable Media Preview</string>
     <string name="enable_media_preview_sum">Add a button to preview media in a temporary file (without downloading it permanently)</string>
@@ -362,7 +362,7 @@
     <string name="bridge_error">Bridge Failed: Enable System Framework in Lsposed and reboot device</string>
     <string name="disable_battery_optimization">Disable Battery Optimization</string>
     <string name="bootloader_spoofer">Bootloader Spoofer</string>
-    <string name="bootloader_spoofer_sum">Use this if you have been banned and are receiving the unofficial Whatsapp message</string>
+    <string name="bootloader_spoofer_sum">Use this if you have been banned and are receiving the unofficial TikTok message</string>
     <string name="not_available">not available</string>
     <string name="select_all">Select All</string>
     <string name="custom_colors_for_text_status">Custom colors for text status</string>
@@ -376,13 +376,13 @@
     <string name="transcription_provider">Transcription Provider</string>
     <string name="transcription_provider_sum">Choose the AI service for audio transcription</string>
     <string name="assemblyai">Enable AssemblyAI</string>
-    <string name="assemblyai_sum">Replaces the default Whatsapp transcription with AssemblyAI</string>
+    <string name="assemblyai_sum">Replaces the default TikTok transcription with AssemblyAI</string>
     <string name="assemblyai_key">AssemblyAI API Key</string>
     <string name="assemblyai_key_sum">AssemblyAI API access key (Get it at assemblyai.com)</string>
     <string name="groq_api_key">Groq API Key</string>
     <string name="groq_api_key_sum">Groq API access key (Get it at console.groq.com)</string>
     <string name="google_translate">Enable Google Translate</string>
-    <string name="google_translate_sum">Replaces Whatsapp\'s native translator with Google Translate</string>
+    <string name="google_translate_sum">Replaces TikTok\'s native translator with Google Translate</string>
     <string name="show_contact_info">Show in contact info</string>
     <string name="show_contact_info_menu">Show in contact info menu</string>
     <string name="block_call">Block Call</string>

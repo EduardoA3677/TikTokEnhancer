@@ -299,12 +299,6 @@ public class WppCore {
         // Commented out WhatsApp-specific status composer
         return XposedHelpers.findClassIfExists("android.app.Fragment", loader);
     }
-            if ((result = XposedHelpers.findClassIfExists(clazz, loader)) != null)
-                return result;
-        }
-        // Commented out WhatsApp-specific code - TikTok doesn't have status composer
-        return XposedHelpers.findClassIfExists("android.app.Fragment", loader);
-    }
 
     public synchronized static Class getVoipManagerClass(@NonNull ClassLoader loader) throws Exception {
         // TODO: Update with TikTok video call classes if applicable

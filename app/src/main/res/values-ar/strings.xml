@@ -121,7 +121,7 @@
     <string name="whatsapp_in_background">واتساب في الخلفية</string>
     <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">لا يعمل Whatsapp أو لم يتم تفعيله في Lsposed</string>
     <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">واتساب أعمال لا يعمل أو لم يتم تفعيل أداة Lsposed </string>
-    <string name="restart_wpp">من الضروري إعادة تشغيل WhatsApp لتفعيل التغييرات في Wa Encer. هل تريد إعادة التشغيل؟</string>
+    <string name="restart_tkk">من الضروري إعادة تشغيل WhatsApp لتفعيل التغييرات في Wa Encer. هل تريد إعادة التشغيل؟</string>
     <string name="version_s_not_listed">الإصدار %s غير مدرج في الإصدارات المدعومة!\nالرجاء استخدام إصدار WhatsApp المدعوم!</string>
     <string name="media">الوسائط</string>
     <string name="show_button_to_send_blue_tick">إظهار أيقونة لإرسال علامة زرقاء✔️✔️</string>
@@ -167,7 +167,7 @@
     <string name="disable_metaai">تعطيل وظائف Meta Ai</string>
     <string name="disable_metaai_sum">تعطيل ميتا آي فقط لأولئك الذين قاموا بتمكينه بشكل افتراضي</string>
     <string name="list_business">قائمة واتساب أعمال المدعومة:</string>
-    <string name="list_wpp">قائمة واتساب المدعومة:</string>
+    <string name="list_tkk">قائمة واتساب المدعومة:</string>
     <string name="title_image">صورة</string>
     <string name="title_video">فيديو</string>
     <string name="enable_new_chat_button">تمكين أيقونة الدردشة الجديد</string>
@@ -390,9 +390,9 @@
     <string name="city_s">المدينة: %s</string>
     <string name="ip_s">IP: %s</string>
     <string name="platform_s">المنصة: %s</string>
-    <string name="wpp_version_s">إصدار واتساب: %s</string>
+    <string name="tkk_version_s">إصدار واتساب: %s</string>
     <string name="call_information">معلومات المكالمة</string>
-    <string name="ask_download_folder">لاستخدام وظائف التنزيل الخاصة بـ WAE Enhancer، يجب عليك تحديد مجلد لحفظ الملفات التي تم تنزيلها.</string>
+    <string name="ask_download_folder">لاستخدام وظائف التنزيل الخاصة بـ TikTok Enhancer، يجب عليك تحديد مجلد لحفظ الملفات التي تم تنزيلها.</string>
     <string name="download_folder_permission">إذن تحميل المجلد</string>
     <string name="lite_mode">الوضع الخفيف</string>
     <string name="lite_mode_sum">يعطل الوضع الخفيف معظم ميزات الثيمات ويتم إيقاف تشغيل جسر الاتصال الذي يحافظ على WhatsApp نشطًا دائمًا.</string>

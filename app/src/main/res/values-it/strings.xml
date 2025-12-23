@@ -120,7 +120,7 @@
     <string name="whatsapp_in_background">WhatsApp in background</string>
     <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">Whatsapp non è in esecuzione o non è stato attivato in LSPosed</string>
     <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp Business non è in esecuzione o non è stato attivato in LSPosed</string>
-    <string name="restart_wpp">È necessario riavviare WhatsApp affinché le modifiche in Wa Enhancer abbiano effetto.\n\nVuoi riavviare?</string>
+    <string name="restart_tkk">È necessario riavviare WhatsApp affinché le modifiche in Wa Enhancer abbiano effetto.\n\nVuoi riavviare?</string>
     <string name="version_s_not_listed">La versione %s non è elencata nelle versioni supportate!\nUtilizza una versione di WhatsApp supportata!</string>
     <string name="media">Media</string>
     <string name="show_button_to_send_blue_tick">Mostra pulsante per inviare la spunta blu</string>
@@ -166,7 +166,7 @@
     <string name="disable_metaai">Disabilita funzioni Meta AI</string>
     <string name="disable_metaai_sum">Disabilita Meta AI solo per coloro che lo hanno abilitato per impostazione predefinita</string>
     <string name="list_business">Versioni WhatsApp Business supportate:</string>
-    <string name="list_wpp">Versioni WhatsApp supportate:</string>
+    <string name="list_tkk">Versioni WhatsApp supportate:</string>
     <string name="title_image">Immagine</string>
     <string name="title_video">Video</string>
     <string name="enable_new_chat_button">Abilita pulsante Nuova chat</string>
@@ -389,9 +389,9 @@
     <string name="city_s">Città: %s</string>
     <string name="ip_s">IP: %s</string>
     <string name="platform_s">Piattaforma: %s</string>
-    <string name="wpp_version_s">Versione WhatsApp: %s</string>
+    <string name="tkk_version_s">Versione WhatsApp: %s</string>
     <string name="call_information">Informazioni Chiamata</string>
-    <string name="ask_download_folder">Per utilizzare le funzioni di download di WAE Enhancer, è necessario selezionare una cartella per salvare i file scaricati.</string>
+    <string name="ask_download_folder">Per utilizzare le funzioni di download di TikTok Enhancer, è necessario selezionare una cartella per salvare i file scaricati.</string>
     <string name="download_folder_permission">Permesso Cartella Di Download</string>
     <string name="lite_mode">Modalità Lite</string>
     <string name="lite_mode_sum">La Modalità Lite disabilita la maggior parte delle funzioni del tema e il ponte di connessione che mantiene WhatsApp sempre attivo è disattivato.</string>

@@ -1,0 +1,316 @@
+package com.wmods.tkkenhancer.xposed.features.general;
+
+import android.text.TextUtils;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.wmods.tkkenhancer.xposed.core.Feature;
+import com.wmods.tkkenhancer.xposed.core.TkkCore;
+import com.wmods.tkkenhancer.xposed.core.components.FMessageTkk;
+import com.wmods.tkkenhancer.xposed.core.db.DelMessageStore;
+import com.wmods.tkkenhancer.xposed.core.db.MessageStore;
+import com.wmods.tkkenhancer.xposed.core.devkit.Unobfuscator;
+import com.wmods.tkkenhancer.xposed.core.devkit.UnobfuscatorCache;
+import com.wmods.tkkenhancer.xposed.utils.ReflectionUtils;
+import com.wmods.tkkenhancer.xposed.utils.ResId;
+import com.wmods.tkkenhancer.xposed.utils.Utils;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
+
+public class AntiRevoke extends Feature {
+
+    private static final HashMap<String, HashSet<String>> messageRevokedMap = new HashMap<>();
+
+    public AntiRevoke(ClassLoader loader, XSharedPreferences preferences) {
+        super(loader, preferences);
+    }
+
+    @Override
+    public void doHook() throws Exception {
+
+        var antiRevokeMessageMethod = Unobfuscator.loadAntiRevokeMessageMethod(classLoader);
+        logDebug(Unobfuscator.getMethodDescriptor(antiRevokeMessageMethod));
+
+        var bubbleMethod = Unobfuscator.loadAntiRevokeBubbleMethod(classLoader);
+        logDebug(Unobfuscator.getMethodDescriptor(bubbleMethod));
+
+        var unknownStatusPlaybackMethod = Unobfuscator.loadUnknownStatusPlaybackMethod(classLoader);
+        logDebug(Unobfuscator.getMethodDescriptor(unknownStatusPlaybackMethod));
+
+        var statusPlaybackClass = Unobfuscator.loadStatusPlaybackViewClass(classLoader);
+        logDebug(statusPlaybackClass);
+
+        XposedBridge.hookMethod(antiRevokeMessageMethod, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Exception {
+                var fMessage = new FMessageTkk(param.args[0]);
+                var messageKey = fMessage.getKey();
+                var deviceJid = fMessage.getDeviceJid();
+                var messageID = (String) XposedHelpers.getObjectField(fMessage.getObject(), "A01");
+                // Caso o proprio usuario tenha deletado o status
+                if (TkkCore.getPrivBoolean(messageID + "_delpass", false)) {
+                    TkkCore.removePrivKey(messageID + "_delpass");
+                    var activity = TkkCore.getCurrentActivity();
+                    Class<?> StatusPlaybackActivityClass = classLoader.loadClass("com.whatsapp.status.playback.StatusPlaybackActivity");
+                    if (activity != null && StatusPlaybackActivityClass.isInstance(activity)) {
+                        activity.finish();
+                    }
+                    return;
+                }
+                if (messageKey.remoteJid.isGroup()) {
+                    if (deviceJid != null && antiRevoke(fMessage) != 0) {
+                        param.setResult(true);
+                    }
+                } else if (!messageKey.isFromMe && antiRevoke(fMessage) != 0) {
+                    param.setResult(true);
+                }
+            }
+        });
+
+
+        XposedBridge.hookMethod(bubbleMethod, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) {
+                var objMessage = param.args[2];
+                var dateTextView = (TextView) param.args[1];
+                isMRevoked(objMessage, dateTextView, "antirevoke");
+            }
+        });
+
+        XposedBridge.hookMethod(unknownStatusPlaybackMethod, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                Object obj;
+                Object objFMessage;
+                
+                // Check if this is new version (1 param) or old version (3+ params)
+                Method method = (Method) param.method;
+                if (method.getParameterCount() == 1) {
+                    // New version (2.25.37+): only fragment parameter
+                    obj = param.args[0]; // The fragment itself
+                    
+                    // Try to get current message from fragment fields
+                    // Look for List field that contains messages - prefer fields with "A09" naming pattern
+                    var messageListField = ReflectionUtils.findFieldUsingFilter(obj.getClass(), 
+                        f -> List.class.isAssignableFrom(f.getType()) && !Modifier.isStatic(f.getModifiers()));
+                    if (messageListField == null) {
+                        return;
+                    }
+                    List<?> messageList = (List<?>) messageListField.get(obj);
+                    if (messageList == null || messageList.isEmpty()) {
+                        return;
+                    }
+                    
+                    // Get current index from fragment - try to find int field
+                    // Usually one of the first few int fields (A00, A01, etc.)
+                    var currentIndexField = ReflectionUtils.findFieldUsingFilter(obj.getClass(), 
+                        f -> f.getType() == int.class && !Modifier.isStatic(f.getModifiers()) && f.getName().matches("A0[0-9]"));
+                    int currentIndex = 0;
+                    if (currentIndexField != null) {
+                        try {
+                            currentIndex = (int) currentIndexField.get(obj);
+                        } catch (Exception e) {
+                            // Use default index 0
+                        }
+                    }
+                    
+                    if (currentIndex >= 0 && currentIndex < messageList.size()) {
+                        objFMessage = messageList.get(currentIndex);
+                    } else {
+                        objFMessage = messageList.get(0);
+                    }
+                } else {
+                    // Old version: 3 parameters
+                    obj = ReflectionUtils.getArg(param.args, param.method.getDeclaringClass(), 0);
+                    objFMessage = param.args[0];
+                }
+                
+                if (!FMessageTkk.TYPE.isInstance(objFMessage)) {
+                    var field = ReflectionUtils.findFieldUsingFilter(objFMessage.getClass(), f -> f.getType() == FMessageTkk.TYPE);
+                    if (field != null) {
+                        objFMessage = field.get(objFMessage);
+                    } else {
+                        var field1 = ReflectionUtils.findFieldUsingFilter(objFMessage.getClass(), f -> f.getType() == FMessageTkk.Key.TYPE);
+                        if (field1 == null) {
+                            // Can't find FMessage, skip
+                            return;
+                        }
+                        var key = field1.get(objFMessage);
+                        objFMessage = TkkCore.getFMessageFromKey(key);
+                    }
+                }
+                
+                var field = ReflectionUtils.getFieldByType(param.method.getDeclaringClass(), statusPlaybackClass);
+
+                Object objView = field.get(obj);
+                var textViews = ReflectionUtils.getFieldsByType(statusPlaybackClass, TextView.class);
+                if (textViews.isEmpty()) {
+                    log("Could not find TextView");
+                    return;
+                }
+                int dateId = Utils.getID("date", "id");
+                for (Field textView : textViews) {
+                    TextView textView1 = (TextView) textView.get(objView);
+                    if (textView1 != null && textView1.getId() == dateId) {
+                        isMRevoked(objFMessage, textView1, "antirevokestatus");
+                        break;
+                    }
+                }
+            }
+        });
+
+    }
+
+    @NonNull
+    @Override
+    public String getPluginName() {
+        return "Anti Revoke";
+    }
+
+    private static void saveRevokedMessage(FMessageTkk fMessage) {
+        var messageKey = (String) XposedHelpers.getObjectField(fMessage.getObject(), "A01");
+        var stripJID = fMessage.getKey().remoteJid.getPhoneNumber();
+        HashSet<String> messages = getRevokedMessages(fMessage);
+        messages.add(messageKey);
+        DelMessageStore.getInstance(Utils.getApplication()).insertMessage(stripJID, messageKey, System.currentTimeMillis());
+    }
+
+    private static HashSet<String> getRevokedMessages(FMessageTkk fMessage) {
+        String stripJID = fMessage.getKey().remoteJid.getPhoneNumber();
+        if (messageRevokedMap.containsKey(stripJID)) {
+            return messageRevokedMap.get(stripJID);
+        }
+        var messages = DelMessageStore.getInstance(Utils.getApplication()).getMessagesByJid(stripJID);
+        if (messages == null) messages = new HashSet<>();
+        messageRevokedMap.put(stripJID, messages);
+        return messages;
+    }
+
+
+    private void isMRevoked(Object objMessage, TextView dateTextView, String antirevokeType) {
+        if (dateTextView == null) return;
+
+        var fMessage = new FMessageTkk(objMessage);
+        var key = fMessage.getKey();
+        var messageRevokedList = getRevokedMessages(fMessage);
+        var id = fMessage.getRowId();
+        String keyOrig = null;
+        if (messageRevokedList.contains(key.messageID) || ((keyOrig = MessageStore.getInstance().getOriginalMessageKey(id)) != null && messageRevokedList.contains(keyOrig))) {
+            var timestamp = DelMessageStore.getInstance(Utils.getApplication()).getTimestampByMessageId(keyOrig == null ? key.messageID : keyOrig);
+            if (timestamp > 0) {
+                Locale locale = Utils.getApplication().getResources().getConfiguration().getLocales().get(0);
+                DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, locale);
+                var date = dateFormat.format(new Date(timestamp));
+                dateTextView.getPaint().setUnderlineText(true);
+                dateTextView.setOnClickListener(v -> Utils.showToast(String.format(Utils.getApplication().getString(ResId.string.message_removed_on), date), Toast.LENGTH_LONG));
+            }
+            var antirevokeValue = Integer.parseInt(prefs.getString(antirevokeType, "0"));
+            if (antirevokeValue == 1) {
+                // Text
+                var newTextData = UnobfuscatorCache.getInstance().getString("messagedeleted") + " | " + dateTextView.getText();
+                dateTextView.setText(newTextData);
+            } else if (antirevokeValue == 2) {
+                // Icon
+                var drawable = Utils.getApplication().getDrawable(ResId.drawable.deleted);
+                dateTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+                dateTextView.setCompoundDrawablePadding(5);
+            }
+        } else {
+            dateTextView.setCompoundDrawables(null, null, null, null);
+            var revokeNotice = UnobfuscatorCache.getInstance().getString("messagedeleted") + " | ";
+            var dateText = dateTextView.getText().toString();
+            if (dateText.contains(revokeNotice)) {
+                dateTextView.setText(dateText.replace(revokeNotice, ""));
+            }
+            dateTextView.getPaint().setUnderlineText(false);
+            dateTextView.setOnClickListener(null);
+        }
+    }
+
+
+    private int antiRevoke(FMessageTkk fMessage) {
+        try {
+            showToast(fMessage);
+        } catch (Exception e) {
+            log(e);
+        }
+        String messageKey = (String) XposedHelpers.getObjectField(fMessage.getObject(), "A01");
+        String stripJID = fMessage.getKey().remoteJid.getPhoneNumber();
+        int revokeboolean = stripJID.equals("status") ? Integer.parseInt(prefs.getString("antirevokestatus", "0")) : Integer.parseInt(prefs.getString("antirevoke", "0"));
+        if (revokeboolean == 0) return revokeboolean;
+        var messageRevokedList = getRevokedMessages(fMessage);
+        if (!messageRevokedList.contains(messageKey)) {
+            try {
+                CompletableFuture.runAsync(() -> {
+                    saveRevokedMessage(fMessage);
+                    try {
+                        var mConversation = TkkCore.getCurrentConversation();
+                        if (mConversation != null && Objects.equals(stripJID, TkkCore.getCurrentUserJid().getPhoneNumber())) {
+                            mConversation.runOnUiThread(() -> {
+                                if (mConversation.hasWindowFocus()) {
+                                    mConversation.startActivity(mConversation.getIntent());
+                                    mConversation.overridePendingTransition(0, 0);
+                                    mConversation.getWindow().getDecorView().findViewById(android.R.id.content).postInvalidate();
+                                } else {
+                                    mConversation.recreate();
+                                }
+                            });
+                        }
+                    } catch (Exception e) {
+                        logDebug(e);
+                    }
+                });
+            } catch (Exception e) {
+                logDebug(e);
+            }
+        }
+        return revokeboolean;
+    }
+
+    private void showToast(FMessageTkk fMessage) {
+        var jidAuthor = fMessage.getKey().remoteJid;
+        var messageSuffix = Utils.getApplication().getString(ResId.string.deleted_message);
+        if (jidAuthor.isStatus()) {
+            messageSuffix = Utils.getApplication().getString(ResId.string.deleted_status);
+            jidAuthor = fMessage.getUserJid();
+        }
+        if (jidAuthor.userJid == null) return;
+        String name = TkkCore.getContactName(jidAuthor);
+        if (TextUtils.isEmpty(name)) {
+            name = jidAuthor.getPhoneNumber();
+        }
+        String message;
+        if (jidAuthor.isGroup() && fMessage.getUserJid().isNull()) {
+            var participantJid = fMessage.getUserJid();
+            String participantName = TkkCore.getContactName(participantJid);
+            if (TextUtils.isEmpty(participantName)) {
+                participantName = participantJid.getPhoneNumber();
+            }
+            message = Utils.getApplication().getString(ResId.string.deleted_a_message_in_group, participantName, name);
+        } else {
+            message = name + " " + messageSuffix;
+        }
+        if (prefs.getBoolean("toastdeleted", false)) {
+            Utils.showToast(message, Toast.LENGTH_LONG);
+        }
+        Tasker.sendTaskerEvent(name, jidAuthor.getPhoneNumber(), jidAuthor.isStatus() ? "deleted_status" : "deleted_message");
+    }
+
+}

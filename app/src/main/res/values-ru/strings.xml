@@ -120,7 +120,7 @@
     <string name="whatsapp_in_background">WhatsApp запущен и работает</string>
     <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp не запущен или не был активирован в Lsposed</string>
     <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp Business не запущен или не был активирован в Lsposed</string>
-    <string name="restart_wpp">Необходимо перезапустить WhatsApp, чтобы изменения в Wa Enhancer вступили в силу.\n\nХотите перезапустить?</string>
+    <string name="restart_tkk">Необходимо перезапустить WhatsApp, чтобы изменения в Wa Enhancer вступили в силу.\n\nХотите перезапустить?</string>
     <string name="version_s_not_listed">Версия %s не указана в поддерживаемых версиях!\nПожалуйста, используйте поддерживаемую версию WhatsApp!</string>
     <string name="media">Медиа</string>
     <string name="show_button_to_send_blue_tick">Показать кнопку для отправки синей галочки</string>
@@ -166,7 +166,7 @@
     <string name="disable_metaai">Отключить Мета-Ai функции</string>
     <string name="disable_metaai_sum">Отключить Мета-Ai только для тех, у кого он включен по умолчанию</string>
     <string name="list_business">Список поддерживаемых версий Business:</string>
-    <string name="list_wpp">Список поддерживаемых версий WhatsApp:</string>
+    <string name="list_tkk">Список поддерживаемых версий WhatsApp:</string>
     <string name="title_image">Изображение</string>
     <string name="title_video">Видео</string>
     <string name="enable_new_chat_button">Включить новую кнопку чата</string>
@@ -389,9 +389,9 @@
     <string name="city_s">Город: %s</string>
     <string name="ip_s">IP: %s</string>
     <string name="platform_s">Платформа: %s</string>
-    <string name="wpp_version_s">Версия WhatsApp: %s</string>
+    <string name="tkk_version_s">Версия WhatsApp: %s</string>
     <string name="call_information">Информация о звонке</string>
-    <string name="ask_download_folder">Для использования функций загрузки WAE Enhancer, необходимо выбрать папку для сохранения загруженных файлов.</string>
+    <string name="ask_download_folder">Для использования функций загрузки TikTok Enhancer, необходимо выбрать папку для сохранения загруженных файлов.</string>
     <string name="download_folder_permission">Разрешение на доступ к папке</string>
     <string name="lite_mode">Режим Lite</string>
     <string name="lite_mode_sum">Lite Mode отключает большинство функций темы и мост соединения, который держит WhatsApp всегда активным.</string>

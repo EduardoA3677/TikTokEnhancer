@@ -271,7 +271,7 @@
     <string name="disabled">Disabled</string>
     <string name="share_as_status">Share as Status</string>
     <string name="audio_transcription">Audio transcription</string>
-    <string name="audio_transcription_sum">Enable native WhatsApp audio transcription (Check the connection menu for transcription options)</string>
+    <string name="audio_transcription_sum">Enable native TikTok audio transcription (Check the connection menu for transcription options)</string>
     <string name="viewed_your_status">%s viewed your status</string>
     <string name="viewed_your_message">%s viewed your message</string>
     <string name="old_statuses">Old Statuses</string>
@@ -281,7 +281,7 @@
     <string name="open_camera">Open Camera</string>
     <string name="edit_text">Edit Text</string>
     <string name="developer" translatable="false">Developer: Dev4Mod</string>
-    <string name="about_info">Wa Enhancer is an Xposed module that enhances your WhatsApp experience by offering advanced privacy features, home screen customization, general tweaks, and media improvements.</string>
+    <string name="about_info">TikTok Enhancer is an Xposed module that enhances your TikTok experience by offering advanced features, UI customization, and video enhancements.</string>
     <string name="installation">Installation</string>
     <string name="installation_desc">1. Ensure that your device is rooted.\n2. Install the Xposed Framework on your device.\n3. Download the Wa Enhancer from the Actions section.\n4. Install the Wa Enhancer APK.\n5. Enable the Wa Enhancer module in the Xposed Installer app.</string>
     <string name="go_to_telegram">Go to Telegram</string>
@@ -294,8 +294,8 @@
     <string name="select_a_color">Select a color</string>
     <string name="custom_appearance">Custom Appearance</string>
     <string name="custom_filters_sum">Activate filters by ID and Custom CSS</string>
-    <string name="click_times">Click 5 times on the WhatsApp title</string>
-    <string name="hold_title">Hold on WhatsApp title</string>
+    <string name="click_times">Click 5 times on the TikTok title</string>
+    <string name="hold_title">Hold on TikTok title</string>
     <string name="read_all_mark_as_read">Read all (mark as read)</string>
     <string name="enable_copy_status">Enable Copy Status</string>
     <string name="enable_copy_status_sum">Activates the possibility of copying the description and caption of statuses by holding on them</string>
@@ -304,7 +304,7 @@
     <string name="vertical_status">Vertical Status</string>
     <string name="vertical_status_sum">Show status in vertical mode on Updates tab</string>
     <string name="disable_version_check">Disable Version Check</string>
-    <string name="disable_version_check_sum">Disables the supported version check of WhatsApp (Bugs may occur in unsupported versions that will not be fixed soon)</string>
+    <string name="disable_version_check_sum">Disables the supported version check of TikTok (Bugs may occur in unsupported versions that will not be fixed soon)</string>
     <string name="invalid_zip_file">Invalid zip file</string>
     <string name="theme_imported_successfully">Theme imported successfully</string>
     <string name="new_theme_name">New Theme Name</string>
@@ -326,7 +326,7 @@
     <string name="create_new_theme">Create New Theme</string>
     <string name="import_theme">Import Theme</string>
     <string name="theme_manager">Theme Manager</string>
-    <string name="manage_theme_sum">Manage themes using CSS for WhatsApp</string>
+    <string name="manage_theme_sum">Manage themes using CSS for TikTok</string>
     <string name="grant_permission">Please, grant permissions to read images and read external storage</string>
     <string name="one_row">One Row</string>
     <string name="two_row">Two row</string>
@@ -358,7 +358,7 @@
     <string name="local_download">Local Download</string>
     <string name="show_menu_buttons_as_icons">Show menu buttons as icons</string>
     <string name="show_menu_buttons_as_icons_sum">Shows menu buttons on the home screen as icons for easy access to them</string>
-    <string name="starting_cache">Starting hook cache in WhatsApp. This may take a while.</string>
+    <string name="starting_cache">Starting hook cache in TikTok. This may take a while.</string>
     <string name="bridge_error">Bridge Failed: Enable System Framework in Lsposed and reboot device</string>
     <string name="disable_battery_optimization">Disable Battery Optimization</string>
     <string name="bootloader_spoofer">Bootloader Spoofer</string>
@@ -387,7 +387,7 @@
     <string name="show_contact_info_menu">Show in contact info menu</string>
     <string name="block_call">Block Call</string>
     <string name="always_online">Always Online</string>
-    <string name="always_online_sum">Show you online even if you minimize WhatsApp (Doesn\'t work if you remove it from recents)</string>
+    <string name="always_online_sum">Show you online even if you minimize TikTok (Doesn\'t work if you remove it from recents)</string>
     <string name="additional_call_information">Additional call information</string>
     <string name="additional_call_information_sum">Receive a notification with additional information after the call ends</string>
     <string name="contact_s">Contact: %s</string>
@@ -396,14 +396,14 @@
     <string name="city_s">City: %s</string>
     <string name="ip_s">IP: %s</string>
     <string name="platform_s">Platform: %s</string>
-    <string name="wpp_version_s">WhatsApp Version: %s</string>
+    <string name="wpp_version_s">TikTok Version: %s</string>
     <string name="call_information">Call Information</string>
     <string name="ask_download_folder">To use WAE Enhancer\'s download functions, you must select a folder to save the downloaded files.</string>
     <string name="download_folder_permission">Download Folder Permission</string>
     <string name="lite_mode">Lite Mode</string>
-    <string name="lite_mode_sum">Lite Mode disables most theme features and the connection bridge that keeps WhatsApp always active is turned off.</string>
+    <string name="lite_mode_sum">Lite Mode disables most theme features and the connection bridge that keeps TikTok always active is turned off.</string>
     <string name="update_check">Automatically Check for Update</string>
-    <string name="update_check_sum">Enable or Disable Auto Check for Update. This will disable the popup inside the WhatsApp Application.</string>
+    <string name="update_check_sum">Enable or Disable Auto Check for Update. This will disable the popup inside the TikTok Application.</string>
     <string name="change_default_dpi">Change Default DPI</string>
     <string name="change_default_dpi_sum">Change the DPI setting for the application. Use 0 to reset to default.</string>
     <string name="no_contact_with_custom_privacy">No contact with custom privacy!</string>
@@ -411,12 +411,12 @@
     <string name="show_chat_broadcast_icon_sum">Shows an icon if the contact sent a message via broadcast</string>
     <string name="select_contacts">Select Contacts</string>
     <string name="style_of_stories_status">Style of Stories/Status</string>
-    <string name="style_of_stories_status_sum">Changes Stories/Status style to some models available on WhatsApp</string>
+    <string name="style_of_stories_status_sum">Changes Stories/Status style to some models available on TikTok</string>
     <string name="view_seen_tick">View Seen Tick</string>
     <string name="view_seen_tick_sum">Show an icon if the message view was sent to the recipient or unique view was seen</string>
     <string name="text_color">Text Color</string>
     <string name="disable_the_proximity_sensor">Disable Screen off on proximity sensor</string>
-    <string name="disable_the_proximity_sensor_sum">Disable Screen off on proximity sensor to the whole WhatsApp</string>
+    <string name="disable_the_proximity_sensor_sum">Disable Screen off on proximity sensor to the whole TikTok</string>
     <string name="disable_status_in_the_profile_photo">Disable Status in the profile photo</string>
     <string name="disable_status_in_the_profile_photo_sum">Disables the circle that appears in the profile photo of each contact when there is new status</string>
     <string name="download_not_available">Download not available or media has not been fully downloaded</string>

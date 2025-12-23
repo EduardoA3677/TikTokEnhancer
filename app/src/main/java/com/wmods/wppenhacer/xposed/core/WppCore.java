@@ -208,30 +208,10 @@ public class WppCore {
     }
 
     public static void sendMessage(String number, String message) {
-        try {
-            var senderMethod = ReflectionUtils.findMethodUsingFilterIfExists(actionUser, (method) -> List.class.isAssignableFrom(method.getReturnType()) && ReflectionUtils.findIndexOfType(method.getParameterTypes(), String.class) != -1);
-            if (senderMethod != null) {
-                var userJid = createUserJid(number + "@s.whatsapp.net");
-                if (userJid == null) {
-                    Utils.showToast("UserJID not found", Toast.LENGTH_SHORT);
-                    return;
-                }
-                var newObject = new Object[senderMethod.getParameterCount()];
-                for (int i = 0; i < newObject.length; i++) {
-                    var param = senderMethod.getParameterTypes()[i];
-                    newObject[i] = ReflectionUtils.getDefaultValue(param);
-                }
-                var index = ReflectionUtils.findIndexOfType(senderMethod.getParameterTypes(), String.class);
-                newObject[index] = message;
-                var index2 = ReflectionUtils.findIndexOfType(senderMethod.getParameterTypes(), List.class);
-                newObject[index2] = Collections.singletonList(userJid);
-                senderMethod.invoke(getActionUser(), newObject);
-                Utils.showToast("Message sent to " + number, Toast.LENGTH_SHORT);
-            }
-        } catch (Exception e) {
-            Utils.showToast("Error in sending message:" + e.getMessage(), Toast.LENGTH_SHORT);
-            XposedBridge.log(e);
-        }
+        // TODO: Implement TikTok message sending if applicable
+        // TikTok may not have direct messaging or uses different protocols
+        // Commented out WhatsApp-specific JID code
+        Utils.showToast("Message sending not implemented for TikTok", Toast.LENGTH_SHORT);
     }
 
     public static void sendReaction(String s, Object objMessage) {
@@ -271,93 +251,71 @@ public class WppCore {
     }
 
     public synchronized static Class getHomeActivityClass(@NonNull ClassLoader loader) {
-        Class oldHomeClass = XposedHelpers.findClassIfExists("com.whatsapp.HomeActivity", loader);
-
-        return oldHomeClass != null
-                ? oldHomeClass
-                : XposedHelpers.findClass("com.whatsapp.home.ui.HomeActivity", loader);
+        // TODO: Update with TikTok main activity class
+        // TikTok main activity is likely com.ss.android.ugc.aweme.main.MainActivity or similar
+        Class tiktokHomeClass = XposedHelpers.findClassIfExists("com.ss.android.ugc.aweme.main.MainActivity", loader);
+        if (tiktokHomeClass != null) {
+            return tiktokHomeClass;
+        }
+        // Fallback - try to find any activity as a placeholder
+        return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getTabsPagerClass(@NonNull ClassLoader loader) {
-        Class oldHomeClass = XposedHelpers.findClassIfExists("com.whatsapp.TabsPager", loader);
-
-        return oldHomeClass != null
-                ? oldHomeClass
-                : XposedHelpers.findClass("com.whatsapp.home.ui.TabsPager", loader);
+        // TODO: Update with TikTok equivalent if applicable
+        // Commented out WhatsApp-specific code
+        return XposedHelpers.findClassIfExists("android.view.View", loader);
     }
 
     public synchronized static Class getViewOnceViewerActivityClass(@NonNull ClassLoader loader) {
-        Class oldClass = XposedHelpers.findClassIfExists("com.whatsapp.messaging.ViewOnceViewerActivity", loader);
-
-        return oldClass != null
-                ? oldClass
-                : XposedHelpers.findClass("com.whatsapp.viewonce.ui.messaging.ViewOnceViewerActivity", loader);
+        // TODO: Update with TikTok video viewer if applicable  
+        // Commented out WhatsApp-specific code
+        return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getAboutActivityClass(@NonNull ClassLoader loader) {
-        Class oldClass = XposedHelpers.findClassIfExists("com.whatsapp.settings.About", loader);
-
-        return oldClass != null
-                ? oldClass
-                : XposedHelpers.findClass("com.whatsapp.settings.ui.About", loader);
+        // TODO: Update with TikTok settings/about if applicable
+        // Commented out WhatsApp-specific code
+        return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getSettingsNotificationsActivityClass(@NonNull ClassLoader loader) {
         if (mSettingsNotificationsClass != null)
             return mSettingsNotificationsClass;
 
-        Class oldClass = XposedHelpers.findClassIfExists("com.whatsapp.settings.SettingsNotifications", loader);
-
-        return oldClass != null
-                ? oldClass
-                : XposedHelpers.findClass("com.whatsapp.settings.ui.SettingsNotifications", loader);
+        // TODO: Update with TikTok settings if applicable
+        // Commented out WhatsApp-specific code
+        return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getDataUsageActivityClass(@NonNull ClassLoader loader) {
-        Class oldClass = XposedHelpers.findClassIfExists("com.whatsapp.settings.SettingsDataUsageActivity", loader);
-
-        return oldClass != null
-                ? oldClass
-                : XposedHelpers.findClass("com.whatsapp.settings.ui.SettingsDataUsageActivity", loader);
+        // TODO: Update with TikTok data usage settings if applicable
+        // Commented out WhatsApp-specific code
+        return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getTextStatusComposerFragmentClass(@NonNull ClassLoader loader) throws Exception {
-        var classes = new String[]{
-                "com.whatsapp.status.composer.TextStatusComposerFragment",
-                "com.whatsapp.statuscomposer.composer.TextStatusComposerFragment"
-        };
-        Class<?> result = null;
-        for (var clazz : classes) {
+        // TODO: Update with TikTok video composer if applicable
+        // Commented out WhatsApp-specific status composer
+        return XposedHelpers.findClassIfExists("android.app.Fragment", loader);
+    }
             if ((result = XposedHelpers.findClassIfExists(clazz, loader)) != null)
                 return result;
         }
-        throw new Exception("TextStatusComposerFragmentClass not found");
+        // Commented out WhatsApp-specific code - TikTok doesn't have status composer
+        return XposedHelpers.findClassIfExists("android.app.Fragment", loader);
     }
 
     public synchronized static Class getVoipManagerClass(@NonNull ClassLoader loader) throws Exception {
-        var classes = new String[]{
-                "com.whatsapp.voipcalling.Voip",
-                "com.whatsapp.calling.voipcalling.Voip"
-        };
-        Class<?> result = null;
-        for (var clazz : classes) {
-            if ((result = XposedHelpers.findClassIfExists(clazz, loader)) != null)
-                return result;
-        }
-        throw new Exception("VoipManagerClass not found");
+        // TODO: Update with TikTok video call classes if applicable
+        // Commented out WhatsApp-specific voip code
+        return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getVoipCallInfoClass(@NonNull ClassLoader loader) throws Exception {
-        var classes = new String[]{
-                "com.whatsapp.voipcalling.CallInfo",
-                "com.whatsapp.calling.infra.voipcalling.CallInfo"
-        };
-        Class<?> result = null;
-        for (var clazz : classes) {
-            if ((result = XposedHelpers.findClassIfExists(clazz, loader)) != null)
-                return result;
-        }
-        throw new Exception("VoipCallInfoClass not found");
+        // TODO: Update with TikTok call info if applicable
+        // Commented out WhatsApp-specific call info code
+        return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
 //    public static Activity getActivityBySimpleName(String name) {
@@ -538,16 +496,10 @@ public class WppCore {
 
     @Nullable
     public static Activity getCurrentConversation() {
-        if (mCurrentActivity == null) return null;
-        Class<?> conversation = XposedHelpers.findClass("com.whatsapp.Conversation", mCurrentActivity.getClassLoader());
-        if (conversation.isInstance(mCurrentActivity)) return mCurrentActivity;
-
-        // for tablet UI, they're using HomeActivity instead of Conversation
-        // TODO: Add more checks for ConversationFragment
-        Class<?> home = getHomeActivityClass(mCurrentActivity.getClassLoader());
-        if (mCurrentActivity.getResources().getConfiguration().smallestScreenWidthDp >= 600 && home.isInstance(mCurrentActivity))
-            return mCurrentActivity;
-        return null;
+        // TODO: Update for TikTok video viewing/commenting activity
+        // TikTok doesn't have a "Conversation" activity like WhatsApp
+        // Commented out WhatsApp-specific code
+        return mCurrentActivity;
     }
 
     public static SharedPreferences getPrivPrefs() {

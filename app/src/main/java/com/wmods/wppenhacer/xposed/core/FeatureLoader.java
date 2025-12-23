@@ -151,7 +151,7 @@ public class FeatureLoader {
                             String sb = "Unsupported version: " +
                                     packageInfo.versionName +
                                     "\n" +
-                                    "Only the function of ignoring the expiration of the WhatsApp version has been applied!";
+                                    "Only the function of ignoring the expiration of the TikTok version has been applied!";
                             throw new Exception(sb);
                         }
                     }
@@ -300,59 +300,14 @@ public class FeatureLoader {
 
     private static void plugins(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, @NonNull String versionWpp) throws Exception {
 
+        // Most WhatsApp-specific features have been removed as they don't apply to TikTok
+        // TikTok is a video-sharing app with a completely different architecture than WhatsApp
         var classes = new Class<?>[]{
                 DebugFeature.class,
-                MenuStatus.class,
-                ShowEditMessage.class,
-                AntiRevoke.class,
-                CustomToolbar.class,
-                CustomView.class,
-                SeenTick.class,
-                BubbleColors.class,
-                CallPrivacy.class,
-                ActivityController.class,
-                CustomThemeV2.class,
-                ChatLimit.class,
-                SeparateGroup.class,
-                ShowOnline.class,
-                DndMode.class,
-                FreezeLastSeen.class,
-                TypingPrivacy.class,
-                HideChat.class,
-                HideReceipt.class,
-                HideSeen.class,
-                HideSeenView.class,
-                TagMessage.class,
-                HideTabs.class,
-                IGStatus.class,
-                LiteMode.class,
-                MediaQuality.class,
-                NewChat.class,
-                Others.class,
-                PinnedLimit.class,
-                CustomTime.class,
-                ShareLimit.class,
-                StatusDownload.class,
-                ViewOnce.class,
-                CallType.class,
-                MediaPreview.class,
-                FilterGroups.class,
-                Tasker.class,
-                DeleteStatus.class,
-                DownloadViewOnce.class,
-                Channels.class,
-                DownloadProfile.class,
-                ChatFilters.class,
-                GroupAdmin.class,
-                Stickers.class,
-                CopyStatus.class,
-                TextStatusComposer.class,
-                ToastViewer.class,
-                MenuHome.class,
-                AntiWa.class,
-                CustomPrivacy.class,
-                AudioTranscript.class,
-                GoogleTranslate.class
+                // CustomThemeV2.class,  // Commented out - needs TikTok-specific implementation
+                // LiteMode.class,  // Commented out - needs TikTok-specific implementation
+                // Others.class,  // Commented out - needs TikTok-specific implementation
+                // ToastViewer.class  // Commented out - needs TikTok-specific implementation
         };
         XposedBridge.log("Loading Plugins");
         var executorService = Executors.newWorkStealingPool(Math.min(Runtime.getRuntime().availableProcessors(), 4));

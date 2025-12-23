@@ -136,7 +136,7 @@ public class FeatureLoader {
                 PackageInfo packageInfo = packageManager.getPackageInfo(mApp.getPackageName(), 0);
                 XposedBridge.log(packageInfo.versionName);
                 currentVersion = packageInfo.versionName;
-                supportedVersions = Arrays.asList(mApp.getResources().getStringArray(Objects.equals(mApp.getPackageName(), FeatureLoader.PACKAGE_WPP) ? ResId.array.supported_versions_wpp : ResId.array.supported_versions_business));
+                supportedVersions = Arrays.asList(mApp.getResources().getStringArray(ResId.array.supported_versions_wpp));
                 mApp.registerActivityLifecycleCallbacks(new WaCallback());
                 registerReceivers();
                 try {

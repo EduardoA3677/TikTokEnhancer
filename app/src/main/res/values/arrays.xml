@@ -119,30 +119,18 @@
         <item>2</item>
     </string-array>
     <string-array name="supported_versions_wpp">
-        <item>2.25.25.xx</item>
-        <item>2.25.26.xx</item>
-        <item>2.25.27.xx</item>
-        <item>2.25.28.xx</item>
-        <item>2.25.29.xx</item>
-        <item>2.25.30.xx</item>
-        <item>2.25.31.xx</item>
-        <item>2.25.32.xx</item>
-        <item>2.25.33.xx</item>
-        <item>2.25.34.xx</item>
-        <item>2.25.35.xx</item>
-        <item>2.25.36.xx</item>
-        <item>2.25.37.xx</item>
-        <item>2.26.1.xx</item>
-        <item>2.26.2.xx</item>
-        <item>2.26.3.xx</item>
+        <!-- TikTok version format: XX.X.X -->
+        <!-- These are placeholder versions - update with actual supported TikTok versions -->
+        <item>43.x.x</item>
+        <item>44.x.x</item>
+        <item>45.x.x</item>
     </string-array>
     <string-array name="supported_versions_business">
-        <item>2.25.25.xx</item>
-        <item>2.25.26.xx</item>
-        <item>2.25.27.xx</item>
-        <item>2.25.28.xx</item>
-        <item>2.25.29.xx</item>
-        <item>2.25.30.xx</item>
+        <!-- TikTok Lite or regional variants if applicable -->
+        <!-- Same as main for now since both point to same package -->
+        <item>43.x.x</item>
+        <item>44.x.x</item>
+        <item>45.x.x</item>
         <item>2.25.31.xx</item>
         <item>2.25.32.xx</item>
         <item>2.25.33.xx</item>

@@ -319,14 +319,14 @@
                             android:text="" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/list_wpp_title"
+                            android:id="@+id/list_tkk_title"
                             style="@style/DeviceInfoDialogLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/list_wpp" />
+                            android:text="@string/list_tkk" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/list_wpp"
+                            android:id="@+id/list_tkk"
                             style="@style/DeviceInfoDialogValue"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -1,0 +1,154 @@
+package com.wmods.tkkenhancer.xposed.features.media;
+
+import static com.wmods.tkkenhancer.xposed.features.general.MenuStatus.menuStatuses;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.wmods.tkkenhancer.xposed.core.Feature;
+import com.wmods.tkkenhancer.xposed.core.TkkCore;
+import com.wmods.tkkenhancer.xposed.core.components.FMessageTkk;
+import com.wmods.tkkenhancer.xposed.core.devkit.Unobfuscator;
+import com.wmods.tkkenhancer.xposed.features.general.MenuStatus;
+import com.wmods.tkkenhancer.xposed.utils.MimeTypeUtils;
+import com.wmods.tkkenhancer.xposed.utils.ResId;
+import com.wmods.tkkenhancer.xposed.utils.Utils;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import de.robv.android.xposed.XSharedPreferences;
+
+public class StatusDownload extends Feature {
+
+    public StatusDownload(ClassLoader loader, XSharedPreferences preferences) {
+        super(loader, preferences);
+    }
+
+    public void doHook() throws Exception {
+        if (!prefs.getBoolean("downloadstatus", false)) return;
+
+
+        var downloadStatus = new MenuStatus.MenuItemStatus() {
+
+            @Override
+            public MenuItem addMenu(Menu menu, FMessageTkk fMessage) {
+                if (menu.findItem(ResId.string.download) != null) return null;
+                if (fMessage.getKey().isFromMe) return null;
+                if (!fMessage.isMediaFile()) return null;
+                return menu.add(0, ResId.string.download, 0, ResId.string.download);
+            }
+
+            @Override
+            public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageWpp) {
+                downloadFile(fMessageWpp);
+            }
+        };
+        menuStatuses.add(downloadStatus);
+
+
+        var sharedMenu = new MenuStatus.MenuItemStatus() {
+
+            @Override
+            public MenuItem addMenu(Menu menu, FMessageTkk fMessage) {
+                if (fMessage.getKey().isFromMe) return null;
+                if (menu.findItem(ResId.string.share_as_status) != null) return null;
+                return menu.add(0, ResId.string.share_as_status, 0, ResId.string.share_as_status);
+            }
+
+            @Override
+            public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageWpp) {
+                sharedStatus(fMessageWpp);
+            }
+        };
+        menuStatuses.add(sharedMenu);
+    }
+
+    private void sharedStatus(FMessageTkk fMessageWpp) {
+        try {
+            if (!fMessageWpp.isMediaFile()) {
+                Intent intent = new Intent();
+                Class clazz;
+                try {
+                    clazz = Unobfuscator.getClassByName("TextStatusComposerActivity", classLoader);
+                } catch (Exception ignored) {
+                    clazz = Unobfuscator.getClassByName("ConsolidatedStatusComposerActivity", classLoader);
+                    intent.putExtra("status_composer_mode", 2);
+                }
+                intent.setClassName(Utils.getApplication().getPackageName(), clazz.getName());
+                intent.putExtra("android.intent.extra.TEXT", fMessageWpp.getMessageStr());
+                TkkCore.getCurrentActivity().startActivity(intent);
+                return;
+            }
+            var file = fMessageWpp.getMediaFile();
+            if (file == null) {
+                Utils.showToast(Utils.getApplication().getString(ResId.string.download_not_available), 1);
+                return;
+            }
+            Intent intent = new Intent();
+            var clazz = Unobfuscator.getClassByName("MediaComposerActivity", classLoader);
+            intent.setClassName(Utils.getApplication().getPackageName(), clazz.getName());
+            intent.putExtra("jids", new ArrayList<>(Collections.singleton("status@broadcast")));
+            intent.putExtra("android.intent.extra.STREAM", new ArrayList<>(Collections.singleton(Uri.fromFile(file))));
+            intent.putExtra("android.intent.extra.TEXT", fMessageWpp.getMessageStr());
+            TkkCore.getCurrentActivity().startActivity(intent);
+        } catch (Throwable e) {
+            Utils.showToast(e.getMessage(), Toast.LENGTH_SHORT);
+        }
+    }
+
+    private void downloadFile(FMessageTkk fMessage) {
+        try {
+            var file = fMessage.getMediaFile();
+            if (file == null) {
+                Utils.showToast(Utils.getApplication().getString(ResId.string.download_not_available), 1);
+                return;
+            }
+            var userJid = fMessage.getUserJid();
+            var fileType = file.getName().substring(file.getName().lastIndexOf(".") + 1);
+            var destination = getStatusDestination(file);
+            var name = Utils.generateName(userJid, fileType);
+            var error = Utils.copyFile(file, destination, name);
+            if (TextUtils.isEmpty(error)) {
+                Utils.showToast(Utils.getApplication().getString(ResId.string.saved_to) + destination, Toast.LENGTH_SHORT);
+            } else {
+
+                Utils.showToast(Utils.getApplication().getString(ResId.string.error_when_saving_try_again) + ": " + error, Toast.LENGTH_SHORT);
+            }
+        } catch (Throwable e) {
+            Utils.showToast(e.getMessage(), Toast.LENGTH_SHORT);
+        }
+    }
+
+    @NonNull
+    @Override
+    public String getPluginName() {
+        return "Download Status";
+    }
+
+
+    @NonNull
+    private String getStatusDestination(@NonNull File f) throws Exception {
+        var fileName = f.getName().toLowerCase();
+        var mimeType = MimeTypeUtils.getMimeTypeFromExtension(fileName);
+        var folderPath = "";
+        if (mimeType.contains("video")) {
+            folderPath = "Status Videos";
+        } else if (mimeType.contains("image")) {
+            folderPath = "Status Images";
+        } else if (mimeType.contains("audio")) {
+            folderPath = "Status Sounds";
+        } else {
+            folderPath = "Status Media";
+        }
+        return Utils.getDestination(folderPath);
+    }
+
+}

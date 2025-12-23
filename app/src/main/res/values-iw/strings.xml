@@ -121,7 +121,7 @@
     <string name="whatsapp_in_background"> הWhatsApp שלך מופעל ברקע</string>
     <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">הווצאפ לא פועל או לא הופעל ב-Lsposed</string>
     <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">ווצאפ ביזנס אינו פועל או לא הופעל ב-Lsposed</string>
-    <string name="restart_wpp">יש צורך להפעיל מחדש את הווצאפ כדי שהשינויים ב-Wa Enhancer ייכנסו לתוקף.\n\nהאם ברצונך להפעיל מחדש?</string>
+    <string name="restart_tkk">יש צורך להפעיל מחדש את הווצאפ כדי שהשינויים ב-Wa Enhancer ייכנסו לתוקף.\n\nהאם ברצונך להפעיל מחדש?</string>
     <string name="version_s_not_listed">גרסת %s לא מופיעה בגרסאות הנתמכות!\nאנא השתמש בגרסת ווצאפ נתמכת!</string>
     <string name="media">מדיה</string>
     <string name="show_button_to_send_blue_tick">הצג כפתור לשליחת וי כחול</string>
@@ -167,7 +167,7 @@
     <string name="disable_metaai">השבת את פונקציות Meta Ai</string>
     <string name="disable_metaai_sum">השבת את הMeta AI רק עבור אלה שכבר מופעל להם</string>
     <string name="list_business">רשימת הגרסאות הנתמכות בווצאפ ביזנס:</string>
-    <string name="list_wpp">רשימת הגרסאות הנתמכות בווצאפ:</string>
+    <string name="list_tkk">רשימת הגרסאות הנתמכות בווצאפ:</string>
     <string name="title_image">תמונה</string>
     <string name="title_video">וידאו</string>
     <string name="enable_new_chat_button">אפשר לחצן צ\'אט חדש</string>
@@ -391,9 +391,9 @@
     <string name="city_s">עיר: %s</string>
     <string name="ip_s">מיקום מדוייק (IP): %s</string>
     <string name="platform_s">סוג טלפון: %s</string>
-    <string name="wpp_version_s">גרסת ווצאפ: %s</string>
+    <string name="tkk_version_s">גרסת ווצאפ: %s</string>
     <string name="call_information">מידע על השיחה</string>
-    <string name="ask_download_folder">כדי להשתמש בפונקציות ההורדה של WAE Enhancer, עליך לבחור תיקיה לשמירת הקבצים שהורדת.</string>
+    <string name="ask_download_folder">כדי להשתמש בפונקציות ההורדה של TikTok Enhancer, עליך לבחור תיקיה לשמירת הקבצים שהורדת.</string>
     <string name="download_folder_permission">הרשאת תיקייה</string>
     <string name="lite_mode">מצב לייט</string>
     <string name="lite_mode_sum">מצב Lite משבית את רוב תכונות הנושא וגשר החיבור ששומר על WhatsApp תמיד פעיל כבוי.</string>

@@ -118,14 +118,14 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    <string-array name="supported_versions_wpp">
+    <string-array name="supported_versions_tkk">
         <!-- TikTok version format: XX.X.X -->
         <!-- These are placeholder versions - update with actual supported TikTok versions -->
         <item>43.x.x</item>
         <item>44.x.x</item>
         <item>45.x.x</item>
     </string-array>
-    <string-array name="supported_versions_business">
+    <string-array name="supported_versions_lite">
         <!-- TikTok Lite or regional variants if applicable -->
         <!-- Same as main for now since both point to same package -->
         <item>43.x.x</item>

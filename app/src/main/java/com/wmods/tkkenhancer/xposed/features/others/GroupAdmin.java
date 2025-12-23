@@ -1,0 +1,80 @@
+package com.wmods.tkkenhancer.xposed.features.others;
+
+import android.annotation.SuppressLint;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+
+import com.wmods.tkkenhancer.xposed.core.Feature;
+import com.wmods.tkkenhancer.xposed.core.TkkCore;
+import com.wmods.tkkenhancer.xposed.core.components.FMessageTkk;
+import com.wmods.tkkenhancer.xposed.core.devkit.Unobfuscator;
+import com.wmods.tkkenhancer.xposed.utils.ReflectionUtils;
+import com.wmods.tkkenhancer.xposed.utils.ResId;
+import com.wmods.tkkenhancer.xposed.utils.Utils;
+
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
+
+public class GroupAdmin extends Feature {
+
+    public GroupAdmin(@NonNull ClassLoader classLoader, @NonNull XSharedPreferences preferences) {
+        super(classLoader, preferences);
+    }
+
+    @Override
+    public void doHook() throws Throwable {
+        if (!prefs.getBoolean("admin_grp", false)) return;
+        var jidFactory = Unobfuscator.loadJidFactory(classLoader);
+        var grpAdmin1 = Unobfuscator.loadGroupAdminMethod(classLoader);
+        var grpcheckAdmin = Unobfuscator.loadGroupCheckAdminMethod(classLoader);
+        var hooked = new XC_MethodHook() {
+            @SuppressLint("ResourceType")
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                var targetObj = param.thisObject != null ? param.thisObject : param.args[1];
+                Object fMessageObj = XposedHelpers.callMethod(targetObj, "getFMessage");
+                var fMessage = new FMessageTkk(fMessageObj);
+                var userJid = fMessage.getUserJid();
+                var chatCurrentJid = TkkCore.getCurrentUserJid();
+                if (!chatCurrentJid.isGroup()) return;
+                var field = ReflectionUtils.getFieldByType(targetObj.getClass(), grpcheckAdmin.getDeclaringClass());
+                var grpParticipants = field.get(targetObj);
+                var jidGrp = jidFactory.invoke(null, chatCurrentJid.getUserRawString());
+                var result = grpcheckAdmin.invoke(grpParticipants, jidGrp, userJid.userJid);
+                var view = (View) targetObj;
+                var context = view.getContext();
+                ImageView iconAdmin;
+                if ((iconAdmin = view.findViewById(0x7fff0010)) == null) {
+                    var nameGroup = (LinearLayout) view.findViewById(Utils.getID("name_in_group", "id"));
+                    var view1 = new LinearLayout(context);
+                    view1.setOrientation(LinearLayout.HORIZONTAL);
+                    view1.setGravity(Gravity.CENTER_VERTICAL);
+                    var nametv = nameGroup.getChildAt(0);
+                    iconAdmin = new ImageView(context);
+                    var size = Utils.dipToPixels(16);
+                    iconAdmin.setLayoutParams(new LinearLayout.LayoutParams(size, size));
+                    iconAdmin.setImageResource(ResId.drawable.admin);
+                    iconAdmin.setId(0x7fff0010);
+                    nameGroup.removeView(nametv);
+                    view1.addView(nametv);
+                    view1.addView(iconAdmin);
+                    nameGroup.addView(view1, 0);
+                }
+                iconAdmin.setVisibility(result != null && (boolean) result ? View.VISIBLE : View.GONE);
+            }
+        };
+        XposedBridge.hookMethod(grpAdmin1, hooked);
+    }
+
+    @NonNull
+    @Override
+    public String getPluginName() {
+        return "GroupAdmin";
+    }
+}

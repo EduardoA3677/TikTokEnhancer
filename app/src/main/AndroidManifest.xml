@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <queries>
-        <package android:name="com.whatsapp" />
-        <package android:name="com.whatsapp.w4b" />
+        <package android:name="com.zhiliaoapp.musically" />
     </queries>
 
     <uses-permission android:name="android.permission.INTERNET" />

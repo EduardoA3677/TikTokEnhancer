@@ -28,14 +28,14 @@ android {
     flavorDimensions += "version"
 
     productFlavors {
-        create("whatsapp") {
+        create("tiktok") {
             dimension = "version"
             applicationIdSuffix = ""
         }
-        create("business") {
+        create("tiktok_lite") {
             dimension = "version"
-            applicationIdSuffix = ".w4b"
-            resValue("string", "app_name", "Wa Enhancer Business")
+            applicationIdSuffix = ".lite"
+            resValue("string", "app_name", "TikTok Enhancer Lite")
         }
     }
 
@@ -175,7 +175,7 @@ interface InjectedExecOps {
 
 
 afterEvaluate {
-    listOf("installWhatsappDebug", "installBusinessDebug").forEach { taskName ->
+    listOf("installTiktokDebug", "installTiktok_liteDebug").forEach { taskName ->
         tasks.findByName(taskName)?.doLast {
             runCatching {
                 val injected  = project.objects.newInstance<InjectedExecOps>()

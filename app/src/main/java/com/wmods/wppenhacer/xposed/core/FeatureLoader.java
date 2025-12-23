@@ -104,8 +104,8 @@ import lombok.Setter;
 public class FeatureLoader {
     public static Application mApp;
 
-    public final static String PACKAGE_WPP = "com.whatsapp";
-    public final static String PACKAGE_BUSINESS = "com.whatsapp.w4b";
+    public final static String PACKAGE_WPP = "com.zhiliaoapp.musically";
+    public final static String PACKAGE_BUSINESS = "com.zhiliaoapp.musically";
 
     private static final ArrayList<ErrorItem> list = new ArrayList<>();
     private static List<String> supportedVersions;
@@ -266,16 +266,16 @@ public class FeatureLoader {
                 }
             }
         };
-        ContextCompat.registerReceiver(mApp, restartReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".WHATSAPP.RESTART"), ContextCompat.RECEIVER_EXPORTED);
+        ContextCompat.registerReceiver(mApp, restartReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".TIKTOK.RESTART"), ContextCompat.RECEIVER_EXPORTED);
 
-        /// Wpp receiver
+        /// TikTok receiver
         BroadcastReceiver wppReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 sendEnabledBroadcast(context);
             }
         };
-        ContextCompat.registerReceiver(mApp, wppReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".CHECK_WPP"), ContextCompat.RECEIVER_EXPORTED);
+        ContextCompat.registerReceiver(mApp, wppReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".CHECK_TIKTOK"), ContextCompat.RECEIVER_EXPORTED);
 
         // Dialog receiver restart
         BroadcastReceiver restartManualReceiver = new BroadcastReceiver() {
@@ -289,7 +289,7 @@ public class FeatureLoader {
 
     private static void sendEnabledBroadcast(Context context) {
         try {
-            Intent wppIntent = new Intent(BuildConfig.APPLICATION_ID + ".RECEIVER_WPP");
+            Intent wppIntent = new Intent(BuildConfig.APPLICATION_ID + ".RECEIVER_TIKTOK");
             wppIntent.putExtra("VERSION", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
             wppIntent.putExtra("PKG", context.getPackageName());
             wppIntent.setPackage(BuildConfig.APPLICATION_ID);

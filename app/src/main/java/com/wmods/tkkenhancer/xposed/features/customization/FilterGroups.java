@@ -51,8 +51,6 @@ public class FilterGroups extends Feature {
 
         if (!prefs.getBoolean("filtergroups", false) || prefs.getBoolean("separategroups", false))
             return;
-        if (Utils.getApplication().getPackageName().equals(FeatureLoader.PACKAGE_BUSINESS))
-            return; // Business is not supported
 
         var filterAdaperClass = Unobfuscator.loadFilterAdaperClass(classLoader);
         methodSetFilter = ReflectionUtils.findMethodUsingFilter(filterAdaperClass, m -> m.getParameterCount() == 1 && m.getParameterTypes()[0].equals(int.class));

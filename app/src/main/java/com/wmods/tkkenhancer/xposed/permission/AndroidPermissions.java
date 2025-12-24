@@ -43,7 +43,7 @@ public class AndroidPermissions {
                 Object pkg = param.args[0];
                 String packageName = (String) XposedHelpers.callMethod(pkg, "getPackageName");
                 List<String> permissions = (List<String>) XposedHelpers.getObjectField(param.args[0], "requestedPermissions");
-                if (packageName.equals(FeatureLoader.PACKAGE_TKK) || packageName.equals(FeatureLoader.PACKAGE_BUSINESS)) {
+                if (packageName.equals(FeatureLoader.PACKAGE_TKK)) {
                     for (String newPermission : sdk30Permissions) {
                         if (!permissions.contains(newPermission)) {
                             permissions.add(newPermission);
@@ -67,7 +67,7 @@ public class AndroidPermissions {
                 int[] getAllUserIds = (int[]) XposedHelpers.callMethod(param.thisObject, "getAllUserIds");
 
                 for (int userId : getAllUserIds) {
-                    if (packageName.equals(FeatureLoader.PACKAGE_TKK) || packageName.equals(FeatureLoader.PACKAGE_BUSINESS)) {
+                    if (packageName.equals(FeatureLoader.PACKAGE_TKK)) {
 
                         for (String newPermission : sdk30Permissions) {
                             if (!permissions.contains(newPermission)) {
@@ -121,7 +121,7 @@ public class AndroidPermissions {
                             Object uidState = XposedHelpers.callMethod(userState, "getOrCreateUidState", appId);
 
                             // package 1
-                            if (packageName.equals(FeatureLoader.PACKAGE_TKK) || packageName.equals(FeatureLoader.PACKAGE_BUSINESS)) {
+                            if (packageName.equals(FeatureLoader.PACKAGE_TKK)) {
 
                                 requestedPermissions = (List<String>) XposedHelpers.callMethod(pkg, "getRequestedPermissions");
                                 for (String newPermission : sdk30Permissions) {
@@ -140,7 +140,7 @@ public class AndroidPermissions {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 String pkgName = (String) XposedHelpers.getObjectField(param.args[0], "packageName");
-                if (pkgName.equals(FeatureLoader.PACKAGE_TKK) || pkgName.equals(FeatureLoader.PACKAGE_BUSINESS)) {
+                if (pkgName.equals(FeatureLoader.PACKAGE_TKK)) {
                     List<String> permissions = (List<String>) XposedHelpers.getObjectField(param.args[0], "requestedPermissions");
                     if (sdk >= Build.VERSION_CODES.R) {
                         for (String newPermission : sdk30Permissions) {

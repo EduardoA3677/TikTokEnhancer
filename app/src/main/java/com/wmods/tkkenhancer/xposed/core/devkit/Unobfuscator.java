@@ -2520,9 +2520,9 @@ public class Unobfuscator {
             } catch (Exception ignored) {}
 
             // Use DexKit to find analytics class
-            MethodMatcher methodMatcher = new MethodMatcher();
-            methodMatcher.addUsingString("analytics", StringMatchType.Contains);
-            methodMatcher.addUsingString("track", StringMatchType.Contains);
+            MethodMatcher methodMatcher = MethodMatcher.create()
+                    .addUsingString("analytics", StringMatchType.Contains)
+                    .addUsingString("track", StringMatchType.Contains);
 
             MethodDataList result = dexkit.findMethod(FindMethod.create().matcher(methodMatcher));
             if (!result.isEmpty()) {

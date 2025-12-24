@@ -103,21 +103,27 @@ public class ProfileEnhancer extends Feature {
 
             // Hook privacy-related boolean methods
             for (Method method : profileClass.getDeclaredMethods()) {
-                if (method.getReturnType() == boolean.class) {
-                    String methodName = method.getName().toLowerCase();
-                    if (methodName.contains("private") || methodName.contains("public") ||
-                        methodName.contains("visible") || methodName.contains("secret")) {
-                        
+                if (method.getReturnType() == boolean.class && method.getParameterCount() == 0) {
+                    String methodName = method.getName();
+                    String methodNameLower = methodName.toLowerCase();
+                    
+                    // Only hook methods that clearly relate to privacy
+                    boolean isPrivacyMethod = (methodNameLower.contains("private") && !methodNameLower.contains("data")) ||
+                                             (methodNameLower.contains("public") && !methodNameLower.contains("key")) ||
+                                             methodNameLower.contains("visible") ||
+                                             (methodNameLower.contains("secret") && !methodNameLower.contains("key"));
+                    
+                    if (isPrivacyMethod) {
                         XposedBridge.hookMethod(method, new XC_MethodHook() {
                             @Override
                             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                logDebug("Privacy check method: " + method.getName());
+                                logDebug("Privacy check method: " + methodName);
                                 
-                                // Override privacy checks
-                                if (methodName.contains("private") || methodName.contains("secret")) {
+                                // Override privacy checks cautiously
+                                if (methodNameLower.contains("private") || methodNameLower.contains("secret")) {
                                     // Profile is not private
                                     param.setResult(false);
-                                } else if (methodName.contains("public") || methodName.contains("visible")) {
+                                } else if (methodNameLower.contains("public") || methodNameLower.contains("visible")) {
                                     // Profile is public/visible
                                     param.setResult(true);
                                 }

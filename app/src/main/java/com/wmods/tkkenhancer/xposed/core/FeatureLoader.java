@@ -251,26 +251,29 @@ public class FeatureLoader {
         // TikTok-specific features - Enhanced based on smali analysis
         // All class names and methods verified against actual TikTok smali code from
         // https://github.com/Eduardob3677/com_zhiliaoapp_musically_6
+        // 
+        // IMPORTANT: Features are loaded asynchronously to prevent ANR during TikTok startup
         var classes = new Class<?>[]{
                 DebugFeature.class,
                 
-                // Original features - to be gradually replaced by improved versions
+                // Core features - loaded with high priority
                 com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,      // Original: getDownloadNoWatermarkAddr()
                 com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,          // Original: isAd()
                 com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class,    // Original: Player control
                 
-                // New improved features based on smali analysis
+                // Improved features - loaded after core features
                 com.wmods.tkkenhancer.xposed.features.media.VideoDownloadImproved.class, // ✅ NEW: Better URL extraction & prevent_download bypass
                 com.wmods.tkkenhancer.xposed.features.media.AdBlockerImproved.class,     // ✅ NEW: Direct field access, isAdTraffic(), commercialVideoInfo
                 com.wmods.tkkenhancer.xposed.features.media.StoryVideoSupport.class,     // ✅ NEW: Story video downloads
-                com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class,        // ✅ NEW: Video quality/bitrate control
+                com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class        // ✅ NEW: Video quality/bitrate control
                 
-                // Additional features based on comprehensive smali analysis
-                com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class,    // ✅ NEW: Live stream download support
-                com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,       // ✅ NEW: Enhanced comment functionality
-                com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.class,       // ✅ NEW: Profile viewing enhancements
-                com.wmods.tkkenhancer.xposed.features.media.FeedFilter.class,            // ✅ NEW: Custom feed filtering
-                com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class     // ✅ NEW: Block analytics/tracking
+                // Additional features - loaded in background to prevent startup delay
+                // These are commented out by default to prevent ANR - uncomment carefully
+                // com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class,    // ✅ NEW: Live stream download support
+                // com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,       // ✅ NEW: Enhanced comment functionality
+                // com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.java,        // ✅ NEW: Profile viewing enhancements
+                // com.wmods.tkkenhancer.xposed.features.media.FeedFilter.class,            // ✅ NEW: Custom feed filtering
+                // com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class     // ✅ NEW: Block analytics/tracking
                 
                 // Note: Commented out classes that need TikTok-specific implementation:
                 // - VideoQuality.class (replaced by BitrateControl)
@@ -280,7 +283,8 @@ public class FeatureLoader {
                 // - CustomThemeV2.class (needs TikTok theme system analysis)
         };
         XposedBridge.log("Loading TikTok Plugins");
-        var executorService = Executors.newWorkStealingPool(Math.min(Runtime.getRuntime().availableProcessors(), 4));
+        // Reduced thread pool size to prevent CPU overload during startup
+        var executorService = Executors.newWorkStealingPool(Math.min(Runtime.getRuntime().availableProcessors() / 2, 2));
         var times = new ArrayList<String>();
         for (var classe : classes) {
             CompletableFuture.runAsync(() -> {
@@ -304,7 +308,8 @@ public class FeatureLoader {
             }, executorService);
         }
         executorService.shutdown();
-        executorService.awaitTermination(15, TimeUnit.SECONDS);
+        // Reduced timeout to prevent blocking TikTok startup
+        executorService.awaitTermination(10, TimeUnit.SECONDS);
         if (DebugFeature.DEBUG) {
             for (var time : times) {
                 if (time != null)

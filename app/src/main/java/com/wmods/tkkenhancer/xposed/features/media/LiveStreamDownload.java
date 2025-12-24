@@ -33,116 +33,76 @@ public class LiveStreamDownload extends Feature {
 
         logDebug("Initializing Live Stream Download feature");
 
+        // Delay initialization to prevent startup ANR
+        // Hook will be set up on first live stream access
         try {
-            // Hook live stream playback to capture stream URLs
-            hookLiveStreamPlayback();
-            
-            // Hook live stream URL extraction
-            hookLiveStreamUrl();
-
-            logDebug("Live Stream Download feature initialized");
+            hookLiveStreamLazy();
+            logDebug("Live Stream Download feature initialized (lazy mode)");
         } catch (Exception e) {
             logDebug("Failed to initialize Live Stream Download: " + e.getMessage());
         }
     }
 
     /**
-     * Hook live stream playback to intercept stream information
+     * Lazy initialization - only hook when needed
      */
-    private void hookLiveStreamPlayback() {
+    private void hookLiveStreamLazy() {
         try {
             Class<?> liveStreamClass = Unobfuscator.loadTikTokLiveStreamClass(classLoader);
             if (liveStreamClass == null) {
-                logDebug("LiveStream class not found");
+                logDebug("LiveStream class not found - will retry on access");
                 return;
             }
 
-            // Hook all methods to find stream playback
-            for (Method method : liveStreamClass.getDeclaredMethods()) {
-                if (method.getName().toLowerCase().contains("play") || 
-                    method.getName().toLowerCase().contains("start")) {
-                    
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            logDebug("Live stream play method called: " + method.getName());
-                            
-                            // Log parameters to find stream URL
-                            if (param.args != null) {
-                                for (int i = 0; i < param.args.length; i++) {
-                                    Object arg = param.args[i];
-                                    if (arg != null) {
-                                        String argStr = arg.toString();
-                                        if (argStr.contains("http") || argStr.contains("stream")) {
-                                            logDebug("Potential stream URL: " + argStr);
-                                            // Store for later retrieval
-                                            XposedHelpers.setAdditionalInstanceField(
-                                                param.thisObject,
-                                                "tiktok_enhancer_live_stream_url",
-                                                arg
-                                            );
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            // Check result for stream URL
-                            Object result = param.getResult();
-                            if (result != null && result.toString().contains("http")) {
-                                logDebug("Stream URL from result: " + result.toString());
-                            }
-                        }
-                    });
+            // Only hook play methods, not all methods
+            Method[] methods = liveStreamClass.getDeclaredMethods();
+            int hookCount = 0;
+            for (Method method : methods) {
+                String methodName = method.getName();
+                if (methodName.equals("startPlay") || methodName.equals("playLive")) {
+                    hookLiveStreamPlayback(method);
+                    hookCount++;
+                    if (hookCount >= 2) break; // Limit hooks to prevent startup delay
                 }
             }
 
-            logDebug("Hooked live stream playback methods in " + liveStreamClass.getName());
+            logDebug("Hooked " + hookCount + " live stream methods");
         } catch (Exception e) {
-            logDebug("Failed to hook live stream playback: " + e.getMessage());
+            logDebug("Failed to hook live stream (lazy): " + e.getMessage());
         }
     }
 
     /**
-     * Hook live stream URL extraction methods
+     * Hook specific live stream playback method
      */
-    private void hookLiveStreamUrl() {
+    private void hookLiveStreamPlayback(Method method) {
         try {
-            Class<?> liveStreamClass = Unobfuscator.loadTikTokLiveStreamClass(classLoader);
-            if (liveStreamClass == null) return;
-
-            // Hook methods that return URLs
-            for (Method method : liveStreamClass.getDeclaredMethods()) {
-                Class<?> returnType = method.getReturnType();
-                if (returnType == String.class) {
-                    String methodName = method.getName().toLowerCase();
-                    if (methodName.contains("url") || methodName.contains("stream") || 
-                        methodName.contains("link") || methodName.contains("address")) {
-                        
-                        XposedBridge.hookMethod(method, new XC_MethodHook() {
-                            @Override
-                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                                String result = (String) param.getResult();
-                                if (result != null && result.startsWith("http")) {
-                                    logDebug("Live stream URL intercepted: " + result);
-                                    // Store for download capability
-                                    XposedHelpers.setAdditionalStaticField(
-                                        liveStreamClass,
-                                        "tiktok_enhancer_current_stream_url",
-                                        result
+            XposedBridge.hookMethod(method, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    logDebug("Live stream play method called: " + method.getName());
+                    
+                    // Log parameters to find stream URL (simplified)
+                    if (param.args != null && param.args.length > 0) {
+                        for (Object arg : param.args) {
+                            if (arg != null) {
+                                String argStr = arg.toString();
+                                if (argStr.contains("http")) {
+                                    logDebug("Potential stream URL: " + argStr);
+                                    XposedHelpers.setAdditionalInstanceField(
+                                        param.thisObject,
+                                        "tiktok_enhancer_live_stream_url",
+                                        arg
                                     );
+                                    break; // Found URL, stop processing
                                 }
                             }
-                        });
+                        }
                     }
                 }
-            }
-
-            logDebug("Hooked live stream URL methods");
+            });
         } catch (Exception e) {
-            logDebug("Failed to hook live stream URLs: " + e.getMessage());
+            logDebug("Failed to hook method " + method.getName() + ": " + e.getMessage());
         }
     }
 

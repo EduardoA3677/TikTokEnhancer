@@ -33,22 +33,22 @@ jobs:
 
       - name: Build all flavor variants
         run: |
-          ./gradlew assembleWhatsappDebug assembleBusinessDebug -Pminify=true
+          ./gradlew assembleTiktokDebug assembleTiktok_liteDebug -Pminify=true
 
       - name: Get short SHA
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
 
-      - name: Upload WhatsApp flavor artifacts
+      - name: Upload TikTok flavor artifacts
         uses: actions/upload-artifact@v5
         with:
-          name: whatsapp-debug-app-${{ env.SHORT_SHA }}
-          path: app/build/outputs/apk/whatsapp/debug/app-whatsapp-debug.apk
+          name: tiktok-debug-app-${{ env.SHORT_SHA }}
+          path: app/build/outputs/apk/tiktok/debug/app-tiktok-debug.apk
 
-      - name: Upload Business flavor artifacts
+      - name: Upload TikTok Lite flavor artifacts
         uses: actions/upload-artifact@v5
         with:
-          name: business-debug-app-${{ env.SHORT_SHA }}
-          path: app/build/outputs/apk/business/debug/app-business-debug.apk
+          name: tiktok-lite-debug-app-${{ env.SHORT_SHA }}
+          path: app/build/outputs/apk/tiktok_lite/debug/app-tiktok_lite-debug.apk
 
       - name: Post to Telegram channel
         if: ${{ success() && github.ref == 'refs/heads/master' && github.ref_type != 'tag' }}
@@ -60,24 +60,24 @@ jobs:
         run: |
           if [ ! -z "${{ secrets.BOT_TOKEN }}" ]; then
             GITHUB_SHA_SHORT=$(git rev-parse --short HEAD)
-            export output_whatsapp=app/WaEnhancer_$GITHUB_SHA_SHORT.apk
-            export output_business=app/WaEnhancer_Business_$GITHUB_SHA_SHORT.apk
-            cp app/build/outputs/apk/whatsapp/debug/app-whatsapp-debug.apk $output_whatsapp
-            cp app/build/outputs/apk/business/debug/app-business-debug.apk $output_business
+            export output_tiktok=app/TikTokEnhancer_$GITHUB_SHA_SHORT.apk
+            export output_tiktok_lite=app/TikTokEnhancer_Lite_$GITHUB_SHA_SHORT.apk
+            cp app/build/outputs/apk/tiktok/debug/app-tiktok-debug.apk $output_tiktok
+            cp app/build/outputs/apk/tiktok_lite/debug/app-tiktok_lite-debug.apk $output_tiktok_lite
             export LOG=$(cat changelog.txt)
             ESCAPED=$(python3 -c 'import json,os,urllib.parse; msg = json.dumps(os.getenv("LOG")); print(urllib.parse.quote(msg if len(msg) <= 1024 else json.dumps(os.getenv("COMMIT_URL"))))')
           
-            # Send WhatsApp variant
-            curl "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${CHANNEL_ID}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2Fwa%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2Fw4b%22%2C%22caption%22%3A${ESCAPED}%7D%5D" -F wa="@$output_whatsapp" -F w4b="@$output_business"
+            # Send TikTok variants
+            curl "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${CHANNEL_ID}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2Ftiktok%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2Ftiktok_lite%22%2C%22caption%22%3A${ESCAPED}%7D%5D" -F tiktok="@$output_tiktok" -F tiktok_lite="@$output_tiktok_lite"
           fi
 
       - name: Upload to GitHub release
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: WaEnhancer ${{ env.SHORT_SHA }}
+          name: TikTokEnhancer ${{ env.SHORT_SHA }}
           body_path: changelog.txt
           files: |
-            app/build/outputs/apk/whatsapp/debug/app-whatsapp-debug.apk
-            app/build/outputs/apk/business/debug/app-business-debug.apk
+            app/build/outputs/apk/tiktok/debug/app-tiktok-debug.apk
+            app/build/outputs/apk/tiktok_lite/debug/app-tiktok_lite-debug.apk
           tag_name: debug-${{ env.SHORT_SHA }}

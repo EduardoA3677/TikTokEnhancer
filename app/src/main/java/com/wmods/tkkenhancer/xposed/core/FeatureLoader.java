@@ -263,13 +263,20 @@ public class FeatureLoader {
                 com.wmods.tkkenhancer.xposed.features.media.VideoDownloadImproved.class, // ✅ NEW: Better URL extraction & prevent_download bypass
                 com.wmods.tkkenhancer.xposed.features.media.AdBlockerImproved.class,     // ✅ NEW: Direct field access, isAdTraffic(), commercialVideoInfo
                 com.wmods.tkkenhancer.xposed.features.media.StoryVideoSupport.class,     // ✅ NEW: Story video downloads
-                com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class         // ✅ NEW: Video quality/bitrate control
+                com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class,        // ✅ NEW: Video quality/bitrate control
+                
+                // Additional features based on comprehensive smali analysis
+                com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class,    // ✅ NEW: Live stream download support
+                com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,       // ✅ NEW: Enhanced comment functionality
+                com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.class,       // ✅ NEW: Profile viewing enhancements
+                com.wmods.tkkenhancer.xposed.features.media.FeedFilter.class,            // ✅ NEW: Custom feed filtering
+                com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class     // ✅ NEW: Block analytics/tracking
                 
                 // Note: Commented out classes that need TikTok-specific implementation:
                 // - VideoQuality.class (replaced by BitrateControl)
                 // - StoryDownload.class (replaced by StoryVideoSupport) 
                 // - DownloadServiceHook.class (integrated into VideoDownloadImproved)
-                // - PrivacyEnhancer.class (needs TikTok-specific API analysis)
+                // - PrivacyEnhancer.class (updated with smali-based hooks in AnalyticsBlocker)
                 // - CustomThemeV2.class (needs TikTok theme system analysis)
         };
         XposedBridge.log("Loading TikTok Plugins");

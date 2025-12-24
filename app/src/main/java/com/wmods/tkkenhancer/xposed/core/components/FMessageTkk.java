@@ -205,7 +205,7 @@ public class FMessageTkk {
     }
 
     /*
-     * Represents the key of a WhatsApp message, containing identifiers for the message.
+     * Represents the key of a TikTok message, containing identifiers for the message.
      */
     public static class Key {
 
@@ -219,7 +219,7 @@ public class FMessageTkk {
          */
         private FMessageTkk fmessage;
         /**
-         * The underlying key object from WhatsApp's code.
+         * The underlying key object from TikTok's code.
          */
         public Object thisObject;
         /**
@@ -231,12 +231,12 @@ public class FMessageTkk {
          */
         public boolean isFromMe;
         /**
-         * The JID of whatsapp
+         * The JID/User ID
          */
         public UserJid remoteJid;
 
         /**
-         * Constructs a new Key instance by wrapping the original WhatsApp message key object.
+         * Constructs a new Key instance by wrapping the original TikTok message key object.
          *
          * @param key The original message key object.
          */

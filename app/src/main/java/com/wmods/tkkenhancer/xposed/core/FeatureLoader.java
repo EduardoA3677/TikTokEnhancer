@@ -166,7 +166,7 @@ public class FeatureLoader {
                     
                     if (!isSupported) {
                         XposedBridge.log("Version check: TikTok " + packageInfo.versionName + " not in supported list: " + String.join(", ", supportedVersions));
-                        // Try to disable expiration version check (WhatsApp-specific feature)
+                        // Try to disable expiration version check
                         // For TikTok, this may not be applicable, so we catch and log any errors
                         try {
                             disableExpirationVersion(mApp.getClassLoader());
@@ -197,7 +197,7 @@ public class FeatureLoader {
                     registerReceivers();
                     plugins(loader, pref, packageInfo.versionName);
                     sendEnabledBroadcast(mApp);
-//                    XposedHelpers.setStaticIntField(XposedHelpers.findClass("com.whatsapp.util.Log", loader), "level", 5);
+//                    XposedHelpers.setStaticIntField(XposedHelpers.findClass("com.tiktok.util.Log", loader), "level", 5);
                     var timemillis2 = System.currentTimeMillis() - timemillis;
                     XposedBridge.log("Loaded Hooks in " + timemillis2 + "ms");
                 } catch (Throwable e) {

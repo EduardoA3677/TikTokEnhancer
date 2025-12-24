@@ -87,7 +87,7 @@ public class TkkCore {
         }
 
         // TikTok-specific initialization
-        // Note: Most of the original WhatsApp-specific initialization has been removed
+        // Note: Most of the original legacy initialization has been removed
         // as it's not applicable to TikTok
         
         XposedBridge.log("TkkCore initialized for TikTok");
@@ -105,13 +105,13 @@ public class TkkCore {
 
     @Deprecated
     public static Object getPhoneJidFromUserJid(Object lid) {
-        // WhatsApp-specific LID to JID conversion - not applicable to TikTok
+        // Legacy method - no longer applicable to TikTok
         return lid;
     }
 
     @Deprecated
     public static Object getUserJidFromPhoneJid(Object userJid) {
-        // WhatsApp-specific JID to LID conversion - not applicable to TikTok
+        // Legacy method - no longer applicable to TikTok
         return userJid;
     }
 
@@ -158,9 +158,9 @@ public class TkkCore {
         return true;
     }
 
-    /* ===== WHATSAPP-SPECIFIC METHODS - NOT APPLICABLE TO TIKTOK =====
-     * The following methods are commented out as they are WhatsApp-specific
-     * and not applicable to TikTok's architecture
+    /* ===== LEGACY METHODS - NOT APPLICABLE TO TIKTOK =====
+     * The following methods are commented out as they are legacy methods
+     * from the original codebase and not applicable to TikTok's architecture
      * 
      * Stub implementations provided to prevent compilation errors in legacy code
      */
@@ -270,19 +270,19 @@ public class TkkCore {
 
     public synchronized static Class getTabsPagerClass(@NonNull ClassLoader loader) {
         // TODO: Update with TikTok equivalent if applicable
-        // Commented out WhatsApp-specific code
+        // Placeholder for legacy code compatibility
         return XposedHelpers.findClassIfExists("android.view.View", loader);
     }
 
     public synchronized static Class getViewOnceViewerActivityClass(@NonNull ClassLoader loader) {
         // TODO: Update with TikTok video viewer if applicable  
-        // Commented out WhatsApp-specific code
+        // Placeholder for legacy code compatibility
         return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getAboutActivityClass(@NonNull ClassLoader loader) {
         // TODO: Update with TikTok settings/about if applicable
-        // Commented out WhatsApp-specific code
+        // Placeholder for legacy code compatibility
         return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
@@ -291,31 +291,31 @@ public class TkkCore {
             return mSettingsNotificationsClass;
 
         // TODO: Update with TikTok settings if applicable
-        // Commented out WhatsApp-specific code
+        // Placeholder for legacy code compatibility
         return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getDataUsageActivityClass(@NonNull ClassLoader loader) {
         // TODO: Update with TikTok data usage settings if applicable
-        // Commented out WhatsApp-specific code
+        // Placeholder for legacy code compatibility
         return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getTextStatusComposerFragmentClass(@NonNull ClassLoader loader) throws Exception {
         // TODO: Update with TikTok video composer if applicable
-        // Commented out WhatsApp-specific status composer
+        // Placeholder for legacy code compatibility
         return XposedHelpers.findClassIfExists("android.app.Fragment", loader);
     }
 
     public synchronized static Class getVoipManagerClass(@NonNull ClassLoader loader) throws Exception {
         // TODO: Update with TikTok video call classes if applicable
-        // Commented out WhatsApp-specific voip code
+        // Placeholder for legacy code compatibility
         return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
     public synchronized static Class getVoipCallInfoClass(@NonNull ClassLoader loader) throws Exception {
         // TODO: Update with TikTok call info if applicable
-        // Commented out WhatsApp-specific call info code
+        // Placeholder for legacy code compatibility
         return XposedHelpers.findClassIfExists("android.app.Activity", loader);
     }
 
@@ -341,14 +341,14 @@ public class TkkCore {
         return startup_prefs.getInt("night_mode", 0);
     }
 
-    /* ===== WHATSAPP CONTACT/JID METHODS - NOT APPLICABLE TO TIKTOK =====
-     * These methods handle WhatsApp-specific contact and JID management
+    /* ===== LEGACY CONTACT/JID METHODS - NOT APPLICABLE TO TIKTOK =====
+     * These methods handle legacy contact and JID management
      * TikTok uses a different user identification system
      * Stub implementations provided below
      */
 
-    /* ===== WHATSAPP UI METHODS - NOT APPLICABLE TO TIKTOK =====
-     * These methods handle WhatsApp-specific UI components
+    /* ===== LEGACY UI METHODS - NOT APPLICABLE TO TIKTOK =====
+     * These methods handle legacy UI components
      * Stub implementations provided above
      */
 

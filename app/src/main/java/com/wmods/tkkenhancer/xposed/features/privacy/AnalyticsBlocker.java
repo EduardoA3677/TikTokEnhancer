@@ -3,27 +3,21 @@ package com.wmods.tkkenhancer.xposed.features.privacy;
 import androidx.annotation.NonNull;
 
 import com.wmods.tkkenhancer.xposed.core.Feature;
-import com.wmods.tkkenhancer.xposed.core.devkit.Unobfuscator;
-
-import java.lang.reflect.Method;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 /**
  * Analytics Blocker Feature for TikTok
- * Blocks analytics and tracking functionality:
- * - Block view tracking
- * - Block interaction analytics
- * - Block data collection
- * - Prevent telemetry
+ * Blocks analytics and tracking functionality
  * 
- * Based on smali analysis:
- * - Analytics classes: com.ss.android.ugc.aweme.analytics.*
- * - Tracking methods
- * - Data collection APIs
+ * Based on verified smali analysis:
+ * - FirebaseAnalytics class: com.google.firebase.analytics.FirebaseAnalytics (smali_classes22)
+ * - Blocks setCurrentScreen to prevent screen tracking
+ * 
+ * Note: This is a minimal, safe implementation that blocks key tracking without
+ * causing performance issues or startup delays.
  */
 public class AnalyticsBlocker extends Feature {
 
@@ -38,214 +32,42 @@ public class AnalyticsBlocker extends Feature {
         logDebug("Initializing Analytics Blocker feature");
 
         try {
-            // Block analytics tracking
-            hookAnalyticsTracking();
-            
-            // Block data collection
-            hookDataCollection();
-            
-            // Block telemetry
-            hookTelemetry();
-
-            logDebug("Analytics Blocker feature initialized");
+            hookFirebaseAnalytics();
+            logDebug("Analytics Blocker feature initialized successfully");
         } catch (Exception e) {
             logDebug("Failed to initialize Analytics Blocker: " + e.getMessage());
+            log(e);
         }
     }
 
     /**
-     * Hook analytics tracking methods (optimized)
+     * Hook FirebaseAnalytics.setCurrentScreen() to block screen tracking
+     * Verified class: com.google.firebase.analytics.FirebaseAnalytics
      */
-    private void hookAnalyticsTracking() {
+    private void hookFirebaseAnalytics() {
         try {
-            Class<?> analyticsClass = Unobfuscator.loadTikTokAnalyticsClass(classLoader);
-            if (analyticsClass == null) {
-                logDebug("Analytics class not found, trying alternate methods");
-                hookAnalyticsBySearch();
-                return;
-            }
-
-            // Limit hooks during startup to prevent ANR
-            int hookCount = 0;
-            Method[] methods = analyticsClass.getDeclaredMethods();
+            Class<?> firebaseClass = classLoader.loadClass("com.google.firebase.analytics.FirebaseAnalytics");
             
-            for (Method method : methods) {
-                String methodName = method.getName();
-                String methodNameLower = methodName.toLowerCase();
-                
-                if (methodNameLower.contains("track") || methodNameLower.contains("log") ||
-                    methodNameLower.contains("event") || methodNameLower.contains("report") ||
-                    methodNameLower.contains("send") || methodNameLower.contains("record")) {
-                    
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            logDebug("Blocking analytics method: " + methodName);
-                            param.setResult(null);
-                        }
-                    });
-                    
-                    hookCount++;
-                    // Stop after 10 hooks to prevent startup delay
-                    if (hookCount >= 10) {
-                        logDebug("Reached hook limit, stopping to prevent ANR");
-                        break;
+            // Hook setCurrentScreen to block screen tracking
+            XposedHelpers.findAndHookMethod(
+                firebaseClass,
+                "setCurrentScreen",
+                android.app.Activity.class,
+                String.class,
+                String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        // Block the tracking call
+                        param.setResult(null);
+                        logDebug("Blocked Firebase screen tracking: " + param.args[1]);
                     }
                 }
-            }
-
-            logDebug("Hooked " + hookCount + " analytics tracking methods in " + analyticsClass.getName());
-        } catch (Exception e) {
-            logDebug("Failed to hook analytics tracking: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Hook analytics by searching for common patterns
-     */
-    private void hookAnalyticsBySearch() {
-        try {
-            // Search for classes with analytics-related names
-            String[] analyticsPackages = {
-                "com.ss.android.ugc.aweme.analytics",
-                "com.ss.android.ugc.aweme.app.api",
-                "com.bytedance.apm",
-                "com.bytedance.ies.ugc.applog"
-            };
-
-            for (String pkg : analyticsPackages) {
-                try {
-                    // Try to find and hook analytics classes
-                    Class<?> clazz = XposedHelpers.findClass(pkg + ".Analytics", classLoader);
-                    hookAllMethodsInClass(clazz);
-                } catch (Exception ignored) {
-                    // Try alternate class names
-                    try {
-                        Class<?> clazz = XposedHelpers.findClass(pkg + ".AnalyticsHelper", classLoader);
-                        hookAllMethodsInClass(clazz);
-                    } catch (Exception ignored2) {}
-                }
-            }
-
-            logDebug("Hooked analytics by package search");
-        } catch (Exception e) {
-            logDebug("Failed to hook analytics by search: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Hook all methods in a class (optimized)
-     */
-    private void hookAllMethodsInClass(Class<?> clazz) {
-        Method[] methods = clazz.getDeclaredMethods();
-        int hookCount = 0;
-        
-        for (Method method : methods) {
-            // Pre-calculate toLowerCase once
-            String methodName = method.getName();
-            String methodNameLower = methodName.toLowerCase();
+            );
             
-            // Use more efficient matching
-            if (methodNameLower.contains("track") || methodNameLower.contains("log") ||
-                methodNameLower.contains("event") || methodNameLower.contains("send")) {
-                
-                try {
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            logDebug("Blocking analytics: " + clazz.getSimpleName() + "." + methodName);
-                            param.setResult(null);
-                        }
-                    });
-                    hookCount++;
-                    // Limit hooks to prevent excessive processing
-                    if (hookCount >= 10) break;
-                } catch (Exception e) {
-                    logDebug("Failed to hook method " + methodName + ": " + e.getMessage());
-                }
-            }
-        }
-        logDebug("Hooked " + hookCount + " methods in " + clazz.getSimpleName());
-    }
-
-    /**
-     * Hook data collection methods
-     */
-    private void hookDataCollection() {
-        try {
-            // Hook common data collection classes
-            String[] dataCollectionClasses = {
-                "com.ss.android.ugc.aweme.app.api.Api",
-                "com.ss.android.deviceregister.DeviceRegisterManager",
-                "com.bytedance.common.utility.collection.WeakHandler"
-            };
-
-            for (String className : dataCollectionClasses) {
-                try {
-                    Class<?> clazz = XposedHelpers.findClass(className, classLoader);
-                    
-                    for (Method method : clazz.getDeclaredMethods()) {
-                        String methodName = method.getName().toLowerCase();
-                        if (methodName.contains("collect") || methodName.contains("gather") ||
-                            methodName.contains("send") || methodName.contains("upload")) {
-                            
-                            XposedBridge.hookMethod(method, new XC_MethodHook() {
-                                @Override
-                                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                    logDebug("Blocking data collection: " + method.getName());
-                                    param.setResult(null);
-                                }
-                            });
-                        }
-                    }
-                } catch (Exception ignored) {
-                    // Class not found or can't be hooked
-                }
-            }
-
-            logDebug("Hooked data collection methods");
+            logDebug("Hooked FirebaseAnalytics successfully");
         } catch (Exception e) {
-            logDebug("Failed to hook data collection: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Hook telemetry methods
-     */
-    private void hookTelemetry() {
-        try {
-            // Hook telemetry-related classes
-            String[] telemetryClasses = {
-                "com.bytedance.apm.ApmAgent",
-                "com.bytedance.frameworks.apm.ApmAgent"
-            };
-
-            for (String className : telemetryClasses) {
-                try {
-                    Class<?> clazz = XposedHelpers.findClass(className, classLoader);
-                    
-                    for (Method method : clazz.getDeclaredMethods()) {
-                        String methodName = method.getName().toLowerCase();
-                        if (methodName.contains("report") || methodName.contains("monitor") ||
-                            methodName.contains("track") || methodName.contains("send")) {
-                            
-                            XposedBridge.hookMethod(method, new XC_MethodHook() {
-                                @Override
-                                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                    logDebug("Blocking telemetry: " + method.getName());
-                                    param.setResult(null);
-                                }
-                            });
-                        }
-                    }
-                } catch (Exception ignored) {
-                    // Class not found
-                }
-            }
-
-            logDebug("Hooked telemetry methods");
-        } catch (Exception e) {
-            logDebug("Failed to hook telemetry: " + e.getMessage());
+            logDebug("Failed to hook FirebaseAnalytics: " + e.getMessage());
         }
     }
 

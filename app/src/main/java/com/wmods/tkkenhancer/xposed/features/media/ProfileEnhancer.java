@@ -3,27 +3,21 @@ package com.wmods.tkkenhancer.xposed.features.media;
 import androidx.annotation.NonNull;
 
 import com.wmods.tkkenhancer.xposed.core.Feature;
-import com.wmods.tkkenhancer.xposed.core.devkit.Unobfuscator;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 /**
  * Profile Enhancer Feature for TikTok
- * Provides enhanced profile viewing and interaction:
- * - View private profiles
- * - Enhanced profile information
- * - Profile download capabilities
+ * Provides enhanced profile viewing:
+ * - View private profiles (bypass isPrivateAccount)
  * 
- * Based on smali analysis:
- * - User/Profile class: com.ss.android.ugc.aweme.profile.model.User
- * - Profile viewing methods
- * - Privacy settings
+ * Based on verified smali analysis:
+ * - User class: com.ss.android.ugc.aweme.profile.model.User (smali_classes35)
+ * - Field: public isPrivateAccount:Z
+ * - Method: public isPrivateAccount()Z
+ * - Method: public isSecret()Z
  */
 public class ProfileEnhancer extends Feature {
 
@@ -38,117 +32,51 @@ public class ProfileEnhancer extends Feature {
         logDebug("Initializing Profile Enhancer feature");
 
         try {
-            // Hook profile viewing to access more information
-            if (prefs.getBoolean("enhanced_profile_view", false)) {
-                hookProfileViewing();
-            }
-            
-            // Hook privacy settings
-            if (prefs.getBoolean("bypass_profile_privacy", false)) {
-                hookProfilePrivacy();
-            }
-
-            logDebug("Profile Enhancer feature initialized");
+            hookProfilePrivacy();
+            logDebug("Profile Enhancer feature initialized successfully");
         } catch (Exception e) {
             logDebug("Failed to initialize Profile Enhancer: " + e.getMessage());
+            log(e);
         }
     }
 
     /**
-     * Hook profile viewing to access enhanced information
-     */
-    private void hookProfileViewing() {
-        try {
-            Class<?> profileClass = Unobfuscator.loadTikTokProfileClass(classLoader);
-            if (profileClass == null) {
-                logDebug("Profile class not found");
-                return;
-            }
-
-            // Hook getters to log profile information
-            for (Method method : profileClass.getDeclaredMethods()) {
-                String methodName = method.getName().toLowerCase();
-                if (methodName.startsWith("get") && method.getParameterCount() == 0) {
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            Object result = param.getResult();
-                            if (result != null && !result.toString().isEmpty()) {
-                                // Store enhanced profile data
-                                String fieldName = "tiktok_enhancer_profile_" + method.getName();
-                                XposedHelpers.setAdditionalInstanceField(
-                                    param.thisObject,
-                                    fieldName,
-                                    result
-                                );
-                            }
-                        }
-                    });
-                }
-            }
-
-            logDebug("Hooked profile viewing methods in " + profileClass.getName());
-        } catch (Exception e) {
-            logDebug("Failed to hook profile viewing: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Hook profile privacy to bypass privacy restrictions
+     * Hook User.isPrivateAccount() and isSecret() to bypass private profile restrictions
+     * Verified class: com.ss.android.ugc.aweme.profile.model.User
      */
     private void hookProfilePrivacy() {
         try {
-            Class<?> profileClass = Unobfuscator.loadTikTokProfileClass(classLoader);
-            if (profileClass == null) return;
-
-            // Hook privacy-related boolean methods
-            for (Method method : profileClass.getDeclaredMethods()) {
-                if (method.getReturnType() == boolean.class && method.getParameterCount() == 0) {
-                    String methodName = method.getName();
-                    String methodNameLower = methodName.toLowerCase();
+            Class<?> userClass = classLoader.loadClass("com.ss.android.ugc.aweme.profile.model.User");
+            
+            // Hook isPrivateAccount() to always return false
+            XposedHelpers.findAndHookMethod(userClass, "isPrivateAccount", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    boolean originalValue = (boolean) param.getResult();
                     
-                    // Only hook methods that clearly relate to privacy
-                    boolean isPrivacyMethod = (methodNameLower.contains("private") && !methodNameLower.contains("data")) ||
-                                             (methodNameLower.contains("public") && !methodNameLower.contains("key")) ||
-                                             methodNameLower.contains("visible") ||
-                                             (methodNameLower.contains("secret") && !methodNameLower.contains("key"));
-                    
-                    if (isPrivacyMethod) {
-                        XposedBridge.hookMethod(method, new XC_MethodHook() {
-                            @Override
-                            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                logDebug("Privacy check method: " + methodName);
-                                
-                                // Override privacy checks cautiously
-                                if (methodNameLower.contains("private") || methodNameLower.contains("secret")) {
-                                    // Profile is not private
-                                    param.setResult(false);
-                                } else if (methodNameLower.contains("public") || methodNameLower.contains("visible")) {
-                                    // Profile is public/visible
-                                    param.setResult(true);
-                                }
-                            }
-                        });
+                    if (originalValue) {
+                        param.setResult(false);
+                        logDebug("Bypassed private account check");
                     }
                 }
-            }
-
-            // Hook privacy fields directly
-            for (Field field : profileClass.getDeclaredFields()) {
-                if (field.getType() == boolean.class) {
-                    String fieldName = field.getName().toLowerCase();
-                    if (fieldName.contains("private") || fieldName.contains("secret") ||
-                        fieldName.contains("hidden") || fieldName.contains("locked")) {
-                        
-                        logDebug("Found privacy field: " + field.getName());
-                        // Field hooking would be done during instance access
+            });
+            
+            // Hook isSecret() to always return false
+            XposedHelpers.findAndHookMethod(userClass, "isSecret", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    boolean originalValue = (boolean) param.getResult();
+                    
+                    if (originalValue) {
+                        param.setResult(false);
+                        logDebug("Bypassed secret profile check");
                     }
                 }
-            }
-
-            logDebug("Hooked profile privacy methods");
+            });
+            
+            logDebug("Hooked User profile privacy methods successfully");
         } catch (Exception e) {
-            logDebug("Failed to hook profile privacy: " + e.getMessage());
+            logDebug("Failed to hook User privacy: " + e.getMessage());
         }
     }
 

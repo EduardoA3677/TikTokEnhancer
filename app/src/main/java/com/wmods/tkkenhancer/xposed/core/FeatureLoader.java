@@ -386,14 +386,18 @@ public class FeatureLoader {
                 // ✅ NEWLY IMPLEMENTED FEATURES - Enabled for testing
                 com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class,    // Auto-play control with player analysis
                 com.wmods.tkkenhancer.xposed.features.media.StoryVideoSupport.class,  // Story video download
-                com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class, // Live stream download
-                com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class, // Analytics blocking
+                com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class, // Live stream download (placeholder)
+                com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class, // Analytics blocking (minimal)
                 
                 // ✅ NEW HOOKS - Based on smali analysis and verification
                 com.wmods.tkkenhancer.xposed.features.media.FeedScrollCustomizer.class,  // Feed scroll customization
                 com.wmods.tkkenhancer.xposed.features.media.RewardsIconHider.class,      // Hide TikTok Rewards icon
                 com.wmods.tkkenhancer.xposed.features.media.UIEnhancer.class,            // Additional UI enhancements
                 com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class,        // Bitrate control - VERIFIED and improved
+                
+                // ✅ IMPROVED HOOKS - Verified against smali and corrected
+                com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,       // Comment.getStatus() - VERIFIED
+                com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.class,       // User.isPrivateAccount() - VERIFIED
         };
         
         XposedBridge.log("Loading TikTok Plugins (Core + New Features)");

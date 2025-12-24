@@ -82,7 +82,7 @@ public class AutoPlayControl extends Feature {
                 
                 // Look for auto-play related methods
                 if (methodName.toLowerCase().contains("autoplay") ||
-                    methodName.toLowerCase().contains("auto") && methodName.toLowerCase().contains("play") ||
+                    (methodName.toLowerCase().contains("auto") && methodName.toLowerCase().contains("play")) ||
                     methodName.toLowerCase().contains("startplay")) {
                     
                     logDebug("Hooking player method: " + methodName);

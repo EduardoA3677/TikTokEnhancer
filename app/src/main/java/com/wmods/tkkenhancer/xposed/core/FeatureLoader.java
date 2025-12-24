@@ -104,7 +104,7 @@ import lombok.Setter;
 public class FeatureLoader {
     public static Application mApp;
 
-    public final static String PACKAGE_WPP = "com.zhiliaoapp.musically";
+    public final static String PACKAGE_TKK = "com.zhiliaoapp.musically";
     public final static String PACKAGE_BUSINESS = "com.zhiliaoapp.musically";
 
     private static final ArrayList<ErrorItem> list = new ArrayList<>();

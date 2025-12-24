@@ -389,18 +389,11 @@ public class FeatureLoader {
                 com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class, // Live stream download
                 com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class, // Analytics blocking
                 
-                // ✅ NEW HOOKS - Based on smali analysis
+                // ✅ NEW HOOKS - Based on smali analysis and verification
                 com.wmods.tkkenhancer.xposed.features.media.FeedScrollCustomizer.class,  // Feed scroll customization
                 com.wmods.tkkenhancer.xposed.features.media.RewardsIconHider.class,      // Hide TikTok Rewards icon
                 com.wmods.tkkenhancer.xposed.features.media.UIEnhancer.class,            // Additional UI enhancements
-                
-                // ❌ DISABLED - Need proper TikTok implementation or causing issues
-                // com.wmods.tkkenhancer.xposed.features.media.VideoDownloadImproved.class,
-                // com.wmods.tkkenhancer.xposed.features.media.AdBlockerImproved.class,
-                // com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class,
-                // com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,
-                // com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.class,
-                // com.wmods.tkkenhancer.xposed.features.media.FeedFilter.class,
+                com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class,        // Bitrate control - VERIFIED and improved
         };
         
         XposedBridge.log("Loading TikTok Plugins (Core + New Features)");

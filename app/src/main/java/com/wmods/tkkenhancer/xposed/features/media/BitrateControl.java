@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
 
 /**
  * Video Quality/Bitrate Control Feature
@@ -40,70 +41,81 @@ public class BitrateControl extends Feature {
 
     /**
      * Hook bitrate selector to control video quality
+     * Based on verified smali: GearSet.getBitRate() and AutoBitrateSet.getMinBitrate()
      */
     private void hookBitrateSelector() {
         try {
-            Class<?> bitrateSelectorClass = Unobfuscator.loadTikTokBitrateSelectorClass(classLoader);
-            if (bitrateSelectorClass == null) {
-                logDebug("Bitrate selector class not found");
-                return;
-            }
-
-            logDebug("Found bitrate selector class: " + bitrateSelectorClass.getName());
-
-            // Get user preference for quality
-            String qualityPref = prefs.getString("video_quality_preference", "high");
-            logDebug("Video quality preference: " + qualityPref);
-
-            // Hook methods related to bitrate selection
-            for (Method method : bitrateSelectorClass.getDeclaredMethods()) {
-                String methodName = method.getName().toLowerCase();
-                
-                if (methodName.contains("bitrate") || 
-                    methodName.contains("quality") ||
-                    methodName.contains("select") ||
-                    methodName.contains("rate")) {
-                    
-                    logDebug("Hooking bitrate method: " + method.getName());
-                    
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            logDebug("Bitrate method called: " + method.getName());
-                        }
-                        
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            // Force high quality if preferred
-                            if ("high".equals(qualityPref)) {
-                                Class<?> returnType = method.getReturnType();
-                                
-                                // If returning an int (bitrate value), maximize it
-                                if (returnType == int.class || returnType == Integer.class) {
-                                    Object result = param.getResult();
-                                    if (result instanceof Integer) {
-                                        int bitrate = (Integer) result;
-                                        // Increase bitrate for better quality
-                                        int newBitrate = Math.max(bitrate, bitrate * 2);
-                                        logDebug("Increased bitrate from " + bitrate + " to " + newBitrate);
-                                        param.setResult(newBitrate);
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-
+            // Hook GearSet.getBitRate() - verified in smali_classes25
+            hookGearSetBitRate();
+            
+            // Hook AutoBitrateSet.getMinBitrate() - verified in smali_classes25
+            hookAutoBitrateSet();
+            
         } catch (Throwable e) {
             log("Error hooking bitrate selector: " + e.getMessage());
             log(e);
         }
     }
 
+    /**
+     * Hook GearSet.getBitRate() to force higher bitrate
+     * Verified class: com.ss.android.ugc.aweme.simkit.model.bitrateselect.GearSet
+     */
+    private void hookGearSetBitRate() {
+        try {
+            Class<?> gearSetClass = classLoader.loadClass("com.ss.android.ugc.aweme.simkit.model.bitrateselect.GearSet");
+            
+            XposedHelpers.findAndHookMethod(gearSetClass, "getBitRate", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    int originalBitrate = (int) param.getResult();
+                    
+                    // Force higher bitrate for better quality
+                    int targetBitrate = prefs.getInt("target_bitrate", 5000000); // 5 Mbps default
+                    if (originalBitrate < targetBitrate) {
+                        param.setResult(targetBitrate);
+                        logDebug("Increased bitrate from " + originalBitrate + " to " + targetBitrate);
+                    }
+                }
+            });
+            
+            logDebug("Hooked GearSet.getBitRate() successfully");
+        } catch (Exception e) {
+            logDebug("Failed to hook GearSet: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Hook AutoBitrateSet to control minimum bitrate
+     * Verified class: com.ss.android.ugc.aweme.simkit.model.bitrateselect.AutoBitrateSet
+     */
+    private void hookAutoBitrateSet() {
+        try {
+            Class<?> autoBitrateClass = classLoader.loadClass("com.ss.android.ugc.aweme.simkit.model.bitrateselect.AutoBitrateSet");
+            
+            XposedHelpers.findAndHookMethod(autoBitrateClass, "getMinBitrate", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    double originalMinBitrate = (double) param.getResult();
+                    
+                    // Set higher minimum bitrate
+                    double targetMinBitrate = prefs.getInt("target_bitrate", 5000000) * 0.8; // 80% of target
+                    if (originalMinBitrate < targetMinBitrate) {
+                        param.setResult(targetMinBitrate);
+                        logDebug("Increased min bitrate from " + originalMinBitrate + " to " + targetMinBitrate);
+                    }
+                }
+            });
+            
+            logDebug("Hooked AutoBitrateSet.getMinBitrate() successfully");
+        } catch (Exception e) {
+            logDebug("Failed to hook AutoBitrateSet: " + e.getMessage());
+        }
+    }
+
     @NonNull
     @Override
     public String getPluginName() {
-        return "Bitrate/Quality Control";
+        return "BitrateControl";
     }
 }

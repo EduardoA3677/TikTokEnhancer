@@ -225,8 +225,8 @@
     <string name="android_version">Android SDK</string>
     <string name="message_removed_on">This message was removed on %s.</string>
     <string name="disable_default_emojis">Disable Default Emojis</string>
-    <string name="theme_mode">Dark Theme Wa Enhancer</string>
-    <string name="theme_mode_sum">Force a theme mode in the Wa Enhancer</string>
+    <string name="theme_mode">Dark Theme TikTok Enhancer</string>
+    <string name="theme_mode_sum">Force a theme mode in the TikTok Enhancer</string>
     <string name="disable_default_emojis_sum">Disables TikTok\'s default emojis and uses system emojis\n(NOTE: TikTok emojis will disappear from the selector, use the keyboard to insert).</string>
     <string name="other">Other</string>
     <string name="enable_media_preview">Enable Media Preview</string>
@@ -283,14 +283,14 @@
     <string name="developer" translatable="false">Developer: Dev4Mod</string>
     <string name="about_info">TikTok Enhancer is an Xposed module that enhances your TikTok experience by offering advanced features, UI customization, and video enhancements.</string>
     <string name="installation">Installation</string>
-    <string name="installation_desc">1. Ensure that your device is rooted.\n2. Install the Xposed Framework on your device.\n3. Download the Wa Enhancer from the Actions section.\n4. Install the Wa Enhancer APK.\n5. Enable the Wa Enhancer module in the Xposed Installer app.</string>
+    <string name="installation_desc">1. Ensure that your device is rooted.\n2. Install the Xposed Framework on your device.\n3. Download the TikTok Enhancer from the Actions section.\n4. Install the TikTok Enhancer APK.\n5. Enable the TikTok Enhancer module in the Xposed Installer app.</string>
     <string name="go_to_telegram">Go to Telegram</string>
     <string name="go_to_github">Go to GitHub</string>
     <string name="donate">Donate</string>
     <string name="support">Support</string>
-    <string name="support_desc">If you encounter any issues or have questions about Wa Enhancer, please visit Telegram.</string>
+    <string name="support_desc">If you encounter any issues or have questions about TikTok Enhancer, please visit Telegram.</string>
     <string name="license">License</string>
-    <string name="license_desc">This project is licensed under the GNU License - see the LICENSE file for details.\n\nNote: Please use Wa Enhancer responsibly and in compliance with the terms and conditions of the apps you are modifying. Misuse of this tool may lead to legal consequences.</string>
+    <string name="license_desc">This project is licensed under the GNU License - see the LICENSE file for details.\n\nNote: Please use TikTok Enhancer responsibly and in compliance with the terms and conditions of the apps you are modifying. Misuse of this tool may lead to legal consequences.</string>
     <string name="select_a_color">Select a color</string>
     <string name="custom_appearance">Custom Appearance</string>
     <string name="custom_filters_sum">Activate filters by ID and Custom CSS</string>
@@ -310,7 +310,7 @@
     <string name="new_theme_name">New Theme Name</string>
     <string name="create">Create</string>
     <string name="storage_permission">Storage Permission</string>
-    <string name="permission_storage">Allow Wa Enhancer to access your external storage?</string>
+    <string name="permission_storage">Allow TikTok Enhancer to access your external storage?</string>
     <string name="allow">Allow</string>
     <string name="deny">Deny</string>
     <string name="saved">Saved</string>
@@ -336,8 +336,8 @@
     <string name="list_animations_home_screen_sum">Add animations when swiping the chat list</string>
     <string name="stamp_copied_messages">Remove Stamp from Copied Messages</string>
     <string name="stamp_copied_messages_sum">Removes name and date when copying more than one message</string>
-    <string name="invalid_folder">The invalid folder has been selected. Please choose the WaEnhancer folder</string>
-    <string name="uri_permission">To use custom themes you need to select the \"WaEnhancer\" folder in \"Download\"</string>
+    <string name="invalid_folder">The invalid folder has been selected. Please choose the TikTokEnhancer folder</string>
+    <string name="uri_permission">To use custom themes you need to select the \"TikTokEnhancer\" folder in \"Download\"</string>
     <string name="double_click_to_react">Enable Double Click to React</string>
     <string name="double_click_to_like_sum">Activates the possibility of double-clicking on the message to react it</string>
     <string name="custom_reaction">Custom Reaction</string>
@@ -351,7 +351,7 @@
     <string name="ghost_mode_s">Ghost Mode [%s]</string>
     <string name="ghost_mode_title">Show Ghost Mode Button</string>
     <string name="ghost_mode_sum">Show a Ghost Mode button on the home screen toolbar</string>
-    <string name="grant_permissions">To use Wa Enhancer it is necessary to grant some permissions to use the functions.</string>
+    <string name="grant_permissions">To use TikTok Enhancer it is necessary to grant some permissions to use the functions.</string>
     <string name="grant_manage_storage">Grant manage storage</string>
     <string name="grant_media_read">Grant Media Read</string>
     <string name="grant_reading_of_contacts">Grant reading of Contacts</string>
@@ -367,8 +367,8 @@
     <string name="select_all">Select All</string>
     <string name="custom_colors_for_text_status">Custom colors for text status</string>
     <string name="custom_colors_for_text_status_sum">Press and hold on the color selector in the status to customize it</string>
-    <string name="enable_wa_enhancer_button">Enable Wa Enhancer Button</string>
-    <string name="enable_wa_enhancer_button_sum">Add button in Home Screen to open Wa Enhancer</string>
+    <string name="enable_tkk_enhancer_button">Enable TikTok Enhancer Button</string>
+    <string name="enable_tkk_enhancer_button_sum">Add button in Home Screen to open TikTok Enhancer</string>
     <string name="custom_privacy">Custom Privacy</string>
     <string name="custom_privacy_sum">Enable/Disable Custom Privacy</string>
     <string name="custom_privacy_per_contact">Custom Privacy per contact</string>

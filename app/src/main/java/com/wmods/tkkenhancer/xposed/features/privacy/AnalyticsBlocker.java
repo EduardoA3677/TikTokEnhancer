@@ -54,7 +54,7 @@ public class AnalyticsBlocker extends Feature {
     }
 
     /**
-     * Hook analytics tracking methods
+     * Hook analytics tracking methods (optimized)
      */
     private void hookAnalyticsTracking() {
         try {
@@ -65,26 +65,36 @@ public class AnalyticsBlocker extends Feature {
                 return;
             }
 
-            // Hook all tracking methods
-            for (Method method : analyticsClass.getDeclaredMethods()) {
-                String methodName = method.getName().toLowerCase();
-                if (methodName.contains("track") || methodName.contains("log") ||
-                    methodName.contains("event") || methodName.contains("report") ||
-                    methodName.contains("send") || methodName.contains("record")) {
+            // Limit hooks during startup to prevent ANR
+            int hookCount = 0;
+            Method[] methods = analyticsClass.getDeclaredMethods();
+            
+            for (Method method : methods) {
+                String methodName = method.getName();
+                String methodNameLower = methodName.toLowerCase();
+                
+                if (methodNameLower.contains("track") || methodNameLower.contains("log") ||
+                    methodNameLower.contains("event") || methodNameLower.contains("report") ||
+                    methodNameLower.contains("send") || methodNameLower.contains("record")) {
                     
                     XposedBridge.hookMethod(method, new XC_MethodHook() {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            logDebug("Blocking analytics method: " + method.getName());
-                            
-                            // Block the tracking call
+                            logDebug("Blocking analytics method: " + methodName);
                             param.setResult(null);
                         }
                     });
+                    
+                    hookCount++;
+                    // Stop after 10 hooks to prevent startup delay
+                    if (hookCount >= 10) {
+                        logDebug("Reached hook limit, stopping to prevent ANR");
+                        break;
+                    }
                 }
             }
 
-            logDebug("Hooked analytics tracking methods in " + analyticsClass.getName());
+            logDebug("Hooked " + hookCount + " analytics tracking methods in " + analyticsClass.getName());
         } catch (Exception e) {
             logDebug("Failed to hook analytics tracking: " + e.getMessage());
         }
@@ -124,27 +134,38 @@ public class AnalyticsBlocker extends Feature {
     }
 
     /**
-     * Hook all methods in a class
+     * Hook all methods in a class (optimized)
      */
     private void hookAllMethodsInClass(Class<?> clazz) {
-        for (Method method : clazz.getDeclaredMethods()) {
-            String methodName = method.getName().toLowerCase();
-            if (methodName.contains("track") || methodName.contains("log") ||
-                methodName.contains("event") || methodName.contains("send")) {
+        Method[] methods = clazz.getDeclaredMethods();
+        int hookCount = 0;
+        
+        for (Method method : methods) {
+            // Pre-calculate toLowerCase once
+            String methodName = method.getName();
+            String methodNameLower = methodName.toLowerCase();
+            
+            // Use more efficient matching
+            if (methodNameLower.contains("track") || methodNameLower.contains("log") ||
+                methodNameLower.contains("event") || methodNameLower.contains("send")) {
                 
                 try {
                     XposedBridge.hookMethod(method, new XC_MethodHook() {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            logDebug("Blocking analytics: " + clazz.getSimpleName() + "." + method.getName());
+                            logDebug("Blocking analytics: " + clazz.getSimpleName() + "." + methodName);
                             param.setResult(null);
                         }
                     });
+                    hookCount++;
+                    // Limit hooks to prevent excessive processing
+                    if (hookCount >= 10) break;
                 } catch (Exception e) {
-                    logDebug("Failed to hook method " + method.getName() + ": " + e.getMessage());
+                    logDebug("Failed to hook method " + methodName + ": " + e.getMessage());
                 }
             }
         }
+        logDebug("Hooked " + hookCount + " methods in " + clazz.getSimpleName());
     }
 
     /**

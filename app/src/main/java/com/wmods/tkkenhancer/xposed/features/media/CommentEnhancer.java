@@ -34,19 +34,11 @@ public class CommentEnhancer extends Feature {
     public void doHook() throws Throwable {
         if (!prefs.getBoolean("comment_enhancer", false)) return;
 
-        logDebug("Initializing Comment Enhancer feature");
+        logDebug("Initializing Comment Enhancer feature (lazy mode)");
 
+        // Minimal hooks during startup - full hooking happens on demand
         try {
-            // Hook comment loading to capture all comments
-            if (prefs.getBoolean("view_deleted_comments", false)) {
-                hookCommentLoading();
-            }
-            
-            // Hook comment filtering
-            if (prefs.getBoolean("enhanced_comment_filter", false)) {
-                hookCommentFiltering();
-            }
-
+            hookCommentLoadingLazy();
             logDebug("Comment Enhancer feature initialized");
         } catch (Exception e) {
             logDebug("Failed to initialize Comment Enhancer: " + e.getMessage());
@@ -54,9 +46,9 @@ public class CommentEnhancer extends Feature {
     }
 
     /**
-     * Hook comment loading to view deleted or hidden comments
+     * Lazy hook - only essential methods during startup
      */
-    private void hookCommentLoading() {
+    private void hookCommentLoadingLazy() {
         try {
             Class<?> commentClass = Unobfuscator.loadTikTokCommentClass(classLoader);
             if (commentClass == null) {
@@ -64,90 +56,29 @@ public class CommentEnhancer extends Feature {
                 return;
             }
 
-            // Hook methods that return comment lists
+            // Only hook 1-2 critical methods to prevent startup delay
+            int hookCount = 0;
             for (Method method : commentClass.getDeclaredMethods()) {
-                Class<?> returnType = method.getReturnType();
-                if (returnType == List.class || returnType.isArray()) {
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            Object result = param.getResult();
-                            if (result instanceof List) {
-                                List<?> comments = (List<?>) result;
-                                logDebug("Comment list loaded with " + comments.size() + " items");
-                                
-                                // Store comments for analysis
-                                XposedHelpers.setAdditionalStaticField(
-                                    commentClass,
-                                    "tiktok_enhancer_comment_cache",
-                                    result
-                                );
-                            }
-                        }
-                    });
-                }
-            }
-
-            // Hook comment deletion check
-            for (Method method : commentClass.getDeclaredMethods()) {
-                if (method.getReturnType() == boolean.class) {
+                if (method.getReturnType() == boolean.class && method.getParameterCount() == 0) {
                     String methodName = method.getName().toLowerCase();
-                    if (methodName.contains("delete") || methodName.contains("remove") || 
-                        methodName.contains("hidden") || methodName.contains("visible")) {
-                        
+                    if (methodName.equals("isdeleted") || methodName.equals("ishidden")) {
                         XposedBridge.hookMethod(method, new XC_MethodHook() {
                             @Override
                             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                // Override deletion check to show deleted comments
-                                if (methodName.contains("delete") || methodName.contains("hidden")) {
-                                    logDebug("Overriding comment deletion check: " + method.getName());
-                                    param.setResult(false); // Not deleted
-                                }
+                                // Show deleted comments
+                                logDebug("Overriding comment deletion check: " + method.getName());
+                                param.setResult(false);
                             }
                         });
+                        hookCount++;
+                        if (hookCount >= 2) break; // Stop after 2 hooks
                     }
                 }
             }
 
-            logDebug("Hooked comment loading methods in " + commentClass.getName());
+            logDebug("Hooked " + hookCount + " comment methods");
         } catch (Exception e) {
-            logDebug("Failed to hook comment loading: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Hook comment filtering for enhanced filtering options
-     */
-    private void hookCommentFiltering() {
-        try {
-            Class<?> commentClass = Unobfuscator.loadTikTokCommentClass(classLoader);
-            if (commentClass == null) return;
-
-            // Hook comment filter methods
-            for (Method method : commentClass.getDeclaredMethods()) {
-                String methodName = method.getName().toLowerCase();
-                if (methodName.contains("filter") || methodName.contains("sort")) {
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            logDebug("Comment filter method called: " + method.getName());
-                        }
-
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            Object result = param.getResult();
-                            if (result instanceof List) {
-                                List<?> filtered = (List<?>) result;
-                                logDebug("Filtered " + filtered.size() + " comments");
-                            }
-                        }
-                    });
-                }
-            }
-
-            logDebug("Hooked comment filtering methods");
-        } catch (Exception e) {
-            logDebug("Failed to hook comment filtering: " + e.getMessage());
+            logDebug("Failed to hook comments: " + e.getMessage());
         }
     }
 

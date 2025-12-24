@@ -419,125 +419,129 @@
     <string name="download_not_available">Download not available or media has not been fully downloaded</string>
 
     <!-- TikTok Enhancer Specific Strings -->
-    <string name="tiktok_download_title">TikTok Video Download</string>
+    <string name="tiktok_download_title">📥 Video Downloads</string>
     <string name="video_download">Enable Video Download</string>
-    <string name="video_download_sum">Enable downloading TikTok videos</string>
-    <string name="download_no_watermark">Download Without Watermark</string>
-    <string name="download_no_watermark_sum">Download videos without TikTok watermark</string>
-    <string name="download_service_hook">Download Service Hook</string>
-    <string name="download_service_hook_sum">Intercept download service for enhanced control</string>
-    <string name="hook_download_aweme_service">Hook Download Aweme Service</string>
-    <string name="hook_download_aweme_service_sum">Hook DownloadAwemeVideoServiceImpl.LIZ() method</string>
-    <string name="hook_share_helper">Hook Share Helper</string>
-    <string name="hook_share_helper_sum">Hook ShareHelper classes for custom download from share</string>
-    <string name="hook_network_utils">Hook Network Utils</string>
-    <string name="hook_network_utils_sum">Hook NetworkUtils.downloadVideo() low-level download method</string>
+    <string name="video_download_sum">Download TikTok videos directly without watermarks</string>
+    <string name="download_no_watermark">Remove Watermark</string>
+    <string name="download_no_watermark_sum">Save videos in original quality without TikTok branding</string>
+    <string name="download_service_hook">Advanced Download Options</string>
+    <string name="download_service_hook_sum">Enable advanced download service hooks for better control</string>
+    <string name="hook_download_aweme_service">Hook Download Service</string>
+    <string name="hook_download_aweme_service_sum">Intercept TikTok\'s internal download service for enhanced functionality</string>
+    <string name="hook_share_helper">Hook Share System</string>
+    <string name="hook_share_helper_sum">Enable custom downloads when sharing videos</string>
+    <string name="hook_network_utils">Hook Network Layer</string>
+    <string name="hook_network_utils_sum">Low-level network hook for direct video downloads</string>
     <string name="story_download">Story Download</string>
-    <string name="story_download_sum">Enable downloading user stories</string>
-    <string name="live_stream_download">Live Stream Download</string>
-    <string name="live_stream_download_sum">Enable capturing and downloading live streams</string>
-    <string name="tiktok_download_path">TikTok Download Path</string>
+    <string name="story_download_sum">Save user stories before they disappear</string>
+    <string name="live_stream_download">Live Stream Capture</string>
+    <string name="live_stream_download_sum">Record and save live stream content (experimental)</string>
+    <string name="tiktok_download_path">Download Folder</string>
 
-    <string name="tiktok_quality_title">Video Quality</string>
-    <string name="video_quality">Enable Quality Control</string>
-    <string name="video_quality_sum">Control video quality and bitrate settings</string>
-    <string name="quality_level">Quality Level</string>
-    <string name="quality_level_sum">Select preferred video quality level</string>
-    <string name="force_hd_quality">Force HD Quality</string>
-    <string name="force_hd_quality_sum">Always select highest quality available</string>
-    <string name="force_high_bitrate">Force High Bitrate</string>
-    <string name="force_high_bitrate_sum">Force higher bitrate for better quality</string>
+    <string name="tiktok_quality_title">🎬 Video Quality Control</string>
+    <string name="video_quality">Enable Quality Enhancement</string>
+    <string name="video_quality_sum">Force higher video quality for better viewing experience</string>
+    <string name="quality_level">Preferred Quality</string>
+    <string name="quality_level_sum">Choose your preferred video quality (Ultra recommended)</string>
+    <string name="force_hd_quality">Force HD Playback</string>
+    <string name="force_hd_quality_sum">Always play videos in highest quality available</string>
+    <string name="force_high_bitrate">Increase Bitrate</string>
+    <string name="force_high_bitrate_sum">Use higher bitrate for sharper video quality (uses more data)</string>
     <string name="target_bitrate">Target Bitrate</string>
-    <string name="target_bitrate_sum">Select desired video bitrate</string>
-    <string name="hook_rate_setting_model">Hook Rate Setting Model</string>
-    <string name="hook_rate_setting_model_sum">Hook RateSettingCombineModel for quality settings</string>
-    <string name="hook_gear_set">Hook Gear Set</string>
-    <string name="hook_gear_set_sum">Hook GearSet for bitrate gear selection</string>
-    <string name="hook_auto_bitrate_set">Hook Auto Bitrate Set</string>
-    <string name="hook_auto_bitrate_set_sum">Hook AutoBitrateSet for automatic bitrate selection</string>
+    <string name="target_bitrate_sum">Set desired video bitrate in kbps (higher = better quality)</string>
+    <string name="hook_rate_setting_model">Hook Quality System</string>
+    <string name="hook_rate_setting_model_sum">Intercept TikTok\'s quality selection algorithm</string>
+    <string name="hook_gear_set">Hook Bitrate Selector</string>
+    <string name="hook_gear_set_sum">Modify bitrate gear selection for quality control</string>
+    <string name="hook_auto_bitrate_set">Hook Auto-Quality</string>
+    <string name="hook_auto_bitrate_set_sum">Override automatic quality adjustments</string>
 
-    <string name="tiktok_autoplay_title">Auto-Play Control</string>
+    <string name="tiktok_autoplay_title">⏯️ Auto-Play Settings</string>
     <string name="autoplay_control">Enable Auto-Play Control</string>
-    <string name="autoplay_control_sum">Control video auto-play behavior</string>
+    <string name="autoplay_control_sum">Take control of video auto-play behavior to save data and battery</string>
     <string name="disable_autoplay">Disable Auto-Play</string>
-    <string name="disable_autoplay_sum">Prevent videos from playing automatically</string>
+    <string name="disable_autoplay_sum">Prevent videos from playing automatically when scrolling</string>
 
-    <string name="tiktok_ad_title">Ad Blocker</string>
+    <string name="tiktok_ad_title">🚫 Ad Blocker</string>
     <string name="ad_blocker">Enable Ad Blocker</string>
-    <string name="ad_blocker_sum">Block advertisements in your feed</string>
-    <string name="block_commercialize">Block Commercialize Content</string>
-    <string name="block_commercialize_sum">Block commercial and sponsored content</string>
-    <string name="block_promoted">Block Promoted Content</string>
-    <string name="block_promoted_sum">Block promoted posts and ads</string>
+    <string name="ad_blocker_sum">Remove sponsored content and advertisements from your feed</string>
+    <string name="block_commercialize">Block Commercial Content</string>
+    <string name="block_commercialize_sum">Filter out commercial and promotional posts</string>
+    <string name="block_promoted">Block Promoted Posts</string>
+    <string name="block_promoted_sum">Hide videos marked as promoted or sponsored</string>
 
-    <string name="tiktok_privacy_title">TikTok Privacy</string>
+    <string name="tiktok_privacy_title">🔒 Privacy &amp; Analytics</string>
     <string name="privacy_enhancer">Enable Privacy Enhancer</string>
-    <string name="privacy_enhancer_sum">Enhance privacy by blocking tracking</string>
+    <string name="privacy_enhancer_sum">Protect your privacy by blocking various tracking mechanisms</string>
     <string name="hide_view_history">Hide View History</string>
-    <string name="hide_view_history_sum">Prevent tracking of watched videos</string>
+    <string name="hide_view_history_sum">Prevent TikTok from tracking which videos you watch</string>
     <string name="hide_profile_visits">Hide Profile Visits</string>
-    <string name="hide_profile_visits_sum">Hide when you visit profiles</string>
-    <string name="disable_analytics">Disable Analytics</string>
-    <string name="disable_analytics_sum">Block TikTok and Firebase analytics</string>
-    <string name="block_firebase_analytics">Block Firebase Analytics</string>
-    <string name="block_firebase_analytics_sum">Block Google Firebase Analytics tracking</string>
+    <string name="hide_profile_visits_sum">Browse profiles anonymously without leaving traces</string>
+    <string name="disable_analytics">Block Analytics</string>
+    <string name="disable_analytics_sum">Stop TikTok and third-party services from collecting usage data</string>
+    <string name="block_firebase_analytics">Block Firebase Tracking</string>
+    <string name="block_firebase_analytics_sum">Prevent Google Firebase from tracking your activity</string>
     <string name="block_tiktok_analytics">Block TikTok Analytics</string>
-    <string name="block_tiktok_analytics_sum">Block TikTok\'s internal analytics service</string>
-    <string name="block_telemetry_upload">Block Telemetry Upload</string>
-    <string name="block_telemetry_upload_sum">Prevent telemetry data from being uploaded</string>
+    <string name="block_tiktok_analytics_sum">Stop TikTok\'s internal analytics and data collection</string>
+    <string name="block_telemetry_upload">Block Telemetry</string>
+    <string name="block_telemetry_upload_sum">Prevent diagnostic and usage data from being sent to servers</string>
     <string name="block_aweme_analytics">Block Aweme Analytics</string>
-    <string name="block_aweme_analytics_sum">Block analytics from Aweme analytics package</string>
+    <string name="block_aweme_analytics_sum">Block analytics from TikTok\'s Aweme framework</string>
     <string name="block_data_collection">Block Data Collection</string>
-    <string name="block_data_collection_sum">Prevent data collection by TikTok</string>
+    <string name="block_data_collection_sum">Comprehensive protection against all data collection attempts</string>
     <string name="analytics_blocker">Analytics Blocker</string>
-    <string name="analytics_blocker_sum">Block analytics and tracking comprehensively</string>
+    <string name="analytics_blocker_sum">Master switch to block all analytics and tracking services</string>
 
     <!-- New TikTok Hooks -->
-    <string name="tiktok_ui_title">UI Enhancements</string>
+    <string name="tiktok_ui_title">✨ UI Enhancements</string>
     <string name="feed_scroll_customizer">Feed Scroll Customizer</string>
-    <string name="feed_scroll_customizer_sum">Customize feed scrolling behavior and speed</string>
-    <string name="scroll_speed">Scroll Speed</string>
-    <string name="scroll_speed_sum">Adjust scroll speed (0.5 = slower, 1.0 = normal, 2.0 = faster)</string>
-    <string name="smooth_scroll">Smooth Scroll</string>
-    <string name="smooth_scroll_sum">Enable smooth scrolling animations</string>
+    <string name="feed_scroll_customizer_sum">Personalize how fast you scroll through videos</string>
+    <string name="scroll_speed">Scroll Speed Multiplier</string>
+    <string name="scroll_speed_sum">Adjust scroll speed: 0.5 = slower, 1.0 = normal, 2.0 = faster</string>
+    <string name="smooth_scroll">Smooth Scrolling</string>
+    <string name="smooth_scroll_sum">Enable smooth animations when scrolling between videos</string>
     <string name="custom_paging">Custom Paging</string>
-    <string name="custom_paging_sum">Enable custom paging behavior for feed</string>
+    <string name="custom_paging_sum">Customize how videos snap when scrolling</string>
     
-    <string name="hide_rewards_icon">Hide Rewards Icon</string>
-    <string name="hide_rewards_icon_sum">Hide the TikTok Rewards floating icon from main page</string>
+    <string name="hide_rewards_icon">Hide Rewards Button</string>
+    <string name="hide_rewards_icon_sum">Remove the TikTok Rewards floating button from the main screen</string>
     
-    <string name="ui_enhancer">UI Enhancer</string>
-    <string name="ui_enhancer_sum">Additional UI enhancements and customizations</string>
-    <string name="hide_live_badge">Hide Live Badge</string>
-    <string name="hide_live_badge_sum">Hide live stream badges on videos</string>
-    <string name="hide_shop_tab">Hide Shop Tab</string>
-    <string name="hide_shop_tab_sum">Hide the shopping/mall tab</string>
-    <string name="hide_sponsored_badge">Hide Sponsored Badge</string>
-    <string name="hide_sponsored_badge_sum">Hide sponsored/promoted badges</string>
-    <string name="hide_watermarks">Hide Watermarks</string>
-    <string name="hide_watermarks_sum">Hide TikTok watermarks from UI elements</string>
+    <string name="ui_enhancer">UI Cleaner</string>
+    <string name="ui_enhancer_sum">Clean up unnecessary UI elements for a distraction-free experience</string>
+    <string name="hide_live_badge">Hide Live Badges</string>
+    <string name="hide_live_badge_sum">Remove \"LIVE\" badges that appear on live streaming videos</string>
+    <string name="hide_shop_tab">Hide Shopping Tab</string>
+    <string name="hide_shop_tab_sum">Remove the shopping/mall tab from the main navigation</string>
+    <string name="hide_sponsored_badge">Hide Sponsored Labels</string>
+    <string name="hide_sponsored_badge_sum">Remove \"Sponsored\" and \"Promoted\" labels from content</string>
+    <string name="hide_watermarks">Hide UI Watermarks</string>
+    <string name="hide_watermarks_sum">Remove TikTok watermarks from interface elements</string>
     <string name="hide_suggestions">Hide Suggestions</string>
-    <string name="hide_suggestions_sum">Hide suggestion overlays and recommendations</string>
+    <string name="hide_suggestions_sum">Remove suggestion overlays and recommendation prompts</string>
 
     <!-- Additional TikTok Features -->
-    <string name="tiktok_advanced_title">Advanced Features</string>
+    <string name="tiktok_advanced_title">⚙️ Advanced Features</string>
     
     <string name="comment_enhancer">Comment Enhancer</string>
-    <string name="comment_enhancer_sum">View deleted comments and enhanced comment features</string>
+    <string name="comment_enhancer_sum">Access deleted comments and enhanced comment viewing (experimental)</string>
     <string name="show_deleted_comments">Show Deleted Comments</string>
-    <string name="show_deleted_comments_sum">Display comments that have been deleted by users</string>
+    <string name="show_deleted_comments_sum">Display comments that users have deleted</string>
     
     <string name="profile_enhancer">Profile Enhancer</string>
-    <string name="profile_enhancer_sum">Enhanced profile viewing and access</string>
+    <string name="profile_enhancer_sum">Enhanced profile viewing capabilities (experimental)</string>
     <string name="view_private_profiles">View Private Profiles</string>
-    <string name="view_private_profiles_sum">Bypass private account restrictions (experimental)</string>
+    <string name="view_private_profiles_sum">Attempt to bypass private account restrictions (may not work)</string>
     <string name="view_secret_profiles">View Secret Profiles</string>
-    <string name="view_secret_profiles_sum">Access profiles marked as secret (experimental)</string>
+    <string name="view_secret_profiles_sum">Access to profiles marked as secret (experimental)</string>
     
-    <string name="bitrate_control">Bitrate Control</string>
-    <string name="bitrate_control_sum">Force higher video quality and bitrate</string>
+    <string name="bitrate_control">Advanced Bitrate Control</string>
+    <string name="bitrate_control_sum">Fine-tune video bitrate settings for optimal quality (advanced users)</string>
     <string name="enable_bitrate_control">Enable Bitrate Control</string>
-    <string name="enable_bitrate_control_sum">Override default bitrate settings for better quality</string>
+    <string name="enable_bitrate_control_sum">Manually override video bitrate settings for maximum quality</string>
+    
+    <!-- General TikTok Settings -->
+    <string name="bypass_version_check">Bypass Version Check</string>
+    <string name="bypass_version_check_sum">Allow the module to work with unsupported TikTok versions (use with caution)</string>
     
     <!-- Theme Strings -->
     <string name="follow_system">Follow System</string>

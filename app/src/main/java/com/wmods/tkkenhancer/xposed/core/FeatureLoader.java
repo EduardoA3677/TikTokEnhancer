@@ -56,7 +56,8 @@ public class FeatureLoader {
     public final static String PACKAGE_TKK = "com.zhiliaoapp.musically";
 
     private static final ArrayList<ErrorItem> list = new ArrayList<>();
-    private static List<String> supportedVersions;
+    private static final List<String> FALLBACK_VERSIONS = Arrays.asList("43.xx", "44.xx", "45.xx");
+    private static List<String> supportedVersions = FALLBACK_VERSIONS; // Initialize with fallback
     private static String currentVersion;
 
     public static void start(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, String sourceDir) {
@@ -95,18 +96,19 @@ public class FeatureLoader {
                             XposedBridge.log("Loaded supported versions from resources: " + String.join(", ", supportedVersions));
                         } else {
                             // Fallback to hardcoded versions if resources not loaded
-                            supportedVersions = Arrays.asList("43.xx", "44.xx", "45.xx");
-                            XposedBridge.log("Using fallback supported versions list (empty array)");
+                            supportedVersions = FALLBACK_VERSIONS;
+                            XposedBridge.log("Using fallback supported versions list (resource array was empty)");
                         }
                     } else {
                         // ResId not initialized yet, use fallback
-                        supportedVersions = Arrays.asList("43.xx", "44.xx", "45.xx");
+                        supportedVersions = FALLBACK_VERSIONS;
                         XposedBridge.log("ResId.array.supported_versions_tkk not initialized, using fallback");
                     }
                 } catch (Exception e) {
                     // Resources not initialized yet, use fallback
-                    supportedVersions = Arrays.asList("43.xx", "44.xx", "45.xx");
+                    supportedVersions = FALLBACK_VERSIONS;
                     XposedBridge.log("Resources not ready, using fallback supported versions: " + e.getMessage());
+                    XposedBridge.log(e);
                 }
                 
                 mApp.registerActivityLifecycleCallbacks(new TkCallback());
@@ -118,8 +120,16 @@ public class FeatureLoader {
                     
                     // Check version support with improved pattern matching
                     // Support patterns like "43.xx" which should match "43.0.0", "43.1.5", etc.
+                    // Ensure supportedVersions is not null or empty
+                    if (supportedVersions == null || supportedVersions.isEmpty()) {
+                        XposedBridge.log("WARNING: supportedVersions is null or empty, using fallback");
+                        supportedVersions = FALLBACK_VERSIONS;
+                    }
+                    
                     boolean isSupported = false;
                     String matchedPattern = null;
+                    
+                    XposedBridge.log("Checking version " + packageInfo.versionName + " against patterns: " + String.join(", ", supportedVersions));
                     
                     for (String pattern : supportedVersions) {
                         // Replace .xx with empty string to get version prefix
@@ -142,10 +152,15 @@ public class FeatureLoader {
                             XposedBridge.log("Note: Expiration version check not applicable for TikTok: " + expError.getMessage());
                         }
                         if (!pref.getBoolean("bypass_version_check", false)) {
+                            // Ensure we have a valid list to display
+                            String versionsList = (supportedVersions != null && !supportedVersions.isEmpty()) 
+                                ? String.join(", ", supportedVersions) 
+                                : String.join(", ", FALLBACK_VERSIONS);
+                            
                             String sb = "Unsupported version: " +
                                     packageInfo.versionName +
                                     "\n" +
-                                    "Supported versions: " + String.join(", ", supportedVersions) +
+                                    "Supported versions: " + versionsList +
                                     "\n" +
                                     "Enable 'Bypass Version Check' in module settings to continue";
                             throw new Exception(sb);

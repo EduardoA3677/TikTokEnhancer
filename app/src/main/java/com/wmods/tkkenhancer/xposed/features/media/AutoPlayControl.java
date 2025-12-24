@@ -15,11 +15,15 @@ import de.robv.android.xposed.XposedHelpers;
 /**
  * Feature to control video auto-play behavior in TikTok
  * 
- * Targets based on smali analysis:
+ * Targets based on smali analysis of TikTok 43.0.0:
+ * - com.bytedance.ies.abmock.SettingsManager (verified settings manager)
+ * - com.ss.android.ugc.aweme.global.config.settings.pojo.IESSettingsProxy (fallback)
  * - com.ss.android.ugc.aweme.player.sdk.api.OnUIPlayListener (play control interface)
- * - com.ss.android.ugc.aweme.video.VideoBitmapManager (video manager)
- * - com.ss.android.ugc.aweme.feed.ui.* (feed UI player components)
- * - Auto-play methods: setAutoPlay, enableAutoPlay, shouldAutoPlay
+ * 
+ * Settings Manager verified in:
+ * - ./smali_classes4/com/bytedance/ies/abmock/SettingsManager.smali
+ * - Method LIZLLL() returns singleton instance
+ * - Method LIZ(String, boolean) gets boolean settings
  */
 public class AutoPlayControl extends Feature {
 
@@ -107,31 +111,98 @@ public class AutoPlayControl extends Feature {
 
     /**
      * Hook auto-play settings methods
+     * Uses the correct TikTok SettingsManager: com.bytedance.ies.abmock.SettingsManager
+     * Verified from smali analysis of TikTok 43.0.0
      */
     private void hookAutoPlaySettings() {
         try {
-            // Search for settings classes that control auto-play
-            String[] settingsPackages = {
-                "com.ss.android.ugc.aweme.setting",
-                "com.ss.android.ugc.aweme.settings",
-                "com.ss.android.ugc.aweme.profile.settings"
-            };
-
-            for (String pkg : settingsPackages) {
-                try {
-                    // Try to find settings class
-                    Class<?> settingsClass = XposedHelpers.findClass(pkg + ".SettingsManager", classLoader);
-                    hookAutoPlayInClass(settingsClass);
-                } catch (Exception ignored) {
-                    // Try alternate names
+            // Use the correct TikTok SettingsManager class
+            // Found in smali: ./smali_classes4/com/bytedance/ies/abmock/SettingsManager.smali
+            Class<?> settingsManagerClass = XposedHelpers.findClass(
+                "com.bytedance.ies.abmock.SettingsManager", 
+                classLoader
+            );
+            
+            logDebug("Found TikTok SettingsManager: " + settingsManagerClass.getName());
+            
+            // Hook the boolean getter method (LIZ method with String and boolean params)
+            // This method is used to get boolean settings values
+            XposedHelpers.findAndHookMethod(
+                settingsManagerClass,
+                "LIZ",
+                String.class,
+                boolean.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (!disableAutoPlay) return;
+                        
+                        String key = (String) param.args[0];
+                        // Check if this is an auto-play related setting
+                        if (key != null && (key.contains("auto_play") || 
+                                           key.contains("autoplay") || 
+                                           key.contains("play_mode"))) {
+                            logDebug("Overriding auto-play setting for key: " + key);
+                            param.setResult(false); // Disable auto-play
+                        }
+                    }
+                }
+            );
+            
+            logDebug("Successfully hooked SettingsManager.LIZ() for auto-play control");
+            
+        } catch (Throwable e) {
+            logDebug("Failed to hook SettingsManager: " + e.getMessage());
+            // Try fallback methods if primary fails
+            tryFallbackSettingsHook();
+        }
+    }
+    
+    /**
+     * Fallback method to hook IESSettingsProxy if SettingsManager fails
+     */
+    private void tryFallbackSettingsHook() {
+        try {
+            Class<?> settingsProxyClass = XposedHelpers.findClass(
+                "com.ss.android.ugc.aweme.global.config.settings.pojo.IESSettingsProxy",
+                classLoader
+            );
+            
+            logDebug("Found IESSettingsProxy as fallback: " + settingsProxyClass.getName());
+            
+            // Hook methods that might return auto-play settings
+            int hookedMethods = 0;
+            for (Method method : settingsProxyClass.getDeclaredMethods()) {
+                String methodName = method.getName().toLowerCase();
+                if ((methodName.contains("play") || methodName.contains("video")) && 
+                    method.getReturnType() != void.class &&
+                    method.getParameterCount() == 0) {
+                    
                     try {
-                        Class<?> settingsClass = XposedHelpers.findClass(pkg + ".Settings", classLoader);
-                        hookAutoPlayInClass(settingsClass);
-                    } catch (Exception ignored2) {}
+                        final Method finalMethod = method;
+                        XposedBridge.hookMethod(finalMethod, new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                if (!disableAutoPlay) return;
+                                
+                                Object result = param.getResult();
+                                if (result != null) {
+                                    logDebug("Intercepted settings from: " + finalMethod.getName());
+                                }
+                            }
+                        });
+                        hookedMethods++;
+                        if (hookedMethods >= MAX_SETTINGS_HOOKS) break;
+                    } catch (Throwable ignored) {}
                 }
             }
-        } catch (Exception e) {
-            logDebug("Failed to hook settings: " + e.getMessage());
+            
+            if (hookedMethods > 0) {
+                logDebug("Hooked " + hookedMethods + " IESSettingsProxy methods as fallback");
+            }
+            
+        } catch (Throwable e) {
+            logDebug("Fallback settings hook also failed: " + e.getMessage());
         }
     }
 

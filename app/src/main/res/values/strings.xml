@@ -369,6 +369,8 @@
     <string name="custom_colors_for_text_status_sum">Press and hold on the color selector in the status to customize it</string>
     <string name="enable_tkk_enhancer_button">Enable TikTok Enhancer Button</string>
     <string name="enable_tkk_enhancer_button_sum">Add button in Home Screen to open TikTok Enhancer</string>
+    <string name="enable_wa_enhancer_button">Enable Wa Enhancer Button</string>
+    <string name="enable_wa_enhancer_button_sum">Add button in Home Screen to open Wa Enhancer</string>
     <string name="custom_privacy">Custom Privacy</string>
     <string name="custom_privacy_sum">Enable/Disable Custom Privacy</string>
     <string name="custom_privacy_per_contact">Custom Privacy per contact</string>

@@ -340,7 +340,7 @@ public class TkkCore {
         if (mWaDatabase == null || userJid.isNull()) return "";
         String name = getSContactName(userJid, false);
         if (!TextUtils.isEmpty(name)) return name;
-        return getWppContactName(userJid);
+        return getTkkContactName(userJid);
     }
 
     @NonNull
@@ -364,7 +364,7 @@ public class TkkCore {
     }
 
     @NonNull
-    public static String getWppContactName(FMessageTkk.UserJid userJid) {
+    public static String getTkkContactName(FMessageTkk.UserJid userJid) {
         loadWADatabase();
         if (mWaDatabase == null || userJid.isNull()) return "";
         String name = null;

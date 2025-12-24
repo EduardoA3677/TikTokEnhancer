@@ -93,6 +93,6 @@ public class MenuStatus extends Feature {
 
         public abstract MenuItem addMenu(Menu menu, FMessageTkk fMessage);
 
-        public abstract void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageWpp);
+        public abstract void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageTkk);
     }
 }

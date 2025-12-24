@@ -269,13 +269,13 @@ public class FeatureLoader {
         ContextCompat.registerReceiver(mApp, restartReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".TIKTOK.RESTART"), ContextCompat.RECEIVER_EXPORTED);
 
         /// TikTok receiver
-        BroadcastReceiver wppReceiver = new BroadcastReceiver() {
+        BroadcastReceiver tkkReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 sendEnabledBroadcast(context);
             }
         };
-        ContextCompat.registerReceiver(mApp, wppReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".CHECK_TIKTOK"), ContextCompat.RECEIVER_EXPORTED);
+        ContextCompat.registerReceiver(mApp, tkkReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".CHECK_TIKTOK"), ContextCompat.RECEIVER_EXPORTED);
 
         // Dialog receiver restart
         BroadcastReceiver restartManualReceiver = new BroadcastReceiver() {
@@ -289,16 +289,16 @@ public class FeatureLoader {
 
     private static void sendEnabledBroadcast(Context context) {
         try {
-            Intent wppIntent = new Intent(BuildConfig.APPLICATION_ID + ".RECEIVER_TIKTOK");
-            wppIntent.putExtra("VERSION", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
-            wppIntent.putExtra("PKG", context.getPackageName());
-            wppIntent.setPackage(BuildConfig.APPLICATION_ID);
-            context.sendBroadcast(wppIntent);
+            Intent tkkIntent = new Intent(BuildConfig.APPLICATION_ID + ".RECEIVER_TIKTOK");
+            tkkIntent.putExtra("VERSION", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
+            tkkIntent.putExtra("PKG", context.getPackageName());
+            tkkIntent.setPackage(BuildConfig.APPLICATION_ID);
+            context.sendBroadcast(tkkIntent);
         } catch (Exception ignored) {
         }
     }
 
-    private static void plugins(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, @NonNull String versionWpp) throws Exception {
+    private static void plugins(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, @NonNull String versionTkk) throws Exception {
 
         // TikTok-specific features - Corrected based on deep smali analysis
         // All class names and methods verified against actual TikTok smali code
@@ -330,7 +330,7 @@ public class FeatureLoader {
                     XposedBridge.log(e);
                     var error = new ErrorItem();
                     error.setPluginName(classe.getSimpleName());
-                    error.setWhatsAppVersion(versionWpp);
+                    error.setWhatsAppVersion(versionTkk);
                     error.setModuleVersion(BuildConfig.VERSION_NAME);
                     error.setMessage(e.getMessage());
                     error.setError(Arrays.toString(Arrays.stream(e.getStackTrace()).filter(s -> !s.getClassName().startsWith("android") && !s.getClassName().startsWith("com.android")).map(StackTraceElement::toString).toArray()));

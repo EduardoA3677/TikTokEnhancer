@@ -252,7 +252,7 @@ public class SeenTick extends Feature {
                         }
 
                         @Override
-                        public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageWpp) {
+                        public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageTkk) {
                             sendBlueTickStatus(currentJid);
                             Utils.showToast(Utils.getApplication().getString(ResId.string.sending_read_blue_tick), Toast.LENGTH_SHORT);
                         }
@@ -289,7 +289,7 @@ public class SeenTick extends Feature {
                     }
 
                     @Override
-                    public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageWpp) {
+                    public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageTkk) {
                         try {
                             statuses.clear();
                             var listStatusField = ReflectionUtils.getFieldByExtendType(fragmentInstance.getClass(), List.class);

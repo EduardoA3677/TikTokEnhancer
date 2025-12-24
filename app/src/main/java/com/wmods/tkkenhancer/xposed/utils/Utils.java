@@ -149,8 +149,8 @@ public class Utils {
             if (folder == null)
                 throw new Exception("Download Folder is not selected!");
             var documentFile = DocumentFile.fromTreeUri(Utils.getApplication(), Uri.parse(folder));
-            var wppFolder = Utils.getURIFolderByName(documentFile, "WhatsApp", true);
-            var nameFolder = Utils.getURIFolderByName(wppFolder, name, true);
+            var tkkFolder = Utils.getURIFolderByName(documentFile, "WhatsApp", true);
+            var nameFolder = Utils.getURIFolderByName(tkkFolder, name, true);
             if (nameFolder == null)
                 throw new Exception("Folder not found!");
             return folder + "/WhatsApp/" + name;

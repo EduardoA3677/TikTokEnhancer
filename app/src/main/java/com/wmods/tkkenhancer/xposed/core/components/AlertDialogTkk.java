@@ -29,7 +29,7 @@ public class AlertDialogTkk {
     private static Method setMultiChoiceItemsMethod;
     private final Context mContext;
     private AlertDialog.Builder mAlertDialog;
-    private Object mAlertDialogWpp;
+    private Object mAlertDialogTkk;
     private Dialog mCreate;
 
     public static void initDialog(ClassLoader loader) {
@@ -57,7 +57,7 @@ public class AlertDialogTkk {
             return;
         }
         try {
-            mAlertDialogWpp = getAlertDialog.invoke(null, context);
+            mAlertDialogTkk = getAlertDialog.invoke(null, context);
             // Remove Default Message0
             setMessage(null);
         } catch (Exception ignored) {
@@ -78,7 +78,7 @@ public class AlertDialogTkk {
             mAlertDialog.setTitle(title);
             return this;
         }
-        XposedHelpers.callMethod(mAlertDialogWpp, "setTitle", title);
+        XposedHelpers.callMethod(mAlertDialogTkk, "setTitle", title);
         return this;
     }
 
@@ -87,7 +87,7 @@ public class AlertDialogTkk {
             mAlertDialog.setTitle(title);
             return this;
         }
-        XposedHelpers.callMethod(mAlertDialogWpp, "setTitle", getContext().getString(title));
+        XposedHelpers.callMethod(mAlertDialogTkk, "setTitle", getContext().getString(title));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class AlertDialogTkk {
             return this;
         }
         try {
-            setMessageMethod.invoke(mAlertDialogWpp, message);
+            setMessageMethod.invoke(mAlertDialogTkk, message);
         } catch (Exception ignored) {
         }
         return this;
@@ -109,7 +109,7 @@ public class AlertDialogTkk {
             return this;
         }
         try {
-            setItemsMethod.invoke(mAlertDialogWpp, listener, items);
+            setItemsMethod.invoke(mAlertDialogTkk, listener, items);
         } catch (Exception e) {
             XposedBridge.log(e);
         }
@@ -123,7 +123,7 @@ public class AlertDialogTkk {
             return this;
         }
         try {
-            setMultiChoiceItemsMethod.invoke(mAlertDialogWpp, listener, items, checkedItems);
+            setMultiChoiceItemsMethod.invoke(mAlertDialogTkk, listener, items, checkedItems);
         } catch (Exception ignored) {
         }
         return this;
@@ -135,7 +135,7 @@ public class AlertDialogTkk {
             return this;
         }
         try {
-            setNegativeButtonMethod.invoke(mAlertDialogWpp, listener, text);
+            setNegativeButtonMethod.invoke(mAlertDialogTkk, listener, text);
         } catch (Exception ignored) {
         }
         return this;
@@ -147,7 +147,7 @@ public class AlertDialogTkk {
             return this;
         }
         try {
-            setPositiveButtonMethod.invoke(mAlertDialogWpp, listener, text);
+            setPositiveButtonMethod.invoke(mAlertDialogTkk, listener, text);
         } catch (Exception ignored) {
         }
         return this;
@@ -158,7 +158,7 @@ public class AlertDialogTkk {
             mAlertDialog.setView(view);
             return this;
         }
-        XposedHelpers.callMethod(mAlertDialogWpp, "setView", view);
+        XposedHelpers.callMethod(mAlertDialogTkk, "setView", view);
         return this;
     }
 
@@ -168,7 +168,7 @@ public class AlertDialogTkk {
         if (isSystemDialog()) {
             mCreate = mAlertDialog.create();
         } else {
-            mCreate = (Dialog) XposedHelpers.callMethod(mAlertDialogWpp, "create");
+            mCreate = (Dialog) XposedHelpers.callMethod(mAlertDialogTkk, "create");
         }
         return mCreate;
     }

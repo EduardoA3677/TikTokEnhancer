@@ -88,9 +88,9 @@ public class App extends Application {
     }
 
 
-    public void restartApp(String packageWpp) {
+    public void restartApp(String packageTkk) {
         Intent intent = new Intent(BuildConfig.APPLICATION_ID + ".WHATSAPP.RESTART");
-        intent.putExtra("PKG", packageWpp);
+        intent.putExtra("PKG", packageTkk);
         sendBroadcast(intent);
     }
 

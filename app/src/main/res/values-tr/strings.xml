@@ -31,7 +31,6 @@
     <string name="colors_customization">Renklerinizi özelleştirin</string>
     <string name="colors_customization_sum">TikTok\'taki tüm renkleri değiştirin (Sadece Karanlık Temada çalışır)</string>
     <string name="general">Genel</string>
-    <string name="restart_whatsapp">TikTok\'ı Yeniden Başlat</string>
     <string name="conversation">Sohbet Ekranı</string>
     <string name="primary_color">Ana Renk</string>
     <string name="background_color">Arka Plan Rengi</string>
@@ -93,7 +92,6 @@
     <string name="number_with_country_code">Ülke koduyla numara</string>
     <string name="message">Mesaj</string>
     <string name="download">İndir</string>
-    <string name="reboot_whatsapp">(TikTok\'ı Yeniden Başlat)</string>
     <string name="error_when_saving_try_again">Kaydederken hata oluştu, tekrar deneyin</string>
     <string name="saved_to">"Şuraya kaydedildi: "</string>
     <string name="hide_tabs_on_home">Ana Ekranda Sekmeleri Gizle</string>
@@ -117,8 +115,8 @@
     <string name="module_enabled">Modül Etkin</string>
     <string name="version_s">Sürüm %s</string>
     <string name="module_disabled">Modül devre dışı</string>
-    <string name="whatsapp_in_background">TikTok arka planda</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">TikTok çalışmıyor veya Lsposed\'da etkinleştirilmemiş</string>    <string name="restart_tkk">Wa Enhancer\'daki değişikliklerin etkili olması için TikTok\'ı yeniden başlatmak gerekiyor.\n\nYeniden başlatmak istiyor musunuz?</string>
+    <string name="tiktok_in_background">TikTok arka planda</string>
+    <string name="tiktok_is_not_running_or_has_not_been_activated_in_lsposed">TikTok çalışmıyor veya Lsposed\'da etkinleştirilmemiş</string>    <string name="restart_tkk">Wa Enhancer\'daki değişikliklerin etkili olması için TikTok\'ı yeniden başlatmak gerekiyor.\n\nYeniden başlatmak istiyor musunuz?</string>
     <string name="version_s_not_listed">Sürüm %s desteklenen sürümler listesinde yok!\nLütfen desteklenen TikTok sürümünü kullanın!</string>
     <string name="media">Medya</string>
     <string name="show_button_to_send_blue_tick">Mavi tik gönderme düğmesini göster</string>
@@ -151,7 +149,7 @@
     <string name="seentick_screen">Ekranda Düğme Göster</string>
     <string name="verbose_logs">Hata Ayıklayıcı için Ayrıntılı Günlükleri Etkinleştir</string>
     <string name="phone_call">Telefon Araması</string>
-    <string name="whatsapp_call">TikTok Araması</string>
+    <string name="tiktok_call">TikTok Araması</string>
     <string name="home_screen">Ana Ekran</string>
     <string name="selection_of_call_type">Arama türü seçimini etkinleştir</string>
     <string name="selection_of_call_type_sum">Telefon veya TikTok üzerinden arama yapmak isteyip istemediğinizi seçmek için bir seçenek göster</string>

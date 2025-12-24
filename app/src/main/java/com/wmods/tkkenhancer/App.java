@@ -89,7 +89,7 @@ public class App extends Application {
 
 
     public void restartApp(String packageTkk) {
-        Intent intent = new Intent(BuildConfig.APPLICATION_ID + ".WHATSAPP.RESTART");
+        Intent intent = new Intent(BuildConfig.APPLICATION_ID + ".TIKTOK.RESTART");
         intent.putExtra("PKG", packageTkk);
         sendBroadcast(intent);
     }

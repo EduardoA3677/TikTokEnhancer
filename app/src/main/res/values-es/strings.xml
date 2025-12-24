@@ -31,7 +31,6 @@
     <string name="colors_customization">Personaliza tus colores</string>
     <string name="colors_customization_sum">Cambia todos los colores de tu TikTok (funcionando sólo en el tema oscuro)</string>
     <string name="general">General</string>
-    <string name="restart_whatsapp">Reiniciar TikTok</string>
     <string name="conversation">Conversación - Chat</string>
     <string name="primary_color">Color primario</string>
     <string name="background_color">Color del fondo (Background)</string>
@@ -93,7 +92,6 @@
     <string name="number_with_country_code">Número con código de país</string>
     <string name="message">Mensaje</string>
     <string name="download">Descargar</string>
-    <string name="reboot_whatsapp">(Reiniciar TikTok)</string>
     <string name="error_when_saving_try_again">Error al guardar, inténtalo de nuevo</string>
     <string name="saved_to">"Guardado en "</string>
     <string name="hide_tabs_on_home">Ocultar pestañas en Inicio</string>
@@ -117,8 +115,8 @@
     <string name="module_enabled">Módulo Activado</string>
     <string name="version_s">Versión %s</string>
     <string name="module_disabled">Módulo Desactivado❗\nVe a LSPosed y actívalo</string>
-    <string name="whatsapp_in_background">TikTok en segundo plano</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">TikTok no esta abierto o no se ha activado en LSPosed</string>
+    <string name="tiktok_in_background">TikTok en segundo plano</string>
+    <string name="tiktok_is_not_running_or_has_not_been_activated_in_lsposed">TikTok no esta abierto o no se ha activado en LSPosed</string>
     <string name="restart_tkk">Es necesario reiniciar TikTok para que los cambios de Wa Enhancer hagan efecto.\n\n¿Quieres reiniciar?</string>
     <string name="version_s_not_listed">¡La versión %s no aparece en las versiones compatibles!\n¡Por favor, usa una versión de TikTok compatible para evitar errores!</string>
     <string name="media">Multimedia</string>
@@ -153,7 +151,7 @@
     <string name="seentick_screen">Mostrar botón en pantalla</string>
     <string name="verbose_logs">Habilitar registros detallados para el depurador</string>
     <string name="phone_call">Llamada Telefónica</string>
-    <string name="whatsapp_call">Llamada de TikTok</string>
+    <string name="tiktok_call">Llamada de TikTok</string>
     <string name="home_screen">Pantalla de Inicio</string>
     <string name="selection_of_call_type">Habilitar selección de tipo de llamada</string>
     <string name="selection_of_call_type_sum">Mostrar una opción para seleccionar si desea una llamada por teléfono o TikTok</string>

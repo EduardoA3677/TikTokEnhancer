@@ -33,7 +33,6 @@
     <string name="colors_customization">Customize your colors</string>
     <string name="colors_customization_sum">Change all colors in your TikTok (Working only in Dark Theme)</string>
     <string name="general">General</string>
-    <string name="restart_whatsapp">Restart TikTok</string>
     <string name="conversation">Conversation Screen</string>
     <string name="primary_color">Primary Color</string>
     <string name="background_color">Background Color</string>
@@ -95,7 +94,6 @@
     <string name="number_with_country_code">Number with country code</string>
     <string name="message">Message</string>
     <string name="download">Download</string>
-    <string name="reboot_whatsapp">(Restart TikTok)</string>
     <string name="error_when_saving_try_again">Error when saving, try again</string>
     <string name="saved_to">"Saved to "</string>
     <string name="hide_tabs_on_home">Hide Tabs on Home</string>
@@ -119,8 +117,8 @@
     <string name="module_enabled">Module Enabled</string>
     <string name="version_s">Version %s</string>
     <string name="module_disabled">Module disabled</string>
-    <string name="whatsapp_in_background">TikTok in background</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">TikTok is not running or has not been activated in Lsposed</string>
+    <string name="tiktok_in_background">TikTok in background</string>
+    <string name="tiktok_is_not_running_or_has_not_been_activated_in_lsposed">TikTok is not running or has not been activated in Lsposed</string>
     <string name="restart_tkk">It is necessary to restart TikTok for the changes in TikTok Enhancer to take effect.\n\nDo you want to restart?</string>
     <string name="version_s_not_listed">Version %s not listed in supported versions!\nPlease use supported TikTok version!</string>
     <string name="media">Media</string>
@@ -155,7 +153,7 @@
     <string name="seentick_screen">Show Button in Screen</string>
     <string name="verbose_logs">Enable Verbose Logs for Debugger</string>
     <string name="phone_call">Phone Call</string>
-    <string name="whatsapp_call">TikTok Call</string>
+    <string name="tiktok_call">TikTok Call</string>
     <string name="home_screen">Home Screen</string>
     <string name="selection_of_call_type">Enable selection of call type</string>
     <string name="selection_of_call_type_sum">Show an option to select whether you want a call via phone or TikTok</string>

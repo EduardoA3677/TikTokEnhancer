@@ -31,7 +31,6 @@
     <string name="colors_customization">התאם אישית את הצבעים שלך</string>
     <string name="colors_customization_sum">שנה את כל הצבעים בTikTok שלך (עובד רק בעיצוב כהה)</string>
     <string name="general">כללי</string>
-    <string name="restart_whatsapp">הפעל מחדש את TikTok</string>
     <string name="conversation">מסך שיחה</string>
     <string name="primary_color">צבעי יסוד</string>
     <string name="background_color">צבע רקע</string>
@@ -94,7 +93,6 @@
     <string name="number_with_country_code">מספר עם קוד מדינה</string>
     <string name="message">הודעה</string>
     <string name="download">הורדה</string>
-    <string name="reboot_whatsapp">(הפעל מחדש את TikTok)</string>
     <string name="error_when_saving_try_again">שגיאה בעת השמירה, נסה שוב</string>
     <string name="saved_to">"נשמר ב "</string>
     <string name="hide_tabs_on_home">הסתר כרטיסיות במסך הבית</string>
@@ -118,8 +116,8 @@
     <string name="module_enabled">המודול מופעל</string>
     <string name="version_s">גרסת %s</string>
     <string name="module_disabled">המודול מושבת</string>
-    <string name="whatsapp_in_background">TikTok in background</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">הTikTok לא פועל או לא הופעל ב-Lsposed</string>    <string name="restart_tkk">יש צורך להפעיל מחדש את הTikTok כדי שהשינויים ב-Wa Enhancer ייכנסו לתוקף.\n\nהאם ברצונך להפעיל מחדש?</string>
+    <string name="tiktok_in_background">TikTok in background</string>
+    <string name="tiktok_is_not_running_or_has_not_been_activated_in_lsposed">הTikTok לא פועל או לא הופעל ב-Lsposed</string>    <string name="restart_tkk">יש צורך להפעיל מחדש את הTikTok כדי שהשינויים ב-Wa Enhancer ייכנסו לתוקף.\n\nהאם ברצונך להפעיל מחדש?</string>
     <string name="version_s_not_listed">גרסת %s לא מופיעה בגרסאות הנתמכות!\nאנא השתמש בגרסת TikTok נתמכת!</string>
     <string name="media">מדיה</string>
     <string name="show_button_to_send_blue_tick">הצג כפתור לשליחת וי כחול</string>
@@ -152,7 +150,7 @@
     <string name="seentick_screen">הצג כפתור במסך</string>
     <string name="verbose_logs">הפעל יומן מפורט עבור Debugger (אם יש באג, אז המפתח ידע לפתור אותו ע\"י הפעלת הפיצ\'ר הזה)</string>
     <string name="phone_call">שיחת טלפון</string>
-    <string name="whatsapp_call">שיחת TikTok</string>
+    <string name="tiktok_call">שיחת TikTok</string>
     <string name="home_screen">מסך הבית</string>
     <string name="selection_of_call_type">אפשר בחירת סוג שיחה</string>
     <string name="selection_of_call_type_sum">הצג אפשרות לבחור האם ברצונך להתקשר בשיחת טלפון או בשיחת TikTok</string>

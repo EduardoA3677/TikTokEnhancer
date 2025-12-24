@@ -32,7 +32,6 @@
     <string name="colors_customization">خصص ألوانك</string>
     <string name="colors_customization_sum">تغيير كل الألوان في TikTok الخاص بك (يعمل فقط في السمة الداكنة)</string>
     <string name="general">عام</string>
-    <string name="restart_whatsapp">إعادة تشغيل TikTok</string>
     <string name="conversation">شاشة المحادثة</string>
     <string name="primary_color">اللون الأساسي</string>
     <string name="background_color">لون الخلفية </string>
@@ -94,7 +93,6 @@
     <string name="number_with_country_code">رَقْم مع رمز البلد</string>
     <string name="message">رسالة</string>
     <string name="download">تحميل</string>
-    <string name="reboot_whatsapp">(إعادة تشغيل TikTok)</string>
     <string name="error_when_saving_try_again">حدث خطأ أثناء الحفظ، حاول مرة أخرى</string>
     <string name="saved_to">"تم الحفظ في "</string>
     <string name="hide_tabs_on_home">إخفاء علامات التبويب على الصفحة الرئيسة</string>
@@ -118,8 +116,8 @@
     <string name="module_enabled">تم تمكين الوحدة✔️</string>
     <string name="version_s">الإصدار %s</string>
     <string name="module_disabled">الوحدة معطلة🚫</string>
-    <string name="whatsapp_in_background">TikTok في الخلفية</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">لا يعمل TikTok أو لم يتم تفعيله في Lsposed</string>    <string name="restart_tkk">من الضروري إعادة تشغيل TikTok لتفعيل التغييرات في Wa Encer. هل تريد إعادة التشغيل؟</string>
+    <string name="tiktok_in_background">TikTok في الخلفية</string>
+    <string name="tiktok_is_not_running_or_has_not_been_activated_in_lsposed">لا يعمل TikTok أو لم يتم تفعيله في Lsposed</string>    <string name="restart_tkk">من الضروري إعادة تشغيل TikTok لتفعيل التغييرات في Wa Encer. هل تريد إعادة التشغيل؟</string>
     <string name="version_s_not_listed">الإصدار %s غير مدرج في الإصدارات المدعومة!\nالرجاء استخدام إصدار TikTok المدعوم!</string>
     <string name="media">الوسائط</string>
     <string name="show_button_to_send_blue_tick">إظهار أيقونة لإرسال علامة زرقاء✔️✔️</string>
@@ -152,7 +150,7 @@
     <string name="seentick_screen">إظهار الأزرار في الشاشة</string>
     <string name="verbose_logs">تمكين السجلات المطوّلة لمصحح الأخطاء</string>
     <string name="phone_call">مكالمة هاتفية</string>
-    <string name="whatsapp_call">مكالمة TikTok</string>
+    <string name="tiktok_call">مكالمة TikTok</string>
     <string name="home_screen">الشاشة الرئيسية</string>
     <string name="selection_of_call_type">تمكين اختيار نوع المكالمة</string>
     <string name="selection_of_call_type_sum">إظهار خيار لتحديد ما إذا كنت تريد مكالمة عبر الهاتف أو TikTok</string>

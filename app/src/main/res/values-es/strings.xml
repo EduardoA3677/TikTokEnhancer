@@ -282,7 +282,7 @@
     <string name="support">Soporte</string>
     <string name="support_desc">Si encuentras algún problema o tienes preguntas sobre TikTok Enhancer, por favor visita Telegram.</string>
     <string name="license">Licencia</string>
-    <string name="license_desc">Este proyecto está licenciado bajo la Licencia GNU - vea el archivo LICENSE para más detalles.\n\nNota: Por favor, utilice TikTok Enhancer de forma responsable y de acuerdo con los términos y condiciones de las aplicaciones que está modificando. El mal uso de esta herramienta puede tener consecuencias jurídicas.</string>
+    <string name="license_desc">Este proyecto está licenciado bajo la Licencia GNU - vea el archivo LICENSE para más detalles.\n\nNota: Por favor, utilice TikTok Enhancer de forma responsable y de acuerdo con los términos y condiciones de las aplicaciones que está modificando. El uso indebido de esta herramienta puede tener consecuencias jurídicas.</string>
     <string name="select_a_color">Seleccione un color</string>
     <string name="custom_appearance">Apariencia personalizada</string>
     <string name="custom_filters_sum">Activar filtros por ID y CSS personalizado</string>

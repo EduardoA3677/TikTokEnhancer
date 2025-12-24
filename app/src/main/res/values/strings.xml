@@ -492,4 +492,31 @@
     <string name="analytics_blocker">Analytics Blocker</string>
     <string name="analytics_blocker_sum">Block analytics and tracking comprehensively</string>
 
+    <!-- New TikTok Hooks -->
+    <string name="tiktok_ui_title">UI Enhancements</string>
+    <string name="feed_scroll_customizer">Feed Scroll Customizer</string>
+    <string name="feed_scroll_customizer_sum">Customize feed scrolling behavior and speed</string>
+    <string name="scroll_speed">Scroll Speed</string>
+    <string name="scroll_speed_sum">Adjust scroll speed (0.5 = slower, 1.0 = normal, 2.0 = faster)</string>
+    <string name="smooth_scroll">Smooth Scroll</string>
+    <string name="smooth_scroll_sum">Enable smooth scrolling animations</string>
+    <string name="custom_paging">Custom Paging</string>
+    <string name="custom_paging_sum">Enable custom paging behavior for feed</string>
+    
+    <string name="hide_rewards_icon">Hide Rewards Icon</string>
+    <string name="hide_rewards_icon_sum">Hide the TikTok Rewards floating icon from main page</string>
+    
+    <string name="ui_enhancer">UI Enhancer</string>
+    <string name="ui_enhancer_sum">Additional UI enhancements and customizations</string>
+    <string name="hide_live_badge">Hide Live Badge</string>
+    <string name="hide_live_badge_sum">Hide live stream badges on videos</string>
+    <string name="hide_shop_tab">Hide Shop Tab</string>
+    <string name="hide_shop_tab_sum">Hide the shopping/mall tab</string>
+    <string name="hide_sponsored_badge">Hide Sponsored Badge</string>
+    <string name="hide_sponsored_badge_sum">Hide sponsored/promoted badges</string>
+    <string name="hide_watermarks">Hide Watermarks</string>
+    <string name="hide_watermarks_sum">Hide TikTok watermarks from UI elements</string>
+    <string name="hide_suggestions">Hide Suggestions</string>
+    <string name="hide_suggestions_sum">Hide suggestion overlays and recommendations</string>
+
 </resources>

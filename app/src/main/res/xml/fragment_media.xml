@@ -171,6 +171,79 @@
 
     </PreferenceCategory>
 
+    <!-- TikTok UI Enhancements -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_ui_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="feed_scroll_customizer"
+            app:summary="@string/feed_scroll_customizer_sum"
+            app:title="@string/feed_scroll_customizer" />
+
+        <EditTextPreference
+            app:dependency="feed_scroll_customizer"
+            android:defaultValue="1.0"
+            app:key="scroll_speed"
+            app:summary="@string/scroll_speed_sum"
+            app:title="@string/scroll_speed" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="feed_scroll_customizer"
+            app:key="smooth_scroll"
+            app:defaultValue="true"
+            app:summary="@string/smooth_scroll_sum"
+            app:title="@string/smooth_scroll" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="feed_scroll_customizer"
+            app:key="custom_paging"
+            app:summary="@string/custom_paging_sum"
+            app:title="@string/custom_paging" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_rewards_icon"
+            app:summary="@string/hide_rewards_icon_sum"
+            app:title="@string/hide_rewards_icon" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="ui_enhancer"
+            app:summary="@string/ui_enhancer_sum"
+            app:title="@string/ui_enhancer" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="ui_enhancer"
+            app:key="hide_live_badge"
+            app:summary="@string/hide_live_badge_sum"
+            app:title="@string/hide_live_badge" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="ui_enhancer"
+            app:key="hide_shop_tab"
+            app:summary="@string/hide_shop_tab_sum"
+            app:title="@string/hide_shop_tab" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="ui_enhancer"
+            app:key="hide_sponsored_badge"
+            app:defaultValue="true"
+            app:summary="@string/hide_sponsored_badge_sum"
+            app:title="@string/hide_sponsored_badge" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="ui_enhancer"
+            app:key="hide_watermarks"
+            app:summary="@string/hide_watermarks_sum"
+            app:title="@string/hide_watermarks" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="ui_enhancer"
+            app:key="hide_suggestions"
+            app:summary="@string/hide_suggestions_sum"
+            app:title="@string/hide_suggestions" />
+
+    </PreferenceCategory>
+
     <!-- Original Media Settings (kept for compatibility) -->
     <PreferenceCategory
         app:iconSpaceReserved="false"

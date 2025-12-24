@@ -538,5 +538,10 @@
     <string name="bitrate_control_sum">Force higher video quality and bitrate</string>
     <string name="enable_bitrate_control">Enable Bitrate Control</string>
     <string name="enable_bitrate_control_sum">Override default bitrate settings for better quality</string>
+    
+    <!-- Theme Strings -->
+    <string name="follow_system">Follow System</string>
+    <string name="dark_theme_on">Dark Theme On</string>
+    <string name="dark_theme_off">Dark Theme Off</string>
 
 </resources>

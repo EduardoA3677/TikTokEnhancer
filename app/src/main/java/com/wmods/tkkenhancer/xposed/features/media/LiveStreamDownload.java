@@ -27,11 +27,12 @@ public class LiveStreamDownload extends Feature {
     public void doHook() throws Throwable {
         if (!prefs.getBoolean("live_stream_download", false)) return;
 
-        logDebug("Live Stream Download feature - requires device testing for full implementation");
-        logDebug("Verified classes exist: LiveStreamUrlExtra");
+        logDebug("LiveStreamDownload feature enabled but requires device testing");
+        logDebug("Verified class exists: com.ss.android.ugc.aweme.feed.model.live.LiveStreamUrlExtra");
         
-        // TODO: Implement after device testing identifies correct hook points
-        // Current implementation is minimal to avoid startup performance impact
+        // Feature is a placeholder pending full implementation after device testing
+        // The class structure has been verified in smali, but exact hook points
+        // need to be determined through runtime testing with actual live streams
     }
 
     @NonNull

@@ -10,9 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.wmods.tkkenhancer.R;
 import com.wmods.tkkenhancer.preference.ContactPickerPreference;
-import com.wmods.tkkenhancer.preference.FileSelectPreference;
 import com.wmods.tkkenhancer.ui.fragments.base.BasePreferenceFragment;
-import com.wmods.tkkenhancer.xposed.features.general.LiteMode;
 
 public class PrivacyFragment extends BasePreferenceFragment {
 
@@ -37,11 +35,6 @@ public class PrivacyFragment extends BasePreferenceFragment {
             ContactPickerPreference contactPickerPref = findPreference(data.getStringExtra("key"));
             if (contactPickerPref != null) {
                 contactPickerPref.handleActivityResult(requestCode, resultCode, data);
-            }
-        } else if (requestCode == LiteMode.REQUEST_FOLDER && resultCode == Activity.RESULT_OK) {
-            FileSelectPreference fileSelectPreference = findPreference(data.getStringExtra("key"));
-            if (fileSelectPreference != null) {
-                fileSelectPreference.handleActivityResult(requestCode, resultCode, data);
             }
         }
     }

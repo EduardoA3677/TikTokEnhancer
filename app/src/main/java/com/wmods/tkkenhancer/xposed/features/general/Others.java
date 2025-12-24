@@ -337,9 +337,9 @@ public class Others extends Feature {
         var platform = (String) XposedHelpers.getObjectField(wamCall, "callPeerPlatform");
         if (platform != null)
             sb.append(String.format(Utils.getApplication().getString(ResId.string.platform_s), platform)).append("\n");
-        var wppVersion = (String) XposedHelpers.getObjectField(wamCall, "callPeerAppVersion");
-        if (wppVersion != null)
-            sb.append(String.format(Utils.getApplication().getString(ResId.string.tkk_version_s), wppVersion)).append("\n");
+        var tkkVersion = (String) XposedHelpers.getObjectField(wamCall, "callPeerAppVersion");
+        if (tkkVersion != null)
+            sb.append(String.format(Utils.getApplication().getString(ResId.string.tkk_version_s), tkkVersion)).append("\n");
         Utils.showNotification(Utils.getApplication().getString(ResId.string.call_information), sb.toString());
     }
 

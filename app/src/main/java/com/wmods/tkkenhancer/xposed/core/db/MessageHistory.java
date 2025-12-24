@@ -234,19 +234,19 @@ public class MessageHistory extends SQLiteOpenHelper {
         public final String jid;
         public final String message;
         public final boolean viewed;
-        private FMessageTkk fMessageWpp;
+        private FMessageTkk fMessageTkk;
 
         @Nullable
         public FMessageTkk getFMessage() {
-            if (fMessageWpp == null) {
+            if (fMessageTkk == null) {
                 try {
                     var userJid = new FMessageTkk.UserJid(jid);
                     if (userJid.isNull()) return null;
-                    fMessageWpp = new FMessageTkk.Key(message, userJid, false).getFMessage();
+                    fMessageTkk = new FMessageTkk.Key(message, userJid, false).getFMessage();
                 } catch (Exception ignored) {
                 }
             }
-            return fMessageWpp;
+            return fMessageTkk;
         }
     }
 }

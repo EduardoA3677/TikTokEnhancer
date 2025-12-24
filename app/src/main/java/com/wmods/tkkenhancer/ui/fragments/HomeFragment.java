@@ -52,14 +52,14 @@ public class HomeFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        var intentFilter = new IntentFilter(BuildConfig.APPLICATION_ID + ".RECEIVER_WPP");
+        var intentFilter = new IntentFilter(BuildConfig.APPLICATION_ID + ".RECEIVER_TKK");
         ContextCompat.registerReceiver(requireContext(), new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, Intent intent) {
                 try {
-                    if (FeatureLoader.PACKAGE_WPP.equals(intent.getStringExtra("PKG")))
-                        receiverBroadcastWpp(context, intent);
+                    if (FeatureLoader.PACKAGE_TKK.equals(intent.getStringExtra("PKG")))
+                        receiverBroadcastTkk(context, intent);
                     else
                         receiverBroadcastBusiness(context, intent);
                 } catch (Exception ignored) {
@@ -72,11 +72,11 @@ public class HomeFragment extends BaseFragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        checkStateWpp(requireActivity());
+        checkStateTkk(requireActivity());
 
         binding.rebootBtn.setOnClickListener(view -> {
-            App.getInstance().restartApp(FeatureLoader.PACKAGE_WPP);
-            disableWpp(requireActivity());
+            App.getInstance().restartApp(FeatureLoader.PACKAGE_TKK);
+            disableTkk(requireActivity());
         });
 
         binding.rebootBtn2.setOnClickListener(view -> {
@@ -115,7 +115,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     @SuppressLint("StringFormatInvalid")
-    private void receiverBroadcastWpp(Context context, Intent intent) {
+    private void receiverBroadcastTkk(Context context, Intent intent) {
         binding.statusTitle2.setText(R.string.whatsapp_in_background);
         var version = intent.getStringExtra("VERSION");
         var supported_list = Arrays.asList(context.getResources().getStringArray(R.array.supported_versions_tkk));
@@ -135,7 +135,7 @@ public class HomeFragment extends BaseFragment {
     private void resetConfigs(Context context) {
         var prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.getAll().forEach((key, value) -> prefs.edit().remove(key).apply());
-        App.getInstance().restartApp(FeatureLoader.PACKAGE_WPP);
+        App.getInstance().restartApp(FeatureLoader.PACKAGE_TKK);
         App.getInstance().restartApp(FeatureLoader.PACKAGE_BUSINESS);
         Utils.showToast(context.getString(R.string.configs_reset), Toast.LENGTH_SHORT);
     }
@@ -171,7 +171,7 @@ public class HomeFragment extends BaseFragment {
         });
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US);
         String formattedDate = dateFormat.format(new Date());
-        FilePicker.fileSalve.launch("wpp_enhacer_configs_" + formattedDate + ".json");
+        FilePicker.fileSalve.launch("tkk_enhancer_configs_" + formattedDate + ".json");
     }
 
     private void importConfigs(Context context) {
@@ -215,7 +215,7 @@ public class HomeFragment extends BaseFragment {
                     }
                 }
                 Toast.makeText(context, context.getString(R.string.configs_imported), Toast.LENGTH_SHORT).show();
-                App.getInstance().restartApp(FeatureLoader.PACKAGE_WPP);
+                App.getInstance().restartApp(FeatureLoader.PACKAGE_TKK);
                 App.getInstance().restartApp(FeatureLoader.PACKAGE_BUSINESS);
             } catch (Exception e) {
                 Log.e("importConfigs", e.getMessage(), e);
@@ -239,8 +239,8 @@ public class HomeFragment extends BaseFragment {
             binding.status.setCardBackgroundColor(activity.getColor(R.color.material_state_red));
             binding.statusSummary.setVisibility(View.GONE);
         }
-        if (isInstalled(FeatureLoader.PACKAGE_WPP) && App.isOriginalPackage()) {
-            disableWpp(activity);
+        if (isInstalled(FeatureLoader.PACKAGE_TKK) && App.isOriginalPackage()) {
+            disableTkk(activity);
         } else {
             binding.status2.setVisibility(View.GONE);
         }
@@ -250,7 +250,7 @@ public class HomeFragment extends BaseFragment {
         } else {
             binding.status3.setVisibility(View.GONE);
         }
-        checkWpp(activity);
+        checkTkk(activity);
         binding.deviceName.setText(Build.MANUFACTURER);
         binding.sdk.setText(String.valueOf(Build.VERSION.SDK_INT));
         binding.modelName.setText(Build.DEVICE);
@@ -263,9 +263,9 @@ public class HomeFragment extends BaseFragment {
         binding.listBusiness.setText(Arrays.toString(activity.getResources().getStringArray(R.array.supported_versions_lite)));
     }
 
-    private boolean isInstalled(String packageWpp) {
+    private boolean isInstalled(String packageTkk) {
         try {
-            App.getInstance().getPackageManager().getPackageInfo(packageWpp, 0);
+            App.getInstance().getPackageManager().getPackageInfo(packageTkk, 0);
             return true;
         } catch (Exception ignored) {
         }
@@ -280,7 +280,7 @@ public class HomeFragment extends BaseFragment {
         binding.rebootBtn2.setVisibility(View.GONE);
     }
 
-    private void disableWpp(FragmentActivity activity) {
+    private void disableTkk(FragmentActivity activity) {
         binding.statusIcon2.setImageResource(R.drawable.ic_round_error_outline_24);
         binding.statusTitle2.setText(R.string.whatsapp_is_not_running_or_has_not_been_activated_in_lsposed);
         binding.status2.setCardBackgroundColor(activity.getColor(R.color.material_state_red));
@@ -288,9 +288,9 @@ public class HomeFragment extends BaseFragment {
         binding.rebootBtn.setVisibility(View.GONE);
     }
 
-    private static void checkWpp(FragmentActivity activity) {
-        Intent checkWpp = new Intent(BuildConfig.APPLICATION_ID + ".CHECK_WPP");
-        activity.sendBroadcast(checkWpp);
+    private static void checkTkk(FragmentActivity activity) {
+        Intent checkTkk = new Intent(BuildConfig.APPLICATION_ID + ".CHECK_TKK");
+        activity.sendBroadcast(checkTkk);
     }
 
     @Override

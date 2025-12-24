@@ -47,8 +47,8 @@ public class StatusDownload extends Feature {
             }
 
             @Override
-            public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageWpp) {
-                downloadFile(fMessageWpp);
+            public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageTkk) {
+                downloadFile(fMessageTkk);
             }
         };
         menuStatuses.add(downloadStatus);
@@ -64,16 +64,16 @@ public class StatusDownload extends Feature {
             }
 
             @Override
-            public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageWpp) {
-                sharedStatus(fMessageWpp);
+            public void onClick(MenuItem item, Object fragmentInstance, FMessageTkk fMessageTkk) {
+                sharedStatus(fMessageTkk);
             }
         };
         menuStatuses.add(sharedMenu);
     }
 
-    private void sharedStatus(FMessageTkk fMessageWpp) {
+    private void sharedStatus(FMessageTkk fMessageTkk) {
         try {
-            if (!fMessageWpp.isMediaFile()) {
+            if (!fMessageTkk.isMediaFile()) {
                 Intent intent = new Intent();
                 Class clazz;
                 try {
@@ -83,11 +83,11 @@ public class StatusDownload extends Feature {
                     intent.putExtra("status_composer_mode", 2);
                 }
                 intent.setClassName(Utils.getApplication().getPackageName(), clazz.getName());
-                intent.putExtra("android.intent.extra.TEXT", fMessageWpp.getMessageStr());
+                intent.putExtra("android.intent.extra.TEXT", fMessageTkk.getMessageStr());
                 TkkCore.getCurrentActivity().startActivity(intent);
                 return;
             }
-            var file = fMessageWpp.getMediaFile();
+            var file = fMessageTkk.getMediaFile();
             if (file == null) {
                 Utils.showToast(Utils.getApplication().getString(ResId.string.download_not_available), 1);
                 return;
@@ -97,7 +97,7 @@ public class StatusDownload extends Feature {
             intent.setClassName(Utils.getApplication().getPackageName(), clazz.getName());
             intent.putExtra("jids", new ArrayList<>(Collections.singleton("status@broadcast")));
             intent.putExtra("android.intent.extra.STREAM", new ArrayList<>(Collections.singleton(Uri.fromFile(file))));
-            intent.putExtra("android.intent.extra.TEXT", fMessageWpp.getMessageStr());
+            intent.putExtra("android.intent.extra.TEXT", fMessageTkk.getMessageStr());
             TkkCore.getCurrentActivity().startActivity(intent);
         } catch (Throwable e) {
             Utils.showToast(e.getMessage(), Toast.LENGTH_SHORT);

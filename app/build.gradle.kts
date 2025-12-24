@@ -32,11 +32,6 @@ android {
             dimension = "version"
             applicationIdSuffix = ""
         }
-        create("tiktok_lite") {
-            dimension = "version"
-            applicationIdSuffix = ".lite"
-            resValue("string", "app_name", "TikTok Enhancer Lite")
-        }
     }
 
     defaultConfig {
@@ -175,7 +170,7 @@ interface InjectedExecOps {
 
 
 afterEvaluate {
-    listOf("installTiktokDebug", "installTiktok_liteDebug").forEach { taskName ->
+    listOf("installTiktokDebug").forEach { taskName ->
         tasks.findByName(taskName)?.doLast {
             runCatching {
                 val injected  = project.objects.newInstance<InjectedExecOps>()

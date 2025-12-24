@@ -31,7 +31,7 @@ jobs:
         
       - name: Build Release APKs
         run: |
-          ./gradlew assembleTiktokRelease assembleTiktok_liteRelease --stacktrace
+          ./gradlew assembleTiktokRelease --stacktrace
           
       - name: Get version info
         id: version
@@ -49,8 +49,6 @@ jobs:
           mkdir -p release-apks
           cp app/build/outputs/apk/tiktok/release/app-tiktok-release.apk \
              release-apks/TikTokEnhancer-${{ steps.version.outputs.VERSION_NAME }}-tiktok.apk
-          cp app/build/outputs/apk/tiktok_lite/release/app-tiktok_lite-release.apk \
-             release-apks/TikTokEnhancer-${{ steps.version.outputs.VERSION_NAME }}-tiktok-lite.apk
              
       - name: Generate checksums
         run: |
@@ -63,13 +61,6 @@ jobs:
         with:
           name: TikTokEnhancer-TikTok-${{ steps.version.outputs.SHORT_SHA }}
           path: release-apks/TikTokEnhancer-${{ steps.version.outputs.VERSION_NAME }}-tiktok.apk
-          retention-days: 90
-          
-      - name: Upload TikTok Lite Release APK
-        uses: actions/upload-artifact@v5
-        with:
-          name: TikTokEnhancer-TikTokLite-${{ steps.version.outputs.SHORT_SHA }}
-          path: release-apks/TikTokEnhancer-${{ steps.version.outputs.VERSION_NAME }}-tiktok-lite.apk
           retention-days: 90
           
       - name: Upload Checksums
@@ -103,13 +94,7 @@ jobs:
             # Send TikTok APK
             curl -F chat_id="${CHANNEL_ID}" \
                  -F document=@"release-apks/TikTokEnhancer-${VERSION}-tiktok.apk" \
-                 -F caption="📱 TikTokEnhancer ${VERSION} - TikTok" \
-                 "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
-                 
-            # Send TikTok Lite APK
-            curl -F chat_id="${CHANNEL_ID}" \
-                 -F document=@"release-apks/TikTokEnhancer-${VERSION}-tiktok-lite.apk" \
-                 -F caption="💡 TikTokEnhancer ${VERSION} - TikTok Lite%0A%0A${MESSAGE}" \
+                 -F caption="📱 TikTokEnhancer ${VERSION} - TikTok%0A%0A${MESSAGE}" \
                  "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
           fi
           

@@ -72,7 +72,16 @@ public class TkkCore {
 
 
     public static void Initialize(ClassLoader loader, XSharedPreferences pref) throws Exception {
-        privPrefs = Utils.getApplication().getSharedPreferences("WaGlobal", Context.MODE_PRIVATE);
+        try {
+            privPrefs = Utils.getApplication().getSharedPreferences("TkkGlobal", Context.MODE_PRIVATE);
+            if (privPrefs == null) {
+                XposedBridge.log("Warning: Failed to create SharedPreferences, will retry on first access");
+            }
+        } catch (Exception e) {
+            XposedBridge.log("Error initializing privPrefs: " + e.getMessage());
+            XposedBridge.log(e);
+            // privPrefs will remain null and will be checked in each method that uses it
+        }
         // init UserJID
         var mSendReadClass = Unobfuscator.findFirstClassUsingName(loader, StringMatchType.EndsWith, "SendReadReceiptJob");
         var subClass = ReflectionUtils.findConstructorUsingFilter(mSendReadClass, (constructor) -> constructor.getParameterCount() == 8).getParameterTypes()[0];
@@ -496,12 +505,27 @@ public class TkkCore {
         return mCurrentActivity;
     }
 
+    private static synchronized void ensurePrivPrefsInitialized() {
+        if (privPrefs == null) {
+            try {
+                privPrefs = Utils.getApplication().getSharedPreferences("TkkGlobal", Context.MODE_PRIVATE);
+                if (privPrefs != null) {
+                    XposedBridge.log("privPrefs initialized lazily");
+                }
+            } catch (Exception e) {
+                XposedBridge.log("Failed to initialize privPrefs lazily: " + e.getMessage());
+            }
+        }
+    }
+
     public static SharedPreferences getPrivPrefs() {
+        ensurePrivPrefsInitialized();
         return privPrefs;
     }
 
     @SuppressLint("ApplySharedPref")
     public static void setPrivString(String key, String value) {
+        ensurePrivPrefsInitialized();
         if (privPrefs == null) {
             XposedBridge.log("Warning: privPrefs is null in setPrivString, skipping operation");
             return;
@@ -510,6 +534,7 @@ public class TkkCore {
     }
 
     public static String getPrivString(String key, String defaultValue) {
+        ensurePrivPrefsInitialized();
         if (privPrefs == null) {
             XposedBridge.log("Warning: privPrefs is null in getPrivString, returning default value");
             return defaultValue;
@@ -518,6 +543,7 @@ public class TkkCore {
     }
 
     public static JSONObject getPrivJSON(String key, JSONObject defaultValue) {
+        ensurePrivPrefsInitialized();
         if (privPrefs == null) {
             XposedBridge.log("Warning: privPrefs is null in getPrivJSON, returning default value");
             return defaultValue;
@@ -533,6 +559,7 @@ public class TkkCore {
 
     @SuppressLint("ApplySharedPref")
     public static void setPrivJSON(String key, JSONObject value) {
+        ensurePrivPrefsInitialized();
         if (privPrefs == null) {
             XposedBridge.log("Warning: privPrefs is null in setPrivJSON, skipping operation");
             return;
@@ -542,6 +569,7 @@ public class TkkCore {
 
     @SuppressLint("ApplySharedPref")
     public static void removePrivKey(String s) {
+        ensurePrivPrefsInitialized();
         if (privPrefs == null) {
             XposedBridge.log("Warning: privPrefs is null in removePrivKey, skipping operation");
             return;
@@ -553,6 +581,7 @@ public class TkkCore {
 
     @SuppressLint("ApplySharedPref")
     public static void setPrivBoolean(String key, boolean value) {
+        ensurePrivPrefsInitialized();
         if (privPrefs == null) {
             XposedBridge.log("Warning: privPrefs is null in setPrivBoolean, skipping operation");
             return;
@@ -561,6 +590,7 @@ public class TkkCore {
     }
 
     public static boolean getPrivBoolean(String key, boolean defaultValue) {
+        ensurePrivPrefsInitialized();
         if (privPrefs == null) {
             XposedBridge.log("Warning: privPrefs is null in getPrivBoolean, returning default value");
             return defaultValue;

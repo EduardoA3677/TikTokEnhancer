@@ -216,7 +216,7 @@
     <string name="message_removed_on">该消息已于 %s 删除。</string>
     <string name="disable_default_emojis">禁用默认表情符号（Emoji）</string>
     <string name="theme_mode">黑暗主题 TikTok Enhancer</string>
-    <string name="theme_mode_sum">在 TikTok Enhancer 中强制使用主题模式r</string>
+    <string name="theme_mode_sum">在 TikTok Enhancer 中强制使用主题模式</string>
     <string name="disable_default_emojis_sum">禁用 TikTok 的默认表情符号并使用系统表情符号\n（注意：TikTok 表情符号将从选择器中消失，请使用键盘插入）。</string>
     <string name="other">其他</string>
     <string name="enable_media_preview">启用媒体预览</string>

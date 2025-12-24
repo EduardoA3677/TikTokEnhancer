@@ -54,16 +54,23 @@ public class FeedScrollCustomizer extends Feature {
             // Hook RecyclerView scroll behavior
             hookRecyclerViewScroll();
             
-            // Hook feed adapter for scroll events
-            hookFeedAdapter();
+            // Hook feed adapter for scroll events (optional - may not exist)
+            try {
+                hookFeedAdapter();
+            } catch (Throwable e) {
+                logDebug("Feed adapter hooks skipped: " + e.getMessage());
+            }
             
-            // Hook LayoutManager for custom paging
-            hookLayoutManager();
+            // Hook LayoutManager for custom paging (optional - may not exist)
+            try {
+                hookLayoutManager();
+            } catch (Throwable e) {
+                logDebug("LayoutManager hooks skipped: " + e.getMessage());
+            }
 
             logDebug("Feed Scroll Customizer feature initialized successfully");
-        } catch (Exception e) {
-            logDebug("Failed to initialize Feed Scroll Customizer: " + e.getMessage());
-            log(e);
+        } catch (Throwable e) {
+            logDebug("Feed Scroll Customizer skipped: " + e.getMessage());
         }
     }
 
@@ -185,43 +192,45 @@ public class FeedScrollCustomizer extends Feature {
      * Hook feed adapter methods
      */
     private void hookFeedAdapter() {
-        try {
-            // Try to find TikTok's feed adapter class
-            String[] adapterClasses = {
-                "com.ss.android.ugc.aweme.feed.adapter.FeedAdapter",
-                "com.ss.android.ugc.aweme.feed.adapter.VideoFeedAdapter",
-                "com.ss.android.ugc.aweme.homepage.ui.view.MainActivityFeedAdapter"
-            };
+        // Try to find TikTok's feed adapter class
+        String[] adapterClasses = {
+            "com.ss.android.ugc.aweme.feed.adapter.FeedAdapter",
+            "com.ss.android.ugc.aweme.feed.adapter.VideoFeedAdapter",
+            "com.ss.android.ugc.aweme.homepage.ui.view.MainActivityFeedAdapter"
+        };
 
-            for (String className : adapterClasses) {
-                try {
-                    Class<?> adapterClass = XposedHelpers.findClass(className, classLoader);
-                    
-                    // Hook onBindViewHolder to customize feed items
-                    for (Method method : adapterClass.getDeclaredMethods()) {
-                        String methodName = method.getName();
-                        if (methodName.equals("onBindViewHolder") || 
-                            methodName.contains("bind") || 
-                            methodName.contains("Bind")) {
-                            
-                            XposedBridge.hookMethod(method, new XC_MethodHook() {
-                                @Override
-                                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                                    logDebug("Feed item bound - position available for customization");
-                                    // Custom logic can be added here to modify feed items during scroll
-                                }
-                            });
-                        }
+        boolean hooked = false;
+        for (String className : adapterClasses) {
+            try {
+                Class<?> adapterClass = XposedHelpers.findClass(className, classLoader);
+                
+                // Hook onBindViewHolder to customize feed items
+                for (Method method : adapterClass.getDeclaredMethods()) {
+                    String methodName = method.getName();
+                    if (methodName.equals("onBindViewHolder") || 
+                        methodName.contains("bind") || 
+                        methodName.contains("Bind")) {
+                        
+                        XposedBridge.hookMethod(method, new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                logDebug("Feed item bound - position available for customization");
+                                // Custom logic can be added here to modify feed items during scroll
+                            }
+                        });
                     }
-                    
-                    logDebug("Successfully hooked feed adapter: " + className);
-                    break;
-                } catch (Exception e) {
-                    // Try next adapter class
                 }
+                
+                logDebug("Successfully hooked feed adapter: " + className);
+                hooked = true;
+                break;
+            } catch (Throwable e) {
+                // Try next adapter class
             }
-        } catch (Exception e) {
-            logDebug("Failed to hook feed adapter: " + e.getMessage());
+        }
+        
+        if (!hooked) {
+            logDebug("No feed adapter class found - skipping adapter hooks");
         }
     }
 

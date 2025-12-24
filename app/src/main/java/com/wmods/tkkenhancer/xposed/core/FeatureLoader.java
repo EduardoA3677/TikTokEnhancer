@@ -300,16 +300,19 @@ public class FeatureLoader {
 
     private static void plugins(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, @NonNull String versionWpp) throws Exception {
 
-        // Most WhatsApp-specific features have been removed as they don't apply to TikTok
-        // TikTok is a video-sharing app with a completely different architecture than WhatsApp
+        // TikTok-specific features
+        // These features are designed for TikTok's video-sharing architecture
         var classes = new Class<?>[]{
                 DebugFeature.class,
+                com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,  // Download videos without watermark
+                com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,      // Block advertisements
+                com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class // Control auto-play behavior
                 // CustomThemeV2.class,  // Commented out - needs TikTok-specific implementation
                 // LiteMode.class,  // Commented out - needs TikTok-specific implementation
                 // Others.class,  // Commented out - needs TikTok-specific implementation
                 // ToastViewer.class  // Commented out - needs TikTok-specific implementation
         };
-        XposedBridge.log("Loading Plugins");
+        XposedBridge.log("Loading TikTok Plugins");
         var executorService = Executors.newWorkStealingPool(Math.min(Runtime.getRuntime().availableProcessors(), 4));
         var times = new ArrayList<String>();
         for (var classe : classes) {

@@ -2,6 +2,7 @@
 <resources>
     <string-array name="scope">
         <item>com.zhiliaoapp.musically</item>
+        <item>com.wmods.tkkenhancer</item>
         <item>android</item>
     </string-array>
 

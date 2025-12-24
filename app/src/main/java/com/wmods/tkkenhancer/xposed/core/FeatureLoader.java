@@ -389,6 +389,11 @@ public class FeatureLoader {
                 com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class, // Live stream download
                 com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class, // Analytics blocking
                 
+                // ✅ NEW HOOKS - Based on smali analysis
+                com.wmods.tkkenhancer.xposed.features.media.FeedScrollCustomizer.class,  // Feed scroll customization
+                com.wmods.tkkenhancer.xposed.features.media.RewardsIconHider.class,      // Hide TikTok Rewards icon
+                com.wmods.tkkenhancer.xposed.features.media.UIEnhancer.class,            // Additional UI enhancements
+                
                 // ❌ DISABLED - Need proper TikTok implementation or causing issues
                 // com.wmods.tkkenhancer.xposed.features.media.VideoDownloadImproved.class,
                 // com.wmods.tkkenhancer.xposed.features.media.AdBlockerImproved.class,

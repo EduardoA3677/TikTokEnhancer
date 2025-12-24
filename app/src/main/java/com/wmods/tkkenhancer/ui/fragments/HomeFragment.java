@@ -218,7 +218,6 @@ public class HomeFragment extends BaseFragment {
             binding.status2.setVisibility(View.GONE);
         }
 
-        binding.status3.setVisibility(View.GONE);
         checkTkk(activity);
         binding.deviceName.setText(Build.MANUFACTURER);
         binding.sdk.setText(String.valueOf(Build.VERSION.SDK_INT));
@@ -229,7 +228,6 @@ public class HomeFragment extends BaseFragment {
             binding.listTkkTitle.setVisibility(View.GONE);
             binding.listTkk.setVisibility(View.GONE);
         }
-        binding.listBusiness.setVisibility(View.GONE);
     }
 
     private boolean isInstalled(String packageTkk) {

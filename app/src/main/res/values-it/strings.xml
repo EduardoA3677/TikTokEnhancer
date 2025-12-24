@@ -118,16 +118,12 @@
     <string name="version_s">Versione %s</string>
     <string name="module_disabled">Modulo disabilitato</string>
     <string name="whatsapp_in_background">WhatsApp in background</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">Whatsapp non è in esecuzione o non è stato attivato in LSPosed</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp Business non è in esecuzione o non è stato attivato in LSPosed</string>
-    <string name="restart_tkk">È necessario riavviare WhatsApp affinché le modifiche in Wa Enhancer abbiano effetto.\n\nVuoi riavviare?</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">Whatsapp non è in esecuzione o non è stato attivato in LSPosed</string>    <string name="restart_tkk">È necessario riavviare WhatsApp affinché le modifiche in Wa Enhancer abbiano effetto.\n\nVuoi riavviare?</string>
     <string name="version_s_not_listed">La versione %s non è elencata nelle versioni supportate!\nUtilizza una versione di WhatsApp supportata!</string>
     <string name="media">Media</string>
     <string name="show_button_to_send_blue_tick">Mostra pulsante per inviare la spunta blu</string>
     <string name="show_button_to_send_blue_tick_sum">Mostra un pulsante per inviare la spunta blu (contrassegna come letto/visualizzato)</string>
-    <string name="send_blue_tick">Contrassegna come Letto/Visualizzato</string>
-    <string name="business_in_background">WhatsApp Business in background</string>
-    <string name="sending_read_blue_tick">Invio della spunta blu (contrassegna come letto/visualizzato)</string>
+    <string name="send_blue_tick">Contrassegna come Letto/Visualizzato</string>    <string name="sending_read_blue_tick">Invio della spunta blu (contrassegna come letto/visualizzato)</string>
     <string name="enable_facebook_style_for_status">Abilita gli Stati in stile Facebook</string>
     <string name="enable_facebook_style_for_status_sum">Cambia lo stile dello Stato in stile Facebook</string>
     <string name="send">Invia</string>
@@ -164,9 +160,7 @@
     <string name="device_model">Modello del dispositivo</string>
     <string name="device_name">Nome del dispositivo</string>
     <string name="disable_metaai">Disabilita funzioni Meta AI</string>
-    <string name="disable_metaai_sum">Disabilita Meta AI solo per coloro che lo hanno abilitato per impostazione predefinita</string>
-    <string name="list_business">Versioni WhatsApp Business supportate:</string>
-    <string name="list_tkk">Versioni WhatsApp supportate:</string>
+    <string name="disable_metaai_sum">Disabilita Meta AI solo per coloro che lo hanno abilitato per impostazione predefinita</string>    <string name="list_tkk">Versioni WhatsApp supportate:</string>
     <string name="title_image">Immagine</string>
     <string name="title_video">Video</string>
     <string name="enable_new_chat_button">Abilita pulsante Nuova chat</string>

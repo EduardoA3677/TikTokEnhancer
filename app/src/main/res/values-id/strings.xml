@@ -122,9 +122,7 @@
     <string name="version_s">Versi %s</string>
     <string name="module_disabled">Module dinonaktifkan</string>
     <string name="whatsapp_in_background">WhatsApp berjalan dilatar belakang</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp tidak berjalan atau belum diaktifkan di LSPosed</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp Bisnis tidak berjalan atau belum diaktifkan di LSPosed</string>
-    <string name="restart_tkk">WhatsApp harus dimulai ulang agar perubahan di Wa Enhancer dapat diterapkan.
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp tidak berjalan atau belum diaktifkan di LSPosed</string>    <string name="restart_tkk">WhatsApp harus dimulai ulang agar perubahan di Wa Enhancer dapat diterapkan.
 
 Apakah Anda ingin mulai ulang WhatsApp?</string>
     <string name="version_s_not_listed">Versi %s tidak terdaftar dalam versi yang didukung!
@@ -132,9 +130,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="media">Media</string>
     <string name="show_button_to_send_blue_tick">Tampilkan Tombol Centang Biru</string>
     <string name="show_button_to_send_blue_tick_sum">Tampilkan tombol centang biru (dibaca/dilihat untuk pesan dan status)</string>
-    <string name="send_blue_tick">Tandai dilihat/dibaca</string>
-    <string name="business_in_background">WhatsApp Bisnis berjalan dilatar belakang</string>
-    <string name="sending_read_blue_tick">Mengirim centang biru (dilihat/dibaca)</string>
+    <string name="send_blue_tick">Tandai dilihat/dibaca</string>    <string name="sending_read_blue_tick">Mengirim centang biru (dilihat/dibaca)</string>
     <string name="enable_facebook_style_for_status">Aktifkan Gaya Status Facebook</string>
     <string name="enable_facebook_style_for_status_sum">Ubah gaya status asli menjadi gaya status Facebook</string>
     <string name="send">Kirim</string>
@@ -171,9 +167,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="device_model">Model Perangkat</string>
     <string name="device_name">Nama Perangkat</string>
     <string name="disable_metaai">Nonaktifkan Fungsi Meta Ai</string>
-    <string name="disable_metaai_sum">Nonaktifkan fungsi meta ai hanya bagi mereka yang diaktifkan secara default</string>
-    <string name="list_business">Versi WhatsApp Bisnis yang Didukung</string>
-    <string name="list_tkk">Versi WhatsApp yang Didukung</string>
+    <string name="disable_metaai_sum">Nonaktifkan fungsi meta ai hanya bagi mereka yang diaktifkan secara default</string>    <string name="list_tkk">Versi WhatsApp yang Didukung</string>
     <string name="title_image">Gambar</string>
     <string name="title_video">Video</string>
     <string name="enable_new_chat_button">Tampilkan Tombol Obrolan Baru</string>

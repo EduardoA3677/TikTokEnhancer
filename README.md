@@ -169,7 +169,63 @@ Additional UI enhancements discovered through smali analysis.
 - Blocks unwanted UI elements
 - Provides cleaner interface
 
-### 13. Debug Feature 🐛
+### 13. Live Stream Feed Control 🔴 NEW
+Control whether live streams appear in your feed.
+
+**Features:**
+- Hide/show live stream videos in feed
+- Filter out live content when scrolling
+- Keeps regular videos visible
+
+**How it works:**
+- Hooks `Aweme.isLive()` method
+- Filters `FeedItemList` to remove live streams
+- Based on smali analysis of feed model
+
+### 14. Image Reel Control 📸 NEW
+Control whether photo mode posts (image reels) appear in your feed.
+
+**Features:**
+- Hide/show image-based posts
+- Filter out photo carousels
+- Keeps video content visible
+
+**How it works:**
+- Hooks `Aweme.isPhotoMode()` and `Aweme.isImage()` methods
+- Filters feed items based on content type
+- Based on smali analysis of Aweme model
+
+### 15. Profile Icon Hider 🙈 NEW
+Hide specific icons from profile pages.
+
+**Features:**
+- Hide "Go Live" button from profile
+- Hide wallet/coin balance icon
+- Cleaner profile interface
+
+**How it works:**
+- Hooks `View.setVisibility()` and `ImageView.setImageResource()`
+- Scans view hierarchy for matching icons
+- Pattern-matches based on resource names and content descriptions
+
+### 16. Tab Manager 📑 NEW
+Customize which tabs appear in the bottom navigation bar.
+
+**Features:**
+- Show/hide Home tab
+- Show/hide Friends tab
+- Show/hide Create/Plus button
+- Show/hide Inbox tab
+- Show/hide Profile tab
+- Show/hide Shop tab
+
+**How it works:**
+- Hooks bottom navigation view visibility
+- Intercepts tab protocol classes
+- Recursively scans and hides matching tabs
+- Based on smali analysis of tab management system
+
+### 17. Debug Feature 🐛
 Advanced logging and debugging capabilities for development and troubleshooting.
 
 ## 📋 Requirements

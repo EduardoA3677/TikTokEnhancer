@@ -90,13 +90,17 @@ public class UnobfuscatorCache {
     }
 
     private void initCacheStrings() {
-        getOfuscateIDString("mystatus");
-        getOfuscateIDString("online");
-        getOfuscateIDString("groups");
-        getOfuscateIDString("messagedeleted");
-        getOfuscateIDString("selectcalltype");
-        getOfuscateIDString("lastseensun%s");
-        getOfuscateIDString("updates");
+        // WhatsApp-specific strings - commented out for TikTok compatibility
+        // These strings don't exist in TikTok and cause unnecessary "need search obsfucate" warnings
+        // getOfuscateIDString("mystatus");
+        // getOfuscateIDString("online");
+        // getOfuscateIDString("groups");
+        // getOfuscateIDString("messagedeleted");
+        // getOfuscateIDString("selectcalltype");
+        // getOfuscateIDString("lastseensun%s");
+        
+        // TikTok-specific strings that may be needed
+        // getOfuscateIDString("updates");
     }
 
     private void initializeReverseResourceMap() {

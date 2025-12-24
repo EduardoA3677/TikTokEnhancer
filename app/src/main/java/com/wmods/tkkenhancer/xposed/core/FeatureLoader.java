@@ -264,12 +264,30 @@ public class FeatureLoader {
     }
 
     private static void initComponents(ClassLoader loader, XSharedPreferences pref) throws Exception {
-        FMessageTkk.initialize(loader);
+        // Skip WhatsApp-specific components for TikTok
+        // These components search for WhatsApp classes that don't exist in TikTok
+        // FMessageTkk, AlertDialogTkk, and TkContactTkk are legacy from WhatsApp codebase
+        try {
+            FMessageTkk.initialize(loader);
+        } catch (Exception e) {
+            XposedBridge.log("Skipping FMessageTkk initialization (WhatsApp-specific): " + e.getMessage());
+        }
+        
         TkkCore.Initialize(loader, pref);
         DesignUtils.setPrefs(pref);
         Utils.init(loader);
-        AlertDialogTkk.initDialog(loader);
-        TkContactTkk.initialize(loader);
+        
+        try {
+            AlertDialogTkk.initDialog(loader);
+        } catch (Exception e) {
+            XposedBridge.log("Skipping AlertDialogTkk initialization (WhatsApp-specific): " + e.getMessage());
+        }
+        
+        try {
+            TkContactTkk.initialize(loader);
+        } catch (Exception e) {
+            XposedBridge.log("Skipping TkContactTkk initialization (WhatsApp-specific): " + e.getMessage());
+        }
         TkkCore.addListenerActivity((activity, state) -> {
 
             if (state == TkkCore.ActivityChangeState.ChangeType.RESUMED) {

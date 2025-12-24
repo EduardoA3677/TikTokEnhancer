@@ -19,6 +19,9 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 /**
+ * Message wrapper class for TikTok Enhancer.
+ * Note: This class retains some legacy infrastructure from the WhatsApp codebase
+ * for compatibility purposes. Future refactoring may rename this to a more appropriate name.
  * @noinspection unused
  */
 public class FMessageTkk {

@@ -1,9 +1,6 @@
-[WHATSAPP]
-* Added support for version 2.25.35.XX (Thanks to frknkrc44)
-* Added support for version 2.25.36.XX
-* Added support for version 2.25.37.XX
-* Added support for version 2.26.1.XX
-* Added support for version 2.26.2.XX
-* Added support for version 2.26.3.XX
-* Fixed AntiRevoke hook for StatusPlayback (2.25.37+)
-* Fixed TagMessage forward class detection (2.25.37+)
+[TIKTOK]
+* Migrated project from WhatsApp to TikTok Enhancer
+* Added TikTok-specific methods for video handling
+* Added download without watermark functionality
+* Added ad detection and filtering
+* Cleaned up legacy WhatsApp code

@@ -63,7 +63,7 @@ This workflow builds signed release APKs and can be triggered in three ways:
    ```
 
 **Outputs:**
-- Signed WhatsApp variant APK
+- Signed TikTok variant APK
 - Signed Business variant APK
 - SHA256 checksums file
 - GitHub Release (for tag pushes)
@@ -81,7 +81,7 @@ The release workflow performs the following steps:
 2. Set up JDK 17
 3. Decode keystore from base64
 4. Configure signing properties
-5. Build release APKs (both WhatsApp and Business variants)
+5. Build release APKs (both TikTok and Business variants)
 6. Generate SHA256 checksums
 7. Upload APKs as artifacts (retained for 90 days)
 8. Create GitHub Release (for tag pushes)

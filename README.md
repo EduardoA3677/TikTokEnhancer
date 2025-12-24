@@ -281,9 +281,8 @@ public class MyFeature extends Feature {
 
 ## 📖 Documentation
 
-- [TIKTOK_MIGRATION.md](TIKTOK_MIGRATION.md) - Migration guide from WhatsApp to TikTok
-- [MIGRATION_COMPLETE.md](MIGRATION_COMPLETE.md) - Migration completion status
 - [Theme.md](Theme.md) - Theme customization guide
+- [BUILD_CONFIGURATION.md](.github/BUILD_CONFIGURATION.md) - Build configuration guide
 
 ## 🐛 Troubleshooting
 

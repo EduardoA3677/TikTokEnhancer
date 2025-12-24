@@ -134,8 +134,24 @@ public class FeatureLoader {
                     for (String pattern : supportedVersions) {
                         // Replace .xx with empty string to get version prefix
                         String versionPrefix = pattern.replace(".xx", ".");
-                        // Also support exact version matching
-                        if (packageInfo.versionName.startsWith(versionPrefix) || packageInfo.versionName.equals(pattern)) {
+                        
+                        // Check if version matches the pattern
+                        // For pattern "43.xx", versionPrefix is "43."
+                        // We want to match "43.0.0", "43.1.5", but ensure proper major.minor matching
+                        boolean matches = false;
+                        if (packageInfo.versionName.equals(pattern)) {
+                            // Exact match (unlikely with .xx pattern but supports non-pattern versions)
+                            matches = true;
+                        } else if (packageInfo.versionName.startsWith(versionPrefix)) {
+                            // Check that the character after the prefix is a digit to ensure valid version format
+                            // This prevents "43." from matching invalid versions like "43.abc"
+                            if (packageInfo.versionName.length() > versionPrefix.length()) {
+                                char nextChar = packageInfo.versionName.charAt(versionPrefix.length());
+                                matches = Character.isDigit(nextChar);
+                            }
+                        }
+                        
+                        if (matches) {
                             isSupported = true;
                             matchedPattern = pattern;
                             break;

@@ -33,7 +33,7 @@ jobs:
 
       - name: Build all flavor variants
         run: |
-          ./gradlew assembleTiktokDebug assembleTiktok_liteDebug -Pminify=true
+          ./gradlew assembleTiktokDebug -Pminify=true
 
       - name: Get short SHA
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
@@ -43,12 +43,6 @@ jobs:
         with:
           name: tiktok-debug-app-${{ env.SHORT_SHA }}
           path: app/build/outputs/apk/tiktok/debug/app-tiktok-debug.apk
-
-      - name: Upload TikTok Lite flavor artifacts
-        uses: actions/upload-artifact@v5
-        with:
-          name: tiktok-lite-debug-app-${{ env.SHORT_SHA }}
-          path: app/build/outputs/apk/tiktok_lite/debug/app-tiktok_lite-debug.apk
 
       - name: Post to Telegram channel
         if: ${{ success() && github.ref == 'refs/heads/master' && github.ref_type != 'tag' }}
@@ -61,14 +55,12 @@ jobs:
           if [ ! -z "${{ secrets.BOT_TOKEN }}" ]; then
             GITHUB_SHA_SHORT=$(git rev-parse --short HEAD)
             export output_tiktok=app/TikTokEnhancer_$GITHUB_SHA_SHORT.apk
-            export output_tiktok_lite=app/TikTokEnhancer_Lite_$GITHUB_SHA_SHORT.apk
             cp app/build/outputs/apk/tiktok/debug/app-tiktok-debug.apk $output_tiktok
-            cp app/build/outputs/apk/tiktok_lite/debug/app-tiktok_lite-debug.apk $output_tiktok_lite
             export LOG=$(cat changelog.txt)
             ESCAPED=$(python3 -c 'import json,os,urllib.parse; msg = json.dumps(os.getenv("LOG")); print(urllib.parse.quote(msg if len(msg) <= 1024 else json.dumps(os.getenv("COMMIT_URL"))))')
           
-            # Send TikTok variants
-            curl "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${CHANNEL_ID}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2Ftiktok%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2Ftiktok_lite%22%2C%22caption%22%3A${ESCAPED}%7D%5D" -F tiktok="@$output_tiktok" -F tiktok_lite="@$output_tiktok_lite"
+            # Send TikTok variant
+            curl "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument?chat_id=${CHANNEL_ID}&caption=${ESCAPED}" -F document="@$output_tiktok"
           fi
 
       - name: Upload to GitHub release
@@ -79,5 +71,4 @@ jobs:
           body_path: changelog.txt
           files: |
             app/build/outputs/apk/tiktok/debug/app-tiktok-debug.apk
-            app/build/outputs/apk/tiktok_lite/debug/app-tiktok_lite-debug.apk
           tag_name: debug-${{ env.SHORT_SHA }}

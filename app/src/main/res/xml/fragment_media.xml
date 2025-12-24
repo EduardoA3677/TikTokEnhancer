@@ -2,6 +2,120 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- TikTok Video Download Features -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_download_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="video_download"
+            app:summary="@string/video_download_sum"
+            app:title="@string/video_download" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="video_download"
+            app:key="download_no_watermark"
+            app:defaultValue="true"
+            app:summary="@string/download_no_watermark_sum"
+            app:title="@string/download_no_watermark" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="download_service_hook"
+            app:summary="@string/download_service_hook_sum"
+            app:title="@string/download_service_hook" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="story_download"
+            app:summary="@string/story_download_sum"
+            app:title="@string/story_download" />
+
+        <com.wmods.tkkenhancer.preference.FileSelectPreference
+            android:defaultValue="/sdcard/TikTok/Downloads"
+            app:directory="true"
+            app:key="tiktok_download_path"
+            app:title="@string/tiktok_download_path" />
+
+    </PreferenceCategory>
+
+    <!-- TikTok Video Quality -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_quality_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="video_quality"
+            app:summary="@string/video_quality_sum"
+            app:title="@string/video_quality" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="video_quality"
+            app:key="force_hd_quality"
+            app:defaultValue="true"
+            app:summary="@string/force_hd_quality_sum"
+            app:title="@string/force_hd_quality" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="video_quality"
+            app:key="force_high_bitrate"
+            app:summary="@string/force_high_bitrate_sum"
+            app:title="@string/force_high_bitrate" />
+
+        <ListPreference
+            android:dependency="force_high_bitrate"
+            android:defaultValue="5000000"
+            android:entries="@array/bitrate_entries"
+            android:entryValues="@array/bitrate_values"
+            app:key="target_bitrate"
+            app:summary="@string/target_bitrate_sum"
+            app:title="@string/target_bitrate" />
+
+    </PreferenceCategory>
+
+    <!-- TikTok Auto-Play Control -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_autoplay_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="autoplay_control"
+            app:summary="@string/autoplay_control_sum"
+            app:title="@string/autoplay_control" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="autoplay_control"
+            app:key="disable_autoplay"
+            app:summary="@string/disable_autoplay_sum"
+            app:title="@string/disable_autoplay" />
+
+    </PreferenceCategory>
+
+    <!-- TikTok Ad Blocker -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_ad_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="ad_blocker"
+            app:summary="@string/ad_blocker_sum"
+            app:title="@string/ad_blocker" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="ad_blocker"
+            app:key="block_commercialize"
+            app:defaultValue="true"
+            app:summary="@string/block_commercialize_sum"
+            app:title="@string/block_commercialize" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="ad_blocker"
+            app:key="block_promoted"
+            app:defaultValue="true"
+            app:summary="@string/block_promoted_sum"
+            app:title="@string/block_promoted" />
+
+    </PreferenceCategory>
+
+    <!-- Original Media Settings (kept for compatibility) -->
     <PreferenceCategory
         app:iconSpaceReserved="false"
         app:title="@string/title_image">

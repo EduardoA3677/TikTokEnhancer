@@ -2,6 +2,47 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- TikTok Privacy Features -->
+    <PreferenceCategory 
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_privacy_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="privacy_enhancer"
+            app:summary="@string/privacy_enhancer_sum"
+            app:title="@string/privacy_enhancer" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="privacy_enhancer"
+            app:key="hide_view_history"
+            app:defaultValue="true"
+            app:summary="@string/hide_view_history_sum"
+            app:title="@string/hide_view_history" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="privacy_enhancer"
+            app:key="hide_profile_visits"
+            app:defaultValue="true"
+            app:summary="@string/hide_profile_visits_sum"
+            app:title="@string/hide_profile_visits" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="privacy_enhancer"
+            app:key="disable_analytics"
+            app:defaultValue="true"
+            app:summary="@string/disable_analytics_sum"
+            app:title="@string/disable_analytics" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="privacy_enhancer"
+            app:key="block_data_collection"
+            app:defaultValue="true"
+            app:summary="@string/block_data_collection_sum"
+            app:title="@string/block_data_collection" />
+
+    </PreferenceCategory>
+
+    <!-- Original Privacy Settings -->
     <PreferenceCategory app:title="@string/home_screen">
 
         <ListPreference

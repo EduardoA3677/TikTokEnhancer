@@ -190,4 +190,20 @@
         <item>2</item>
     </string-array>
 
+    <!-- TikTok Bitrate Options -->
+    <string-array name="bitrate_entries">
+        <item>Standard Quality (2 Mbps)</item>
+        <item>High Quality (3 Mbps)</item>
+        <item>Very High Quality (5 Mbps)</item>
+        <item>Ultra Quality (8 Mbps)</item>
+        <item>Maximum Quality (10 Mbps)</item>
+    </string-array>
+    <string-array name="bitrate_values">
+        <item>2000000</item>
+        <item>3000000</item>
+        <item>5000000</item>
+        <item>8000000</item>
+        <item>10000000</item>
+    </string-array>
+
 </resources>

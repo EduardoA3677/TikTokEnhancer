@@ -71,7 +71,16 @@ public class BitrateControl extends Feature {
                     int originalBitrate = (int) param.getResult();
                     
                     // Force higher bitrate for better quality
-                    int targetBitrate = prefs.getInt("target_bitrate", 5000000); // 5 Mbps default
+                    // ListPreference stores values as String, so we need to parse it
+                    String targetBitrateStr = prefs.getString("target_bitrate", "5000000");
+                    int targetBitrate;
+                    try {
+                        targetBitrate = Integer.parseInt(targetBitrateStr);
+                    } catch (NumberFormatException e) {
+                        targetBitrate = 5000000; // 5 Mbps default fallback
+                        logDebug("Invalid bitrate value, using default: " + targetBitrate);
+                    }
+                    
                     if (originalBitrate < targetBitrate) {
                         param.setResult(targetBitrate);
                         logDebug("Increased bitrate from " + originalBitrate + " to " + targetBitrate);
@@ -99,7 +108,17 @@ public class BitrateControl extends Feature {
                     double originalMinBitrate = (double) param.getResult();
                     
                     // Set higher minimum bitrate
-                    double targetMinBitrate = prefs.getInt("target_bitrate", 5000000) * 0.8; // 80% of target
+                    // ListPreference stores values as String, so we need to parse it
+                    String targetBitrateStr = prefs.getString("target_bitrate", "5000000");
+                    int targetBitrate;
+                    try {
+                        targetBitrate = Integer.parseInt(targetBitrateStr);
+                    } catch (NumberFormatException e) {
+                        targetBitrate = 5000000; // 5 Mbps default fallback
+                        logDebug("Invalid bitrate value, using default: " + targetBitrate);
+                    }
+                    
+                    double targetMinBitrate = targetBitrate * 0.8; // 80% of target
                     if (originalMinBitrate < targetMinBitrate) {
                         param.setResult(targetMinBitrate);
                         logDebug("Increased min bitrate from " + originalMinBitrate + " to " + targetMinBitrate);

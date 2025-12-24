@@ -164,7 +164,7 @@ public class FeatureLoader {
                     XposedBridge.log(e);
                     var error = new ErrorItem();
                     error.setPluginName("MainFeatures[Critical]");
-                    error.setWhatsAppVersion(packageInfo.versionName);
+                    error.setTiktokVersion(packageInfo.versionName);
                     error.setModuleVersion(BuildConfig.VERSION_NAME);
                     error.setMessage(e.getMessage());
                     error.setError(Arrays.toString(Arrays.stream(e.getStackTrace()).filter(s -> !s.getClassName().startsWith("android") && !s.getClassName().startsWith("com.android")).map(StackTraceElement::toString).toArray()));
@@ -329,7 +329,7 @@ public class FeatureLoader {
                     XposedBridge.log(e);
                     var error = new ErrorItem();
                     error.setPluginName(classe.getSimpleName());
-                    error.setWhatsAppVersion(versionTkk);
+                    error.setTiktokVersion(versionTkk);
                     error.setModuleVersion(BuildConfig.VERSION_NAME);
                     error.setMessage(e.getMessage());
                     error.setError(Arrays.toString(Arrays.stream(e.getStackTrace()).filter(s -> !s.getClassName().startsWith("android") && !s.getClassName().startsWith("com.android")).map(StackTraceElement::toString).toArray()));
@@ -353,7 +353,7 @@ public class FeatureLoader {
     @Setter
     private static class ErrorItem {
         private String pluginName;
-        private String whatsAppVersion;
+        private String tiktokVersion;
         private String error;
         private String moduleVersion;
         private String message;
@@ -363,7 +363,7 @@ public class FeatureLoader {
         public String toString() {
             return "pluginName='" + getPluginName() + '\'' +
                     "\nmoduleVersion='" + getModuleVersion() + '\'' +
-                    "\nwhatsAppVersion='" + getWhatsAppVersion() + '\'' +
+                    "\ntiktokVersion='" + getTiktokVersion() + '\'' +
                     "\nMessage=" + getMessage() +
                     "\nerror='" + getError() + '\'';
         }

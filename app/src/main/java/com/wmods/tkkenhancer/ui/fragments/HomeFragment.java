@@ -90,7 +90,6 @@ public class HomeFragment extends BaseFragment {
     }
 
     @SuppressLint("StringFormatInvalid")
-    @SuppressLint("StringFormatInvalid")
     private void receiverBroadcastTkk(Context context, Intent intent) {
         binding.statusTitle2.setText(R.string.whatsapp_in_background);
         var version = intent.getStringExtra("VERSION");

@@ -86,14 +86,22 @@ public class FeatureLoader {
                 currentVersion = packageInfo.versionName;
                 
                 // Try to load supported versions, with fallback if resources not initialized yet
+                // Check if ResId.array.supported_versions_tkk is initialized (not 0)
                 try {
-                    String[] versionsArray = mApp.getResources().getStringArray(ResId.array.supported_versions_tkk);
-                    if (versionsArray != null && versionsArray.length > 0) {
-                        supportedVersions = Arrays.asList(versionsArray);
+                    if (ResId.array.supported_versions_tkk != 0) {
+                        String[] versionsArray = mApp.getResources().getStringArray(ResId.array.supported_versions_tkk);
+                        if (versionsArray != null && versionsArray.length > 0) {
+                            supportedVersions = Arrays.asList(versionsArray);
+                            XposedBridge.log("Loaded supported versions from resources: " + String.join(", ", supportedVersions));
+                        } else {
+                            // Fallback to hardcoded versions if resources not loaded
+                            supportedVersions = Arrays.asList("43.xx", "44.xx", "45.xx");
+                            XposedBridge.log("Using fallback supported versions list (empty array)");
+                        }
                     } else {
-                        // Fallback to hardcoded versions if resources not loaded
+                        // ResId not initialized yet, use fallback
                         supportedVersions = Arrays.asList("43.xx", "44.xx", "45.xx");
-                        XposedBridge.log("Using fallback supported versions list");
+                        XposedBridge.log("ResId.array.supported_versions_tkk not initialized, using fallback");
                     }
                 } catch (Exception e) {
                     // Resources not initialized yet, use fallback
@@ -108,9 +116,24 @@ public class FeatureLoader {
                     UnobfuscatorCache.init(mApp);
                     ReflectionUtils.initCache(mApp);
                     
-                    // Check version support
-                    boolean isSupported = supportedVersions.stream().anyMatch(s -> packageInfo.versionName.startsWith(s.replace(".xx", "")));
+                    // Check version support with improved pattern matching
+                    // Support patterns like "43.xx" which should match "43.0.0", "43.1.5", etc.
+                    boolean isSupported = false;
+                    String matchedPattern = null;
+                    
+                    for (String pattern : supportedVersions) {
+                        // Replace .xx with empty string to get version prefix
+                        String versionPrefix = pattern.replace(".xx", ".");
+                        // Also support exact version matching
+                        if (packageInfo.versionName.startsWith(versionPrefix) || packageInfo.versionName.equals(pattern)) {
+                            isSupported = true;
+                            matchedPattern = pattern;
+                            break;
+                        }
+                    }
+                    
                     if (!isSupported) {
+                        XposedBridge.log("Version check: TikTok " + packageInfo.versionName + " not in supported list: " + String.join(", ", supportedVersions));
                         // Try to disable expiration version check (WhatsApp-specific feature)
                         // For TikTok, this may not be applicable, so we catch and log any errors
                         try {
@@ -130,7 +153,7 @@ public class FeatureLoader {
                             XposedBridge.log("Version check bypassed by user preference");
                         }
                     } else {
-                        XposedBridge.log("TikTok version " + packageInfo.versionName + " is supported");
+                        XposedBridge.log("TikTok version " + packageInfo.versionName + " is supported (matched pattern: " + matchedPattern + ")");
                     }
                     initComponents(loader, pref);
                     // Register receivers AFTER initComponents to ensure privPrefs is initialized

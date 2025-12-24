@@ -103,33 +103,15 @@ public class TkkCore {
         }
     }
 
+    @Deprecated
     public static Object getPhoneJidFromUserJid(Object lid) {
-        if (lid == null) return null;
-        try {
-            var rawString = (String) XposedHelpers.callMethod(lid, "getRawString");
-            if (rawString == null || !rawString.contains("@lid")) return lid;
-            rawString = rawString.replaceFirst("\\.[\\d:]+@", "@");
-            var newUser = TkkCore.createUserJid(rawString);
-            var result = ReflectionUtils.callMethod(convertLidToJid, mWaJidMapRepository, newUser);
-            return result == null ? lid : result;
-        } catch (Exception e) {
-            XposedBridge.log(e);
-        }
+        // WhatsApp-specific LID to JID conversion - not applicable to TikTok
         return lid;
     }
 
+    @Deprecated
     public static Object getUserJidFromPhoneJid(Object userJid) {
-        if (userJid == null) return null;
-        try {
-            var rawString = (String) XposedHelpers.callMethod(userJid, "getRawString");
-            if (rawString == null || rawString.contains("@lid")) return userJid;
-            rawString = rawString.replaceFirst("\\.[\\d:]+@", "@");
-            var newUser = TkkCore.createUserJid(rawString);
-            var result = ReflectionUtils.callMethod(convertJidToLid, mWaJidMapRepository, newUser);
-            return result == null ? userJid : result;
-        } catch (Exception e) {
-            XposedBridge.log(e);
-        }
+        // WhatsApp-specific JID to LID conversion - not applicable to TikTok
         return userJid;
     }
 
@@ -179,39 +161,96 @@ public class TkkCore {
     /* ===== WHATSAPP-SPECIFIC METHODS - NOT APPLICABLE TO TIKTOK =====
      * The following methods are commented out as they are WhatsApp-specific
      * and not applicable to TikTok's architecture
+     * 
+     * Stub implementations provided to prevent compilation errors in legacy code
      */
      
-    /*
+    @Deprecated
     public static void sendMessage(String number, String message) {
-        // TODO: Implement TikTok message sending if applicable
-        // TikTok may not have direct messaging or uses different protocols
-        // Commented out WhatsApp-specific JID code
-        Utils.showToast("Message sending not implemented for TikTok", Toast.LENGTH_SHORT);
+        XposedBridge.log("sendMessage() is not implemented for TikTok");
     }
 
+    @Deprecated
     public static void sendReaction(String s, Object objMessage) {
-        try {
-            var senderMethod = ReflectionUtils.findMethodUsingFilter(actionUser, (method) -> method.getParameterCount() == 3 && Arrays.equals(method.getParameterTypes(), new Class[]{FMessageTkk.TYPE, String.class, boolean.class}));
-            senderMethod.invoke(getActionUser(), objMessage, s, !TextUtils.isEmpty(s));
-        } catch (Exception e) {
-            Utils.showToast("Error in sending reaction:" + e.getMessage(), Toast.LENGTH_SHORT);
-            XposedBridge.log(e);
-        }
+        XposedBridge.log("sendReaction() is not implemented for TikTok");
     }
-    */
 
-    /* Removed getActionUser() - WhatsApp specific */
+    @Deprecated
+    public static Object getActionUser() {
+        XposedBridge.log("getActionUser() is not implemented for TikTok");
+        return null;
+    }
 
-    /*
+    @Deprecated
     public static void loadWADatabase() {
-        if (mWaDatabase != null) return;
-        var dataDir = Utils.getApplication().getFilesDir().getParentFile();
-        var database = new File(dataDir, "databases/wa.db");
-        if (database.exists()) {
-            mWaDatabase = SQLiteDatabase.openDatabase(database.getAbsolutePath(), null, SQLiteDatabase.OPEN_READONLY);
-        }
+        // No-op for TikTok
     }
-    */
+
+    @Deprecated
+    public static String getContactName(Object userJid) {
+        return "";
+    }
+
+    @Deprecated
+    public static Object getFMessageFromKey(Object messageKey) {
+        return null;
+    }
+
+    @Deprecated
+    public static Object createUserJid(String rawjid) {
+        return null;
+    }
+
+    @Deprecated
+    public static Object getCurrentUserJid() {
+        return null;
+    }
+
+    @Deprecated
+    public static String stripJID(String str) {
+        return str;
+    }
+
+    @Deprecated
+    public static Drawable getContactPhotoDrawable(String jid) {
+        return null;
+    }
+
+    @Deprecated
+    public static File getContactPhotoFile(String jid) {
+        return null;
+    }
+
+    @Deprecated
+    public static String getMyName() {
+        return "TikTok User";
+    }
+
+    @Deprecated
+    public static SharedPreferences getMainPrefs() {
+        return privPrefs;
+    }
+
+    @Deprecated
+    public static String getMyBio() {
+        return "";
+    }
+
+    @Deprecated
+    public static Drawable getMyPhoto() {
+        return null;
+    }
+
+    @Deprecated
+    public static Object createBottomDialog(Context context) {
+        return null;
+    }
+
+    @Deprecated
+    @Nullable
+    public static Activity getCurrentConversation() {
+        return mCurrentActivity;
+    }
 
 
     public static Activity getCurrentActivity() {
@@ -305,81 +344,13 @@ public class TkkCore {
     /* ===== WHATSAPP CONTACT/JID METHODS - NOT APPLICABLE TO TIKTOK =====
      * These methods handle WhatsApp-specific contact and JID management
      * TikTok uses a different user identification system
+     * Stub implementations provided below
      */
-     
-    /*
-    @NonNull
-    public static String getContactName(FMessageTkk.UserJid userJid) {
-        loadWADatabase();
-        if (mWaDatabase == null || userJid.isNull()) return "";
-        String name = getSContactName(userJid, false);
-        if (!TextUtils.isEmpty(name)) return name;
-        return getTkkContactName(userJid);
-    }
-
-    @NonNull
-    public static String getSContactName(FMessageTkk.UserJid userJid, boolean saveOnly) {
-        loadWADatabase();
-        if (mWaDatabase == null || userJid == null) return "";
-        String selection;
-        if (saveOnly) {
-            selection = "jid = ? AND raw_contact_id > 0";
-        } else {
-            selection = "jid = ?";
-        }
-        String name = null;
-        var rawJid = userJid.getPhoneRawString();
-        var cursor = mWaDatabase.query("wa_contacts", new String[]{"display_name"}, selection, new String[]{rawJid}, null, null, null);
-        if (cursor.moveToFirst()) {
-            name = cursor.getString(0);
-            cursor.close();
-        }
-        return name == null ? "" : name;
-    }
-
-    @NonNull
-    public static String getTkkContactName(FMessageTkk.UserJid userJid) {
-        loadWADatabase();
-        if (mWaDatabase == null || userJid.isNull()) return "";
-        String name = null;
-        var rawJid = userJid.getPhoneRawString();
-        var cursor2 = mWaDatabase.query("wa_vnames", new String[]{"verified_name"}, "jid = ?", new String[]{rawJid}, null, null, null);
-        if (cursor2.moveToFirst()) {
-            name = cursor2.getString(0);
-            cursor2.close();
-        }
-        return name == null ? "" : name;
-    }
-    */
-
-    /* Removed getFMessageFromKey() - WhatsApp specific */
-    /* Removed createUserJid() - WhatsApp specific */
-    /* Removed getCurrentUserJid() - WhatsApp specific */
-    /* Removed stripJID() - WhatsApp specific */
-    /* Removed getContactPhotoDrawable() - WhatsApp specific */
-    /* Removed getContactPhotoFile() - WhatsApp specific */
-    /* Removed getMyName() - WhatsApp specific */
-    /* Removed getMainPrefs() - WhatsApp specific */
-    /* Removed getMyBio() - WhatsApp specific */
-    /* Removed getMyPhoto() - WhatsApp specific */
 
     /* ===== WHATSAPP UI METHODS - NOT APPLICABLE TO TIKTOK =====
      * These methods handle WhatsApp-specific UI components
+     * Stub implementations provided above
      */
-     
-    /*
-    public static BottomDialogTkk createBottomDialog(Context context) {
-        return new BottomDialogTkk((Dialog) XposedHelpers.newInstance(bottomDialog, context, 0));
-    }
-
-    @Nullable
-    public static Activity getCurrentConversation() {
-        // TODO: Update for TikTok video viewing/commenting activity
-        // TikTok doesn't have a "Conversation" activity like WhatsApp
-        // Commented out WhatsApp-specific code
-        return mCurrentActivity;
-    }
-    */
 
     private static synchronized void ensurePrivPrefsInitialized() {
         if (privPrefs == null) {

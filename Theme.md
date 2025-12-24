@@ -1,7 +1,7 @@
-# Instructions for Customizing CSS
+# Instructions for Customizing TikTok CSS
 
-Custom CSS is used to alter the display properties of the screen. Follow the instructions below to
-customize the appearance of your application.
+Custom CSS is used to alter the display properties of TikTok's interface. Follow the instructions below to
+customize the appearance of the TikTok application.
 
 ## Obtaining IDs or Relative Paths
 
@@ -54,8 +54,8 @@ bubble_left = #0000a0
 change_dpi = 420
 */
 
-/* Target specific class with ID */
-.com.whatsapp.HomeActivity #conversations_row_contact_name {
+/* Target specific TikTok class with ID */
+.com.ss.android.ugc.aweme.main.MainActivity #video_title {
     color: #FFFFFF;
     font-size: 16px;
 }
@@ -122,7 +122,7 @@ change_dpi = 420
 You can target elements using different selectors:
 
 * Direct ID targeting: #elementID
-* Class with ID targeting: com.whatsapp.ClassName #elementID
+* Class with ID targeting: com.ss.android.ugc.aweme.ClassName #elementID
 * Element type with attributes: TextView:nth-child(1) or ImageView:contains(text)
 
 Follow these instructions to customize the appearance of your application as needed.

@@ -2413,4 +2413,215 @@ public class Unobfuscator {
             return null;
         });
     }
+
+    /**
+     * Load TikTok LiveStream class
+     * Based on smali analysis: com.ss.android.ugc.aweme.live.*
+     */
+    public synchronized static Class<?> loadTikTokLiveStreamClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, () -> {
+            // Try standard class name first
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.live.LivePlayActivity", classLoader);
+            } catch (Exception ignored) {}
+
+            // Try alternate names
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.live.LiveRoomActivity", classLoader);
+            } catch (Exception ignored) {}
+
+            // Use DexKit to find live stream class
+            ClassMatcher matcher = ClassMatcher.create()
+                    .className("com.ss.android.ugc.aweme.live", StringMatchType.Contains);
+
+            ClassDataList result = dexkit.findClass(FindClass.create().matcher(matcher));
+            if (!result.isEmpty()) {
+                return result.get(0).getInstance(classLoader);
+            }
+            throw new Exception("LiveStream class not found");
+        });
+    }
+
+    /**
+     * Load TikTok Comment class
+     * Based on smali analysis: com.ss.android.ugc.aweme.comment.model.Comment
+     */
+    public synchronized static Class<?> loadTikTokCommentClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, () -> {
+            // Try standard class name
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.comment.model.Comment", classLoader);
+            } catch (Exception ignored) {}
+
+            // Use DexKit to find comment class
+            ClassMatcher matcher = ClassMatcher.create()
+                    .className("comment", StringMatchType.Contains)
+                    .fieldCount(10, 50); // Comment class has multiple fields
+
+            ClassDataList result = dexkit.findClass(FindClass.create().matcher(matcher));
+            if (!result.isEmpty()) {
+                // Find class with typical comment fields
+                for (ClassData classData : result) {
+                    try {
+                        Class<?> clazz = classData.getInstance(classLoader);
+                        if (clazz.getName().contains("comment") && 
+                            clazz.getName().contains("model")) {
+                            return clazz;
+                        }
+                    } catch (Exception ignored) {}
+                }
+            }
+            throw new Exception("Comment class not found");
+        });
+    }
+
+    /**
+     * Load TikTok Profile/User class
+     * Based on smali analysis: com.ss.android.ugc.aweme.profile.model.User
+     */
+    public synchronized static Class<?> loadTikTokProfileClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, () -> {
+            // Try standard class names
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.profile.model.User", classLoader);
+            } catch (Exception ignored) {}
+
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.user.model.User", classLoader);
+            } catch (Exception ignored) {}
+
+            // Use DexKit to find user profile class
+            ClassMatcher matcher = ClassMatcher.create()
+                    .className("User", StringMatchType.Contains)
+                    .addMethod(MethodMatcher.create().name("getUid"))
+                    .addMethod(MethodMatcher.create().name("getNickname"));
+
+            ClassDataList result = dexkit.findClass(FindClass.create().matcher(matcher));
+            if (!result.isEmpty()) {
+                return result.get(0).getInstance(classLoader);
+            }
+            throw new Exception("Profile/User class not found");
+        });
+    }
+
+    /**
+     * Load TikTok Analytics/Tracker class
+     * Based on smali analysis: com.ss.android.ugc.aweme.analytics.*
+     */
+    public synchronized static Class<?> loadTikTokAnalyticsClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, () -> {
+            // Try standard class names
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.analytics.AnalyticsHelper", classLoader);
+            } catch (Exception ignored) {}
+
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.app.api.Api", classLoader);
+            } catch (Exception ignored) {}
+
+            // Use DexKit to find analytics class
+            MethodMatcher methodMatcher = new MethodMatcher();
+            methodMatcher.addUsingString("analytics", StringMatchType.Contains);
+            methodMatcher.addUsingString("track", StringMatchType.Contains);
+
+            MethodDataList result = dexkit.findMethod(FindMethod.create().matcher(methodMatcher));
+            if (!result.isEmpty()) {
+                return result.get(0).getMethodInstance(classLoader).getDeclaringClass();
+            }
+            throw new Exception("Analytics class not found");
+        });
+    }
+
+    /**
+     * Load TikTok Feed Filter/Recommendation class
+     * Based on smali analysis: com.ss.android.ugc.aweme.feed.model.FeedItemList
+     */
+    public synchronized static Class<?> loadTikTokFeedFilterClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, () -> {
+            // Try standard class names
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.feed.model.FeedItemList", classLoader);
+            } catch (Exception ignored) {}
+
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.feed.adapter.FeedAdapter", classLoader);
+            } catch (Exception ignored) {}
+
+            // Use DexKit to find feed filter class
+            ClassMatcher matcher = ClassMatcher.create()
+                    .className("feed", StringMatchType.Contains)
+                    .addMethod(MethodMatcher.create().returnType(List.class));
+
+            ClassDataList result = dexkit.findClass(FindClass.create().matcher(matcher));
+            if (!result.isEmpty()) {
+                // Look for class with feed/list in name
+                for (ClassData classData : result) {
+                    try {
+                        Class<?> clazz = classData.getInstance(classLoader);
+                        if (clazz.getName().toLowerCase().contains("feed") && 
+                            (clazz.getName().toLowerCase().contains("list") || 
+                             clazz.getName().toLowerCase().contains("adapter"))) {
+                            return clazz;
+                        }
+                    } catch (Exception ignored) {}
+                }
+            }
+            throw new Exception("Feed filter class not found");
+        });
+    }
+
+    /**
+     * Load method to track live stream playback
+     */
+    public synchronized static Method loadTikTokLiveStreamPlayMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> liveStreamClass = loadTikTokLiveStreamClass(classLoader);
+            if (liveStreamClass == null) throw new Exception("LiveStream class not found");
+
+            // Try common method names for starting live stream
+            for (String methodName : new String[]{"startPlay", "playLive", "onLiveStart", "startLiveStream"}) {
+                try {
+                    return liveStreamClass.getDeclaredMethod(methodName);
+                } catch (NoSuchMethodException ignored) {}
+            }
+
+            // Search for play method
+            for (Method method : liveStreamClass.getDeclaredMethods()) {
+                if (method.getName().toLowerCase().contains("play") || 
+                    method.getName().toLowerCase().contains("start")) {
+                    return method;
+                }
+            }
+            throw new Exception("Live stream play method not found");
+        });
+    }
+
+    /**
+     * Load method to post or view comments
+     */
+    public synchronized static Method loadTikTokCommentPostMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> commentClass = loadTikTokCommentClass(classLoader);
+            if (commentClass == null) throw new Exception("Comment class not found");
+
+            // Try common method names
+            for (String methodName : new String[]{"postComment", "sendComment", "submitComment"}) {
+                for (Method method : commentClass.getDeclaredMethods()) {
+                    if (method.getName().equals(methodName)) {
+                        return method;
+                    }
+                }
+            }
+
+            // Search for post/send method
+            for (Method method : commentClass.getDeclaredMethods()) {
+                if ((method.getName().toLowerCase().contains("post") || 
+                     method.getName().toLowerCase().contains("send")) &&
+                    method.getParameterCount() > 0) {
+                    return method;
+                }
+            }
+            throw new Exception("Comment post method not found");
+        });
+    }
 }

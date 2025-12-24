@@ -31,7 +31,7 @@ jobs:
         
       - name: Build Release APKs
         run: |
-          ./gradlew assembleWhatsappRelease assembleBusinessRelease --stacktrace
+          ./gradlew assembleTiktokRelease assembleTiktok_liteRelease --stacktrace
           
       - name: Get version info
         id: version
@@ -42,15 +42,15 @@ jobs:
           echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_OUTPUT
           echo "VERSION_CODE=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_OUTPUT
-          echo "RELEASE_NAME=WaEnhancer-${VERSION_NAME}-${SHORT_SHA}" >> $GITHUB_OUTPUT
+          echo "RELEASE_NAME=TikTokEnhancer-${VERSION_NAME}-${SHORT_SHA}" >> $GITHUB_OUTPUT
           
       - name: Rename APK files
         run: |
           mkdir -p release-apks
-          cp app/build/outputs/apk/whatsapp/release/app-whatsapp-release.apk \
-             release-apks/WaEnhancer-${{ steps.version.outputs.VERSION_NAME }}-whatsapp.apk
-          cp app/build/outputs/apk/business/release/app-business-release.apk \
-             release-apks/WaEnhancer-${{ steps.version.outputs.VERSION_NAME }}-business.apk
+          cp app/build/outputs/apk/tiktok/release/app-tiktok-release.apk \
+             release-apks/TikTokEnhancer-${{ steps.version.outputs.VERSION_NAME }}-tiktok.apk
+          cp app/build/outputs/apk/tiktok_lite/release/app-tiktok_lite-release.apk \
+             release-apks/TikTokEnhancer-${{ steps.version.outputs.VERSION_NAME }}-tiktok-lite.apk
              
       - name: Generate checksums
         run: |
@@ -58,18 +58,18 @@ jobs:
           sha256sum *.apk > checksums.txt
           cat checksums.txt
           
-      - name: Upload WhatsApp Release APK
+      - name: Upload TikTok Release APK
         uses: actions/upload-artifact@v5
         with:
-          name: WaEnhancer-WhatsApp-${{ steps.version.outputs.SHORT_SHA }}
-          path: release-apks/WaEnhancer-${{ steps.version.outputs.VERSION_NAME }}-whatsapp.apk
+          name: TikTokEnhancer-TikTok-${{ steps.version.outputs.SHORT_SHA }}
+          path: release-apks/TikTokEnhancer-${{ steps.version.outputs.VERSION_NAME }}-tiktok.apk
           retention-days: 90
           
-      - name: Upload Business Release APK
+      - name: Upload TikTok Lite Release APK
         uses: actions/upload-artifact@v5
         with:
-          name: WaEnhancer-Business-${{ steps.version.outputs.SHORT_SHA }}
-          path: release-apks/WaEnhancer-${{ steps.version.outputs.VERSION_NAME }}-business.apk
+          name: TikTokEnhancer-TikTokLite-${{ steps.version.outputs.SHORT_SHA }}
+          path: release-apks/TikTokEnhancer-${{ steps.version.outputs.VERSION_NAME }}-tiktok-lite.apk
           retention-days: 90
           
       - name: Upload Checksums
@@ -98,18 +98,18 @@ jobs:
         run: |
           if [ ! -z "$BOT_TOKEN" ]; then
             CHANGELOG=$(cat changelog.txt | head -20)
-            MESSAGE="🚀 *WaEnhancer ${VERSION} Release*%0A%0A${CHANGELOG}"
+            MESSAGE="🚀 *TikTokEnhancer ${VERSION} Release*%0A%0A${CHANGELOG}"
             
-            # Send WhatsApp APK
+            # Send TikTok APK
             curl -F chat_id="${CHANNEL_ID}" \
-                 -F document=@"release-apks/WaEnhancer-${VERSION}-whatsapp.apk" \
-                 -F caption="📱 WaEnhancer ${VERSION} - WhatsApp" \
+                 -F document=@"release-apks/TikTokEnhancer-${VERSION}-tiktok.apk" \
+                 -F caption="📱 TikTokEnhancer ${VERSION} - TikTok" \
                  "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
                  
-            # Send Business APK
+            # Send TikTok Lite APK
             curl -F chat_id="${CHANNEL_ID}" \
-                 -F document=@"release-apks/WaEnhancer-${VERSION}-business.apk" \
-                 -F caption="💼 WaEnhancer ${VERSION} - Business%0A%0A${MESSAGE}" \
+                 -F document=@"release-apks/TikTokEnhancer-${VERSION}-tiktok-lite.apk" \
+                 -F caption="💡 TikTokEnhancer ${VERSION} - TikTok Lite%0A%0A${MESSAGE}" \
                  "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
           fi
           

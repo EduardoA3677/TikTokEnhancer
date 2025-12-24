@@ -2,6 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- TikTok Customization - Removed WhatsApp-specific options -->
     <PreferenceCategory
         app:iconSpaceReserved="false"
         app:title="@string/general">
@@ -31,52 +32,6 @@
             app:key="text_color"
             app:summary="@string/default_color"
             app:title="@string/text_color" />
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="wallpaper"
-            app:summary="@string/wallpaper_in_home_screen_sum"
-            app:title="@string/wallpaper_in_home_screen" />
-
-        <com.wmods.tkkenhancer.preference.FileSelectPreference
-            android:entryValues="@array/image_picker"
-            android:summary="@string/wallpaper_not_selected"
-            app:dependency="wallpaper"
-            app:key="wallpaper_file"
-            app:title="@string/select_wallpaper" />
-
-        <SeekBarPreference
-            android:defaultValue="60"
-            android:max="100"
-            app:dependency="wallpaper"
-            app:key="wallpaper_alpha"
-            app:min="0"
-            app:showSeekBarValue="true"
-            app:title="@string/wallpaper_transparency" />
-
-        <SeekBarPreference
-            android:defaultValue="75"
-            android:max="100"
-            app:dependency="wallpaper"
-            app:key="wallpaper_alpha_toolbar"
-            app:min="0"
-            app:showSeekBarValue="true"
-            app:title="@string/toolbar_transparency" />
-
-        <SeekBarPreference
-            android:defaultValue="15"
-            android:max="100"
-            app:dependency="wallpaper"
-            app:key="wallpaper_alpha_navigation"
-            app:min="0"
-            app:showSeekBarValue="true"
-            app:title="@string/navigation_transparency" />
-
-        <MultiSelectListPreference
-            app:entries="@array/tabshide_contents"
-            app:entryValues="@array/tabshide_values"
-            app:key="hidetabs"
-            app:summary="@string/hide_tabs_on_home_sum"
-            app:title="@string/hide_tabs_on_home" />
 
         <rikka.material.preference.MaterialSwitchPreference
             android:defaultValue="true"
@@ -109,110 +64,6 @@
             android:summary="@string/manage_theme_sum"
             android:title="@string/theme_manager" />
 
-        <ListPreference
-            android:entries="@array/animations_names"
-            app:defaultValue="default"
-            app:entryValues="@array/animations_values"
-            app:key="animation_list"
-            app:summary="@string/list_animations_home_screen_sum"
-            app:title="@string/list_animations_home_screen" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
-        app:title="@string/conversation">
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="admin_grp"
-            app:summary="@string/show_admin_group_icon_sum"
-            app:title="@string/show_admin_group_icon" />
-
-        <rikka.material.preference.MaterialSwitchPreference
-            android:summary="@string/new_context_menu_ui_sum"
-            app:key="floatingmenu"
-            app:title="@string/new_context_menu_ui" />
-
-        <rikka.material.preference.MaterialSwitchPreference
-            android:defaultValue="true"
-            app:key="animation_emojis"
-            app:summary="@string/animation_emojis_sum"
-            app:title="@string/animation_emojis" />
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="bubble_color"
-            app:summary="@string/change_blubble_color_sum"
-            app:title="@string/change_bubble_colors" />
-
-        <com.jaredrummler.android.colorpicker.ColorPreferenceCompat
-            app:cpv_showAlphaSlider="true"
-            app:dependency="bubble_color"
-            app:key="bubble_left"
-            app:summary="@string/default_color"
-            app:title="@string/bubble_left" />
-
-        <com.jaredrummler.android.colorpicker.ColorPreferenceCompat
-            app:cpv_showAlphaSlider="true"
-            app:dependency="bubble_color"
-            app:key="bubble_right"
-            app:summary="@string/default_color"
-            app:title="@string/bubble_right" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
-        app:title="@string/home_screen">
-
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="menuwicon"
-            app:summary="@string/menuwicon_sum"
-            app:title="@string/menuwicon" />
-
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="novaconfig"
-            app:summary="@string/novaconfig_sum"
-            app:title="@string/novaconfig" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
-        app:title="@string/status">
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="igstatus"
-            app:summary="@string/igstatus_on_home_screen_sum"
-            app:title="@string/igstatus_on_home_screen" />
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="channels"
-            app:summary="@string/disable_channels_sum"
-            app:title="@string/disable_channels" />
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="removechannel_rec"
-            app:summary="@string/remove_channel_recomendations_sum"
-            app:title="@string/remove_channel_recomendations" />
-
-        <ListPreference
-            android:defaultValue="0"
-            android:entries="@array/status_style_entries"
-            android:entryValues="@array/status_style_values"
-            app:key="status_style"
-            app:summary="@string/style_of_stories_status_sum"
-            app:title="@string/style_of_stories_status" />
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="oldstatus"
-            app:summary="@string/old_statuses_sum"
-            app:title="@string/old_statuses" />
-
-        <rikka.material.preference.MaterialSwitchPreference
-            app:key="statuscomposer"
-            app:summary="@string/custom_colors_for_text_status_sum"
-            app:title="@string/custom_colors_for_text_status" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -4,7 +4,7 @@
 ![Version](https://img.shields.io/badge/version-1.5.2--DEV-green)
 ![License](https://img.shields.io/badge/license-GPL--3.0-orange)
 
-An Xposed module that enhances TikTok with additional features including ad blocking, watermark-free video downloads, and auto-play control.
+An Xposed module that enhances TikTok with additional features including ad blocking, watermark-free video downloads, auto-play control, live stream support, and comprehensive privacy controls.
 
 ## 🌟 Features
 
@@ -15,6 +15,7 @@ Download TikTok videos without the TikTok watermark. This feature hooks into Tik
 - Intercepts TikTok's video model to find the `download_no_watermark_addr` field
 - Provides access to download videos in their original quality without branding
 - Hooks into TikTok's download service for seamless integration
+- Story video download support included
 
 ### 2. Ad Blocker 🚫
 Block advertisements and sponsored content from your TikTok feed.
@@ -24,12 +25,14 @@ Block advertisements and sponsored content from your TikTok feed.
 - Sponsored posts
 - Commercial content (commercialize API)
 - Ad splash screens
+- Ad traffic tracking
 
 **How it works:**
 - Filters feed items marked as ads
 - Blocks commercialize service calls
 - Intercepts ad loading mechanisms
 - Removes ad-related content before display
+- Direct field access for improved detection
 
 ### 3. Auto-Play Control ⏯️
 Control video auto-play behavior to save data and battery.
@@ -45,7 +48,82 @@ Control video auto-play behavior to save data and battery.
 - Intercepts auto-play method calls
 - Overrides app-level auto-play settings
 
-### 4. Debug Feature 🐛
+### 4. Live Stream Download 📡 NEW
+Download and capture live stream content.
+
+**Features:**
+- Intercept live stream URLs
+- Capture streaming content
+- Access live stream metadata
+
+**How it works:**
+- Hooks into live stream playback methods
+- Captures stream URLs for download
+- Monitors live stream activity
+
+### 5. Comment Enhancer 💬 NEW
+Enhanced comment functionality and viewing.
+
+**Features:**
+- View deleted or hidden comments
+- Enhanced comment filtering
+- Comment history tracking
+
+**How it works:**
+- Bypasses comment deletion checks
+- Intercepts comment loading
+- Provides access to hidden content
+
+### 6. Profile Enhancer 👤 NEW
+Enhanced profile viewing and interaction.
+
+**Features:**
+- Enhanced profile information access
+- View additional profile data
+- Bypass some profile restrictions
+
+**How it works:**
+- Hooks profile viewing methods
+- Intercepts privacy checks
+- Provides enhanced profile data
+
+### 7. Feed Filter 🔍 NEW
+Custom filtering options for your feed.
+
+**Features:**
+- Filter by keywords
+- Filter by hashtags
+- Filter by users
+- Custom content filtering
+
+**How it works:**
+- Intercepts feed loading
+- Applies custom filters
+- Removes unwanted content
+
+### 8. Analytics Blocker 🔒 NEW
+Block TikTok analytics and tracking.
+
+**Features:**
+- Block view tracking
+- Block interaction analytics
+- Prevent telemetry collection
+- Block data gathering
+
+**How it works:**
+- Hooks analytics methods
+- Blocks tracking calls
+- Prevents data collection APIs
+
+### 9. Video Quality Control 🎬
+Control video quality and bitrate selection.
+
+**Features:**
+- Force high quality playback
+- Adjust bitrate settings
+- Enhanced video quality
+
+### 10. Debug Feature 🐛
 Advanced logging and debugging capabilities for development and troubleshooting.
 
 ## 📋 Requirements

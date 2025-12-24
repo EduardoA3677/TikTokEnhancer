@@ -31,7 +31,6 @@
     <string name="colors_customization">Farben anpassen</string>
     <string name="colors_customization_sum">Ändern sie alle Farben von TikTok (Nur Dark-Theme)</string>
     <string name="general">Sonstiges</string>
-    <string name="restart_whatsapp">TikTok neu starten</string>
     <string name="conversation">Konversation</string>
     <string name="primary_color">Hauptfarbe</string>
     <string name="background_color">Hintergrundfarbe</string>
@@ -93,7 +92,6 @@
     <string name="number_with_country_code">+4917600000000</string>
     <string name="message">Nachricht</string>
     <string name="download">Herunterladen</string>
-    <string name="reboot_whatsapp">(Neustart)</string>
     <string name="error_when_saving_try_again">Fehler beim Speichern, versuchen Sie es erneut</string>
     <string name="saved_to">"Speichern unter "</string>
     <string name="hide_tabs_on_home">Registerkarten</string>
@@ -117,8 +115,8 @@
     <string name="module_enabled">Modul aktiviert</string>
     <string name="version_s">Version %s</string>
     <string name="module_disabled">Modul deaktiviert</string>
-    <string name="whatsapp_in_background">TikTok im Hintergrund</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">TikTok läuft nicht oder wurde nicht in Lsposed aktiviert</string>    <string name="restart_tkk">Es ist notwendig, TikTok neu zu starten, damit die Änderungen in Wa Enhancer wirksam werden. Möchten Sie neu starten?</string>
+    <string name="tiktok_in_background">TikTok im Hintergrund</string>
+    <string name="tiktok_is_not_running_or_has_not_been_activated_in_lsposed">TikTok läuft nicht oder wurde nicht in Lsposed aktiviert</string>    <string name="restart_tkk">Es ist notwendig, TikTok neu zu starten, damit die Änderungen in Wa Enhancer wirksam werden. Möchten Sie neu starten?</string>
     <string name="version_s_not_listed">Version %s nicht in unterstützten Versionen aufgelistet!\nBitte verwenden Sie die unterstützte TikTok Version!</string>
     <string name="media">Medien</string>
     <string name="show_button_to_send_blue_tick">Schaltfläche zum Senden von blauen Häkchen</string>
@@ -151,7 +149,7 @@
     <string name="seentick_screen">Schaltfläche im Bildschirm anzeigen</string>
     <string name="verbose_logs">Ausführliche Protokolle für Debugger aktivieren</string>
     <string name="phone_call">Telefon</string>
-    <string name="whatsapp_call">TikTok</string>
+    <string name="tiktok_call">TikTok</string>
     <string name="home_screen">System</string>
     <string name="selection_of_call_type">Anruf über TikTok oder Telefon</string>
     <string name="selection_of_call_type_sum">Zeigt vor dem Telefonat eine Option an, ob der Anruf über das Telefon oder TikTok geführt werden soll</string>

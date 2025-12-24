@@ -39,14 +39,12 @@ public class ResId {
         public static int error_when_saving_try_again;
         public static int msg_text_status_not_downloadable;
         public static int saved_to;
-        public static int restart_whatsapp;
         public static int restart_tkk;
         public static int send_blue_tick;
         public static int sending_read_blue_tick;
         public static int send;
         public static int send_sticker;
         public static int do_you_want_to_send_sticker;
-        public static int whatsapp_call;
         public static int phone_call;
         public static int yes;
         public static int no;

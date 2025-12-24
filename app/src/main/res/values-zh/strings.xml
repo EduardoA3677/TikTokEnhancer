@@ -31,7 +31,6 @@
     <string name="colors_customization">自定义您的颜色</string>
     <string name="colors_customization_sum">更改 TikTok 中的所有颜色（仅适用于深色主题）</string>
     <string name="general">一般</string>
-    <string name="restart_whatsapp">重启 TikTok</string>
     <string name="conversation">聊天界面</string>
     <string name="primary_color">主要颜色</string>
     <string name="background_color">背景颜色</string>
@@ -93,7 +92,6 @@
     <string name="number_with_country_code">带有国家代号的号码</string>
     <string name="message">消息</string>
     <string name="download">下载</string>
-    <string name="reboot_whatsapp">(重启 TikTok)</string>
     <string name="error_when_saving_try_again">保存时出错，请重试</string>
     <string name="saved_to">"保存到 "</string>
     <string name="hide_tabs_on_home">隐藏主页上的导航栏</string>
@@ -117,8 +115,8 @@
     <string name="module_enabled">模块已启用</string>
     <string name="version_s">版本 %s</string>
     <string name="module_disabled">模块已禁用</string>
-    <string name="whatsapp_in_background">TikTok 后台运行中</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">TikTok 未运行或未在 Lsposed 中激活</string>    <string name="restart_tkk">需要重启 TikTok 才能使 Wa Enhancer 中的更改生效。\n\n您要重启吗？</string>
+    <string name="tiktok_in_background">TikTok 后台运行中</string>
+    <string name="tiktok_is_not_running_or_has_not_been_activated_in_lsposed">TikTok 未运行或未在 Lsposed 中激活</string>    <string name="restart_tkk">需要重启 TikTok 才能使 Wa Enhancer 中的更改生效。\n\n您要重启吗？</string>
     <string name="version_s_not_listed">版本 %s 不在支持的版本列表中！\n请使用支持的 TikTok 版本！</string>
     <string name="media">媒体</string>
     <string name="show_button_to_send_blue_tick">显示发送蓝色勾号的按钮</string>
@@ -151,7 +149,7 @@
     <string name="seentick_screen">在界面中显示按钮</string>
     <string name="verbose_logs">为调试器启用详细日志</string>
     <string name="phone_call">手机电话</string>
-    <string name="whatsapp_call">TikTok 语音通话</string>
+    <string name="tiktok_call">TikTok 语音通话</string>
     <string name="home_screen">主页</string>
     <string name="selection_of_call_type">启用语音通话类型选择</string>
     <string name="selection_of_call_type_sum">显示一个选项，让您选择通过手机或 TikTok 拨打电话</string>

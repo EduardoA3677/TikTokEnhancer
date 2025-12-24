@@ -32,7 +32,6 @@
     <string name="colors_customization">Ubah Warna TikTok Anda</string>
     <string name="colors_customization_sum">Ubah semua warna di TikTok Anda (Hanya berfungsi di Tema Gelap)</string>
     <string name="general">Umum</string>
-    <string name="restart_whatsapp">Mulai ulang TikTok</string>
     <string name="conversation">Layar Percakapan</string>
     <string name="primary_color">Warna Primer</string>
     <string name="background_color">Warna latar belakang</string>
@@ -97,7 +96,6 @@
     <string name="number_with_country_code">Nomor dengan kode negara</string>
     <string name="message">Pesan</string>
     <string name="download">Unduh</string>
-    <string name="reboot_whatsapp">(Mulai ulang TikTok)</string>
     <string name="error_when_saving_try_again">Terjadi kesalahan saat menyimpan, coba lagi!</string>
     <string name="saved_to">"Disimpan ke"</string>
     <string name="hide_tabs_on_home">Sembunyikan Tab di Beranda</string>
@@ -121,8 +119,8 @@
     <string name="module_enabled">Module diaktifkan</string>
     <string name="version_s">Versi %s</string>
     <string name="module_disabled">Module dinonaktifkan</string>
-    <string name="whatsapp_in_background">TikTok berjalan dilatar belakang</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">TikTok tidak berjalan atau belum diaktifkan di LSPosed</string>    <string name="restart_tkk">TikTok harus dimulai ulang agar perubahan di Wa Enhancer dapat diterapkan.
+    <string name="tiktok_in_background">TikTok berjalan dilatar belakang</string>
+    <string name="tiktok_is_not_running_or_has_not_been_activated_in_lsposed">TikTok tidak berjalan atau belum diaktifkan di LSPosed</string>    <string name="restart_tkk">TikTok harus dimulai ulang agar perubahan di Wa Enhancer dapat diterapkan.
 
 Apakah Anda ingin mulai ulang TikTok?</string>
     <string name="version_s_not_listed">Versi %s tidak terdaftar dalam versi yang didukung!
@@ -158,7 +156,7 @@ Harap gunakan versi TikTok yang didukung!</string>
     <string name="seentick_screen">Tampilkan tombol di layar</string>
     <string name="verbose_logs">Aktifkan Log Verbose untuk Debugger</string>
     <string name="phone_call">Panggilan Telepon</string>
-    <string name="whatsapp_call">Panggilan TikTok</string>
+    <string name="tiktok_call">Panggilan TikTok</string>
     <string name="home_screen">Layar Beranda</string>
     <string name="selection_of_call_type">Pemilihan Jenis Panggilan</string>
     <string name="selection_of_call_type_sum">Tampilkan opsi untuk memilih panggilan melalui telepon atau TikTok</string>

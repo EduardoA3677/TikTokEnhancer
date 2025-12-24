@@ -91,7 +91,7 @@ public class HomeFragment extends BaseFragment {
 
     @SuppressLint("StringFormatInvalid")
     private void receiverBroadcastTkk(Context context, Intent intent) {
-        binding.statusTitle2.setText(R.string.whatsapp_in_background);
+        binding.statusTitle2.setText(R.string.tiktok_in_background);
         var version = intent.getStringExtra("VERSION");
         var supported_list = Arrays.asList(context.getResources().getStringArray(R.array.supported_versions_tkk));
 
@@ -241,7 +241,7 @@ public class HomeFragment extends BaseFragment {
 
     private void disableTkk(FragmentActivity activity) {
         binding.statusIcon2.setImageResource(R.drawable.ic_round_error_outline_24);
-        binding.statusTitle2.setText(R.string.whatsapp_is_not_running_or_has_not_been_activated_in_lsposed);
+        binding.statusTitle2.setText(R.string.tiktok_is_not_running_or_has_not_been_activated_in_lsposed);
         binding.status2.setCardBackgroundColor(activity.getColor(R.color.material_state_red));
         binding.statusSummary1.setVisibility(View.GONE);
         binding.rebootBtn.setVisibility(View.GONE);

@@ -206,4 +206,22 @@
         <item>10000000</item>
     </string-array>
 
+    <!-- TikTok Quality Level Options -->
+    <string-array name="quality_level_entries">
+        <item>Standard Definition (SD)</item>
+        <item>High Definition (HD - 720p)</item>
+        <item>Full HD (1080p)</item>
+        <item>Ultra HD (2K)</item>
+        <item>4K Ultra HD</item>
+        <item>Auto (Highest Available)</item>
+    </string-array>
+    <string-array name="quality_level_values">
+        <item>sd</item>
+        <item>hd</item>
+        <item>full_hd</item>
+        <item>ultra</item>
+        <item>4k</item>
+        <item>auto</item>
+    </string-array>
+
 </resources>

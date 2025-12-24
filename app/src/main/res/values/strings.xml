@@ -429,6 +429,12 @@
     <string name="download_no_watermark_sum">Download videos without TikTok watermark</string>
     <string name="download_service_hook">Download Service Hook</string>
     <string name="download_service_hook_sum">Intercept download service for enhanced control</string>
+    <string name="hook_download_aweme_service">Hook Download Aweme Service</string>
+    <string name="hook_download_aweme_service_sum">Hook DownloadAwemeVideoServiceImpl.LIZ() method</string>
+    <string name="hook_share_helper">Hook Share Helper</string>
+    <string name="hook_share_helper_sum">Hook ShareHelper classes for custom download from share</string>
+    <string name="hook_network_utils">Hook Network Utils</string>
+    <string name="hook_network_utils_sum">Hook NetworkUtils.downloadVideo() low-level download method</string>
     <string name="story_download">Story Download</string>
     <string name="story_download_sum">Enable downloading user stories</string>
     <string name="tiktok_download_path">TikTok Download Path</string>
@@ -436,12 +442,20 @@
     <string name="tiktok_quality_title">Video Quality</string>
     <string name="video_quality">Enable Quality Control</string>
     <string name="video_quality_sum">Control video quality and bitrate settings</string>
+    <string name="quality_level">Quality Level</string>
+    <string name="quality_level_sum">Select preferred video quality level</string>
     <string name="force_hd_quality">Force HD Quality</string>
     <string name="force_hd_quality_sum">Always select highest quality available</string>
     <string name="force_high_bitrate">Force High Bitrate</string>
     <string name="force_high_bitrate_sum">Force higher bitrate for better quality</string>
     <string name="target_bitrate">Target Bitrate</string>
     <string name="target_bitrate_sum">Select desired video bitrate</string>
+    <string name="hook_rate_setting_model">Hook Rate Setting Model</string>
+    <string name="hook_rate_setting_model_sum">Hook RateSettingCombineModel for quality settings</string>
+    <string name="hook_gear_set">Hook Gear Set</string>
+    <string name="hook_gear_set_sum">Hook GearSet for bitrate gear selection</string>
+    <string name="hook_auto_bitrate_set">Hook Auto Bitrate Set</string>
+    <string name="hook_auto_bitrate_set_sum">Hook AutoBitrateSet for automatic bitrate selection</string>
 
     <string name="tiktok_autoplay_title">Auto-Play Control</string>
     <string name="autoplay_control">Enable Auto-Play Control</string>
@@ -466,6 +480,14 @@
     <string name="hide_profile_visits_sum">Hide when you visit profiles</string>
     <string name="disable_analytics">Disable Analytics</string>
     <string name="disable_analytics_sum">Block TikTok and Firebase analytics</string>
+    <string name="block_firebase_analytics">Block Firebase Analytics</string>
+    <string name="block_firebase_analytics_sum">Block Google Firebase Analytics tracking</string>
+    <string name="block_tiktok_analytics">Block TikTok Analytics</string>
+    <string name="block_tiktok_analytics_sum">Block TikTok\'s internal analytics service</string>
+    <string name="block_telemetry_upload">Block Telemetry Upload</string>
+    <string name="block_telemetry_upload_sum">Prevent telemetry data from being uploaded</string>
+    <string name="block_aweme_analytics">Block Aweme Analytics</string>
+    <string name="block_aweme_analytics_sum">Block analytics from Aweme analytics package</string>
     <string name="block_data_collection">Block Data Collection</string>
     <string name="block_data_collection_sum">Prevent data collection by TikTok</string>
 

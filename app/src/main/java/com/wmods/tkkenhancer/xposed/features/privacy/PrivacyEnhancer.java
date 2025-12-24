@@ -42,7 +42,7 @@ public class PrivacyEnhancer extends Feature {
             hookProfileVisits();
         }
 
-        // Hook analytics
+        // Hook analytics with granular control
         if (prefs.getBoolean("disable_analytics", false)) {
             hookAnalytics();
         }
@@ -197,10 +197,24 @@ public class PrivacyEnhancer extends Feature {
     private void hookAnalytics() {
         try {
             // Hook Firebase Analytics first (verified in smali)
-            hookFirebaseAnalytics();
+            if (prefs.getBoolean("block_firebase_analytics", true)) {
+                hookFirebaseAnalytics();
+            }
             
             // Then hook TikTok analytics
-            hookTikTokAnalytics();
+            if (prefs.getBoolean("block_tiktok_analytics", true)) {
+                hookTikTokAnalytics();
+            }
+            
+            // Hook Aweme analytics package
+            if (prefs.getBoolean("block_aweme_analytics", true)) {
+                hookAwemeAnalytics();
+            }
+            
+            // Hook telemetry upload
+            if (prefs.getBoolean("block_telemetry_upload", true)) {
+                hookTelemetryUpload();
+            }
             
         } catch (Throwable e) {
             log(e);
@@ -403,6 +417,131 @@ public class PrivacyEnhancer extends Feature {
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             // Block data collection
                             logDebug("Blocked data collection: " + methodName);
+                            param.setResult(null);
+                        }
+                    });
+                }
+            }
+        } catch (Throwable e) {
+            log(e);
+        }
+    }
+
+    /**
+     * Hook Aweme analytics package
+     * Location: ./smali_classes12/com/ss/android/ugc/aweme/analytics/*
+     */
+    private void hookAwemeAnalytics() {
+        try {
+            // Try to find Aweme analytics classes
+            String[] awemeAnalyticsClasses = {
+                "com.ss.android.ugc.aweme.analytics.Analytics",
+                "com.ss.android.ugc.aweme.analytics.AnalyticsService",
+                "com.ss.android.ugc.aweme.analytics.EventTracker",
+                "com.ss.android.ugc.aweme.im.service.analytics.IMAnalytics"
+            };
+
+            for (String className : awemeAnalyticsClasses) {
+                try {
+                    Class<?> analyticsClass = XposedHelpers.findClass(className, classLoader);
+                    if (analyticsClass != null) {
+                        logDebug("Found Aweme analytics class: " + className);
+                        hookAwemeAnalyticsMethods(analyticsClass);
+                    }
+                } catch (Throwable e) {
+                    logDebug("Aweme analytics class not found: " + className);
+                }
+            }
+
+        } catch (Throwable e) {
+            log(e);
+        }
+    }
+
+    /**
+     * Hook Aweme analytics methods
+     */
+    private void hookAwemeAnalyticsMethods(Class<?> analyticsClass) {
+        try {
+            Method[] methods = analyticsClass.getDeclaredMethods();
+            for (Method method : methods) {
+                String methodName = method.getName();
+
+                // Block all Aweme analytics calls
+                if (methodName.toLowerCase().contains("track") ||
+                    methodName.toLowerCase().contains("log") ||
+                    methodName.toLowerCase().contains("event") ||
+                    methodName.toLowerCase().contains("report") ||
+                    methodName.toLowerCase().contains("send")) {
+
+                    logDebug("Hooking Aweme analytics method: " + methodName);
+
+                    XposedBridge.hookMethod(method, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            // Block Aweme analytics
+                            logDebug("Blocked Aweme analytics call: " + methodName);
+                            param.setResult(null);
+                        }
+                    });
+                }
+            }
+        } catch (Throwable e) {
+            log(e);
+        }
+    }
+
+    /**
+     * Hook telemetry upload methods
+     */
+    private void hookTelemetryUpload() {
+        try {
+            // Try to find telemetry upload classes
+            String[] telemetryClasses = {
+                "com.ss.android.ugc.aweme.uploader.TelemetryUploader",
+                "com.ss.android.ugc.aweme.net.TelemetryService",
+                "com.bytedance.ies.ugc.aweme.network.TelemetryManager"
+            };
+
+            for (String className : telemetryClasses) {
+                try {
+                    Class<?> telemetryClass = XposedHelpers.findClass(className, classLoader);
+                    if (telemetryClass != null) {
+                        logDebug("Found telemetry class: " + className);
+                        hookTelemetryMethods(telemetryClass);
+                    }
+                } catch (Throwable e) {
+                    logDebug("Telemetry class not found: " + className);
+                }
+            }
+
+        } catch (Throwable e) {
+            log(e);
+        }
+    }
+
+    /**
+     * Hook telemetry methods
+     */
+    private void hookTelemetryMethods(Class<?> telemetryClass) {
+        try {
+            Method[] methods = telemetryClass.getDeclaredMethods();
+            for (Method method : methods) {
+                String methodName = method.getName();
+
+                // Block telemetry uploads
+                if (methodName.toLowerCase().contains("upload") ||
+                    methodName.toLowerCase().contains("send") ||
+                    methodName.toLowerCase().contains("post") ||
+                    methodName.toLowerCase().contains("submit")) {
+
+                    logDebug("Hooking telemetry method: " + methodName);
+
+                    XposedBridge.hookMethod(method, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            // Block telemetry upload
+                            logDebug("Blocked telemetry upload: " + methodName);
                             param.setResult(null);
                         }
                     });

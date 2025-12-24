@@ -4,8 +4,15 @@
 
     <color name="primary_text_material">@color/abc_primary_text_material_light</color>
 
+    <!-- TikTok Brand Colors -->
+    <color name="tiktok_pink">#FE2C55</color>
+    <color name="tiktok_cyan">#25F4EE</color>
+    <color name="tiktok_black">#010101</color>
+    <color name="tiktok_white">#FFFFFF</color>
+    
+    <!-- App Branding -->
     <color name="ic_launcher_foreground">#FFFFFF</color>
-    <color name="ic_launcher_background">#F48FB1</color>
+    <color name="ic_launcher_background">#FE2C55</color>
 
     <color name="material_state_yellow">@color/material_yellow_A400</color>
     <color name="material_state_green">@color/material_green_A400</color>

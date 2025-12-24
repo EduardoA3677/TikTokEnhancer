@@ -102,7 +102,6 @@ public class ProfileIconHider extends Feature {
                         
                         // Check if this is an icon we should hide
                         if (shouldHideView(imageView)) {
-                            logDebug("Preventing icon load for: " + imageView.getClass().getSimpleName());
                             imageView.setVisibility(View.GONE);
                             param.setResult(null);
                         }

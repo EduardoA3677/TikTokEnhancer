@@ -113,7 +113,6 @@ public class RewardsIconHider extends Feature {
                             if (isRewardRelated(fab)) {
                                 // Force to GONE
                                 param.args[0] = View.GONE;
-                                logDebug("Hidden reward FloatingActionButton");
                             }
                         }
                     }
@@ -220,7 +219,6 @@ public class RewardsIconHider extends Feature {
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         // Force to GONE
                         param.args[0] = View.GONE;
-                        logDebug("Hidden reward view via setVisibility");
                     }
                 }
             );
@@ -237,7 +235,6 @@ public class RewardsIconHider extends Feature {
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             // Prevent showing
                             param.setResult(null);
-                            logDebug("Blocked reward view show method");
                         }
                     });
                 }
@@ -337,7 +334,6 @@ public class RewardsIconHider extends Feature {
             // Check if current view is reward-related
             if (isRewardRelated(view)) {
                 view.setVisibility(View.GONE);
-                logDebug("Hidden reward view: " + view.getClass().getSimpleName() + " at depth " + depth);
             }
             
             // Check children if it's a ViewGroup

@@ -57,7 +57,6 @@ public class AdBlocker extends Feature {
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         // Always return false to hide ads
                         param.setResult(false);
-                        logDebug("Blocked ad via isAd()");
                     }
                 }
             );
@@ -86,7 +85,6 @@ public class AdBlocker extends Feature {
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         // Always return false to block ad traffic
                         param.setResult(false);
-                        logDebug("Blocked ad traffic via isAdTraffic()");
                     }
                 }
             );

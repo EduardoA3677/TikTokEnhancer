@@ -224,7 +224,12 @@ public class FeatureLoader {
 
                     new AlertDialogTkk(activity)
                             .setTitle(activity.getString(ResId.string.error_detected))
-                            .setMessage(activity.getString(ResId.string.version_error) + msg + "\n\nCurrent Version: " + currentVersion + "\nSupported Versions:\n" + String.join("\n", supportedVersions))
+                            .setMessage(activity.getString(ResId.string.version_error) + msg + 
+                                "\n\nCurrent Version: " + currentVersion + 
+                                "\nSupported Versions: " + 
+                                (supportedVersions != null && !supportedVersions.isEmpty() 
+                                    ? String.join(", ", supportedVersions) 
+                                    : String.join(", ", FALLBACK_VERSIONS)))
                             .setPositiveButton(activity.getString(ResId.string.copy_to_clipboard), (dialog, which) -> {
                                 var clipboard = (ClipboardManager) mApp.getSystemService(Context.CLIPBOARD_SERVICE);
                                 ClipData clip = ClipData.newPlainText("text", String.join("\n", list.stream().map(ErrorItem::toString).toArray(String[]::new)));

@@ -24,7 +24,7 @@ public class Patch {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 var pkg = (String) XposedHelpers.callMethod(param.args[0], "getPackageName");
-                if (Objects.equals(pkg, FeatureLoader.PACKAGE_TKK) || Objects.equals(pkg, FeatureLoader.PACKAGE_BUSINESS))
+                if (Objects.equals(pkg, FeatureLoader.PACKAGE_TKK))
                     param.setResult(null);
             }
         };
@@ -33,7 +33,7 @@ public class Patch {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 var pkg = (String) XposedHelpers.callMethod(param.args[0], "getPackageName");
-                if (Objects.equals(pkg, FeatureLoader.PACKAGE_TKK) || Objects.equals(pkg, FeatureLoader.PACKAGE_BUSINESS))
+                if (Objects.equals(pkg, FeatureLoader.PACKAGE_TKK))
                     param.setResult(true);
             }
         };
@@ -86,7 +86,7 @@ public class Patch {
                     public void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                         Object packageInfoLite = methodHookParam.args[0];
                         var packageName = XposedHelpers.getObjectField(packageInfoLite, "packageName");
-                        if (packageName == FeatureLoader.PACKAGE_TKK || packageName == FeatureLoader.PACKAGE_BUSINESS) {
+                        if (packageName == FeatureLoader.PACKAGE_TKK) {
                             Field field = packageClazz.getField("mVersionCode");
                             field.setAccessible(true);
                             field.set(packageInfoLite, 0);

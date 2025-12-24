@@ -58,10 +58,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onReceive(Context context, Intent intent) {
                 try {
-                    if (FeatureLoader.PACKAGE_TKK.equals(intent.getStringExtra("PKG")))
-                        receiverBroadcastTkk(context, intent);
-                    else
-                        receiverBroadcastBusiness(context, intent);
+                    receiverBroadcastTkk(context, intent);
                 } catch (Exception ignored) {
                 }
             }
@@ -79,11 +76,6 @@ public class HomeFragment extends BaseFragment {
             disableTkk(requireActivity());
         });
 
-        binding.rebootBtn2.setOnClickListener(view -> {
-            App.getInstance().restartApp(FeatureLoader.PACKAGE_BUSINESS);
-            disableBusiness(requireActivity());
-        });
-
         binding.exportBtn.setOnClickListener(view -> saveConfigs(this.getContext()));
         binding.importBtn.setOnClickListener(view -> importConfigs(this.getContext()));
         binding.resetBtn.setOnClickListener(view -> resetConfigs(this.getContext()));
@@ -98,22 +90,6 @@ public class HomeFragment extends BaseFragment {
     }
 
     @SuppressLint("StringFormatInvalid")
-    private void receiverBroadcastBusiness(Context context, Intent intent) {
-        binding.statusTitle3.setText(R.string.business_in_background);
-        var version = intent.getStringExtra("VERSION");
-        var supported_list = Arrays.asList(context.getResources().getStringArray(R.array.supported_versions_lite));
-        if (version != null && supported_list.stream().anyMatch(s -> version.startsWith(s.replace(".xx", "")))) {
-            binding.statusSummary3.setText(getString(R.string.version_s, version));
-            binding.status3.setCardBackgroundColor(context.getColor(R.color.material_state_green));
-        } else {
-            binding.statusSummary3.setText(getString(R.string.version_s_not_listed, version));
-            binding.status3.setCardBackgroundColor(context.getColor(R.color.material_state_yellow));
-        }
-        binding.rebootBtn2.setVisibility(View.VISIBLE);
-        binding.statusSummary3.setVisibility(View.VISIBLE);
-        binding.statusIcon3.setImageResource(R.drawable.ic_round_check_circle_24);
-    }
-
     @SuppressLint("StringFormatInvalid")
     private void receiverBroadcastTkk(Context context, Intent intent) {
         binding.statusTitle2.setText(R.string.whatsapp_in_background);
@@ -136,7 +112,6 @@ public class HomeFragment extends BaseFragment {
         var prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.getAll().forEach((key, value) -> prefs.edit().remove(key).apply());
         App.getInstance().restartApp(FeatureLoader.PACKAGE_TKK);
-        App.getInstance().restartApp(FeatureLoader.PACKAGE_BUSINESS);
         Utils.showToast(context.getString(R.string.configs_reset), Toast.LENGTH_SHORT);
     }
 
@@ -216,7 +191,6 @@ public class HomeFragment extends BaseFragment {
                 }
                 Toast.makeText(context, context.getString(R.string.configs_imported), Toast.LENGTH_SHORT).show();
                 App.getInstance().restartApp(FeatureLoader.PACKAGE_TKK);
-                App.getInstance().restartApp(FeatureLoader.PACKAGE_BUSINESS);
             } catch (Exception e) {
                 Log.e("importConfigs", e.getMessage(), e);
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -245,11 +219,7 @@ public class HomeFragment extends BaseFragment {
             binding.status2.setVisibility(View.GONE);
         }
 
-        if (isInstalled(FeatureLoader.PACKAGE_BUSINESS)) {
-            disableBusiness(activity);
-        } else {
-            binding.status3.setVisibility(View.GONE);
-        }
+        binding.status3.setVisibility(View.GONE);
         checkTkk(activity);
         binding.deviceName.setText(Build.MANUFACTURER);
         binding.sdk.setText(String.valueOf(Build.VERSION.SDK_INT));
@@ -260,7 +230,7 @@ public class HomeFragment extends BaseFragment {
             binding.listTkkTitle.setVisibility(View.GONE);
             binding.listTkk.setVisibility(View.GONE);
         }
-        binding.listBusiness.setText(Arrays.toString(activity.getResources().getStringArray(R.array.supported_versions_lite)));
+        binding.listBusiness.setVisibility(View.GONE);
     }
 
     private boolean isInstalled(String packageTkk) {
@@ -270,14 +240,6 @@ public class HomeFragment extends BaseFragment {
         } catch (Exception ignored) {
         }
         return false;
-    }
-
-    private void disableBusiness(FragmentActivity activity) {
-        binding.statusIcon3.setImageResource(R.drawable.ic_round_error_outline_24);
-        binding.statusTitle3.setText(R.string.business_is_not_running_or_has_not_been_activated_in_lsposed);
-        binding.status3.setCardBackgroundColor(activity.getColor(R.color.material_state_red));
-        binding.statusSummary3.setVisibility(View.GONE);
-        binding.rebootBtn2.setVisibility(View.GONE);
     }
 
     private void disableTkk(FragmentActivity activity) {

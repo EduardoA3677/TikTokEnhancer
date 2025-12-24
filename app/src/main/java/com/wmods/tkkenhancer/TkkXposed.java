@@ -63,7 +63,7 @@ public class TkkXposed implements IXposedHookLoadPackage, IXposedHookInitPackage
         ScopeHook.hook(lpparam);
 
         //  AndroidPermissions.hook(lpparam); in tests
-        if ((packageName.equals(FeatureLoader.PACKAGE_TKK) && App.isOriginalPackage()) || packageName.equals(FeatureLoader.PACKAGE_BUSINESS)) {
+        if (packageName.equals(FeatureLoader.PACKAGE_TKK) && App.isOriginalPackage()) {
             XposedBridge.log("[•] This package: " + lpparam.packageName);
 
             // Load features
@@ -77,7 +77,7 @@ public class TkkXposed implements IXposedHookLoadPackage, IXposedHookInitPackage
     public void handleInitPackageResources(XC_InitPackageResources.InitPackageResourcesParam resparam) throws Throwable {
         var packageName = resparam.packageName;
 
-        if (!packageName.equals(FeatureLoader.PACKAGE_TKK) && !packageName.equals(FeatureLoader.PACKAGE_BUSINESS))
+        if (!packageName.equals(FeatureLoader.PACKAGE_TKK))
             return;
 
         XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, resparam.res);

@@ -88,12 +88,10 @@ public class VideoDownload extends Feature {
     private Class<?> findVideoClassDynamic() {
         try {
             // Use Unobfuscator to search for Video class by characteristics
-            // Look for classes with fields containing "download" and "watermark"
             logDebug("Searching for Video class using DexKit");
             
-            // This is a placeholder for DexKit-based class discovery
-            // In a real implementation, this would use DexKit to find obfuscated classes
-            return null;
+            // Use the Unobfuscator method for TikTok video class discovery
+            return Unobfuscator.loadTikTokVideoClass(classLoader);
         } catch (Throwable e) {
             logDebug("DexKit search failed", e);
             return null;
@@ -141,9 +139,19 @@ public class VideoDownload extends Feature {
      */
     private void storeDownloadUrl(Object videoObject, Object urlResult) {
         try {
-            // Store the URL in a way that can be accessed later
-            // This could be through a WeakHashMap or similar mechanism
+            // Store the URL using field access for later retrieval
             logDebug("Storing download URL: " + urlResult);
+            
+            // Store URL in the video object as a tag for later access
+            // This allows UI components to retrieve the no-watermark URL
+            if (videoObject != null && urlResult != null) {
+                try {
+                    // Try to set a field that can be accessed later
+                    XposedHelpers.setAdditionalInstanceField(videoObject, "no_watermark_url", urlResult);
+                } catch (Throwable e) {
+                    logDebug("Failed to set additional field", e);
+                }
+            }
         } catch (Throwable e) {
             logDebug("Failed to store URL", e);
         }

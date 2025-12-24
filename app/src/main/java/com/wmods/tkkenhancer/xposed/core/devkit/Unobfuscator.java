@@ -2216,8 +2216,17 @@ public class Unobfuscator {
                 }
             }
             
-            // Try using DexKit
-            return findFirstMethodUsingStringsFilter(classLoader, "com.ss.android.ugc.aweme", StringMatchType.Contains, "isAd", "ad");
+            // Try using DexKit - wrap in try-catch to handle potential exceptions
+            try {
+                Method result = findFirstMethodUsingStringsFilter(classLoader, "com.ss.android.ugc.aweme", StringMatchType.Contains, "isAd", "ad");
+                if (result != null) {
+                    return result;
+                }
+            } catch (Exception e) {
+                // Method not found, will throw below
+            }
+            
+            throw new Exception("TikTok isAd method not found");
         });
     }
 }

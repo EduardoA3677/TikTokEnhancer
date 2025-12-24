@@ -118,16 +118,12 @@
     <string name="version_s">Sürüm %s</string>
     <string name="module_disabled">Modül devre dışı</string>
     <string name="whatsapp_in_background">WhatsApp arka planda</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp çalışmıyor veya Lsposed\'da etkinleştirilmemiş</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">Business çalışmıyor veya Lsposed\'da etkinleştirilmemiş</string>
-    <string name="restart_tkk">Wa Enhancer\'daki değişikliklerin etkili olması için WhatsApp\'ı yeniden başlatmak gerekiyor.\n\nYeniden başlatmak istiyor musunuz?</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp çalışmıyor veya Lsposed\'da etkinleştirilmemiş</string>    <string name="restart_tkk">Wa Enhancer\'daki değişikliklerin etkili olması için WhatsApp\'ı yeniden başlatmak gerekiyor.\n\nYeniden başlatmak istiyor musunuz?</string>
     <string name="version_s_not_listed">Sürüm %s desteklenen sürümler listesinde yok!\nLütfen desteklenen WhatsApp sürümünü kullanın!</string>
     <string name="media">Medya</string>
     <string name="show_button_to_send_blue_tick">Mavi tik gönderme düğmesini göster</string>
     <string name="show_button_to_send_blue_tick_sum">Mavi tik göndermek için düğme göster (okundu/görüldü olarak işaretle)</string>
-    <string name="send_blue_tick">Okundu/Görüldü Olarak İşaretle</string>
-    <string name="business_in_background">Business arka planda</string>
-    <string name="sending_read_blue_tick">Mavi tik gönderiliyor (okundu/görüldü olarak işaretleniyor)</string>
+    <string name="send_blue_tick">Okundu/Görüldü Olarak İşaretle</string>    <string name="sending_read_blue_tick">Mavi tik gönderiliyor (okundu/görüldü olarak işaretleniyor)</string>
     <string name="enable_facebook_style_for_status">Durum için Facebook Stilini Etkinleştir</string>
     <string name="enable_facebook_style_for_status_sum">Orijinal Durum Stilini Facebook Stiline değiştir</string>
     <string name="send">Gönder</string>
@@ -164,9 +160,7 @@
     <string name="device_model">Cihaz Modeli</string>
     <string name="device_name">Cihaz Adı</string>
     <string name="disable_metaai">Meta AI Fonksiyonlarını Devre Dışı Bırak</string>
-    <string name="disable_metaai_sum">Meta AI\'yı sadece varsayılan olarak etkinleştirilmiş olanlar için devre dışı bırak</string>
-    <string name="list_business">Desteklenen Business Listesi:</string>
-    <string name="list_tkk">Desteklenen WhatsApp Listesi:</string>
+    <string name="disable_metaai_sum">Meta AI\'yı sadece varsayılan olarak etkinleştirilmiş olanlar için devre dışı bırak</string>    <string name="list_tkk">Desteklenen WhatsApp Listesi:</string>
     <string name="title_image">Resim</string>
     <string name="title_video">Video</string>
     <string name="enable_new_chat_button">Yeni Sohbet Düğmesini Etkinleştir</string>

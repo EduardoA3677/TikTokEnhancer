@@ -118,16 +118,12 @@
     <string name="version_s">Version %s</string>
     <string name="module_disabled">Modul deaktiviert</string>
     <string name="whatsapp_in_background">WhatsApp ist aktiv</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">Whatsapp läuft nicht oder wurde nicht in Lsposed aktiviert</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">Whatsapp Business läuft nicht oder wurde in Lsposed nicht aktiviert</string>
-    <string name="restart_tkk">Es ist notwendig, WhatsApp neu zu starten, damit die Änderungen in Wa Enhancer wirksam werden. Möchten Sie neu starten?</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">Whatsapp läuft nicht oder wurde nicht in Lsposed aktiviert</string>    <string name="restart_tkk">Es ist notwendig, WhatsApp neu zu starten, damit die Änderungen in Wa Enhancer wirksam werden. Möchten Sie neu starten?</string>
     <string name="version_s_not_listed">Version %s nicht in unterstützten Versionen aufgelistet!\nBitte verwenden Sie die unterstützte WhatsApp Version!</string>
     <string name="media">Medien</string>
     <string name="show_button_to_send_blue_tick">Schaltfläche zum Senden von blauen Häkchen</string>
     <string name="show_button_to_send_blue_tick_sum">Optionen: Deaktiviert, 3-Punkte-Menü, Symbol</string>
-    <string name="send_blue_tick">Als Gelesen/Gesehen markieren</string>
-    <string name="business_in_background">Whatsapp Business ist aktiv</string>
-    <string name="sending_read_blue_tick">Sende blaue Häkchen (gelesen/angesehen)</string>
+    <string name="send_blue_tick">Als Gelesen/Gesehen markieren</string>    <string name="sending_read_blue_tick">Sende blaue Häkchen (gelesen/angesehen)</string>
     <string name="enable_facebook_style_for_status">Facebook-Stil für Status aktivieren</string>
     <string name="enable_facebook_style_for_status_sum">Ändere den ursprünglichen Status Stil zu Facebook Stil</string>
     <string name="send">Absenden</string>
@@ -164,9 +160,7 @@
     <string name="device_model">Gerätemodell</string>
     <string name="device_name">Hersteller</string>
     <string name="disable_metaai">Meta Ai Funktionen deaktivieren</string>
-    <string name="disable_metaai_sum">Meta Ai nur für diejenigen deaktivieren, die es standardmäßig aktiviert haben</string>
-    <string name="list_business">Unterstützte Business Versionen von WhatsApp:</string>
-    <string name="list_tkk">Unterstützte Versionen von WhatsApp:</string>
+    <string name="disable_metaai_sum">Meta Ai nur für diejenigen deaktivieren, die es standardmäßig aktiviert haben</string>    <string name="list_tkk">Unterstützte Versionen von WhatsApp:</string>
     <string name="title_image">Bild</string>
     <string name="title_video">Video</string>
     <string name="enable_new_chat_button">Neuen Chat-Button aktivieren</string>

@@ -118,16 +118,12 @@
     <string name="version_s">Версия: %s</string>
     <string name="module_disabled">Модуль отключен</string>
     <string name="whatsapp_in_background">WhatsApp запущен и работает</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp не запущен или не был активирован в Lsposed</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp Business не запущен или не был активирован в Lsposed</string>
-    <string name="restart_tkk">Необходимо перезапустить WhatsApp, чтобы изменения в Wa Enhancer вступили в силу.\n\nХотите перезапустить?</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp не запущен или не был активирован в Lsposed</string>    <string name="restart_tkk">Необходимо перезапустить WhatsApp, чтобы изменения в Wa Enhancer вступили в силу.\n\nХотите перезапустить?</string>
     <string name="version_s_not_listed">Версия %s не указана в поддерживаемых версиях!\nПожалуйста, используйте поддерживаемую версию WhatsApp!</string>
     <string name="media">Медиа</string>
     <string name="show_button_to_send_blue_tick">Показать кнопку для отправки синей галочки</string>
     <string name="show_button_to_send_blue_tick_sum">Показать кнопку для отправки синей галочки (отметить как прочитанное/просмотрено)</string>
-    <string name="send_blue_tick">Пометить как Прочитанное/Просмотренное</string>
-    <string name="business_in_background">WhatsApp Business запущен и работает</string>
-    <string name="sending_read_blue_tick">Отправка синей галочки (отметить как прочитанное/просмотренное)</string>
+    <string name="send_blue_tick">Пометить как Прочитанное/Просмотренное</string>    <string name="sending_read_blue_tick">Отправка синей галочки (отметить как прочитанное/просмотренное)</string>
     <string name="enable_facebook_style_for_status">Включить стиль Facebook для статуса</string>
     <string name="enable_facebook_style_for_status_sum">Изменить исходный стиль статуса на Facebook стиль</string>
     <string name="send">Отправить</string>
@@ -164,9 +160,7 @@
     <string name="device_model">Модель устройства</string>
     <string name="device_name">Название устройства</string>
     <string name="disable_metaai">Отключить Мета-Ai функции</string>
-    <string name="disable_metaai_sum">Отключить Мета-Ai только для тех, у кого он включен по умолчанию</string>
-    <string name="list_business">Список поддерживаемых версий Business:</string>
-    <string name="list_tkk">Список поддерживаемых версий WhatsApp:</string>
+    <string name="disable_metaai_sum">Отключить Мета-Ai только для тех, у кого он включен по умолчанию</string>    <string name="list_tkk">Список поддерживаемых версий WhatsApp:</string>
     <string name="title_image">Изображение</string>
     <string name="title_video">Видео</string>
     <string name="enable_new_chat_button">Включить новую кнопку чата</string>

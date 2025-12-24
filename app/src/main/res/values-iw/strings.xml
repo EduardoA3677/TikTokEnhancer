@@ -119,16 +119,12 @@
     <string name="version_s">גרסת %s</string>
     <string name="module_disabled">המודול מושבת</string>
     <string name="whatsapp_in_background"> הWhatsApp שלך מופעל ברקע</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">הווצאפ לא פועל או לא הופעל ב-Lsposed</string>
-    <string name="business_is_not_running_or_has_not_been_activated_in_lsposed">ווצאפ ביזנס אינו פועל או לא הופעל ב-Lsposed</string>
-    <string name="restart_tkk">יש צורך להפעיל מחדש את הווצאפ כדי שהשינויים ב-Wa Enhancer ייכנסו לתוקף.\n\nהאם ברצונך להפעיל מחדש?</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">הווצאפ לא פועל או לא הופעל ב-Lsposed</string>    <string name="restart_tkk">יש צורך להפעיל מחדש את הווצאפ כדי שהשינויים ב-Wa Enhancer ייכנסו לתוקף.\n\nהאם ברצונך להפעיל מחדש?</string>
     <string name="version_s_not_listed">גרסת %s לא מופיעה בגרסאות הנתמכות!\nאנא השתמש בגרסת ווצאפ נתמכת!</string>
     <string name="media">מדיה</string>
     <string name="show_button_to_send_blue_tick">הצג כפתור לשליחת וי כחול</string>
     <string name="show_button_to_send_blue_tick_sum">הצג כפתור לשליחת סימון כחול (סמן כנקרא/נצפה)</string>
-    <string name="send_blue_tick">סמן כנקרא/נצפה</string>
-    <string name="business_in_background">ווצאפ ביזנס ברקע</string>
-    <string name="sending_read_blue_tick">שולח סימון כחול (סמן כנקרא/נצפה)</string>
+    <string name="send_blue_tick">סמן כנקרא/נצפה</string>    <string name="sending_read_blue_tick">שולח סימון כחול (סמן כנקרא/נצפה)</string>
     <string name="enable_facebook_style_for_status">אפשר סגנון פייסבוק לסטטוס</string>
     <string name="enable_facebook_style_for_status_sum">שנה את סגנון הסטטוס המקורי לסגנון פייסבוק.</string>
     <string name="send">כן</string>
@@ -165,9 +161,7 @@
     <string name="device_model">דגם המכשיר</string>
     <string name="device_name">שם המכשיר</string>
     <string name="disable_metaai">השבת את פונקציות Meta Ai</string>
-    <string name="disable_metaai_sum">השבת את הMeta AI רק עבור אלה שכבר מופעל להם</string>
-    <string name="list_business">רשימת הגרסאות הנתמכות בווצאפ ביזנס:</string>
-    <string name="list_tkk">רשימת הגרסאות הנתמכות בווצאפ:</string>
+    <string name="disable_metaai_sum">השבת את הMeta AI רק עבור אלה שכבר מופעל להם</string>    <string name="list_tkk">רשימת הגרסאות הנתמכות בווצאפ:</string>
     <string name="title_image">תמונה</string>
     <string name="title_video">וידאו</string>
     <string name="enable_new_chat_button">אפשר לחצן צ\'אט חדש</string>

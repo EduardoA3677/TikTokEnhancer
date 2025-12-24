@@ -2181,19 +2181,25 @@ public class Unobfuscator {
 
     /**
      * Find method to get no-watermark video URL
+     * Based on smali analysis: getDownloadNoWatermarkAddr()Lcom/ss/android/ugc/aweme/base/model/UrlModel;
      */
     public synchronized static Method loadTikTokNoWatermarkUrlMethod(ClassLoader classLoader) throws Exception {
         return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
             Class<?> videoClass = loadTikTokVideoClass(classLoader);
             if (videoClass == null) throw new Exception("Video class not found");
             
-            // Look for method that returns URL/String related to download without watermark
-            for (Method method : videoClass.getDeclaredMethods()) {
-                if ((method.getName().toLowerCase().contains("download") || 
-                     method.getName().toLowerCase().contains("url")) &&
-                    (method.getReturnType() == String.class || 
-                     method.getReturnType().getName().contains("Url"))) {
-                    return method;
+            // Try exact method name from smali analysis first
+            try {
+                return videoClass.getDeclaredMethod("getDownloadNoWatermarkAddr");
+            } catch (NoSuchMethodException e) {
+                // Fallback to search
+                for (Method method : videoClass.getDeclaredMethods()) {
+                    if ((method.getName().toLowerCase().contains("downloadnowatermark") ||
+                         method.getName().toLowerCase().contains("download") && method.getName().toLowerCase().contains("nowatermark")) &&
+                        (method.getReturnType().getName().contains("UrlModel") || 
+                         method.getReturnType() == String.class)) {
+                        return method;
+                    }
                 }
             }
             throw new Exception("No-watermark URL method not found");
@@ -2202,23 +2208,28 @@ public class Unobfuscator {
 
     /**
      * Find method to check if feed item is an ad
+     * Based on smali analysis: isAd()Z
      */
     public synchronized static Method loadTikTokIsAdMethod(ClassLoader classLoader) throws Exception {
         return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
             Class<?> feedItemClass = loadTikTokFeedItemClass(classLoader);
             if (feedItemClass == null) throw new Exception("Feed item class not found");
             
-            // Look for method that checks if item is ad
-            for (Method method : feedItemClass.getDeclaredMethods()) {
-                if (method.getName().toLowerCase().contains("isad") &&
-                    method.getReturnType() == boolean.class) {
-                    return method;
+            // Try exact method name from smali analysis first
+            try {
+                return feedItemClass.getDeclaredMethod("isAd");
+            } catch (NoSuchMethodException e) {
+                // Fallback to search
+                for (Method method : feedItemClass.getDeclaredMethods()) {
+                    if (method.getName().equals("isAd") && method.getReturnType() == boolean.class) {
+                        return method;
+                    }
                 }
             }
             
             // Try using DexKit - wrap in try-catch to handle potential exceptions
             try {
-                Method result = findFirstMethodUsingStringsFilter(classLoader, "com.ss.android.ugc.aweme", StringMatchType.Contains, "isAd", "ad");
+                Method result = findFirstMethodUsingStringsFilter(classLoader, "com.ss.android.ugc.aweme", StringMatchType.Contains, "isAd");
                 if (result != null) {
                     return result;
                 }
@@ -2227,6 +2238,40 @@ public class Unobfuscator {
             }
             
             throw new Exception("TikTok isAd method not found");
+        });
+    }
+
+    /**
+     * Load TikTok Story model class
+     * Based on smali analysis: com.ss.android.ugc.aweme.story.model.Story
+     */
+    public synchronized static Class<?> loadTikTokStoryClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, "TikTokStoryClass", () -> {
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.story.model.Story", classLoader);
+            } catch (Throwable e) {
+                // Use DexKit to find by characteristics
+                return findFirstClassUsingStrings(classLoader, StringMatchType.Contains, "story", "awemes", "userInfo");
+            }
+        });
+    }
+
+    /**
+     * Load TikTok Bitrate Selector class
+     * Based on smali analysis: com.ss.android.ugc.aweme.bitrateselector.impl.DTBitrateSelectorServiceImpl
+     */
+    public synchronized static Class<?> loadTikTokBitrateSelectorClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, "TikTokBitrateSelectorClass", () -> {
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.bitrateselector.impl.DTBitrateSelectorServiceImpl", classLoader);
+            } catch (Throwable e1) {
+                try {
+                    return XposedHelpers.findClass("com.ss.android.ugc.aweme.video.bitrate.RateSettingCombineModel", classLoader);
+                } catch (Throwable e2) {
+                    // Use DexKit to find by characteristics
+                    return findFirstClassUsingStrings(classLoader, StringMatchType.Contains, "bitrate", "selector");
+                }
+            }
         });
     }
 }

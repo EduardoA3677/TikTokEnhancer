@@ -539,6 +539,37 @@
     <string name="enable_bitrate_control">Enable Bitrate Control</string>
     <string name="enable_bitrate_control_sum">Manually override video bitrate settings for maximum quality</string>
     
+    <!-- New Mods - Based on Smali Analysis -->
+    <!-- Feed Control -->
+    <string name="tiktok_feed_control_title">Feed Control</string>
+    <string name="hide_live_streams">Hide Live Streams</string>
+    <string name="hide_live_streams_sum">Remove live stream videos from your feed</string>
+    <string name="hide_image_reels">Hide Image Reels</string>
+    <string name="hide_image_reels_sum">Remove photo mode/image posts from your feed</string>
+    
+    <!-- Profile Icon Hider -->
+    <string name="tiktok_profile_icons_title">Profile Icons</string>
+    <string name="hide_profile_live_icon">Hide Live Icon</string>
+    <string name="hide_profile_live_icon_sum">Hide the \"Go Live\" button/icon from profile page</string>
+    <string name="hide_profile_coin_icon">Hide Coin Icon</string>
+    <string name="hide_profile_coin_icon_sum">Hide the wallet/coin balance icon from profile page</string>
+    
+    <!-- Tab Manager -->
+    <string name="tiktok_tab_manager_title">Tab Manager</string>
+    <string name="tab_manager_desc">Show or hide tabs in the bottom navigation bar</string>
+    <string name="hide_home_tab">Hide Home Tab</string>
+    <string name="hide_home_tab_sum">Hide the Home/For You tab from bottom navigation</string>
+    <string name="hide_friends_tab">Hide Friends Tab</string>
+    <string name="hide_friends_tab_sum">Hide the Friends/Following tab from bottom navigation</string>
+    <string name="hide_create_tab">Hide Create Tab</string>
+    <string name="hide_create_tab_sum">Hide the plus/create/record button from bottom navigation</string>
+    <string name="hide_inbox_tab">Hide Inbox Tab</string>
+    <string name="hide_inbox_tab_sum">Hide the messages/inbox tab from bottom navigation</string>
+    <string name="hide_profile_tab">Hide Profile Tab</string>
+    <string name="hide_profile_tab_sum">Hide the profile/me tab from bottom navigation</string>
+    <string name="hide_shop_tab">Hide Shop Tab</string>
+    <string name="hide_shop_tab_sum">Hide the shop/mall tab from bottom navigation (if present)</string>
+    
     <!-- General TikTok Settings -->
     <string name="bypass_version_check">Bypass Version Check</string>
     <string name="bypass_version_check_sum">Allow the module to work with unsupported TikTok versions (use with caution)</string>

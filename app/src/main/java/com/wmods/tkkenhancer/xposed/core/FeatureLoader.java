@@ -388,6 +388,12 @@ public class FeatureLoader {
                 // ✅ IMPROVED HOOKS - Verified against smali and corrected
                 com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,       // Comment.getStatus() - VERIFIED
                 com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.class,       // User.isPrivateAccount() - VERIFIED
+                
+                // 🆕 NEW MODS - Based on smali analysis from com_zhiliaoapp_musically_6
+                com.wmods.tkkenhancer.xposed.features.media.LiveStreamFeedControl.class, // Hide live streams from feed - Hooks: Aweme.isLive()
+                com.wmods.tkkenhancer.xposed.features.media.ImageReelControl.class,      // Hide image/photo reels from feed - Hooks: Aweme.isPhotoMode()
+                com.wmods.tkkenhancer.xposed.features.media.ProfileIconHider.class,      // Hide live/coin icons from profile
+                com.wmods.tkkenhancer.xposed.features.media.TabManager.class,            // Show/hide bottom navigation tabs
         };
         
         XposedBridge.log("Loading TikTok Plugins (Core + New Features)");

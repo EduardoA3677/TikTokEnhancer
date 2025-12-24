@@ -439,6 +439,8 @@
     <string name="hook_network_utils_sum">Hook NetworkUtils.downloadVideo() low-level download method</string>
     <string name="story_download">Story Download</string>
     <string name="story_download_sum">Enable downloading user stories</string>
+    <string name="live_stream_download">Live Stream Download</string>
+    <string name="live_stream_download_sum">Enable capturing and downloading live streams</string>
     <string name="tiktok_download_path">TikTok Download Path</string>
 
     <string name="tiktok_quality_title">Video Quality</string>
@@ -492,5 +494,7 @@
     <string name="block_aweme_analytics_sum">Block analytics from Aweme analytics package</string>
     <string name="block_data_collection">Block Data Collection</string>
     <string name="block_data_collection_sum">Prevent data collection by TikTok</string>
+    <string name="analytics_blocker">Analytics Blocker</string>
+    <string name="analytics_blocker_sum">Block analytics and tracking comprehensively</string>
 
 </resources>

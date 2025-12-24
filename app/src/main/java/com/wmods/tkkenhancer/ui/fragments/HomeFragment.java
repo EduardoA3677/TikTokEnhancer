@@ -72,11 +72,11 @@ public class HomeFragment extends BaseFragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        checkStateWpp(requireActivity());
+        checkStateTkk(requireActivity());
 
         binding.rebootBtn.setOnClickListener(view -> {
-            App.getInstance().restartApp(FeatureLoader.PACKAGE_WPP);
-            disableWpp(requireActivity());
+            App.getInstance().restartApp(FeatureLoader.PACKAGE_TKK);
+            disableTkk(requireActivity());
         });
 
         binding.rebootBtn2.setOnClickListener(view -> {
@@ -240,7 +240,7 @@ public class HomeFragment extends BaseFragment {
             binding.statusSummary.setVisibility(View.GONE);
         }
         if (isInstalled(FeatureLoader.PACKAGE_WPP) && App.isOriginalPackage()) {
-            disableWpp(activity);
+            disableTkk(activity);
         } else {
             binding.status2.setVisibility(View.GONE);
         }
@@ -280,7 +280,7 @@ public class HomeFragment extends BaseFragment {
         binding.rebootBtn2.setVisibility(View.GONE);
     }
 
-    private void disableWpp(FragmentActivity activity) {
+    private void disableTkk(FragmentActivity activity) {
         binding.statusIcon2.setImageResource(R.drawable.ic_round_error_outline_24);
         binding.statusTitle2.setText(R.string.whatsapp_is_not_running_or_has_not_been_activated_in_lsposed);
         binding.status2.setCardBackgroundColor(activity.getColor(R.color.material_state_red));

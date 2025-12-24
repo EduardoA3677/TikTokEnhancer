@@ -149,15 +149,15 @@ public class Utils {
             if (folder == null)
                 throw new Exception("Download Folder is not selected!");
             var documentFile = DocumentFile.fromTreeUri(Utils.getApplication(), Uri.parse(folder));
-            var wppFolder = Utils.getURIFolderByName(documentFile, "WhatsApp", true);
-            var nameFolder = Utils.getURIFolderByName(wppFolder, name, true);
+            var tkkFolder = Utils.getURIFolderByName(documentFile, "TikTok", true);
+            var nameFolder = Utils.getURIFolderByName(tkkFolder, name, true);
             if (nameFolder == null)
                 throw new Exception("Folder not found!");
-            return folder + "/WhatsApp/" + name;
+            return folder + "/TikTok/" + name;
         }
         String folder = TkkXposed.getPref().getString("download_local", "/sdcard/Download");
-        var waFolder = new File(folder, "WhatsApp");
-        var filePath = new File(waFolder, name);
+        var tkkFolder = new File(folder, "TikTok");
+        var filePath = new File(tkkFolder, name);
         try {
             TkkCore.getClientBridge().createDir(filePath.getAbsolutePath());
         } catch (Exception ignored) {

@@ -49,29 +49,48 @@ public class UIEnhancer extends Feature {
 
         try {
             if (hideLiveBadge) {
-                hookLiveBadge();
+                try {
+                    hookLiveBadge();
+                } catch (Throwable e) {
+                    logDebug("Live badge hooks skipped: " + e.getMessage());
+                }
             }
             
             if (hideShopTab) {
-                hookShopTab();
+                try {
+                    hookShopTab();
+                } catch (Throwable e) {
+                    logDebug("Shop tab hooks skipped: " + e.getMessage());
+                }
             }
             
             if (hideSponsoredBadge) {
-                hookSponsoredBadge();
+                try {
+                    hookSponsoredBadge();
+                } catch (Throwable e) {
+                    logDebug("Sponsored badge hooks skipped: " + e.getMessage());
+                }
             }
             
             if (hideWatermarks) {
-                hookWatermarks();
+                try {
+                    hookWatermarks();
+                } catch (Throwable e) {
+                    logDebug("Watermark hooks skipped: " + e.getMessage());
+                }
             }
             
             if (hideSuggestions) {
-                hookSuggestions();
+                try {
+                    hookSuggestions();
+                } catch (Throwable e) {
+                    logDebug("Suggestion hooks skipped: " + e.getMessage());
+                }
             }
 
             logDebug("UI Enhancer feature initialized successfully");
-        } catch (Exception e) {
-            logDebug("Failed to initialize UI Enhancer: " + e.getMessage());
-            log(e);
+        } catch (Throwable e) {
+            logDebug("UI Enhancer skipped: " + e.getMessage());
         }
     }
 
@@ -96,38 +115,40 @@ public class UIEnhancer extends Feature {
      * Hook to hide Live badge
      */
     private void hookLiveBadge() {
-        try {
-            String[] liveBadgeClasses = {
-                "com.ss.android.ugc.aweme.feed.ui.LiveBadgeView",
-                "com.ss.android.ugc.aweme.live.LiveBadge",
-                "com.ss.android.ugc.aweme.feed.model.live.LiveBanner"
-            };
+        String[] liveBadgeClasses = {
+            "com.ss.android.ugc.aweme.feed.ui.LiveBadgeView",
+            "com.ss.android.ugc.aweme.live.LiveBadge",
+            "com.ss.android.ugc.aweme.feed.model.live.LiveBanner"
+        };
 
-            for (String className : liveBadgeClasses) {
-                try {
-                    Class<?> liveBadgeClass = XposedHelpers.findClass(className, classLoader);
-                    
-                    // Hook setVisibility to force GONE
-                    XposedHelpers.findAndHookMethod(
-                        liveBadgeClass,
-                        "setVisibility",
-                        int.class,
-                        new XC_MethodHook() {
-                            @Override
-                            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                param.args[0] = View.GONE;
-                                logDebug("Hidden Live badge");
-                            }
+        boolean hooked = false;
+        for (String className : liveBadgeClasses) {
+            try {
+                Class<?> liveBadgeClass = XposedHelpers.findClass(className, classLoader);
+                
+                // Hook setVisibility to force GONE
+                XposedHelpers.findAndHookMethod(
+                    liveBadgeClass,
+                    "setVisibility",
+                    int.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            param.args[0] = View.GONE;
+                            logDebug("Hidden Live badge");
                         }
-                    );
-                    
-                    logDebug("Successfully hooked Live badge class: " + className);
-                } catch (Exception e) {
-                    // Try next class
-                }
+                    }
+                );
+                
+                logDebug("Successfully hooked Live badge class: " + className);
+                hooked = true;
+            } catch (Throwable e) {
+                // Try next class
             }
-        } catch (Exception e) {
-            logDebug("Failed to hook Live badge: " + e.getMessage());
+        }
+        
+        if (!hooked) {
+            logDebug("No Live badge class found - skipping Live badge hooks");
         }
     }
 
@@ -135,41 +156,43 @@ public class UIEnhancer extends Feature {
      * Hook to hide Shop tab
      */
     private void hookShopTab() {
-        try {
-            String[] shopTabClasses = {
-                "com.ss.android.ugc.aweme.commerce.ShopTabFragment",
-                "com.ss.android.ugc.aweme.ecommerce.base.mall.MallFragment",
-                "com.ss.android.ugc.aweme.ecommerce.base.osp.repository.ShopRepository"
-            };
+        String[] shopTabClasses = {
+            "com.ss.android.ugc.aweme.commerce.ShopTabFragment",
+            "com.ss.android.ugc.aweme.ecommerce.base.mall.MallFragment",
+            "com.ss.android.ugc.aweme.ecommerce.base.osp.repository.ShopRepository"
+        };
 
-            for (String className : shopTabClasses) {
-                try {
-                    Class<?> shopTabClass = XposedHelpers.findClass(className, classLoader);
-                    
-                    // Hook lifecycle methods to prevent display
-                    for (Method method : shopTabClass.getDeclaredMethods()) {
-                        String methodName = method.getName().toLowerCase();
-                        if (methodName.equals("onresume") || 
-                            methodName.equals("onstart") ||
-                            methodName.contains("show")) {
-                            
-                            XposedBridge.hookMethod(method, new XC_MethodHook() {
-                                @Override
-                                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                    param.setResult(null);
-                                    logDebug("Blocked Shop tab display");
-                                }
-                            });
-                        }
+        boolean hooked = false;
+        for (String className : shopTabClasses) {
+            try {
+                Class<?> shopTabClass = XposedHelpers.findClass(className, classLoader);
+                
+                // Hook lifecycle methods to prevent display
+                for (Method method : shopTabClass.getDeclaredMethods()) {
+                    String methodName = method.getName().toLowerCase();
+                    if (methodName.equals("onresume") || 
+                        methodName.equals("onstart") ||
+                        methodName.contains("show")) {
+                        
+                        XposedBridge.hookMethod(method, new XC_MethodHook() {
+                            @Override
+                            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                                param.setResult(null);
+                                logDebug("Blocked Shop tab display");
+                            }
+                        });
                     }
-                    
-                    logDebug("Successfully hooked Shop tab class: " + className);
-                } catch (Exception e) {
-                    // Try next class
                 }
+                
+                logDebug("Successfully hooked Shop tab class: " + className);
+                hooked = true;
+            } catch (Throwable e) {
+                // Try next class
             }
-        } catch (Exception e) {
-            logDebug("Failed to hook Shop tab: " + e.getMessage());
+        }
+        
+        if (!hooked) {
+            logDebug("No Shop tab class found - skipping Shop tab hooks");
         }
     }
 

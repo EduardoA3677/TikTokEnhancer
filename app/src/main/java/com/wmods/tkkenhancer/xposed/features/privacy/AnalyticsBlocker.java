@@ -34,9 +34,9 @@ public class AnalyticsBlocker extends Feature {
         try {
             hookFirebaseAnalytics();
             logDebug("Analytics Blocker feature initialized successfully");
-        } catch (Exception e) {
-            logDebug("Failed to initialize Analytics Blocker: " + e.getMessage());
-            log(e);
+        } catch (Throwable e) {
+            // Silently fail if class not found - this is expected
+            logDebug("Analytics Blocker skipped: " + e.getMessage());
         }
     }
 
@@ -66,7 +66,13 @@ public class AnalyticsBlocker extends Feature {
             );
             
             logDebug("Hooked FirebaseAnalytics successfully");
-        } catch (Exception e) {
+        } catch (ClassNotFoundException e) {
+            // Class doesn't exist in this version - silently skip
+            logDebug("FirebaseAnalytics class not found - skipping");
+        } catch (NoSuchMethodError e) {
+            // Method doesn't exist - silently skip
+            logDebug("setCurrentScreen method not found - skipping");
+        } catch (Throwable e) {
             logDebug("Failed to hook FirebaseAnalytics: " + e.getMessage());
         }
     }

@@ -57,19 +57,30 @@ public class RewardsIconHider extends Feature {
         logDebug("Initializing Rewards Icon Hider feature");
 
         try {
-            // Hook floating action button visibility
-            hookFloatingActionButton();
+            // Hook floating action button visibility (optional)
+            try {
+                hookFloatingActionButton();
+            } catch (Throwable e) {
+                logDebug("FloatingActionButton hooks skipped: " + e.getMessage());
+            }
             
-            // Hook reward-related views
-            hookRewardViews();
+            // Hook reward-related views (optional)
+            try {
+                hookRewardViews();
+            } catch (Throwable e) {
+                logDebug("Reward views hooks skipped: " + e.getMessage());
+            }
             
-            // Hook main activity for reward icon
-            hookMainActivity();
+            // Hook main activity for reward icon (optional)
+            try {
+                hookMainActivity();
+            } catch (Throwable e) {
+                logDebug("Main activity hooks skipped: " + e.getMessage());
+            }
 
             logDebug("Rewards Icon Hider feature initialized successfully");
-        } catch (Exception e) {
-            logDebug("Failed to initialize Rewards Icon Hider: " + e.getMessage());
-            log(e);
+        } catch (Throwable e) {
+            logDebug("Rewards Icon Hider skipped: " + e.getMessage());
         }
     }
 
@@ -77,45 +88,47 @@ public class RewardsIconHider extends Feature {
      * Hook FloatingActionButton to hide reward icons
      */
     private void hookFloatingActionButton() {
-        try {
-            // Try Material Design FloatingActionButton
-            String[] fabClasses = {
-                "com.google.android.material.floatingactionbutton.FloatingActionButton",
-                "android.support.design.widget.FloatingActionButton"
-            };
+        // Try Material Design FloatingActionButton
+        String[] fabClasses = {
+            "com.google.android.material.floatingactionbutton.FloatingActionButton",
+            "android.support.design.widget.FloatingActionButton"
+        };
 
-            for (String fabClassName : fabClasses) {
-                try {
-                    Class<?> fabClass = XposedHelpers.findClass(fabClassName, classLoader);
-                    
-                    // Hook setVisibility to hide reward FABs
-                    XposedHelpers.findAndHookMethod(
-                        fabClass,
-                        "setVisibility",
-                        int.class,
-                        new XC_MethodHook() {
-                            @Override
-                            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                Object fab = param.thisObject;
-                                
-                                // Check if this FAB is reward-related
-                                if (isRewardRelated(fab)) {
-                                    // Force to GONE
-                                    param.args[0] = View.GONE;
-                                    logDebug("Hidden reward FloatingActionButton");
-                                }
+        boolean hooked = false;
+        for (String fabClassName : fabClasses) {
+            try {
+                Class<?> fabClass = XposedHelpers.findClass(fabClassName, classLoader);
+                
+                // Hook setVisibility to hide reward FABs
+                XposedHelpers.findAndHookMethod(
+                    fabClass,
+                    "setVisibility",
+                    int.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            Object fab = param.thisObject;
+                            
+                            // Check if this FAB is reward-related
+                            if (isRewardRelated(fab)) {
+                                // Force to GONE
+                                param.args[0] = View.GONE;
+                                logDebug("Hidden reward FloatingActionButton");
                             }
                         }
-                    );
-                    
-                    logDebug("Successfully hooked FloatingActionButton: " + fabClassName);
-                    break;
-                } catch (Exception e) {
-                    // Try next FAB class
-                }
+                    }
+                );
+                
+                logDebug("Successfully hooked FloatingActionButton: " + fabClassName);
+                hooked = true;
+                break;
+            } catch (Throwable e) {
+                // Try next FAB class
             }
-        } catch (Exception e) {
-            logDebug("Failed to hook FloatingActionButton: " + e.getMessage());
+        }
+        
+        if (!hooked) {
+            logDebug("No FloatingActionButton class found - skipping FAB hooks");
         }
     }
 

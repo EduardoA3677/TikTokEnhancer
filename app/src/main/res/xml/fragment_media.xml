@@ -50,6 +50,11 @@
             app:summary="@string/story_download_sum"
             app:title="@string/story_download" />
 
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="live_stream_download"
+            app:summary="@string/live_stream_download_sum"
+            app:title="@string/live_stream_download" />
+
         <com.wmods.tkkenhancer.preference.FileSelectPreference
             android:defaultValue="/sdcard/TikTok/Downloads"
             app:directory="true"

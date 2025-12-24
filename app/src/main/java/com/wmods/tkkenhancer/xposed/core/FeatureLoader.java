@@ -255,10 +255,10 @@ public class FeatureLoader {
 
     private static void plugins(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, @NonNull String versionTkk) throws Exception {
 
-        // TikTok Features - Based on Smali Analysis of v43.0.0
+        // TikTok Features - Based on Smali Analysis
         // Repository: https://github.com/Eduardob3677/com_zhiliaoapp_musically_6
         // 
-        // ONLY WORKING FEATURES ARE ENABLED
+        // Core working features + newly implemented features enabled
         // Features load asynchronously to prevent ANR during startup
         
         var classes = new Class<?>[]{
@@ -269,22 +269,22 @@ public class FeatureLoader {
                 com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,      // Hooks: Video.getDownloadNoWatermarkAddr()
                 com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,          // Hooks: Aweme.isAd(), isAdTraffic()
                 
-                // ⚠️ PLACEHOLDER FEATURES - Need implementation
-                // com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class, // TODO: Find TikTok player classes
+                // ✅ NEWLY IMPLEMENTED FEATURES - Enabled for testing
+                com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class,    // Auto-play control with player analysis
+                com.wmods.tkkenhancer.xposed.features.media.StoryVideoSupport.class,  // Story video download
+                com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class, // Live stream download
+                com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class, // Analytics blocking
                 
-                // ❌ DISABLED - Need proper TikTok implementation
+                // ❌ DISABLED - Need proper TikTok implementation or causing issues
                 // com.wmods.tkkenhancer.xposed.features.media.VideoDownloadImproved.class,
                 // com.wmods.tkkenhancer.xposed.features.media.AdBlockerImproved.class,
-                // com.wmods.tkkenhancer.xposed.features.media.StoryVideoSupport.class,
                 // com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class,
-                // com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class,
                 // com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,
                 // com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.class,
                 // com.wmods.tkkenhancer.xposed.features.media.FeedFilter.class,
-                // com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class,
         };
         
-        XposedBridge.log("Loading TikTok Plugins (Verified Features Only)");
+        XposedBridge.log("Loading TikTok Plugins (Core + New Features)");
         
         // Use single thread to prevent race conditions and CPU overload
         var executorService = Executors.newFixedThreadPool(1);

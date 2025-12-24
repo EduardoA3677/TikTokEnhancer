@@ -68,6 +68,11 @@
             app:summary="@string/block_data_collection_sum"
             app:title="@string/block_data_collection" />
 
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="analytics_blocker"
+            app:summary="@string/analytics_blocker_sum"
+            app:title="@string/analytics_blocker" />
+
     </PreferenceCategory>
 
     <!-- Original Privacy Settings -->

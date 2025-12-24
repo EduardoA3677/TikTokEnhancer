@@ -84,13 +84,31 @@ public class FeatureLoader {
                 PackageInfo packageInfo = packageManager.getPackageInfo(mApp.getPackageName(), 0);
                 XposedBridge.log(packageInfo.versionName);
                 currentVersion = packageInfo.versionName;
-                supportedVersions = Arrays.asList(mApp.getResources().getStringArray(ResId.array.supported_versions_tkk));
+                
+                // Try to load supported versions, with fallback if resources not initialized yet
+                try {
+                    String[] versionsArray = mApp.getResources().getStringArray(ResId.array.supported_versions_tkk);
+                    if (versionsArray != null && versionsArray.length > 0) {
+                        supportedVersions = Arrays.asList(versionsArray);
+                    } else {
+                        // Fallback to hardcoded versions if resources not loaded
+                        supportedVersions = Arrays.asList("43.xx", "44.xx", "45.xx");
+                        XposedBridge.log("Using fallback supported versions list");
+                    }
+                } catch (Exception e) {
+                    // Resources not initialized yet, use fallback
+                    supportedVersions = Arrays.asList("43.xx", "44.xx", "45.xx");
+                    XposedBridge.log("Resources not ready, using fallback supported versions: " + e.getMessage());
+                }
+                
                 mApp.registerActivityLifecycleCallbacks(new TkCallback());
                 try {
                     var timemillis = System.currentTimeMillis();
                     SharedPreferencesWrapper.hookInit(mApp.getClassLoader());
                     UnobfuscatorCache.init(mApp);
                     ReflectionUtils.initCache(mApp);
+                    
+                    // Check version support
                     boolean isSupported = supportedVersions.stream().anyMatch(s -> packageInfo.versionName.startsWith(s.replace(".xx", "")));
                     if (!isSupported) {
                         // Try to disable expiration version check (WhatsApp-specific feature)
@@ -104,9 +122,15 @@ public class FeatureLoader {
                             String sb = "Unsupported version: " +
                                     packageInfo.versionName +
                                     "\n" +
-                                    "Supported versions: " + String.join(", ", supportedVersions);
+                                    "Supported versions: " + String.join(", ", supportedVersions) +
+                                    "\n" +
+                                    "Enable 'Bypass Version Check' in module settings to continue";
                             throw new Exception(sb);
+                        } else {
+                            XposedBridge.log("Version check bypassed by user preference");
                         }
+                    } else {
+                        XposedBridge.log("TikTok version " + packageInfo.versionName + " is supported");
                     }
                     initComponents(loader, pref);
                     // Register receivers AFTER initComponents to ensure privPrefs is initialized

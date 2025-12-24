@@ -23,6 +23,11 @@ import de.robv.android.xposed.XposedHelpers;
  */
 public class AutoPlayControl extends Feature {
 
+    // Configuration constants
+    private static final int MAX_PLAYER_HOOKS = 5;
+    private static final int MAX_SETTINGS_HOOKS = 3;
+    private static final int MAX_FEED_HOOKS = 3;
+    
     private boolean disableAutoPlay;
 
     public AutoPlayControl(@NonNull ClassLoader classLoader, @NonNull XSharedPreferences preferences) {
@@ -69,27 +74,28 @@ public class AutoPlayControl extends Feature {
             // Hook methods related to auto-play
             int hookedMethods = 0;
             for (Method method : playerClass.getDeclaredMethods()) {
-                String methodName = method.getName().toLowerCase();
+                final Method finalMethod = method; // Make effectively final for lambda
+                String methodName = finalMethod.getName().toLowerCase();
                 
                 // Look for auto-play related methods
                 if (methodName.contains("autoplay") || 
                     methodName.contains("shouldplay") ||
-                    (methodName.contains("play") && method.getParameterCount() == 0 && 
-                     method.getReturnType() == boolean.class)) {
+                    (methodName.contains("play") && finalMethod.getParameterCount() == 0 && 
+                     finalMethod.getReturnType() == boolean.class)) {
                     
-                    logDebug("Hooking player method: " + method.getName());
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
+                    logDebug("Hooking player method: " + finalMethod.getName());
+                    XposedBridge.hookMethod(finalMethod, new XC_MethodHook() {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            if (disableAutoPlay && method.getReturnType() == boolean.class) {
-                                logDebug("Blocking auto-play in: " + method.getName());
+                            if (disableAutoPlay && finalMethod.getReturnType() == boolean.class) {
+                                logDebug("Blocking auto-play in: " + finalMethod.getName());
                                 param.setResult(false);
                             }
                         }
                     });
                     
                     hookedMethods++;
-                    if (hookedMethods >= 5) break; // Limit hooks to prevent overhead
+                    if (hookedMethods >= MAX_PLAYER_HOOKS) break; // Limit hooks to prevent overhead
                 }
             }
             
@@ -135,23 +141,24 @@ public class AutoPlayControl extends Feature {
     private void hookAutoPlayInClass(Class<?> clazz) {
         int hookedMethods = 0;
         for (Method method : clazz.getDeclaredMethods()) {
-            String methodName = method.getName().toLowerCase();
+            final Method finalMethod = method; // Make effectively final for lambda
+            String methodName = finalMethod.getName().toLowerCase();
             
             if (methodName.contains("autoplay") || methodName.contains("shouldautoplay")) {
                 try {
-                    XposedBridge.hookMethod(method, new XC_MethodHook() {
+                    XposedBridge.hookMethod(finalMethod, new XC_MethodHook() {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                            if (disableAutoPlay && method.getReturnType() == boolean.class) {
-                                logDebug("Overriding auto-play setting: " + method.getName());
+                            if (disableAutoPlay && finalMethod.getReturnType() == boolean.class) {
+                                logDebug("Overriding auto-play setting: " + finalMethod.getName());
                                 param.setResult(false);
                             }
                         }
                     });
                     hookedMethods++;
-                    if (hookedMethods >= 3) break;
-                } catch (Exception e) {
-                    logDebug("Failed to hook: " + method.getName());
+                    if (hookedMethods >= MAX_SETTINGS_HOOKS) break;
+                } catch (Throwable e) {
+                    logDebug("Failed to hook method " + finalMethod.getName() + ": " + e.getMessage());
                 }
             }
         }
@@ -175,23 +182,24 @@ public class AutoPlayControl extends Feature {
             if (feedMethods != null && feedMethods.length > 0) {
                 int count = 0;
                 for (Method method : feedMethods) {
-                    if (method.getReturnType() == boolean.class) {
-                        XposedBridge.hookMethod(method, new XC_MethodHook() {
+                    final Method finalMethod = method; // Make effectively final for lambda
+                    if (finalMethod.getReturnType() == boolean.class) {
+                        XposedBridge.hookMethod(finalMethod, new XC_MethodHook() {
                             @Override
                             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                                 if (disableAutoPlay) {
-                                    logDebug("Blocking feed auto-play: " + method.getName());
+                                    logDebug("Blocking feed auto-play: " + finalMethod.getName());
                                     param.setResult(false);
                                 }
                             }
                         });
                         count++;
-                        if (count >= 3) break;
+                        if (count >= MAX_FEED_HOOKS) break;
                     }
                 }
                 logDebug("Hooked " + count + " feed player methods");
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             logDebug("Failed to hook feed player: " + e.getMessage());
         }
     }

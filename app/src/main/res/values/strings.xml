@@ -519,4 +519,24 @@
     <string name="hide_suggestions">Hide Suggestions</string>
     <string name="hide_suggestions_sum">Hide suggestion overlays and recommendations</string>
 
+    <!-- Additional TikTok Features -->
+    <string name="tiktok_advanced_title">Advanced Features</string>
+    
+    <string name="comment_enhancer">Comment Enhancer</string>
+    <string name="comment_enhancer_sum">View deleted comments and enhanced comment features</string>
+    <string name="show_deleted_comments">Show Deleted Comments</string>
+    <string name="show_deleted_comments_sum">Display comments that have been deleted by users</string>
+    
+    <string name="profile_enhancer">Profile Enhancer</string>
+    <string name="profile_enhancer_sum">Enhanced profile viewing and access</string>
+    <string name="view_private_profiles">View Private Profiles</string>
+    <string name="view_private_profiles_sum">Bypass private account restrictions (experimental)</string>
+    <string name="view_secret_profiles">View Secret Profiles</string>
+    <string name="view_secret_profiles_sum">Access profiles marked as secret (experimental)</string>
+    
+    <string name="bitrate_control">Bitrate Control</string>
+    <string name="bitrate_control_sum">Force higher video quality and bitrate</string>
+    <string name="enable_bitrate_control">Enable Bitrate Control</string>
+    <string name="enable_bitrate_control_sum">Override default bitrate settings for better quality</string>
+
 </resources>

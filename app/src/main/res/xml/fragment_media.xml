@@ -244,5 +244,27 @@
 
     </PreferenceCategory>
 
+    <!-- TikTok Advanced Features -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_advanced_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="bitrate_control"
+            app:summary="@string/bitrate_control_sum"
+            app:title="@string/bitrate_control" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="comment_enhancer"
+            app:summary="@string/comment_enhancer_sum"
+            app:title="@string/comment_enhancer" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="profile_enhancer"
+            app:summary="@string/profile_enhancer_sum"
+            app:title="@string/profile_enhancer" />
+
+    </PreferenceCategory>
+
 
 </PreferenceScreen>

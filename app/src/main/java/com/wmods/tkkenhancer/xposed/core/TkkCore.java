@@ -72,75 +72,35 @@ public class TkkCore {
 
 
     public static void Initialize(ClassLoader loader, XSharedPreferences pref) throws Exception {
+        // Initialize SharedPreferences for storing module settings
         try {
             privPrefs = Utils.getApplication().getSharedPreferences("TkkGlobal", Context.MODE_PRIVATE);
             if (privPrefs == null) {
                 XposedBridge.log("Warning: Failed to create SharedPreferences, will retry on first access");
+            } else {
+                XposedBridge.log("privPrefs initialized successfully");
             }
         } catch (Exception e) {
             XposedBridge.log("Error initializing privPrefs: " + e.getMessage());
             XposedBridge.log(e);
             // privPrefs will remain null and will be checked in each method that uses it
         }
-        // init UserJID
-        var mSendReadClass = Unobfuscator.findFirstClassUsingName(loader, StringMatchType.EndsWith, "SendReadReceiptJob");
-        var subClass = ReflectionUtils.findConstructorUsingFilter(mSendReadClass, (constructor) -> constructor.getParameterCount() == 8).getParameterTypes()[0];
-        mGenJidClass = ReflectionUtils.findFieldUsingFilter(subClass, (field) -> Modifier.isStatic(field.getModifiers())).getType();
-        mGenJidMethod = ReflectionUtils.findMethodUsingFilter(mGenJidClass, (method) -> method.getParameterCount() == 1 && !Modifier.isStatic(method.getModifiers()));
-        // Bottom Dialog
-        bottomDialog = Unobfuscator.loadDialogViewClass(loader);
 
-        convChatField = Unobfuscator.loadAntiRevokeConvChatField(loader);
-        chatJidField = Unobfuscator.loadAntiRevokeChatJidField(loader);
+        // TikTok-specific initialization
+        // Note: Most of the original WhatsApp-specific initialization has been removed
+        // as it's not applicable to TikTok
+        
+        XposedBridge.log("TkkCore initialized for TikTok");
 
-        // Settings notifications activity (required for ActivityController.EXPORTED_ACTIVITY)
-        mSettingsNotificationsClass = getSettingsNotificationsActivityClass(loader);
-
-        // StartUpPrefs
-        var startPrefsConfig = Unobfuscator.loadStartPrefsConfig(loader);
-        XposedBridge.hookMethod(startPrefsConfig, new XC_MethodHook() {
-            @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                mStartUpConfig = param.thisObject;
-            }
-        });
-
-        // ActionUser
-        actionUser = Unobfuscator.loadActionUser(loader);
-        XposedBridge.log("ActionUser: " + actionUser.getName());
-        XposedBridge.hookAllConstructors(actionUser, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                mActionUser = param.thisObject;
-            }
-        });
-
-        // CachedMessageStore
-        cachedMessageStoreKey = Unobfuscator.loadCachedMessageStoreKey(loader);
-        XposedBridge.hookAllConstructors(cachedMessageStoreKey.getDeclaringClass(), new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                mCachedMessageStore = param.thisObject;
-            }
-        });
-
-        // WaJidMap
-        convertLidToJid = Unobfuscator.loadConvertLidToJid(loader);
-        convertJidToLid = Unobfuscator.loadConvertJidToLid(loader);
-        XposedBridge.hookAllConstructors(convertLidToJid.getDeclaringClass(), new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                mWaJidMapRepository = param.thisObject;
-            }
-        });
-
-        // Load wa database
-        loadWADatabase();
-
+        // Initialize bridge if not in lite mode
         if (!pref.getBoolean("lite_mode", false)) {
-            initBridge(Utils.getApplication());
+            try {
+                initBridge(Utils.getApplication());
+            } catch (Exception e) {
+                XposedBridge.log("Failed to init bridge: " + e.getMessage());
+                // Non-fatal, continue without bridge
+            }
         }
-
     }
 
     public static Object getPhoneJidFromUserJid(Object lid) {
@@ -216,6 +176,12 @@ public class TkkCore {
         return true;
     }
 
+    /* ===== WHATSAPP-SPECIFIC METHODS - NOT APPLICABLE TO TIKTOK =====
+     * The following methods are commented out as they are WhatsApp-specific
+     * and not applicable to TikTok's architecture
+     */
+     
+    /*
     public static void sendMessage(String number, String message) {
         // TODO: Implement TikTok message sending if applicable
         // TikTok may not have direct messaging or uses different protocols
@@ -232,19 +198,11 @@ public class TkkCore {
             XposedBridge.log(e);
         }
     }
+    */
 
-    public static Object getActionUser() {
-        try {
-            if (mActionUser == null) {
-                mActionUser = actionUser.getConstructors()[0].newInstance();
-            }
-        } catch (Exception e) {
-            XposedBridge.log(e);
-        }
-        return mActionUser;
-    }
+    /* Removed getActionUser() - WhatsApp specific */
 
-
+    /*
     public static void loadWADatabase() {
         if (mWaDatabase != null) return;
         var dataDir = Utils.getApplication().getFilesDir().getParentFile();
@@ -253,6 +211,7 @@ public class TkkCore {
             mWaDatabase = SQLiteDatabase.openDatabase(database.getAbsolutePath(), null, SQLiteDatabase.OPEN_READONLY);
         }
     }
+    */
 
 
     public static Activity getCurrentActivity() {
@@ -343,6 +302,12 @@ public class TkkCore {
         return startup_prefs.getInt("night_mode", 0);
     }
 
+    /* ===== WHATSAPP CONTACT/JID METHODS - NOT APPLICABLE TO TIKTOK =====
+     * These methods handle WhatsApp-specific contact and JID management
+     * TikTok uses a different user identification system
+     */
+     
+    /*
     @NonNull
     public static String getContactName(FMessageTkk.UserJid userJid) {
         loadWADatabase();
@@ -385,114 +350,24 @@ public class TkkCore {
         }
         return name == null ? "" : name;
     }
+    */
 
-    public static Object getFMessageFromKey(Object messageKey) {
-        if (messageKey == null) return null;
-        try {
-            if (mCachedMessageStore == null) {
-                XposedBridge.log("CachedMessageStore is null");
-                return null;
-            }
-            return cachedMessageStoreKey.invoke(mCachedMessageStore, messageKey);
-        } catch (Exception e) {
-            XposedBridge.log(e);
-            return null;
-        }
-    }
+    /* Removed getFMessageFromKey() - WhatsApp specific */
+    /* Removed createUserJid() - WhatsApp specific */
+    /* Removed getCurrentUserJid() - WhatsApp specific */
+    /* Removed stripJID() - WhatsApp specific */
+    /* Removed getContactPhotoDrawable() - WhatsApp specific */
+    /* Removed getContactPhotoFile() - WhatsApp specific */
+    /* Removed getMyName() - WhatsApp specific */
+    /* Removed getMainPrefs() - WhatsApp specific */
+    /* Removed getMyBio() - WhatsApp specific */
+    /* Removed getMyPhoto() - WhatsApp specific */
 
-
-    @Nullable
-    public static Object createUserJid(@Nullable String rawjid) {
-        if (rawjid == null) return null;
-        var genInstance = XposedHelpers.newInstance(mGenJidClass);
-        try {
-            return mGenJidMethod.invoke(genInstance, rawjid);
-        } catch (Exception e) {
-            XposedBridge.log(e);
-        }
-        return null;
-    }
-
-    @Nullable
-    public static FMessageTkk.UserJid getCurrentUserJid() {
-        try {
-            var conversation = getCurrentConversation();
-            if (conversation == null) return null;
-            Object chatField;
-            if (conversation.getClass().getSimpleName().equals("HomeActivity")) {
-                // tablet mode found
-                var convFragmentMethod = Unobfuscator.loadHomeConversationFragmentMethod(conversation.getClassLoader());
-                var convFragment = convFragmentMethod.invoke(null, conversation);
-                var convField = Unobfuscator.loadAntiRevokeConvFragmentField(conversation.getClassLoader());
-                chatField = convField.get(convFragment);
-            } else {
-                chatField = convChatField.get(conversation);
-            }
-            var chatJidObj = chatJidField.get(chatField);
-            return new FMessageTkk.UserJid(chatJidObj);
-        } catch (Exception e) {
-            XposedBridge.log(e);
-            return null;
-        }
-    }
-
-    public static String stripJID(String str) {
-        try {
-            if (str == null) return null;
-            if (str.contains(".") && str.contains("@") && str.indexOf(".") < str.indexOf("@")) {
-                return str.substring(0, str.indexOf("."));
-            } else if (str.contains("@g.us") || str.contains("@s.whatsapp.net") || str.contains("@broadcast") || str.contains("@lid")) {
-                return str.substring(0, str.indexOf("@"));
-            }
-            return str;
-        } catch (Exception e) {
-            XposedBridge.log(e);
-            return str;
-        }
-    }
-
-    public static Drawable getContactPhotoDrawable(String jid) {
-        var file = getContactPhotoFile(jid);
-        if (file == null) return null;
-        return Drawable.createFromPath(file.getAbsolutePath());
-    }
-
-    public static File getContactPhotoFile(String jid) {
-        String datafolder = Utils.getApplication().getCacheDir().getParent() + "/";
-        File file = new File(datafolder + "/cache/" + "Profile Pictures" + "/" + stripJID(jid) + ".jpg");
-        if (!file.exists())
-            file = new File(datafolder + "files" + "/" + "Avatars" + "/" + jid + ".j");
-        if (file.exists()) return file;
-        return null;
-    }
-
-    public static String getMyName() {
-        var startup_prefs = Utils.getApplication().getSharedPreferences("startup_prefs", Context.MODE_PRIVATE);
-        return startup_prefs.getString("push_name", "WhatsApp");
-    }
-
-//    public static String getMyNumber() {
-//        var mainPrefs = getMainPrefs();
-//        return mainPrefs.getString("registration_jid", "");
-//    }
-
-    public static SharedPreferences getMainPrefs() {
-        return Utils.getApplication().getSharedPreferences(Utils.getApplication().getPackageName() + "_preferences_light", Context.MODE_PRIVATE);
-    }
-
-
-    public static String getMyBio() {
-        var mainPrefs = getMainPrefs();
-        return mainPrefs.getString("my_current_status", "");
-    }
-
-    public static Drawable getMyPhoto() {
-        String datafolder = Utils.getApplication().getCacheDir().getParent() + "/";
-        File file = new File(datafolder + "files" + "/" + "me.jpg");
-        if (file.exists()) return Drawable.createFromPath(file.getAbsolutePath());
-        return null;
-    }
-
+    /* ===== WHATSAPP UI METHODS - NOT APPLICABLE TO TIKTOK =====
+     * These methods handle WhatsApp-specific UI components
+     */
+     
+    /*
     public static BottomDialogTkk createBottomDialog(Context context) {
         return new BottomDialogTkk((Dialog) XposedHelpers.newInstance(bottomDialog, context, 0));
     }
@@ -504,6 +379,7 @@ public class TkkCore {
         // Commented out WhatsApp-specific code
         return mCurrentActivity;
     }
+    */
 
     private static synchronized void ensurePrivPrefsInitialized() {
         if (privPrefs == null) {

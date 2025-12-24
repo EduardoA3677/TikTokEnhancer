@@ -60,7 +60,6 @@ public class AnalyticsBlocker extends Feature {
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         // Block the tracking call
                         param.setResult(null);
-                        logDebug("Blocked Firebase screen tracking: " + param.args[1]);
                     }
                 }
             );

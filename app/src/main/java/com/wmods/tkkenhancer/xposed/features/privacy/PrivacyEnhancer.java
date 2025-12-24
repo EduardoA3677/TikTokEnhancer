@@ -111,7 +111,6 @@ public class PrivacyEnhancer extends Feature {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             // Block history tracking
-                            logDebug("Blocked view history tracking: " + methodName);
                             param.setResult(null);
                         }
                     });
@@ -179,7 +178,6 @@ public class PrivacyEnhancer extends Feature {
                             // Check if it's a tracking call
                             if (methodName.toLowerCase().contains("track") ||
                                 methodName.toLowerCase().contains("log")) {
-                                logDebug("Blocked profile visit tracking: " + methodName);
                                 param.setResult(null);
                             }
                         }
@@ -270,7 +268,6 @@ public class PrivacyEnhancer extends Feature {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             // Block Firebase analytics
-                            logDebug("Blocked Firebase Analytics: " + methodName);
                             param.setResult(null);
                         }
                     });
@@ -337,7 +334,6 @@ public class PrivacyEnhancer extends Feature {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             // Block analytics
-                            logDebug("Blocked analytics call: " + methodName);
                             param.setResult(null);
                         }
                     });
@@ -416,7 +412,6 @@ public class PrivacyEnhancer extends Feature {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             // Block data collection
-                            logDebug("Blocked data collection: " + methodName);
                             param.setResult(null);
                         }
                     });
@@ -480,7 +475,6 @@ public class PrivacyEnhancer extends Feature {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             // Block Aweme analytics
-                            logDebug("Blocked Aweme analytics call: " + methodName);
                             param.setResult(null);
                         }
                     });
@@ -541,7 +535,6 @@ public class PrivacyEnhancer extends Feature {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             // Block telemetry upload
-                            logDebug("Blocked telemetry upload: " + methodName);
                             param.setResult(null);
                         }
                     });

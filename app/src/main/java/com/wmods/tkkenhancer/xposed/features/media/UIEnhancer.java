@@ -135,7 +135,6 @@ public class UIEnhancer extends Feature {
                         @Override
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             param.args[0] = View.GONE;
-                            logDebug("Hidden Live badge");
                         }
                     }
                 );
@@ -178,7 +177,6 @@ public class UIEnhancer extends Feature {
                             @Override
                             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                                 param.setResult(null);
-                                logDebug("Blocked Shop tab display");
                             }
                         });
                     }
@@ -230,7 +228,6 @@ public class UIEnhancer extends Feature {
                                 TextView tv = (TextView) param.thisObject;
                                 tv.post(() -> {
                                     tv.setVisibility(View.GONE);
-                                    logDebug("Hidden sponsored badge: " + text);
                                 });
                             }
                         }
@@ -268,7 +265,6 @@ public class UIEnhancer extends Feature {
                             @Override
                             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                                 param.args[0] = View.GONE;
-                                logDebug("Hidden watermark view");
                             }
                         }
                     );
@@ -309,7 +305,6 @@ public class UIEnhancer extends Feature {
                                 @Override
                                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                                     param.setResult(null);
-                                    logDebug("Blocked suggestion display");
                                 }
                             });
                         }

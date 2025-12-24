@@ -567,8 +567,6 @@
     <string name="hide_inbox_tab_sum">Hide the messages/inbox tab from bottom navigation</string>
     <string name="hide_profile_tab">Hide Profile Tab</string>
     <string name="hide_profile_tab_sum">Hide the profile/me tab from bottom navigation</string>
-    <string name="hide_shop_tab">Hide Shop Tab</string>
-    <string name="hide_shop_tab_sum">Hide the shop/mall tab from bottom navigation (if present)</string>
     
     <!-- General TikTok Settings -->
     <string name="bypass_version_check">Bypass Version Check</string>

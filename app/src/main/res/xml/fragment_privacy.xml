@@ -34,6 +34,34 @@
             app:title="@string/disable_analytics" />
 
         <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="disable_analytics"
+            app:key="block_firebase_analytics"
+            app:defaultValue="true"
+            app:summary="@string/block_firebase_analytics_sum"
+            app:title="@string/block_firebase_analytics" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="disable_analytics"
+            app:key="block_tiktok_analytics"
+            app:defaultValue="true"
+            app:summary="@string/block_tiktok_analytics_sum"
+            app:title="@string/block_tiktok_analytics" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="disable_analytics"
+            app:key="block_telemetry_upload"
+            app:defaultValue="true"
+            app:summary="@string/block_telemetry_upload_sum"
+            app:title="@string/block_telemetry_upload" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="disable_analytics"
+            app:key="block_aweme_analytics"
+            app:defaultValue="true"
+            app:summary="@string/block_aweme_analytics_sum"
+            app:title="@string/block_aweme_analytics" />
+
+        <rikka.material.preference.MaterialSwitchPreference
             app:dependency="privacy_enhancer"
             app:key="block_data_collection"
             app:defaultValue="true"

@@ -25,6 +25,27 @@
             app:title="@string/download_service_hook" />
 
         <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="download_service_hook"
+            app:key="hook_download_aweme_service"
+            app:defaultValue="true"
+            app:summary="@string/hook_download_aweme_service_sum"
+            app:title="@string/hook_download_aweme_service" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="download_service_hook"
+            app:key="hook_share_helper"
+            app:defaultValue="false"
+            app:summary="@string/hook_share_helper_sum"
+            app:title="@string/hook_share_helper" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="download_service_hook"
+            app:key="hook_network_utils"
+            app:defaultValue="false"
+            app:summary="@string/hook_network_utils_sum"
+            app:title="@string/hook_network_utils" />
+
+        <rikka.material.preference.MaterialSwitchPreference
             app:key="story_download"
             app:summary="@string/story_download_sum"
             app:title="@string/story_download" />
@@ -47,6 +68,15 @@
             app:summary="@string/video_quality_sum"
             app:title="@string/video_quality" />
 
+        <ListPreference
+            android:dependency="video_quality"
+            android:defaultValue="ultra"
+            android:entries="@array/quality_level_entries"
+            android:entryValues="@array/quality_level_values"
+            app:key="quality_level"
+            app:summary="@string/quality_level_sum"
+            app:title="@string/quality_level" />
+
         <rikka.material.preference.MaterialSwitchPreference
             app:dependency="video_quality"
             app:key="force_hd_quality"
@@ -68,6 +98,27 @@
             app:key="target_bitrate"
             app:summary="@string/target_bitrate_sum"
             app:title="@string/target_bitrate" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="video_quality"
+            app:key="hook_rate_setting_model"
+            app:defaultValue="true"
+            app:summary="@string/hook_rate_setting_model_sum"
+            app:title="@string/hook_rate_setting_model" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="video_quality"
+            app:key="hook_gear_set"
+            app:defaultValue="true"
+            app:summary="@string/hook_gear_set_sum"
+            app:title="@string/hook_gear_set" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:dependency="video_quality"
+            app:key="hook_auto_bitrate_set"
+            app:defaultValue="true"
+            app:summary="@string/hook_auto_bitrate_set_sum"
+            app:title="@string/hook_auto_bitrate_set" />
 
     </PreferenceCategory>
 

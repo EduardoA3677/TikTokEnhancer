@@ -120,10 +120,10 @@
     </string-array>
     <string-array name="supported_versions_tkk">
         <!-- TikTok version format: XX.X.X -->
-        <!-- These are placeholder versions - update with actual supported TikTok versions -->
-        <item>43.x.x</item>
-        <item>44.x.x</item>
-        <item>45.x.x</item>
+        <!-- Pattern .xx will be replaced with empty string, so "43.xx" becomes "43." for matching -->
+        <item>43.xx</item>
+        <item>44.xx</item>
+        <item>45.xx</item>
     </string-array>
     <string-array name="image_picker">
         <item>image/*</item>

@@ -502,6 +502,10 @@ public class TkkCore {
 
     @SuppressLint("ApplySharedPref")
     public static void setPrivString(String key, String value) {
+        if (privPrefs == null) {
+            XposedBridge.log("Warning: privPrefs is null in setPrivString, skipping operation");
+            return;
+        }
         privPrefs.edit().putString(key, value).commit();
     }
 

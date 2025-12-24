@@ -226,7 +226,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     @SuppressLint("StringFormatInvalid")
-    private void checkStateWpp(FragmentActivity activity) {
+    private void checkStateTkk(FragmentActivity activity) {
 
         if (MainActivity.isXposedEnabled()) {
             binding.statusIcon.setImageResource(R.drawable.ic_round_check_circle_24);

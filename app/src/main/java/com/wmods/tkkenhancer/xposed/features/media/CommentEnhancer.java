@@ -3,26 +3,21 @@ package com.wmods.tkkenhancer.xposed.features.media;
 import androidx.annotation.NonNull;
 
 import com.wmods.tkkenhancer.xposed.core.Feature;
-import com.wmods.tkkenhancer.xposed.core.devkit.Unobfuscator;
-
-import java.lang.reflect.Method;
-import java.util.List;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 /**
  * Comment Enhancer Feature for TikTok
  * Provides enhanced comment functionality:
- * - View deleted comments
- * - Enhanced comment filtering
- * - Comment history tracking
+ * - View deleted comments (status != 1)
  * 
- * Based on smali analysis:
- * - Comment class: com.ss.android.ugc.aweme.comment.model.Comment
- * - Comment posting and viewing methods
+ * Based on verified smali analysis:
+ * - Comment class: com.ss.android.ugc.aweme.comment.model.Comment (smali_classes15)
+ * - Field: public status:I
+ * - Method: public getStatus()I
+ * - Status values: 0 = deleted/hidden, 1 = visible
  */
 public class CommentEnhancer extends Feature {
 
@@ -34,51 +29,42 @@ public class CommentEnhancer extends Feature {
     public void doHook() throws Throwable {
         if (!prefs.getBoolean("comment_enhancer", false)) return;
 
-        logDebug("Initializing Comment Enhancer feature (lazy mode)");
+        logDebug("Initializing Comment Enhancer feature");
 
-        // Minimal hooks during startup - full hooking happens on demand
         try {
-            hookCommentLoadingLazy();
-            logDebug("Comment Enhancer feature initialized");
+            hookCommentStatus();
+            logDebug("Comment Enhancer feature initialized successfully");
         } catch (Exception e) {
             logDebug("Failed to initialize Comment Enhancer: " + e.getMessage());
+            log(e);
         }
     }
 
     /**
-     * Lazy hook - only essential methods during startup
+     * Hook Comment.getStatus() to show deleted comments
+     * Verified class: com.ss.android.ugc.aweme.comment.model.Comment
      */
-    private void hookCommentLoadingLazy() {
+    private void hookCommentStatus() {
         try {
-            Class<?> commentClass = Unobfuscator.loadTikTokCommentClass(classLoader);
-            if (commentClass == null) {
-                logDebug("Comment class not found");
-                return;
-            }
-
-            // Only hook 1-2 critical methods to prevent startup delay
-            int hookCount = 0;
-            for (Method method : commentClass.getDeclaredMethods()) {
-                if (method.getReturnType() == boolean.class && method.getParameterCount() == 0) {
-                    String methodName = method.getName().toLowerCase();
-                    if (methodName.equals("isdeleted") || methodName.equals("ishidden")) {
-                        XposedBridge.hookMethod(method, new XC_MethodHook() {
-                            @Override
-                            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                // Show deleted comments
-                                logDebug("Overriding comment deletion check: " + method.getName());
-                                param.setResult(false);
-                            }
-                        });
-                        hookCount++;
-                        if (hookCount >= 2) break; // Stop after 2 hooks
+            Class<?> commentClass = classLoader.loadClass("com.ss.android.ugc.aweme.comment.model.Comment");
+            
+            XposedHelpers.findAndHookMethod(commentClass, "getStatus", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    int originalStatus = (int) param.getResult();
+                    
+                    // Status 0 = deleted/hidden, 1 = visible
+                    // Override to always return 1 (visible) to show deleted comments
+                    if (originalStatus != 1) {
+                        param.setResult(1);
+                        logDebug("Showing deleted comment (status " + originalStatus + " -> 1)");
                     }
                 }
-            }
-
-            logDebug("Hooked " + hookCount + " comment methods");
+            });
+            
+            logDebug("Hooked Comment.getStatus() successfully");
         } catch (Exception e) {
-            logDebug("Failed to hook comments: " + e.getMessage());
+            logDebug("Failed to hook Comment: " + e.getMessage());
         }
     }
 

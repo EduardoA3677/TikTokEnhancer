@@ -330,7 +330,7 @@ public class Unobfuscator {
                 throw new ClassNotFoundException("ForwardClass not found - neither 'UserActionsMessageForwarding/userActionForwardMessage' nor 'UserActions/userActionForwardMessage' pattern found");
             });
         } catch (ClassNotFoundException | NoClassDefFoundError e) {
-            // Return null if class not found - this is expected for some WhatsApp versions
+            // Return null if class not found - this is expected for some TikTok versions
             // The calling code in TagMessage.java is designed to handle null gracefully
             return null;
         } catch (Exception e) {
@@ -1997,7 +1997,7 @@ public class Unobfuscator {
                 return methods.get(0).getClassInstance(classLoader);
             }
 
-            // Let's look for forcibly on WhatsApp Web (very boring this)
+            // Search in web-related classes
             var opcodes = List.of(
                     "invoke-virtual",
                     "move-result",

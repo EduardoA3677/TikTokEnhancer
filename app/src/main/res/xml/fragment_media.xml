@@ -244,6 +244,81 @@
 
     </PreferenceCategory>
 
+    <!-- TikTok Feed Control -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_feed_control_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_live_streams"
+            app:summary="@string/hide_live_streams_sum"
+            app:title="@string/hide_live_streams" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_image_reels"
+            app:summary="@string/hide_image_reels_sum"
+            app:title="@string/hide_image_reels" />
+
+    </PreferenceCategory>
+
+    <!-- TikTok Profile Icons -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_profile_icons_title">
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_profile_live_icon"
+            app:summary="@string/hide_profile_live_icon_sum"
+            app:title="@string/hide_profile_live_icon" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_profile_coin_icon"
+            app:summary="@string/hide_profile_coin_icon_sum"
+            app:title="@string/hide_profile_coin_icon" />
+
+    </PreferenceCategory>
+
+    <!-- TikTok Tab Manager -->
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/tiktok_tab_manager_title">
+
+        <Preference
+            app:summary="@string/tab_manager_desc"
+            app:selectable="false" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_home_tab"
+            app:summary="@string/hide_home_tab_sum"
+            app:title="@string/hide_home_tab" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_friends_tab"
+            app:summary="@string/hide_friends_tab_sum"
+            app:title="@string/hide_friends_tab" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_create_tab"
+            app:summary="@string/hide_create_tab_sum"
+            app:title="@string/hide_create_tab" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_inbox_tab"
+            app:summary="@string/hide_inbox_tab_sum"
+            app:title="@string/hide_inbox_tab" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_profile_tab"
+            app:summary="@string/hide_profile_tab_sum"
+            app:title="@string/hide_profile_tab" />
+
+        <rikka.material.preference.MaterialSwitchPreference
+            app:key="hide_shop_tab"
+            app:summary="@string/hide_shop_tab_sum"
+            app:title="@string/hide_shop_tab" />
+
+    </PreferenceCategory>
+
     <!-- TikTok Advanced Features -->
     <PreferenceCategory
         app:iconSpaceReserved="false"

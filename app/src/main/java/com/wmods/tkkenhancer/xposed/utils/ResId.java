@@ -109,6 +109,5 @@ public class ResId {
 
     public static class array {
         public static int supported_versions_tkk;
-        public static int supported_versions_lite;
     }
 }

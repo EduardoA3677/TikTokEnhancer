@@ -144,20 +144,9 @@ public class Utils {
 
     @SuppressLint("SdCardPath")
     public static String getDestination(String name) throws Exception {
-        if (xprefs.getBoolean("lite_mode", false)) {
-            var folder = TkkCore.getPrivString("download_folder", null);
-            if (folder == null)
-                throw new Exception("Download Folder is not selected!");
-            var documentFile = DocumentFile.fromTreeUri(Utils.getApplication(), Uri.parse(folder));
-            var tkkFolder = Utils.getURIFolderByName(documentFile, "WhatsApp", true);
-            var nameFolder = Utils.getURIFolderByName(tkkFolder, name, true);
-            if (nameFolder == null)
-                throw new Exception("Folder not found!");
-            return folder + "/WhatsApp/" + name;
-        }
         String folder = TkkXposed.getPref().getString("download_local", "/sdcard/Download");
-        var waFolder = new File(folder, "WhatsApp");
-        var filePath = new File(waFolder, name);
+        var tkkFolder = new File(folder, "TikTok");
+        var filePath = new File(tkkFolder, name);
         try {
             TkkCore.getClientBridge().createDir(filePath.getAbsolutePath());
         } catch (Exception ignored) {
@@ -186,57 +175,24 @@ public class Utils {
     public static String copyFile(File srcFile, String destFolder, String name) {
         if (srcFile == null || !srcFile.exists()) return "File not found or is null";
 
-        if (xprefs.getBoolean("lite_mode", false)) {
-            try {
-                var folder = TkkCore.getPrivString("download_folder", null);
-                DocumentFile documentFolder = DocumentFile.fromTreeUri(Utils.getApplication(), Uri.parse(folder));
-                destFolder = destFolder.replace(folder + "/", "");
-                for (String f : destFolder.split("/")) {
-                    documentFolder = Utils.getURIFolderByName(documentFolder, f, false);
-                    if (documentFolder == null) return "Failed to get folder";
-                }
-                DocumentFile newFile = documentFolder.createFile("*/*", name);
-                if (newFile == null) return "Failed to create destination file";
-
-                ContentResolver contentResolver = Utils.getApplication().getContentResolver();
-
-                try (InputStream in = new FileInputStream(srcFile);
-                     OutputStream out = contentResolver.openOutputStream(newFile.getUri())) {
-
-                    if (out == null) return "Failed to open output stream";
-
-                    byte[] buffer = new byte[1024];
-                    int length;
-                    while ((length = in.read(buffer)) > 0) {
-                        out.write(buffer, 0, length);
-                    }
-
+        File destFile = new File(destFolder, name);
+        try (FileInputStream in = new FileInputStream(srcFile);
+             var parcelFileDescriptor = TkkCore.getClientBridge().openFile(destFile.getAbsolutePath(), true)) {
+            var out = new FileOutputStream(parcelFileDescriptor.getFileDescriptor());
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = in.read(bArr);
+                if (read <= 0) {
+                    in.close();
+                    out.close();
+                    Utils.scanFile(destFile);
                     return "";
                 }
-            } catch (Exception e) {
-                XposedBridge.log(e);
-                return e.getMessage();
+                out.write(bArr, 0, read);
             }
-        } else {
-            File destFile = new File(destFolder, name);
-            try (FileInputStream in = new FileInputStream(srcFile);
-                 var parcelFileDescriptor = TkkCore.getClientBridge().openFile(destFile.getAbsolutePath(), true)) {
-                var out = new FileOutputStream(parcelFileDescriptor.getFileDescriptor());
-                byte[] bArr = new byte[1024];
-                while (true) {
-                    int read = in.read(bArr);
-                    if (read <= 0) {
-                        in.close();
-                        out.close();
-                        Utils.scanFile(destFile);
-                        return "";
-                    }
-                    out.write(bArr, 0, read);
-                }
-            } catch (Exception e) {
-                XposedBridge.log(e);
-                return e.getMessage();
-            }
+        } catch (Exception e) {
+            XposedBridge.log(e);
+            return e.getMessage();
         }
     }
 

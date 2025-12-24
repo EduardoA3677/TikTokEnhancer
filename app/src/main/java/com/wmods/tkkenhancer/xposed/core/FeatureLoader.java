@@ -248,21 +248,29 @@ public class FeatureLoader {
 
     private static void plugins(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, @NonNull String versionTkk) throws Exception {
 
-        // TikTok-specific features - Corrected based on deep smali analysis
-        // All class names and methods verified against actual TikTok smali code
+        // TikTok-specific features - Enhanced based on smali analysis
+        // All class names and methods verified against actual TikTok smali code from
+        // https://github.com/Eduardob3677/com_zhiliaoapp_musically_6
         var classes = new Class<?>[]{
                 DebugFeature.class,
-                com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,      // ✅ Verified: getDownloadNoWatermarkAddr()
-                com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,          // ✅ Verified: isAd()
-                com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class,    // Player control
-                com.wmods.tkkenhancer.xposed.features.media.VideoQuality.class,       // ✅ Corrected: RateSettingCombineModel, GearSet
-                com.wmods.tkkenhancer.xposed.features.media.StoryDownload.class,      // ✅ Verified: Story model
-                com.wmods.tkkenhancer.xposed.features.media.DownloadServiceHook.class, // 🆕 NEW: DownloadAwemeVideoServiceImpl.LIZ()
-                com.wmods.tkkenhancer.xposed.features.privacy.PrivacyEnhancer.class   // ✅ Enhanced: + FirebaseAnalytics
-                // CustomThemeV2.class,  // Commented out - needs TikTok-specific implementation
-                // LiteMode.class,  // Commented out - needs TikTok-specific implementation
-                // Others.class,  // Commented out - needs TikTok-specific implementation
-                // ToastViewer.class  // Commented out - needs TikTok-specific implementation
+                
+                // Original features - to be gradually replaced by improved versions
+                com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,      // Original: getDownloadNoWatermarkAddr()
+                com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,          // Original: isAd()
+                com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class,    // Original: Player control
+                
+                // New improved features based on smali analysis
+                com.wmods.tkkenhancer.xposed.features.media.VideoDownloadImproved.class, // ✅ NEW: Better URL extraction & prevent_download bypass
+                com.wmods.tkkenhancer.xposed.features.media.AdBlockerImproved.class,     // ✅ NEW: Direct field access, isAdTraffic(), commercialVideoInfo
+                com.wmods.tkkenhancer.xposed.features.media.StoryVideoSupport.class,     // ✅ NEW: Story video downloads
+                com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class         // ✅ NEW: Video quality/bitrate control
+                
+                // Note: Commented out classes that need TikTok-specific implementation:
+                // - VideoQuality.class (replaced by BitrateControl)
+                // - StoryDownload.class (replaced by StoryVideoSupport) 
+                // - DownloadServiceHook.class (integrated into VideoDownloadImproved)
+                // - PrivacyEnhancer.class (needs TikTok-specific API analysis)
+                // - CustomThemeV2.class (needs TikTok theme system analysis)
         };
         XposedBridge.log("Loading TikTok Plugins");
         var executorService = Executors.newWorkStealingPool(Math.min(Runtime.getRuntime().availableProcessors(), 4));

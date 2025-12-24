@@ -2274,4 +2274,143 @@ public class Unobfuscator {
             }
         });
     }
+
+    /**
+     * Load method to get download address with watermark
+     * Based on smali analysis: getDownloadAddr()Lcom/ss/android/ugc/aweme/base/model/UrlModel;
+     */
+    public synchronized static Method loadTikTokDownloadUrlMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> videoClass = loadTikTokVideoClass(classLoader);
+            if (videoClass == null) throw new Exception("Video class not found");
+            
+            try {
+                return videoClass.getDeclaredMethod("getDownloadAddr");
+            } catch (NoSuchMethodException e) {
+                for (Method method : videoClass.getDeclaredMethods()) {
+                    if (method.getName().toLowerCase().contains("downloadaddr") &&
+                        !method.getName().toLowerCase().contains("nowatermark") &&
+                        method.getReturnType().getName().contains("UrlModel")) {
+                        return method;
+                    }
+                }
+            }
+            throw new Exception("Download URL method not found");
+        });
+    }
+
+    /**
+     * Load method to check if video is ad traffic
+     * Based on smali analysis: isAdTraffic()Z
+     */
+    public synchronized static Method loadTikTokIsAdTrafficMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> feedItemClass = loadTikTokFeedItemClass(classLoader);
+            if (feedItemClass == null) throw new Exception("Feed item class not found");
+            
+            try {
+                return feedItemClass.getDeclaredMethod("isAdTraffic");
+            } catch (NoSuchMethodException e) {
+                // Method might not exist in all versions
+                return null;
+            }
+        });
+    }
+
+    /**
+     * Load TikTok UrlModel class
+     * This class contains URL lists for video downloads
+     */
+    public synchronized static Class<?> loadTikTokUrlModelClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, "TikTokUrlModelClass", () -> {
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.base.model.UrlModel", classLoader);
+            } catch (Throwable e) {
+                return findFirstClassUsingStrings(classLoader, StringMatchType.Contains, "url_list", "url_key");
+            }
+        });
+    }
+
+    /**
+     * Load method to get video from Aweme
+     * Based on smali analysis: getVideo()Lcom/ss/android/ugc/aweme/feed/model/Video;
+     */
+    public synchronized static Method loadTikTokGetVideoMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> awemeClass = loadTikTokFeedItemClass(classLoader);
+            if (awemeClass == null) throw new Exception("Aweme class not found");
+            
+            try {
+                return awemeClass.getDeclaredMethod("getVideo");
+            } catch (NoSuchMethodException e) {
+                // Search for method returning Video class
+                Class<?> videoClass = loadTikTokVideoClass(classLoader);
+                for (Method method : awemeClass.getDeclaredMethods()) {
+                    if (method.getReturnType() == videoClass && 
+                        method.getParameterCount() == 0) {
+                        return method;
+                    }
+                }
+            }
+            throw new Exception("getVideo method not found");
+        });
+    }
+
+    /**
+     * Load method to get URL list from UrlModel
+     */
+    public synchronized static Method loadTikTokUrlListMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> urlModelClass = loadTikTokUrlModelClass(classLoader);
+            if (urlModelClass == null) throw new Exception("UrlModel class not found");
+            
+            // Try common method names
+            for (String methodName : new String[]{"getUrlList", "getUrls", "getUrlArray"}) {
+                try {
+                    return urlModelClass.getDeclaredMethod(methodName);
+                } catch (NoSuchMethodException ignored) {}
+            }
+            
+            // Search for method returning List
+            for (Method method : urlModelClass.getDeclaredMethods()) {
+                if (method.getReturnType() == List.class && 
+                    method.getParameterCount() == 0 &&
+                    method.getName().toLowerCase().contains("url")) {
+                    return method;
+                }
+            }
+            throw new Exception("URL list method not found");
+        });
+    }
+
+    /**
+     * Load prevent download field from Aweme
+     * Based on smali analysis: preventDownload field
+     */
+    public synchronized static Method loadTikTokPreventDownloadMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> awemeClass = loadTikTokFeedItemClass(classLoader);
+            if (awemeClass == null) throw new Exception("Aweme class not found");
+            
+            // Try getter method
+            try {
+                return awemeClass.getDeclaredMethod("isPreventDownload");
+            } catch (NoSuchMethodException e) {
+                try {
+                    return awemeClass.getDeclaredMethod("getPreventDownload");
+                } catch (NoSuchMethodException e2) {
+                    // Search for boolean method with prevent/download in name
+                    for (Method method : awemeClass.getDeclaredMethods()) {
+                        if (method.getReturnType() == boolean.class &&
+                            method.getName().toLowerCase().contains("prevent") &&
+                            method.getName().toLowerCase().contains("download")) {
+                            return method;
+                        }
+                    }
+                }
+            }
+            // Return null if not found - not all versions have this
+            return null;
+        });
+    }
 }

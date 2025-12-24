@@ -52,7 +52,7 @@ public class HomeFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        var intentFilter = new IntentFilter(BuildConfig.APPLICATION_ID + ".RECEIVER_TKK");
+        var intentFilter = new IntentFilter(BuildConfig.APPLICATION_ID + ".RECEIVER_TIKTOK");
         ContextCompat.registerReceiver(requireContext(), new BroadcastReceiver() {
 
             @Override
@@ -248,7 +248,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private static void checkTkk(FragmentActivity activity) {
-        Intent checkTkk = new Intent(BuildConfig.APPLICATION_ID + ".CHECK_TKK");
+        Intent checkTkk = new Intent(BuildConfig.APPLICATION_ID + ".CHECK_TIKTOK");
         activity.sendBroadcast(checkTkk);
     }
 

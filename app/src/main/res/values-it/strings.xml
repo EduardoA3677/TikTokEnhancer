@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_desc">Modulo WhatsApp Enhancer</string>
+    <string name="app_desc">Modulo TikTok Enhancer</string>
     <string name="antirevoke">Anti-Elimina messaggi</string>
     <string name="antirevoke_sum">I messaggi non saranno eliminati per te</string>
     <string name="ghostmode">Nascondi digitazione</string>
@@ -15,7 +15,7 @@
     <string name="hideread_sum">Visualizza i messaggi nelle conversazioni senza che gli altri lo sappiano</string>
     <string name="perso">Personalizzazione</string>
     <string name="segundosnahora">Secondi nell\'orario</string>
-    <string name="segundosnahora_sum">Mostra i secondi accanto a qualsiasi orario nell\'app WhatsApp</string>
+    <string name="segundosnahora_sum">Mostra i secondi accanto a qualsiasi orario nell\'app TikTok</string>
     <string name="textonahora">Testo accanto all\'orario</string>
     <string name="viewonce">Visualizza una volta Illimitato</string>
     <string name="viewonce_sum">Consente di aprire più volte i media visualizzabili una volta sola</string>
@@ -29,9 +29,9 @@
     <string name="videoquality">Video in qualità HD</string>
     <string name="videoquality_sum">Invia i video in qualità HD per impostazione predefinita</string>
     <string name="colors_customization">Personalizza i colori</string>
-    <string name="colors_customization_sum">Cambia tutti i colori nel tuo WhatsApp (Funziona solo con il Tema Scuro)</string>
+    <string name="colors_customization_sum">Cambia tutti i colori nel tuo TikTok (Funziona solo con il Tema Scuro)</string>
     <string name="general">Generale</string>
-    <string name="restart_whatsapp">Riavvia WhatsApp</string>
+    <string name="restart_whatsapp">Riavvia TikTok</string>
     <string name="conversation">Conversazione</string>
     <string name="primary_color">Colore primario</string>
     <string name="background_color">Colore di sfondo</string>
@@ -46,7 +46,7 @@
     <string name="removeforwardlimit_sum">Rimuovi il limite di inoltro per 5 chat (normale) e 1 chat (più volte)\n(ATTENZIONE: Utilizzare con cautela, si può essere bannati per spam)</string>
     <string name="removeforwardlimit">Rimuovi limite di inoltro</string>
     <string name="showname">Mostra Nome</string>
-    <string name="showname_sum">Mostra il nome del tuo profilo nella parte superiore della Home, invece di \"WhatsApp\"</string>
+    <string name="showname_sum">Mostra il nome del tuo profilo nella parte superiore della Home, invece di \"TikTok\"</string>
     <string name="showbio_sum">Mostra la tua biografia sotto il titolo nella Home</string>
     <string name="showbio">Mostra Biografia</string>
     <string name="bubble_left">Bolla sinistra</string>
@@ -61,13 +61,13 @@
     <string name="blueonreply">Invia spunte blu alla risposta</string>
     <string name="blueonreply_sum">Invia le spunte blu dopo aver risposto ad un messaggio (NOTA: Deve essere attivo \"Nascondi spunte blu\")</string>
     <string name="hide_archived_chat">Nascondi Chat archiviate</string>
-    <string name="hide_archived_chat_sum">Nascondi le chat archiviate, per accedere clicca 5 volte sul titolo \"WhatsApp\" nell\'intestazione della Home</string>
+    <string name="hide_archived_chat_sum">Nascondi le chat archiviate, per accedere clicca 5 volte sul titolo \"TikTok\" nell\'intestazione della Home</string>
     <string name="hide_once_view_seen">Nascondi lettura Visualizza una volta</string>
     <string name="hide_once_view_seen_sum">Nascondi che i media \'visualizza una volta\' sono stati visti</string>
     <string name="call_blocker">Blocco chiamate</string>
-    <string name="call_blocker_sum">Blocca le chiamate WhatsApp in base al tipo di privacy</string>
+    <string name="call_blocker_sum">Blocca le chiamate TikTok in base al tipo di privacy</string>
     <string name="show_online_dot_in_conversation_list">Mostra il pallino online nell\'elenco delle conversazioni</string>
-    <string name="show_online_dot_in_conversation_list_sum">Mostra un pallino online verde nella Home (NOTA: È necessario attivare la \'Visualizzazione online per tutti\' nelle impostazioni Privacy di WhatsApp)</string>
+    <string name="show_online_dot_in_conversation_list_sum">Mostra un pallino online verde nella Home (NOTA: È necessario attivare la \'Visualizzazione online per tutti\' nelle impostazioni Privacy di TikTok)</string>
     <string name="show_dnd_button">Mostra pulsante DND</string>
     <string name="show_dnd_button_sum">Mostra un pulsante per la Modalità Non disturbare (DND) nel menù della Home</string>
     <string name="dev4mod">Dev4Mod (Collaboratore)</string>
@@ -93,7 +93,7 @@
     <string name="number_with_country_code">Numero con prefisso internazionale</string>
     <string name="message">Messaggio</string>
     <string name="download">Download</string>
-    <string name="reboot_whatsapp">(Riavvia WhatsApp)</string>
+    <string name="reboot_whatsapp">(Riavvia TikTok)</string>
     <string name="error_when_saving_try_again">Errore nel salvataggio, riprova</string>
     <string name="saved_to">"Salvato in "</string>
     <string name="hide_tabs_on_home">Nascondi schede nella Home</string>
@@ -117,9 +117,9 @@
     <string name="module_enabled">Modulo abilitato</string>
     <string name="version_s">Versione %s</string>
     <string name="module_disabled">Modulo disabilitato</string>
-    <string name="whatsapp_in_background">WhatsApp in background</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">Whatsapp non è in esecuzione o non è stato attivato in LSPosed</string>    <string name="restart_tkk">È necessario riavviare WhatsApp affinché le modifiche in Wa Enhancer abbiano effetto.\n\nVuoi riavviare?</string>
-    <string name="version_s_not_listed">La versione %s non è elencata nelle versioni supportate!\nUtilizza una versione di WhatsApp supportata!</string>
+    <string name="whatsapp_in_background">TikTok in background</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">TikTok non è in esecuzione o non è stato attivato in LSPosed</string>    <string name="restart_tkk">È necessario riavviare TikTok affinché le modifiche in Wa Enhancer abbiano effetto.\n\nVuoi riavviare?</string>
+    <string name="version_s_not_listed">La versione %s non è elencata nelle versioni supportate!\nUtilizza una versione di TikTok supportata!</string>
     <string name="media">Media</string>
     <string name="show_button_to_send_blue_tick">Mostra pulsante per inviare la spunta blu</string>
     <string name="show_button_to_send_blue_tick_sum">Mostra un pulsante per inviare la spunta blu (contrassegna come letto/visualizzato)</string>
@@ -151,16 +151,16 @@
     <string name="seentick_screen">Mostra pulsante nella schermata</string>
     <string name="verbose_logs">Abilita registri dettagliati per il debug</string>
     <string name="phone_call">Chiamata</string>
-    <string name="whatsapp_call">Chiamata WhatsApp</string>
+    <string name="whatsapp_call">Chiamata TikTok</string>
     <string name="home_screen">Schermata Home</string>
     <string name="selection_of_call_type">Abilita selezione tipo di chiamata</string>
-    <string name="selection_of_call_type_sum">Mostra un\'opzione per selezionare se vuoi una chiamata via Telefono o WhatsApp</string>
+    <string name="selection_of_call_type_sum">Mostra un\'opzione per selezionare se vuoi una chiamata via Telefono o TikTok</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="device_model">Modello del dispositivo</string>
     <string name="device_name">Nome del dispositivo</string>
     <string name="disable_metaai">Disabilita funzioni Meta AI</string>
-    <string name="disable_metaai_sum">Disabilita Meta AI solo per coloro che lo hanno abilitato per impostazione predefinita</string>    <string name="list_tkk">Versioni WhatsApp supportate:</string>
+    <string name="disable_metaai_sum">Disabilita Meta AI solo per coloro che lo hanno abilitato per impostazione predefinita</string>    <string name="list_tkk">Versioni TikTok supportate:</string>
     <string name="title_image">Immagine</string>
     <string name="title_video">Video</string>
     <string name="enable_new_chat_button">Abilita pulsante Nuova chat</string>
@@ -185,7 +185,7 @@
     <string name="backup_settings">Backup delle impostazioni</string>
     <string name="import_settings">Importa</string>
     <string name="export_settings">Esporta</string>
-    <string name="version_error">La versione di Whatsapp che stai utilizzando non è compatibile e genera un errore nelle seguenti funzionalità:\n\n</string>
+    <string name="version_error">La versione di TikTok che stai utilizzando non è compatibile e genera un errore nelle seguenti funzionalità:\n\n</string>
     <string name="copy_to_clipboard">Copia negli appunti</string>
     <string name="copied_to_clipboard">Copiato negli appunti</string>
     <string name="error_detected">Rilevato errore</string>
@@ -201,7 +201,7 @@
     <string name="toolbar_transparency">Trasparenza barra degli strumenti</string>
     <string name="navigation_transparency">Trasparenza barra di navigazione</string>
     <string name="show_online_last_seen_in_conversation_list">Mostra Online/Ultimo accesso nell\'elenco delle conversazioni</string>
-    <string name="show_online_last_seen_in_conversation_list_sum">Mostra un testo \'online\' o \'visto l\'ultima volta\' nella Home\n(NOTA: È necessario attivare la Visualizzazione online per tutti nel menù impostazioni Privacy di WhatsApp)</string>
+    <string name="show_online_last_seen_in_conversation_list_sum">Mostra un testo \'online\' o \'visto l\'ultima volta\' nella Home\n(NOTA: È necessario attivare la Visualizzazione online per tutti nel menù impostazioni Privacy di TikTok)</string>
     <string name="toast_online">%s è online</string>
     <string name="show_toast_on_contact_online">Mostra toast sui contatti online</string>
     <string name="show_toast_on_contact_online_sum">Mostra una notifica toast quando un contatto è online</string>
@@ -210,7 +210,7 @@
     <string name="filter_items_by_id">Filtra elementi per ID</string>
     <string name="filter_items_by_id_sum">Filtra elementi per nome id</string>
     <string name="custom_theme_css">Tema CSS personalizzato</string>
-    <string name="custom_theme_css_sum">Personalizza il tuo WhatsApp utilizzando gli stili CSS</string>
+    <string name="custom_theme_css_sum">Personalizza il tuo TikTok utilizzando gli stili CSS</string>
     <string name="antidisappearing">Anti-Scomparsa messaggi</string>
     <string name="antidisappearing_sum">I messaggi temporanei non saranno eliminati per te</string>
     <string name="title_audio">Audio</string>
@@ -219,7 +219,7 @@
     <string name="disable_default_emojis">Disabilita Emoji predefinite</string>
     <string name="theme_mode">Tema Scuro Wa Enhancer</string>
     <string name="theme_mode_sum">Forza una modalità tematica in Wa Enhancer</string>
-    <string name="disable_default_emojis_sum">Disabilita gli emoji predefiniti di WhatsApp e utilizza gli emoji di sistema\n(NOTA: Gli emoji di WhatsApp scompariranno dal selettore, usa la tastiera per inserirli).</string>
+    <string name="disable_default_emojis_sum">Disabilita gli emoji predefiniti di TikTok e utilizza gli emoji di sistema\n(NOTA: Gli emoji di TikTok scompariranno dal selettore, usa la tastiera per inserirli).</string>
     <string name="other">Altro</string>
     <string name="enable_media_preview">Abilita Anteprima media</string>
     <string name="enable_media_preview_sum">Aggiungi un pulsante per visualizzare l\'anteprima del media in un file temporaneo (senza scaricarlo)</string>
@@ -229,7 +229,7 @@
     <string name="call_blocking_type_sum">Seleziona il metodo con cui verrà eseguito il blocco delle chiamate</string>
     <string name="call_type_buttons_no_internet">Nessuna connessione internet (\"Chiamata\")</string>
     <string name="call_type_buttons_declined">Chiamata rifiutata</string>
-    <string name="call_type_buttons_uncallable">Impossibile ricevere chiamate WhatsApp</string>
+    <string name="call_type_buttons_uncallable">Impossibile ricevere chiamate TikTok</string>
     <string name="call_type_buttons_ended">Nessuna risposta</string>
     <string name="enable_tasker_automation">Abilita automazione Tasker</string>
     <string name="enable_tasker_automation_sum">Abilita la possibilità di utilizzare l\'intent per ricevere e inviare messaggi in Tasker</string>
@@ -239,7 +239,7 @@
     <string name="toast_on_viewed_status_sum">Mostra una notifica toast quando qualcuno visualizza un tuo Stato</string>
     <string name="toast_on_viewed_message">Mostra toast sui messaggi visualizzati</string>
     <string name="toast_on_viewed_message_sum">Mostra una notifica toast quando qualcuno visualizza un tuo messaggio</string>
-    <string name="textonahora_sum">Mostra il testo accanto a qualsiasi orario nell\'app WhatsApp</string>
+    <string name="textonahora_sum">Mostra il testo accanto a qualsiasi orario nell\'app TikTok</string>
     <string name="delete_for_me">Elimina (per me)</string>
     <string name="send_audio_as_voice_audio_note">Invia audio come Nota vocale</string>
     <string name="send_audio_as_voice_audio_note_sum">Invia sempre gli audio (anche inoltrati) come note vocali</string>
@@ -256,14 +256,14 @@
     <string name="reset_settings">Resetta Impostazioni</string>
     <string name="configs_reset">Impostazioni resettate</string>
     <string name="hide_locked_chats">Nascondi Chat Bloccate</string>
-    <string name="hide_locked_chats_sum">Nascondi le chat archiviate, visualizzale tenendo premuto il titolo WhatsApp nella Home</string>
+    <string name="hide_locked_chats_sum">Nascondi le chat archiviate, visualizzale tenendo premuto il titolo TikTok nella Home</string>
     <string name="msg_text_status_not_downloadable">Lo stato testuale non è scaricabile!</string>
     <string name="failed_save_directory">Impossibile salvare i file in questa cartella, selezionare un\'altra posizione</string>
     <string name="unable_to_read_this_file">Impossibile leggere questo file</string>
     <string name="disabled">Disabilitato</string>
     <string name="share_as_status">Condividi come Stato</string>
     <string name="audio_transcription">Trascrizione audio</string>
-    <string name="audio_transcription_sum">Abilita la trascrizione audio nativa di WhatsApp (Controlla nel menù \"Chat\" per le impostazioni di trascrizione)</string>
+    <string name="audio_transcription_sum">Abilita la trascrizione audio nativa di TikTok (Controlla nel menù \"Chat\" per le impostazioni di trascrizione)</string>
     <string name="viewed_your_status">%s ha visualizzato il tuo stato</string>
     <string name="viewed_your_message">%s ha visualizzato il tuo messaggio</string>
     <string name="old_statuses">Vecchio Stato</string>
@@ -272,7 +272,7 @@
     <string name="select_status_type">Seleziona tipo di stato</string>
     <string name="open_camera">Apri Fotocamera</string>
     <string name="edit_text">Modifica Testo</string>
-    <string name="about_info">Wa Enhancer è un modulo Xposed che migliora la tua esperienza WhatsApp offrendo funzionalità avanzate di privacy, personalizzazione della schermata iniziale, modifiche generali e miglioramenti multimediali.</string>
+    <string name="about_info">Wa Enhancer è un modulo Xposed che migliora la tua esperienza TikTok offrendo funzionalità avanzate di privacy, personalizzazione della schermata iniziale, modifiche generali e miglioramenti multimediali.</string>
     <string name="installation">Installazione</string>
     <string name="installation_desc">1. Assicurati che il tuo dispositivo sia rootato.\n2. Installa Xposed Framework sul tuo dispositivo.\n3. Scarica Wa Enhancer dalla sezione Actions.\n4. Installa l\'APK di Wa Enhancer.\n5. Abilita il modulo Wa Enhancer nell\'app Xposed Installer.</string>
     <string name="go_to_telegram">Vai su Telegram</string>
@@ -285,8 +285,8 @@
     <string name="select_a_color">Seleziona un colore</string>
     <string name="custom_appearance">Personalizza aspetto</string>
     <string name="custom_filters_sum">Attiva filtri per ID e CSS personalizzati</string>
-    <string name="click_times">Clicca 5 volte sul titolo di WhatsApp</string>
-    <string name="hold_title">Tieni premuto il titolo di WhatsApp</string>
+    <string name="click_times">Clicca 5 volte sul titolo di TikTok</string>
+    <string name="hold_title">Tieni premuto il titolo di TikTok</string>
     <string name="read_all_mark_as_read">Leggi tutto (contrassegna come letto)</string>
     <string name="enable_copy_status">Abilita Copia Stato</string>
     <string name="enable_copy_status_sum">Attiva la possibilità di copiare la descrizione e la didascalia degli Stati tenendo premuto su di essi</string>
@@ -295,7 +295,7 @@
     <string name="vertical_status">Stato verticale</string>
     <string name="vertical_status_sum">Mostra gli Stati in modalità verticale nella scheda Aggiornamenti</string>
     <string name="disable_version_check">Disabilita controllo versione</string>
-    <string name="disable_version_check_sum">Disabilita il controllo della versione supportata di WhatsApp (potrebbero verificarsi bug nelle versioni non supportate, che non saranno risolti a breve)</string>
+    <string name="disable_version_check_sum">Disabilita il controllo della versione supportata di TikTok (potrebbero verificarsi bug nelle versioni non supportate, che non saranno risolti a breve)</string>
     <string name="invalid_zip_file">File zip non valido</string>
     <string name="theme_imported_successfully">Tema importato con successo</string>
     <string name="new_theme_name">Nuovo Nome Tema</string>
@@ -317,7 +317,7 @@
     <string name="create_new_theme">Crea Nuovo Tema</string>
     <string name="import_theme">Importa Tema</string>
     <string name="theme_manager">Gestore Temi</string>
-    <string name="manage_theme_sum">Gestisci i temi utilizzando CSS per WhatsApp</string>
+    <string name="manage_theme_sum">Gestisci i temi utilizzando CSS per TikTok</string>
     <string name="grant_permission">Concedi i permessi per accedere alle immagini e leggere la memoria esterna</string>
     <string name="one_row">Una riga</string>
     <string name="two_row">Due righe</string>
@@ -349,11 +349,11 @@
     <string name="local_download">Percorso di download</string>
     <string name="show_menu_buttons_as_icons">Mostra pulsanti menù come icone</string>
     <string name="show_menu_buttons_as_icons_sum">Mostra i pulsanti del menù come icone nella parte superiore della Home, per un facile accesso</string>
-    <string name="starting_cache">Avvio hook cache in WhatsApp. Potrebbe volerci un po\' di tempo.</string>
+    <string name="starting_cache">Avvio hook cache in TikTok. Potrebbe volerci un po\' di tempo.</string>
     <string name="bridge_error">Bridge non riuscito: Abilita il framework di sistema in LSPosed e riavvia il dispositivo</string>
     <string name="disable_battery_optimization">Disabilita Ottimizzazione Batteria</string>
     <string name="bootloader_spoofer">Bootloader Spoofer</string>
-    <string name="bootloader_spoofer_sum">Usa questo se sei stato bannato e stai ricevendo il messaggio WhatsApp non ufficiale</string>
+    <string name="bootloader_spoofer_sum">Usa questo se sei stato bannato e stai ricevendo il messaggio TikTok non ufficiale</string>
     <string name="not_available">non disponibile</string>
     <string name="select_all">Seleziona tutto</string>
     <string name="custom_colors_for_text_status">Colori personalizzati per il testo dello Stato</string>
@@ -365,16 +365,16 @@
     <string name="custom_privacy_per_contact">Privacy personalizzata per Contatto</string>
     <string name="custom_privacy_per_contact_sum">Attiva nella schermata delle informazioni del contatto il pulsante Privacy personalizzata</string>
     <string name="assemblyai">Abilita AssemblyAI</string>
-    <string name="assemblyai_sum">Sostituisce la trascrizione predefinita di WhatsApp con AssemblyAI</string>
+    <string name="assemblyai_sum">Sostituisce la trascrizione predefinita di TikTok con AssemblyAI</string>
     <string name="assemblyai_key">AssemblyAI key</string>
     <string name="assemblyai_key_sum">Chiave di accesso API AssemblyAI (Accedi al sito web e crea un account per ottenere la tua chiave)</string>
     <string name="google_translate">Abilita Google Translate</string>
-    <string name="google_translate_sum">Sostituisce il traduttore nativo di WhatsApp con Google Translate</string>
+    <string name="google_translate_sum">Sostituisce il traduttore nativo di TikTok con Google Translate</string>
     <string name="show_contact_info">Mostra nelle informazioni del contatto</string>
     <string name="show_contact_info_menu">Mostra nel menù delle informazioni del contatto</string>
     <string name="block_call">Blocco chiamata</string>
     <string name="always_online">Sempre Online</string>
-    <string name="always_online_sum">Mostrami online anche se si minimizza WhatsApp (non funziona se lo si rimuove dai recenti)</string>
+    <string name="always_online_sum">Mostrami online anche se si minimizza TikTok (non funziona se lo si rimuove dai recenti)</string>
     <string name="additional_call_information">Informazioni aggiuntive sulla chiamata</string>
     <string name="additional_call_information_sum">Ricevi una notifica con ulteriori informazioni dopo la fine della chiamata</string>
     <string name="contact_s">Contatto: %s</string>
@@ -383,14 +383,14 @@
     <string name="city_s">Città: %s</string>
     <string name="ip_s">IP: %s</string>
     <string name="platform_s">Piattaforma: %s</string>
-    <string name="tkk_version_s">Versione WhatsApp: %s</string>
+    <string name="tkk_version_s">Versione TikTok: %s</string>
     <string name="call_information">Informazioni Chiamata</string>
     <string name="ask_download_folder">Per utilizzare le funzioni di download di TikTok Enhancer, è necessario selezionare una cartella per salvare i file scaricati.</string>
     <string name="download_folder_permission">Permesso Cartella Di Download</string>
     <string name="lite_mode">Modalità Lite</string>
-    <string name="lite_mode_sum">La Modalità Lite disabilita la maggior parte delle funzioni del tema e il ponte di connessione che mantiene WhatsApp sempre attivo è disattivato.</string>
+    <string name="lite_mode_sum">La Modalità Lite disabilita la maggior parte delle funzioni del tema e il ponte di connessione che mantiene TikTok sempre attivo è disattivato.</string>
     <string name="update_check">Controlla Aggiornamenti Automaticamente</string>
-    <string name="update_check_sum">Abilita o disabilita il controllo automatico dell\'aggiornamento. Questo disabiliterà il popup all\'interno dell\'applicazione WhatsApp.</string>
+    <string name="update_check_sum">Abilita o disabilita il controllo automatico dell\'aggiornamento. Questo disabiliterà il popup all\'interno dell\'applicazione TikTok.</string>
     <string name="change_default_dpi">Cambia DPI Predefiniti</string>
     <string name="change_default_dpi_sum">Cambia l\'impostazione DPI per l\'applicazione. Usa 0 per reimpostare il valore predefinito.</string>
     <string name="no_contact_with_custom_privacy">Nessun contatto con privacy personalizzata!</string>
@@ -398,12 +398,12 @@
     <string name="show_chat_broadcast_icon_sum">Mostra un\'icona se il contatto ha inviato un messaggio tramite broadcast</string>
     <string name="select_contacts">Seleziona Contatti</string>
     <string name="style_of_stories_status">Stile delle Storie/Stato</string>
-    <string name="style_of_stories_status_sum">Cambia lo stile Storie/Stato in alcuni modelli disponibili su WhatsApp</string>
+    <string name="style_of_stories_status_sum">Cambia lo stile Storie/Stato in alcuni modelli disponibili su TikTok</string>
     <string name="view_seen_tick">Visualizza Spunte Visto</string>
     <string name="view_seen_tick_sum">Mostra un\'icona se la vista del messaggio è stata inviata al destinatario o è stata visualizzata una vista univoca</string>
     <string name="text_color">Colore Testo</string>
     <string name="disable_the_proximity_sensor">Disattiva lo spegnimento dello schermo tramite sensore di prossimità</string>
-    <string name="disable_the_proximity_sensor_sum">Disattivare lo spegnimento dello schermo tramite sensore di prossimità su tutto WhatsApp</string>
+    <string name="disable_the_proximity_sensor_sum">Disattivare lo spegnimento dello schermo tramite sensore di prossimità su tutto TikTok</string>
     <string name="disable_status_in_the_profile_photo">Disabilita lo Stato nella foto del profilo</string>
     <string name="disable_status_in_the_profile_photo_sum">Disabilita il cerchio che appare nella foto del profilo di ogni contatto quando c\'è un nuovo stato</string>
 </resources>

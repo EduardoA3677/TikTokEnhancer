@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_desc">Modul LSPosed untuk menyesuaikan WhatsApp Anda</string>
+    <string name="app_desc">Modul LSPosed untuk menyesuaikan TikTok Anda</string>
     <string name="antirevoke">Anti Hapus Pesan</string>
     <string name="antirevoke_sum">Pesan tidak akan dihapus untuk Anda</string>
     <string name="ghostmode">Sembunyikan mengetik...</string>
@@ -15,7 +15,7 @@
     <string name="hideread_sum">Orang lain tidak akan mengetahui bahwa Anda telah membaca pesannya</string>
     <string name="perso">Kustomisasi</string>
     <string name="segundosnahora">Detik dalam Waktu</string>
-    <string name="segundosnahora_sum">Tampilkan detik di samping waktu apapun di aplikasi WhatsApp</string>
+    <string name="segundosnahora_sum">Tampilkan detik di samping waktu apapun di aplikasi TikTok</string>
     <string name="textonahora">Teks di samping Waktu</string>
     <string name="viewonce">Sekali Lihat Tak Terbatas</string>
     <string name="viewonce_sum">Anda dapat membuka media \"sekali lihat\" berkali-kali</string>
@@ -29,10 +29,10 @@
     <string name="statusdowload_sum">Tampilkan tombol untuk mengunduh dan bagikan status</string>
     <string name="videoquality">Video Kualitas HD</string>
     <string name="videoquality_sum">Kirim video dalam kualitas HD</string>
-    <string name="colors_customization">Ubah Warna WhatsApp Anda</string>
-    <string name="colors_customization_sum">Ubah semua warna di WhatsApp Anda (Hanya berfungsi di Tema Gelap)</string>
+    <string name="colors_customization">Ubah Warna TikTok Anda</string>
+    <string name="colors_customization_sum">Ubah semua warna di TikTok Anda (Hanya berfungsi di Tema Gelap)</string>
     <string name="general">Umum</string>
-    <string name="restart_whatsapp">Mulai ulang WhatsApp</string>
+    <string name="restart_whatsapp">Mulai ulang TikTok</string>
     <string name="conversation">Layar Percakapan</string>
     <string name="primary_color">Warna Primer</string>
     <string name="background_color">Warna latar belakang</string>
@@ -41,14 +41,14 @@
     <string name="novofiltro">Fungsi Pencarian</string>
     <string name="novofiltro_sum">Choose between Search Icon, Search Bar, or No Search</string>
     <string name="menuwicon">Ikon Menu</string>
-    <string name="menuwicon_sum">Tambahkan ikon pada opsi menu di aplikasi WhatsApp</string>
+    <string name="menuwicon_sum">Tambahkan ikon pada opsi menu di aplikasi TikTok</string>
     <string name="freezelastseen">Bekukan \"terakhir dilihat dan online\"</string>
     <string name="freezelastseen_sum">Waktu \"terakhir dilihat dan online\" Anda akan dibekukan
 (PERHATIAN: Anda tidak dapat melihat pembaruan kehadiran apa pun dari orang lain seperti: mengetik, merekam, terakhir dilihat dan online)</string>
     <string name="removeforwardlimit_sum">Hapus batas penerusan pesan untuk 5 obrolan (normal) dan 1 obrolan (berkali-kali)\n(CATATAN: Gunakan dengan hati-hati, Anda mungkin bisa diblokir karena spam)</string>
     <string name="removeforwardlimit">Hapus Batas \"Diteruskan\"</string>
     <string name="showname">Tampilkan Nama</string>
-    <string name="showname_sum">Tampilkan nama profil Anda di bagian atas layar utama, menggantikan \"WhatsApp\"</string>
+    <string name="showname_sum">Tampilkan nama profil Anda di bagian atas layar utama, menggantikan \"TikTok\"</string>
     <string name="showbio_sum">Tampilkan bio Anda dibawah nama</string>
     <string name="showbio">Tampilkan Bio</string>
     <string name="bubble_left">Gelembung Kiri</string>
@@ -64,13 +64,13 @@
     <string name="blueonreply_sum">Kontak hanya akan melihat tanda centang biru setelah Anda membalas pesan.
 (CATATAN: Harus mengaktifkan \"Sembunyikan centang biru\")</string>
     <string name="hide_archived_chat">Sembunyikan Obrolan yang Diarsipkan</string>
-    <string name="hide_archived_chat_sum">Sembunyikan obrolan yang diarsipkan, untuk mengakses klik 5 kali atau tahan pada judul \"WhatsApp\" di header Layar Beranda</string>
+    <string name="hide_archived_chat_sum">Sembunyikan obrolan yang diarsipkan, untuk mengakses klik 5 kali atau tahan pada judul \"TikTok\" di header Layar Beranda</string>
     <string name="hide_once_view_seen">Sembunyikan Sekali Lihat</string>
     <string name="hide_once_view_seen_sum">Orang lain tidak akan mengetahui bahwa Anda telah membaca pesan media \"sekali lihat\"</string>
     <string name="call_blocker">Blokir Panggilan</string>
-    <string name="call_blocker_sum">Blokir panggilan WhatsApp berdasarkan jenis privasi</string>
+    <string name="call_blocker_sum">Blokir panggilan TikTok berdasarkan jenis privasi</string>
     <string name="show_online_dot_in_conversation_list">Tampilkan Titik Online</string>
-    <string name="show_online_dot_in_conversation_list_sum">Tampilkan titik online berwarna hijau di layar beranda\n(CATATAN: Harus mengaktifkan \"Terakhir dilihat dan online\" untuk semua orang di menu setelan privasi WhatsApp)</string>
+    <string name="show_online_dot_in_conversation_list_sum">Tampilkan titik online berwarna hijau di layar beranda\n(CATATAN: Harus mengaktifkan \"Terakhir dilihat dan online\" untuk semua orang di menu setelan privasi TikTok)</string>
     <string name="show_dnd_button">Tampilkan Tombol DND</string>
     <string name="show_dnd_button_sum">Tampilkan tombol mode DND di toolbar layar beranda</string>
     <string name="dev4mod">Dev4Mod (Penyumbang)</string>
@@ -96,7 +96,7 @@
     <string name="number_with_country_code">Nomor dengan kode negara</string>
     <string name="message">Pesan</string>
     <string name="download">Unduh</string>
-    <string name="reboot_whatsapp">(Mulai ulang WhatsApp)</string>
+    <string name="reboot_whatsapp">(Mulai ulang TikTok)</string>
     <string name="error_when_saving_try_again">Terjadi kesalahan saat menyimpan, coba lagi!</string>
     <string name="saved_to">"Disimpan ke"</string>
     <string name="hide_tabs_on_home">Sembunyikan Tab di Beranda</string>
@@ -120,12 +120,12 @@
     <string name="module_enabled">Module diaktifkan</string>
     <string name="version_s">Versi %s</string>
     <string name="module_disabled">Module dinonaktifkan</string>
-    <string name="whatsapp_in_background">WhatsApp berjalan dilatar belakang</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">WhatsApp tidak berjalan atau belum diaktifkan di LSPosed</string>    <string name="restart_tkk">WhatsApp harus dimulai ulang agar perubahan di Wa Enhancer dapat diterapkan.
+    <string name="whatsapp_in_background">TikTok berjalan dilatar belakang</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">TikTok tidak berjalan atau belum diaktifkan di LSPosed</string>    <string name="restart_tkk">TikTok harus dimulai ulang agar perubahan di Wa Enhancer dapat diterapkan.
 
-Apakah Anda ingin mulai ulang WhatsApp?</string>
+Apakah Anda ingin mulai ulang TikTok?</string>
     <string name="version_s_not_listed">Versi %s tidak terdaftar dalam versi yang didukung!
-Harap gunakan versi WhatsApp yang didukung!</string>
+Harap gunakan versi TikTok yang didukung!</string>
     <string name="media">Media</string>
     <string name="show_button_to_send_blue_tick">Tampilkan Tombol Centang Biru</string>
     <string name="show_button_to_send_blue_tick_sum">Tampilkan tombol centang biru (dibaca/dilihat untuk pesan dan status)</string>
@@ -157,16 +157,16 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="seentick_screen">Tampilkan tombol di layar</string>
     <string name="verbose_logs">Aktifkan Log Verbose untuk Debugger</string>
     <string name="phone_call">Panggilan Telepon</string>
-    <string name="whatsapp_call">Panggilan WhatsApp</string>
+    <string name="whatsapp_call">Panggilan TikTok</string>
     <string name="home_screen">Layar Beranda</string>
     <string name="selection_of_call_type">Pemilihan Jenis Panggilan</string>
-    <string name="selection_of_call_type_sum">Tampilkan opsi untuk memilih panggilan melalui telepon atau WhatsApp</string>
+    <string name="selection_of_call_type_sum">Tampilkan opsi untuk memilih panggilan melalui telepon atau TikTok</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="device_model">Model Perangkat</string>
     <string name="device_name">Nama Perangkat</string>
     <string name="disable_metaai">Nonaktifkan Fungsi Meta Ai</string>
-    <string name="disable_metaai_sum">Nonaktifkan fungsi meta ai hanya bagi mereka yang diaktifkan secara default</string>    <string name="list_tkk">Versi WhatsApp yang Didukung</string>
+    <string name="disable_metaai_sum">Nonaktifkan fungsi meta ai hanya bagi mereka yang diaktifkan secara default</string>    <string name="list_tkk">Versi TikTok yang Didukung</string>
     <string name="title_image">Gambar</string>
     <string name="title_video">Video</string>
     <string name="enable_new_chat_button">Tampilkan Tombol Obrolan Baru</string>
@@ -191,7 +191,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="backup_settings">Cadangkan Setelan</string>
     <string name="import_settings">Pulihkan</string>
     <string name="export_settings">Cadangkan</string>
-    <string name="version_error">Versi Whatsapp yang Anda gunakan tidak kompatibel dan menimbulkan kesalahan pada fitur-fitur berikut:</string>
+    <string name="version_error">Versi TikTok yang Anda gunakan tidak kompatibel dan menimbulkan kesalahan pada fitur-fitur berikut:</string>
     <string name="copy_to_clipboard">Menyalin ke papan klip</string>
     <string name="copied_to_clipboard">Disalin ke papan klip</string>
     <string name="error_detected">Kesalahan terdeteksi</string>
@@ -208,7 +208,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="navigation_transparency">Transparansi Navigasi</string>
     <string name="show_online_last_seen_in_conversation_list">Tampilkan \"terakhir dilihat dan online\"</string>
     <string name="show_online_last_seen_in_conversation_list_sum">Tampilkan \"terakhir dilihat dan online\" di layar beranda
-(CATATAN: Harus mengaktifkan \"Terakhir dilihat dan online\" untuk semua orang di menu setelan privasi WhatsApp)</string>
+(CATATAN: Harus mengaktifkan \"Terakhir dilihat dan online\" untuk semua orang di menu setelan privasi TikTok)</string>
     <string name="toast_online">%s online</string>
     <string name="show_toast_on_contact_online">Notifikasi Kontak Online</string>
     <string name="show_toast_on_contact_online_sum">Tampilkan notifikasi mengambang ketika kontak sedang online</string>
@@ -217,7 +217,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="filter_items_by_id">Filter Item Berdasarkan ID</string>
     <string name="filter_items_by_id_sum">Filter item berdasarkan nama ID</string>
     <string name="custom_theme_css">Tema Khusus CSS</string>
-    <string name="custom_theme_css_sum">Sesuaikan WhatsApp Anda menggunakan gaya CSS</string>
+    <string name="custom_theme_css_sum">Sesuaikan TikTok Anda menggunakan gaya CSS</string>
     <string name="antidisappearing">Anti Hapus Pesan Sementara</string>
     <string name="antidisappearing_sum">Pesan sementara tidak akan dihapus untuk Anda</string>
     <string name="title_audio">Audio</string>
@@ -226,8 +226,8 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="disable_default_emojis">Nonaktifkan Emoji Bawaan</string>
     <string name="theme_mode">Tema Gelap Wa Enhancer</string>
     <string name="theme_mode_sum">Pilih tema Wa Enhancer</string>
-    <string name="disable_default_emojis_sum">Nonaktifkan emoji bawaan WhatsApp dan gunakan emoji sistem
-(CATATAN: Emoji WhatsApp akan hilang dari pilihan, gunakan keyboard untuk menyisipkan)</string>
+    <string name="disable_default_emojis_sum">Nonaktifkan emoji bawaan TikTok dan gunakan emoji sistem
+(CATATAN: Emoji TikTok akan hilang dari pilihan, gunakan keyboard untuk menyisipkan)</string>
     <string name="other">Lainnya</string>
     <string name="enable_media_preview">Pratinjau Media</string>
     <string name="enable_media_preview_sum">Tampilkan tombol untuk melihat pratinjau media dalam file sementara (tanpa mengunduhnya secara permanen)</string>
@@ -237,7 +237,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="call_blocking_type_sum">Pilih metode pemblokiran panggilan yang akan dilakukan</string>
     <string name="call_type_buttons_no_internet">Tidak ada internet (\"Memanggil\")</string>
     <string name="call_type_buttons_declined">Panggilan ditolak</string>
-    <string name="call_type_buttons_uncallable">Tidak dapat menerima panggilan WhatsApp</string>
+    <string name="call_type_buttons_uncallable">Tidak dapat menerima panggilan TikTok</string>
     <string name="call_type_buttons_ended">Tak terjawab</string>
     <string name="enable_tasker_automation">Otomatisasi Tasker</string>
     <string name="enable_tasker_automation_sum">Aktifkan untuk menerima dan mengirim pesan di Tasker</string>
@@ -247,7 +247,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="toast_on_viewed_status_sum">Tampilkan notifikasi mengambang ketika seseorang melihat status Anda</string>
     <string name="toast_on_viewed_message">Notifikasi Pesan Dibaca</string>
     <string name="toast_on_viewed_message_sum">Tampilkan notifikasi mengambang ketika seseorang membaca pesan Anda</string>
-    <string name="textonahora_sum">Tampilkan teks di samping waktu apapun di aplikasi WhatsApp</string>
+    <string name="textonahora_sum">Tampilkan teks di samping waktu apapun di aplikasi TikTok</string>
     <string name="delete_for_me">Hapus (untuk saya)</string>
     <string name="send_audio_as_voice_audio_note">Kirim Audio Sebagai Suara/Catatan Audio</string>
     <string name="send_audio_as_voice_audio_note_sum">Selalu mengirim/meneruskan media audio sebagai catatan suara atau catatan audio</string>
@@ -264,14 +264,14 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="reset_settings">Atur Ulang Konfigurasi</string>
     <string name="configs_reset">Konfigurasi disetel ulang</string>
     <string name="hide_locked_chats">Sembunyikan Obrolan Dikunci</string>
-    <string name="hide_locked_chats_sum">Sembunyikan obrolan yang dikunci, untuk mengakses klik dan tahan pada judul \"WhatsApp\" di header Layar Beranda</string>
+    <string name="hide_locked_chats_sum">Sembunyikan obrolan yang dikunci, untuk mengakses klik dan tahan pada judul \"TikTok\" di header Layar Beranda</string>
     <string name="msg_text_status_not_downloadable">Status teks tidak dapat diunduh!</string>
     <string name="failed_save_directory">Tidak dapat menyimpan file di folder ini, pilih direktori lain</string>
     <string name="unable_to_read_this_file">Tidak dapat membaca file ini</string>
     <string name="disabled">Nonaktif</string>
     <string name="share_as_status">Bagikan status</string>
     <string name="audio_transcription">Transkripsi Audio</string>
-    <string name="audio_transcription_sum">Aktifkan transkripsi audio Whatsapp asli (Periksa menu koneksi untuk opsi transkripsi)</string>
+    <string name="audio_transcription_sum">Aktifkan transkripsi audio TikTok asli (Periksa menu koneksi untuk opsi transkripsi)</string>
     <string name="viewed_your_status">%s melihat status Anda</string>
     <string name="viewed_your_message">%s membaca pesan Anda</string>
     <string name="old_statuses">Status Lama</string>
@@ -281,7 +281,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="select_status_type">Pilih jenis status</string>
     <string name="open_camera">Buka Kamera</string>
     <string name="edit_text">Edit Teks</string>
-    <string name="about_info">Wa Enhancer adalah modul Xposed yang meningkatkan pengalaman WhatsApp Anda dengan menawarkan fitur privasi tingkat lanjut, penyesuaian layar beranda, penyesuaian umum, dan peningkatan media.</string>
+    <string name="about_info">Wa Enhancer adalah modul Xposed yang meningkatkan pengalaman TikTok Anda dengan menawarkan fitur privasi tingkat lanjut, penyesuaian layar beranda, penyesuaian umum, dan peningkatan media.</string>
     <string name="installation">Panduan Instal</string>
     <string name="installation_desc">1. Pastikan perangkat Anda telah di-root.\n2. Instal Xposed Framework di perangkat Anda.\n3. Unduh Wa Enhancer dari bagian Tindakan.\n4. Instal APK Wa Enhancer.\n5. Aktifkan modul Wa Enhancer di aplikasi Xpose Installer.</string>
     <string name="go_to_telegram">Buka Telegram</string>
@@ -294,8 +294,8 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="select_a_color">Pilih warna</string>
     <string name="custom_appearance">Tampilan Kustom</string>
     <string name="custom_filters_sum">Aktifkan filter berdasarkan ID dan CSS Khusus</string>
-    <string name="click_times">Klik 5 kali pada judul WhatsApp</string>
-    <string name="hold_title">Tahan pada judul WhatsApp</string>
+    <string name="click_times">Klik 5 kali pada judul TikTok</string>
+    <string name="hold_title">Tahan pada judul TikTok</string>
     <string name="read_all_mark_as_read">Lihat semua (tandai dilihat)</string>
     <string name="enable_copy_status">Salin Status Teks</string>
     <string name="enable_copy_status_sum">Menyalin deskripsi dan keterangan status dengan cara klik dan tahan teks tersebut</string>
@@ -304,7 +304,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="vertical_status">Status Vertikal</string>
     <string name="vertical_status_sum">Tampilkan status dalam mode vertikal pada tab Pembaruan</string>
     <string name="disable_version_check">Nonaktifkan Pemeriksaan Versi</string>
-    <string name="disable_version_check_sum">Menonaktifkan pemeriksaan versi Whatsapp yang didukung\n(Bug mungkin terjadi pada versi yang tidak didukung dan tidak akan segera diperbaiki)</string>
+    <string name="disable_version_check_sum">Menonaktifkan pemeriksaan versi TikTok yang didukung\n(Bug mungkin terjadi pada versi yang tidak didukung dan tidak akan segera diperbaiki)</string>
     <string name="invalid_zip_file">File zip tidak valid</string>
     <string name="theme_imported_successfully">Tema berhasil dipulihkan</string>
     <string name="new_theme_name">Nama Tema Baru</string>
@@ -326,7 +326,7 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="create_new_theme">Buat Tema Baru</string>
     <string name="import_theme">Pulihkan Tema</string>
     <string name="theme_manager">Manajer Tema CSS</string>
-    <string name="manage_theme_sum">Kelola tema menggunakan CSS untuk WhatsApp</string>
+    <string name="manage_theme_sum">Kelola tema menggunakan CSS untuk TikTok</string>
     <string name="grant_permission">Perhatian, berikan izin untuk membaca gambar dan membaca penyimpanan eksternal</string>
     <string name="one_row">Satu Baris</string>
     <string name="two_row">Dua Baris</string>
@@ -358,11 +358,11 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="local_download">Lokasi Unduhan</string>
     <string name="show_menu_buttons_as_icons">Tombol Menu Ikon</string>
     <string name="show_menu_buttons_as_icons_sum">Tampilkan tombol menu di layar beranda sebagai ikon untuk memudahkan akses ke tombol tersebut</string>
-    <string name="starting_cache">Muat ulang cache di WhatsApp. Ini mungkin memerlukan waktu cukup lama.</string>
+    <string name="starting_cache">Muat ulang cache di TikTok. Ini mungkin memerlukan waktu cukup lama.</string>
     <string name="bridge_error">Bridge Gagal: Aktifkan Kerangka Sistem di LSPosed dan reboot perangkat</string>
     <string name="disable_battery_optimization">Nonaktifkan Pengoptimalan Baterai</string>
     <string name="bootloader_spoofer">Bootloader Spoofer</string>
-    <string name="bootloader_spoofer_sum">Gunakan ini jika Anda telah diblokir dan menerima pesan WhatsApp tidak resmi</string>
+    <string name="bootloader_spoofer_sum">Gunakan ini jika Anda telah diblokir dan menerima pesan TikTok tidak resmi</string>
     <string name="not_available">tidak tersedia</string>
     <string name="select_all">Pilih semua</string>
     <string name="custom_colors_for_text_status">Warna Khusus Untuk Status Teks</string>
@@ -374,16 +374,16 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="custom_privacy_per_contact">Privasi Khusus per Kontak</string>
     <string name="custom_privacy_per_contact_sum">Tampilkan tombol privasi khusus di layar informasi kontak</string>
     <string name="assemblyai">Aktifkan AssemblyAI</string>
-    <string name="assemblyai_sum">Ganti transkripsi bawaan WhatsApp dengan AssemblyAI</string>
+    <string name="assemblyai_sum">Ganti transkripsi bawaan TikTok dengan AssemblyAI</string>
     <string name="assemblyai_key">Kunci AssemblyAI</string>
     <string name="assemblyai_key_sum">Kunci akses API AssemblyAI/n(Masuk ke situs web dan buat akun untuk mendapatkan kunci Anda)</string>
     <string name="google_translate">Aktifkan Terjemahan Google</string>
-    <string name="google_translate_sum">Ganti penerjemah asli WhatsApp dengan Terjemahan Google</string>
+    <string name="google_translate_sum">Ganti penerjemah asli TikTok dengan Terjemahan Google</string>
     <string name="show_contact_info">Tampilkan di info kontak</string>
     <string name="show_contact_info_menu">Tampilkan di menu info kontak</string>
     <string name="block_call">Blokir Panggilan</string>
     <string name="always_online">Selalu Online</string>
-    <string name="always_online_sum">Menampilkan Anda sedang online bahkan jika Anda meminimalkan WhatsApp/n(Tidak berfungsi jika Anda menghapusnya dari yang terbaru)</string>
+    <string name="always_online_sum">Menampilkan Anda sedang online bahkan jika Anda meminimalkan TikTok/n(Tidak berfungsi jika Anda menghapusnya dari yang terbaru)</string>
     <string name="additional_call_information">Informasi Panggilan Tambahan</string>
     <string name="additional_call_information_sum">Terima pemberitahuan dengan informasi tambahan setelah panggilan berakhir</string>
     <string name="contact_s">Kontak: %s</string>
@@ -392,14 +392,14 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="city_s">Kota: %s</string>
     <string name="ip_s">Alamat IP: %s</string>
     <string name="platform_s">Platform: %s</string>
-    <string name="tkk_version_s">Versi WhatsApp: %s</string>
+    <string name="tkk_version_s">Versi TikTok: %s</string>
     <string name="call_information">Informasi Panggilan</string>
     <string name="ask_download_folder">Untuk menggunakan fungsi pengunduhan WA Enhancer, Anda harus memilih folder untuk menyimpan file yang diunduh.</string>
     <string name="download_folder_permission">Izin Folder Unduhan</string>
     <string name="lite_mode">Mode Ringan</string>
-    <string name="lite_mode_sum">Mode Ringan menonaktifkan sebagian besar fitur tema dan jembatan koneksi yang membuat WhatsApp selalu aktif dimatikan.</string>
+    <string name="lite_mode_sum">Mode Ringan menonaktifkan sebagian besar fitur tema dan jembatan koneksi yang membuat TikTok selalu aktif dimatikan.</string>
     <string name="update_check">Periksa Pembaruan Secara Otomatis</string>
-    <string name="update_check_sum">Aktifkan atau nonaktifkan pemeriksaan otomatis untuk pembaruan. Ini akan menonaktifkan popup di dalam aplikasi WhatsApp.</string>
+    <string name="update_check_sum">Aktifkan atau nonaktifkan pemeriksaan otomatis untuk pembaruan. Ini akan menonaktifkan popup di dalam aplikasi TikTok.</string>
     <string name="change_default_dpi">Ubah DPI Bawaan</string>
     <string name="change_default_dpi_sum">Ubah pengaturan DPI untuk aplikasi. Gunakan 0 untuk mengatur ulang ke bawaan.</string>
     <string name="no_contact_with_custom_privacy">Tidak ada kontak dengan privasi khusus!</string>
@@ -407,12 +407,12 @@ Harap gunakan versi WhatsApp yang didukung!</string>
     <string name="show_chat_broadcast_icon_sum">Menampilkan ikon jika kontak mengirim pesan melalui siaran</string>
     <string name="select_contacts">Pilih Kontak</string>
     <string name="style_of_stories_status">Gaya Cerita/Status</string>
-    <string name="style_of_stories_status_sum">Ubah gaya cerita/status ke beberapa model yang tersedia di WhatsApp</string>
+    <string name="style_of_stories_status_sum">Ubah gaya cerita/status ke beberapa model yang tersedia di TikTok</string>
     <string name="view_seen_tick">Tanda Centang Dilihat/Dibaca</string>
     <string name="view_seen_tick_sum">Tampilkan ikon jika tampilan pesan (dibaca/dilihat) atau tampilan unik terkirim ke penerima</string>
     <string name="text_color">Warna Teks</string>
     <string name="disable_the_proximity_sensor">Nonaktifkan Layar Mati pada Sensor Jarak</string>
-    <string name="disable_the_proximity_sensor_sum">Nonaktifkan layar mati pada sensor jarak di seluruh WhatsApp</string>
+    <string name="disable_the_proximity_sensor_sum">Nonaktifkan layar mati pada sensor jarak di seluruh TikTok</string>
     <string name="disable_status_in_the_profile_photo">Nonaktifkan Status di Foto Profil</string>
     <string name="disable_status_in_the_profile_photo_sum">Nonaktifkan lingkaran di foto profil setiap kontak saat ada status baru</string>
 </resources>

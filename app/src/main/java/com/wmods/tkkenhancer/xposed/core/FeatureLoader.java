@@ -86,7 +86,6 @@ public class FeatureLoader {
                 currentVersion = packageInfo.versionName;
                 supportedVersions = Arrays.asList(mApp.getResources().getStringArray(ResId.array.supported_versions_tkk));
                 mApp.registerActivityLifecycleCallbacks(new TkCallback());
-                registerReceivers();
                 try {
                     var timemillis = System.currentTimeMillis();
                     SharedPreferencesWrapper.hookInit(mApp.getClassLoader());
@@ -94,16 +93,24 @@ public class FeatureLoader {
                     ReflectionUtils.initCache(mApp);
                     boolean isSupported = supportedVersions.stream().anyMatch(s -> packageInfo.versionName.startsWith(s.replace(".xx", "")));
                     if (!isSupported) {
-                        disableExpirationVersion(mApp.getClassLoader());
+                        // Try to disable expiration version check (WhatsApp-specific feature)
+                        // For TikTok, this may not be applicable, so we catch and log any errors
+                        try {
+                            disableExpirationVersion(mApp.getClassLoader());
+                        } catch (Exception expError) {
+                            XposedBridge.log("Note: Expiration version check not applicable for TikTok: " + expError.getMessage());
+                        }
                         if (!pref.getBoolean("bypass_version_check", false)) {
                             String sb = "Unsupported version: " +
                                     packageInfo.versionName +
                                     "\n" +
-                                    "Only the function of ignoring the expiration of the TikTok version has been applied!";
+                                    "Supported versions: " + String.join(", ", supportedVersions);
                             throw new Exception(sb);
                         }
                     }
                     initComponents(loader, pref);
+                    // Register receivers AFTER initComponents to ensure privPrefs is initialized
+                    registerReceivers();
                     plugins(loader, pref, packageInfo.versionName);
                     sendEnabledBroadcast(mApp);
 //                    XposedHelpers.setStaticIntField(XposedHelpers.findClass("com.whatsapp.util.Log", loader), "level", 5);

@@ -132,7 +132,8 @@ public class FeatureLoader {
                     XposedBridge.log("Checking version " + packageInfo.versionName + " against patterns: " + String.join(", ", supportedVersions));
                     
                     for (String pattern : supportedVersions) {
-                        // Replace .xx with empty string to get version prefix
+                        // Replace .xx with . (dot) to get version prefix
+                        // For example: "43.xx" becomes "43."
                         String versionPrefix = pattern.replace(".xx", ".");
                         
                         // Check if version matches the pattern
@@ -142,10 +143,15 @@ public class FeatureLoader {
                         if (packageInfo.versionName.equals(pattern)) {
                             // Exact match (unlikely with .xx pattern but supports non-pattern versions)
                             matches = true;
-                        } else if (packageInfo.versionName.startsWith(versionPrefix)) {
-                            // Check that the character after the prefix is a digit to ensure valid version format
-                            // This prevents "43." from matching invalid versions like "43.abc"
-                            if (packageInfo.versionName.length() > versionPrefix.length()) {
+                        } else if (packageInfo.versionName.length() >= versionPrefix.length() && 
+                                   packageInfo.versionName.startsWith(versionPrefix)) {
+                            // Version starts with prefix and has additional characters
+                            if (packageInfo.versionName.length() == versionPrefix.length()) {
+                                // Exact match with prefix (e.g., "43." matches "43.")
+                                matches = true;
+                            } else {
+                                // Check that the character after the prefix is a digit to ensure valid version format
+                                // This prevents "43." from matching invalid versions like "43.abc"
                                 char nextChar = packageInfo.versionName.charAt(versionPrefix.length());
                                 matches = Character.isDigit(nextChar);
                             }

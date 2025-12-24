@@ -271,7 +271,7 @@
     <string name="viewed_your_message">%s viewed your message</string>
     <string name="old_statuses">Old Statuses</string>
     <string name="old_statuses_sum">Change to the old statuses page vertically and without channels (NOTE: May cause lag in the interface)</string>
-    <string name="force_english">Force English Wa Enhancer</string>
+    <string name="force_english">Force English TikTok Enhancer</string>
     <string name="select_status_type">Select status type</string>
     <string name="open_camera">Open Camera</string>
     <string name="edit_text">Edit Text</string>
@@ -364,8 +364,8 @@
     <string name="custom_colors_for_text_status_sum">Press and hold on the color selector in the status to customize it</string>
     <string name="enable_tkk_enhancer_button">Enable TikTok Enhancer Button</string>
     <string name="enable_tkk_enhancer_button_sum">Add button in Home Screen to open TikTok Enhancer</string>
-    <string name="enable_wa_enhancer_button">Enable Wa Enhancer Button</string>
-    <string name="enable_wa_enhancer_button_sum">Add button in Home Screen to open Wa Enhancer</string>
+    <string name="enable_wa_enhancer_button">Enable TikTok Enhancer Button</string>
+    <string name="enable_wa_enhancer_button_sum">Add button in Home Screen to open TikTok Enhancer</string>
     <string name="custom_privacy">Custom Privacy</string>
     <string name="custom_privacy_sum">Enable/Disable Custom Privacy</string>
     <string name="custom_privacy_per_contact">Custom Privacy per contact</string>

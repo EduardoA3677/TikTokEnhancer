@@ -2089,4 +2089,135 @@ public class Unobfuscator {
     public static Class loadWaContactData(ClassLoader classLoader) throws Exception {
         return UnobfuscatorCache.getInstance().getClass(classLoader, () -> findFirstClassUsingStrings(classLoader, StringMatchType.EndsWith, "WaContactData"));
     }
+
+    // ========== TikTok-specific Methods ==========
+
+    /**
+     * Load TikTok Video model class
+     * This class contains video information including download URLs (with and without watermark)
+     */
+    public synchronized static Class<?> loadTikTokVideoClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, "TikTokVideoClass", () -> {
+            try {
+                // Try standard class name first
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.feed.model.Video", classLoader);
+            } catch (Throwable e1) {
+                try {
+                    // Try alternate location
+                    return XposedHelpers.findClass("com.ss.android.ugc.aweme.video.Video", classLoader);
+                } catch (Throwable e2) {
+                    // Use DexKit to find by characteristics
+                    return findFirstClassUsingStrings(classLoader, StringMatchType.Contains, "download_no_watermark_addr", "download_addr");
+                }
+            }
+        });
+    }
+
+    /**
+     * Load TikTok Feed model class
+     * This class represents feed items (Aweme)
+     */
+    public synchronized static Class<?> loadTikTokFeedItemClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, "TikTokFeedItemClass", () -> {
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.feed.model.Aweme", classLoader);
+            } catch (Throwable e) {
+                // Use DexKit to find by characteristics
+                return findFirstClassUsingStrings(classLoader, StringMatchType.Contains, "aweme", "video", "author");
+            }
+        });
+    }
+
+    /**
+     * Load TikTok Download Service class
+     */
+    public synchronized static Class<?> loadTikTokDownloadServiceClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, "TikTokDownloadServiceClass", () -> {
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.download.component_api.DownloadServiceManager", classLoader);
+            } catch (Throwable e1) {
+                try {
+                    return XposedHelpers.findClass("com.ss.android.ugc.aweme.download.DownloadAwemeVideoServiceImpl", classLoader);
+                } catch (Throwable e2) {
+                    return findFirstClassUsingStrings(classLoader, StringMatchType.Contains, "DownloadService", "aweme");
+                }
+            }
+        });
+    }
+
+    /**
+     * Load TikTok Ad/Commercialize class
+     */
+    public synchronized static Class<?> loadTikTokAdClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, "TikTokAdClass", () -> {
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.commercialize.media.impl.utils.CommercializeMediaServiceImpl", classLoader);
+            } catch (Throwable e1) {
+                try {
+                    return XposedHelpers.findClass("com.bytedance.ies.ugc.aweme.commercialize.splash.service.CommercializeSplashServiceImpl", classLoader);
+                } catch (Throwable e2) {
+                    return findFirstClassUsingStrings(classLoader, StringMatchType.Contains, "commercialize", "ad");
+                }
+            }
+        });
+    }
+
+    /**
+     * Load TikTok Video Player class
+     */
+    public synchronized static Class<?> loadTikTokVideoPlayerClass(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getClass(classLoader, "TikTokVideoPlayerClass", () -> {
+            try {
+                return XposedHelpers.findClass("com.ss.android.ugc.aweme.player.sdk.api.OnUIPlayListener", classLoader);
+            } catch (Throwable e1) {
+                try {
+                    return XposedHelpers.findClass("com.ss.android.ugc.aweme.video.VideoBitmapManager", classLoader);
+                } catch (Throwable e2) {
+                    return findFirstClassUsingStrings(classLoader, StringMatchType.Contains, "player", "video", "play");
+                }
+            }
+        });
+    }
+
+    /**
+     * Find method to get no-watermark video URL
+     */
+    public synchronized static Method loadTikTokNoWatermarkUrlMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> videoClass = loadTikTokVideoClass(classLoader);
+            if (videoClass == null) throw new Exception("Video class not found");
+            
+            // Look for method that returns URL/String related to download without watermark
+            for (Method method : videoClass.getDeclaredMethods()) {
+                if ((method.getName().toLowerCase().contains("download") || 
+                     method.getName().toLowerCase().contains("url")) &&
+                    (method.getReturnType() == String.class || 
+                     method.getReturnType().getName().contains("Url"))) {
+                    return method;
+                }
+            }
+            throw new Exception("No-watermark URL method not found");
+        });
+    }
+
+    /**
+     * Find method to check if feed item is an ad
+     */
+    public synchronized static Method loadTikTokIsAdMethod(ClassLoader classLoader) throws Exception {
+        return UnobfuscatorCache.getInstance().getMethod(classLoader, () -> {
+            Class<?> feedItemClass = loadTikTokFeedItemClass(classLoader);
+            if (feedItemClass == null) throw new Exception("Feed item class not found");
+            
+            // Look for method that checks if item is ad
+            for (Method method : feedItemClass.getDeclaredMethods()) {
+                if (method.getName().toLowerCase().contains("isad") &&
+                    method.getReturnType() == boolean.class) {
+                    return method;
+                }
+            }
+            
+            // Try using DexKit
+            return findFirstMethodUsingStringsFilter(classLoader, "com.ss.android.ugc.aweme", StringMatchType.Contains, "isAd", "ad");
+        });
+    }
 }

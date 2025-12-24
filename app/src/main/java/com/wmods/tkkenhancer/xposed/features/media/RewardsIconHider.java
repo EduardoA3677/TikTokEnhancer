@@ -30,6 +30,9 @@ public class RewardsIconHider extends Feature {
 
     private static final String TAG = "RewardsIconHider";
     
+    // Maximum depth for recursive view traversal to prevent performance issues
+    private static final int MAX_VIEW_HIERARCHY_DEPTH = 10;
+    
     // Common class name patterns for rewards-related components
     private static final String[] REWARDS_PATTERNS = {
         "reward",
@@ -251,18 +254,22 @@ public class RewardsIconHider extends Feature {
                 try {
                     int id = v.getId();
                     if (id != View.NO_ID) {
-                        String idName = v.getResources().getResourceEntryName(id);
-                        if (idName != null) {
-                            String idNameLower = idName.toLowerCase();
-                            for (String pattern : REWARDS_PATTERNS) {
-                                if (idNameLower.contains(pattern.toLowerCase())) {
-                                    return true;
+                        try {
+                            String idName = v.getResources().getResourceEntryName(id);
+                            if (idName != null) {
+                                String idNameLower = idName.toLowerCase();
+                                for (String pattern : REWARDS_PATTERNS) {
+                                    if (idNameLower.contains(pattern.toLowerCase())) {
+                                        return true;
+                                    }
                                 }
                             }
+                        } catch (android.content.res.Resources.NotFoundException e) {
+                            // Resource not found, skip ID check
                         }
                     }
                 } catch (Exception e) {
-                    // Ignore resource lookup errors
+                    // Ignore other resource lookup errors
                 }
             }
             
@@ -293,16 +300,31 @@ public class RewardsIconHider extends Feature {
     }
 
     /**
-     * Recursively search and hide reward views
+     * Recursively search and hide reward views with depth limit
      */
     private void hideRewardViewsRecursive(View view) {
+        hideRewardViewsRecursive(view, 0);
+    }
+
+    /**
+     * Recursively search and hide reward views with depth tracking
+     * @param view The view to check
+     * @param depth Current depth in view hierarchy
+     */
+    private void hideRewardViewsRecursive(View view, int depth) {
         try {
             if (view == null) return;
+            
+            // Limit recursion depth to prevent performance issues
+            if (depth > MAX_VIEW_HIERARCHY_DEPTH) {
+                logDebug("Reached max depth, stopping recursion");
+                return;
+            }
             
             // Check if current view is reward-related
             if (isRewardRelated(view)) {
                 view.setVisibility(View.GONE);
-                logDebug("Hidden reward view: " + view.getClass().getSimpleName());
+                logDebug("Hidden reward view: " + view.getClass().getSimpleName() + " at depth " + depth);
             }
             
             // Check children if it's a ViewGroup
@@ -311,7 +333,7 @@ public class RewardsIconHider extends Feature {
                 int childCount = group.getChildCount();
                 for (int i = 0; i < childCount; i++) {
                     View child = group.getChildAt(i);
-                    hideRewardViewsRecursive(child);
+                    hideRewardViewsRecursive(child, depth + 1);
                 }
             }
         } catch (Exception e) {

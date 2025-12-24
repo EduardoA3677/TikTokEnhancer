@@ -189,19 +189,26 @@ public class UIEnhancer extends Feature {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         CharSequence text = (CharSequence) param.args[0];
-                        if (text != null) {
-                            String textStr = text.toString().toLowerCase();
+                        if (text != null && text.length() > 0 && text.length() < 100) {
+                            String textStr = text.toString();
+                            String textLower = textStr.toLowerCase();
                             
-                            // Check for sponsored/promoted keywords
-                            if (textStr.contains("sponsored") || 
-                                textStr.contains("promoted") ||
-                                textStr.contains("advertisement") ||
-                                textStr.contains("ad")) {
-                                
-                                // Hide the TextView
+                            // More specific sponsored/promoted keyword matching
+                            // Use exact matches to avoid false positives
+                            boolean isSponsored = textLower.equals("sponsored") || 
+                                                  textLower.equals("promoted") ||
+                                                  textLower.equals("advertisement") ||
+                                                  textLower.startsWith("sponsored by") ||
+                                                  textLower.startsWith("promoted by");
+                            
+                            if (isSponsored) {
+                                // Mark for hiding instead of immediate visibility change
+                                // to avoid triggering layout passes during setText
                                 TextView tv = (TextView) param.thisObject;
-                                tv.setVisibility(View.GONE);
-                                logDebug("Hidden sponsored badge: " + text);
+                                tv.post(() -> {
+                                    tv.setVisibility(View.GONE);
+                                    logDebug("Hidden sponsored badge: " + text);
+                                });
                             }
                         }
                     }

@@ -74,7 +74,18 @@ public class FeedScrollCustomizer extends Feature {
         try {
             // Load scroll speed multiplier (default 1.0)
             String speedStr = prefs.getString("scroll_speed", "1.0");
-            scrollSpeedMultiplier = Float.parseFloat(speedStr);
+            try {
+                scrollSpeedMultiplier = Float.parseFloat(speedStr);
+                // Clamp speed multiplier to reasonable range (0.1 to 5.0)
+                if (scrollSpeedMultiplier < 0.1f) {
+                    scrollSpeedMultiplier = 0.1f;
+                } else if (scrollSpeedMultiplier > 5.0f) {
+                    scrollSpeedMultiplier = 5.0f;
+                }
+            } catch (NumberFormatException e) {
+                logDebug("Invalid scroll speed value: " + speedStr + ", using default 1.0");
+                scrollSpeedMultiplier = 1.0f;
+            }
             
             // Load smooth scroll setting
             enableSmoothScroll = prefs.getBoolean("smooth_scroll", true);
@@ -238,24 +249,33 @@ public class FeedScrollCustomizer extends Feature {
                 return;
             }
 
-            // Hook scrollVerticallyBy for custom paging
-            XposedHelpers.findAndHookMethod(
-                layoutManagerClass,
-                "scrollVerticallyBy",
-                int.class,
-                XposedHelpers.findClass("androidx.recyclerview.widget.RecyclerView$Recycler", classLoader),
-                XposedHelpers.findClass("androidx.recyclerview.widget.RecyclerView$State", classLoader),
-                new XC_MethodHook() {
-                    @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        // Custom paging logic can be implemented here
-                        int dy = (int) param.args[0];
-                        logDebug("Vertical scroll by: " + dy);
-                    }
-                }
-            );
+            // Determine the RecyclerView package prefix based on which LayoutManager was found
+            String recyclerViewPackage = layoutManagerClass.getName().contains("androidx") 
+                ? "androidx.recyclerview.widget.RecyclerView" 
+                : "android.support.v7.widget.RecyclerView";
 
-            logDebug("Successfully hooked LayoutManager for custom paging");
+            // Hook scrollVerticallyBy for custom paging
+            try {
+                XposedHelpers.findAndHookMethod(
+                    layoutManagerClass,
+                    "scrollVerticallyBy",
+                    int.class,
+                    XposedHelpers.findClass(recyclerViewPackage + "$Recycler", classLoader),
+                    XposedHelpers.findClass(recyclerViewPackage + "$State", classLoader),
+                    new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            // Custom paging logic can be implemented here
+                            int dy = (int) param.args[0];
+                            logDebug("Vertical scroll by: " + dy);
+                        }
+                    }
+                );
+                
+                logDebug("Successfully hooked LayoutManager for custom paging");
+            } catch (Exception e) {
+                logDebug("Failed to hook scrollVerticallyBy: " + e.getMessage());
+            }
         } catch (Throwable e) {
             logDebug("Failed to hook LayoutManager: " + e.getMessage());
         }

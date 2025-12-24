@@ -123,7 +123,53 @@ Control video quality and bitrate selection.
 - Adjust bitrate settings
 - Enhanced video quality
 
-### 10. Debug Feature 🐛
+### 10. Feed Scroll Customizer 📜 NEW
+Customize feed scrolling behavior when browsing videos.
+
+**Features:**
+- Adjust scroll speed (slower, normal, faster)
+- Control smooth scrolling
+- Custom paging behavior
+- Enhanced feed navigation
+
+**How it works:**
+- Hooks RecyclerView scroll methods
+- Applies configurable speed multiplier
+- Intercepts smooth scroll animations
+- Customizes paging behavior
+
+### 11. Rewards Icon Hider 🎁 NEW
+Hide the TikTok Rewards floating icon from the main page.
+
+**Features:**
+- Automatically hides rewards/incentive buttons
+- Detects reward-related views
+- Prevents rewards icon display
+- Clean main feed interface
+
+**How it works:**
+- Intercepts FloatingActionButton visibility
+- Pattern-matching for reward elements
+- Recursively searches and hides reward views
+- Blocks reward icon initialization
+
+### 12. UI Enhancer ✨ NEW
+Additional UI enhancements discovered through smali analysis.
+
+**Features:**
+- Hide live stream badges
+- Hide shop/mall tab
+- Hide sponsored/promoted badges
+- Remove watermarks from UI
+- Hide suggestion overlays
+
+**How it works:**
+- Hooks UI component visibility
+- Filters sponsored keywords
+- Blocks unwanted UI elements
+- Provides cleaner interface
+
+### 13. Debug Feature 🐛
 Advanced logging and debugging capabilities for development and troubleshooting.
 
 ## 📋 Requirements

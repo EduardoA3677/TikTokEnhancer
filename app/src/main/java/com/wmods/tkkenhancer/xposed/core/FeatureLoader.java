@@ -370,6 +370,7 @@ public class FeatureLoader {
                 
                 // ✅ WORKING FEATURES - Verified against smali
                 com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,      // Hooks: Video.getDownloadNoWatermarkAddr()
+                com.wmods.tkkenhancer.xposed.features.media.DownloadServiceHook.class, // Hooks: DownloadAwemeVideoServiceImpl for advanced download
                 com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,          // Hooks: Aweme.isAd(), isAdTraffic()
                 
                 // ✅ NEWLY IMPLEMENTED FEATURES - Enabled for testing
@@ -382,7 +383,7 @@ public class FeatureLoader {
                 com.wmods.tkkenhancer.xposed.features.media.FeedScrollCustomizer.class,  // Feed scroll customization
                 com.wmods.tkkenhancer.xposed.features.media.RewardsIconHider.class,      // Hide TikTok Rewards icon
                 com.wmods.tkkenhancer.xposed.features.media.UIEnhancer.class,            // Additional UI enhancements
-                com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class,        // Bitrate control - VERIFIED and improved
+                com.wmods.tkkenhancer.xposed.features.media.VideoQuality.class,          // Video quality control - uses video_quality pref
                 
                 // ✅ IMPROVED HOOKS - Verified against smali and corrected
                 com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,       // Comment.getStatus() - VERIFIED

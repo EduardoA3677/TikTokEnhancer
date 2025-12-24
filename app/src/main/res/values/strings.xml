@@ -420,4 +420,53 @@
     <string name="disable_status_in_the_profile_photo">Disable Status in the profile photo</string>
     <string name="disable_status_in_the_profile_photo_sum">Disables the circle that appears in the profile photo of each contact when there is new status</string>
     <string name="download_not_available">Download not available or media has not been fully downloaded</string>
+
+    <!-- TikTok Enhancer Specific Strings -->
+    <string name="tiktok_download_title">TikTok Video Download</string>
+    <string name="video_download">Enable Video Download</string>
+    <string name="video_download_sum">Enable downloading TikTok videos</string>
+    <string name="download_no_watermark">Download Without Watermark</string>
+    <string name="download_no_watermark_sum">Download videos without TikTok watermark</string>
+    <string name="download_service_hook">Download Service Hook</string>
+    <string name="download_service_hook_sum">Intercept download service for enhanced control</string>
+    <string name="story_download">Story Download</string>
+    <string name="story_download_sum">Enable downloading user stories</string>
+    <string name="tiktok_download_path">TikTok Download Path</string>
+
+    <string name="tiktok_quality_title">Video Quality</string>
+    <string name="video_quality">Enable Quality Control</string>
+    <string name="video_quality_sum">Control video quality and bitrate settings</string>
+    <string name="force_hd_quality">Force HD Quality</string>
+    <string name="force_hd_quality_sum">Always select highest quality available</string>
+    <string name="force_high_bitrate">Force High Bitrate</string>
+    <string name="force_high_bitrate_sum">Force higher bitrate for better quality</string>
+    <string name="target_bitrate">Target Bitrate</string>
+    <string name="target_bitrate_sum">Select desired video bitrate</string>
+
+    <string name="tiktok_autoplay_title">Auto-Play Control</string>
+    <string name="autoplay_control">Enable Auto-Play Control</string>
+    <string name="autoplay_control_sum">Control video auto-play behavior</string>
+    <string name="disable_autoplay">Disable Auto-Play</string>
+    <string name="disable_autoplay_sum">Prevent videos from playing automatically</string>
+
+    <string name="tiktok_ad_title">Ad Blocker</string>
+    <string name="ad_blocker">Enable Ad Blocker</string>
+    <string name="ad_blocker_sum">Block advertisements in your feed</string>
+    <string name="block_commercialize">Block Commercialize Content</string>
+    <string name="block_commercialize_sum">Block commercial and sponsored content</string>
+    <string name="block_promoted">Block Promoted Content</string>
+    <string name="block_promoted_sum">Block promoted posts and ads</string>
+
+    <string name="tiktok_privacy_title">TikTok Privacy</string>
+    <string name="privacy_enhancer">Enable Privacy Enhancer</string>
+    <string name="privacy_enhancer_sum">Enhance privacy by blocking tracking</string>
+    <string name="hide_view_history">Hide View History</string>
+    <string name="hide_view_history_sum">Prevent tracking of watched videos</string>
+    <string name="hide_profile_visits">Hide Profile Visits</string>
+    <string name="hide_profile_visits_sum">Hide when you visit profiles</string>
+    <string name="disable_analytics">Disable Analytics</string>
+    <string name="disable_analytics_sum">Block TikTok and Firebase analytics</string>
+    <string name="block_data_collection">Block Data Collection</string>
+    <string name="block_data_collection_sum">Prevent data collection by TikTok</string>
+
 </resources>

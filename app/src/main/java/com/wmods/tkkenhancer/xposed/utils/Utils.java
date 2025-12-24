@@ -62,7 +62,7 @@ public class Utils {
     public static void init(ClassLoader loader) {
         var context = Utils.getApplication();
         var notificationManager = NotificationManagerCompat.from(context);
-        var channel = new NotificationChannel("tkkenhancer", "WAE Enhancer", NotificationManager.IMPORTANCE_HIGH);
+        var channel = new NotificationChannel("tkkenhancer", "TikTok Enhancer", NotificationManager.IMPORTANCE_HIGH);
         notificationManager.createNotificationChannel(channel);
     }
 
@@ -302,7 +302,7 @@ public class Utils {
     public static void showNotification(String title, String content) {
         var context = Utils.getApplication();
         var notificationManager = NotificationManagerCompat.from(context);
-        var channel = new NotificationChannel("tkkenhancer", "WAE Enhancer", NotificationManager.IMPORTANCE_HIGH);
+        var channel = new NotificationChannel("tkkenhancer", "TikTok Enhancer", NotificationManager.IMPORTANCE_HIGH);
         notificationManager.createNotificationChannel(channel);
         var notification = new NotificationCompat.Builder(context, "tkkenhancer")
                 .setSmallIcon(android.R.mipmap.sym_def_app_icon)

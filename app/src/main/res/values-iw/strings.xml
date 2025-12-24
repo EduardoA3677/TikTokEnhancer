@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_desc">מודול ווצאפ - Enhancer</string>
+    <string name="app_desc">מודול TikTok - Enhancer</string>
     <string name="antirevoke">חסימת מחיקת הודעות</string>
     <string name="antirevoke_sum">הודעות לא יימחקו אצלך</string>
     <string name="ghostmode">הסתר הקלדה</string>
@@ -29,9 +29,9 @@
     <string name="videoquality">סרטוני וידאו באיכות HD</string>
     <string name="videoquality_sum">שלח סרטונים באיכות HD, כברירת מחדל</string>
     <string name="colors_customization">התאם אישית את הצבעים שלך</string>
-    <string name="colors_customization_sum">שנה את כל הצבעים בווצאפ שלך (עובד רק בעיצוב כהה)</string>
+    <string name="colors_customization_sum">שנה את כל הצבעים בTikTok שלך (עובד רק בעיצוב כהה)</string>
     <string name="general">כללי</string>
-    <string name="restart_whatsapp">הפעל מחדש את ווצאפ</string>
+    <string name="restart_whatsapp">הפעל מחדש את TikTok</string>
     <string name="conversation">מסך שיחה</string>
     <string name="primary_color">צבעי יסוד</string>
     <string name="background_color">צבע רקע</string>
@@ -46,7 +46,7 @@
     <string name="removeforwardlimit_sum">בטל את המגבלה שלא מאפשרת העברת הודעה ליותר מ5 צ\'אטים \n(הערה: השתמש בזהירות, ייתכן שתחסם בגלל ספאם)</string>
     <string name="removeforwardlimit">בטל מגבלת העברת הודעות</string>
     <string name="showname">הצג שם</string>
-    <string name="showname_sum">הצג את שם הפרופיל שלך בחלק העליון של מסך הבית, במקום \"WhatsApp\"</string>
+    <string name="showname_sum">הצג את שם הפרופיל שלך בחלק העליון של מסך הבית, במקום \"TikTok\"</string>
     <string name="showbio_sum">הצג את האודות שלך בחלק התחתון של מסך הבית</string>
     <string name="showbio">הצג ביוגרפיה</string>
     <string name="bubble_left">בועה שמאל</string>
@@ -62,13 +62,13 @@
     <string name="blueonreply_sum">שולח סימון כחול רק לאחר מענה להודעה\n(ה
 \"הסתר וי כחול\" חייב להיות פעיל)</string>
     <string name="hide_archived_chat">הסתר צ\'אטים בארכיון</string>
-    <string name="hide_archived_chat_sum">הסתר צ\'אטים בארכיון, לגישה לחץ 5 פעמים או החזק את הכותרת \"Whatsapp\" במסך הבית</string>
+    <string name="hide_archived_chat_sum">הסתר צ\'אטים בארכיון, לגישה לחץ 5 פעמים או החזק את הכותרת \"TikTok\" במסך הבית</string>
     <string name="hide_once_view_seen">הסתר צפייה בחד פעמי</string>
     <string name="hide_once_view_seen_sum">מסתיר את התצוגה שההודעה החד פעמית נפתחה</string>
     <string name="call_blocker">חסום שיחות</string>
-    <string name="call_blocker_sum">חסום שיחות ווצאפ על סמך סוג הפרטיות</string>
+    <string name="call_blocker_sum">חסום שיחות TikTok על סמך סוג הפרטיות</string>
     <string name="show_online_dot_in_conversation_list">הצג נקודה ירוקה ברשימת שיחות</string>
-    <string name="show_online_dot_in_conversation_list_sum">הצג נקודה מחובר/ת ירוקה במסך הבית\n(הערה: חייב להפעיל את המחובר/ת לכולם בתפריט הגדרות הפרטיות של ווצאפ)</string>
+    <string name="show_online_dot_in_conversation_list_sum">הצג נקודה מחובר/ת ירוקה במסך הבית\n(הערה: חייב להפעיל את המחובר/ת לכולם בתפריט הגדרות הפרטיות של TikTok)</string>
     <string name="show_dnd_button">הצג את לחצן DND</string>
     <string name="show_dnd_button_sum">הצג כפתור מצב טיסה במסך הבית</string>
     <string name="dev4mod">Dev4Mod (תורם)</string>
@@ -94,7 +94,7 @@
     <string name="number_with_country_code">מספר עם קוד מדינה</string>
     <string name="message">הודעה</string>
     <string name="download">הורדה</string>
-    <string name="reboot_whatsapp">(הפעל מחדש את ווצאפ)</string>
+    <string name="reboot_whatsapp">(הפעל מחדש את TikTok)</string>
     <string name="error_when_saving_try_again">שגיאה בעת השמירה, נסה שוב</string>
     <string name="saved_to">"נשמר ב "</string>
     <string name="hide_tabs_on_home">הסתר כרטיסיות במסך הבית</string>
@@ -118,9 +118,9 @@
     <string name="module_enabled">המודול מופעל</string>
     <string name="version_s">גרסת %s</string>
     <string name="module_disabled">המודול מושבת</string>
-    <string name="whatsapp_in_background"> הWhatsApp שלך מופעל ברקע</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">הווצאפ לא פועל או לא הופעל ב-Lsposed</string>    <string name="restart_tkk">יש צורך להפעיל מחדש את הווצאפ כדי שהשינויים ב-Wa Enhancer ייכנסו לתוקף.\n\nהאם ברצונך להפעיל מחדש?</string>
-    <string name="version_s_not_listed">גרסת %s לא מופיעה בגרסאות הנתמכות!\nאנא השתמש בגרסת ווצאפ נתמכת!</string>
+    <string name="whatsapp_in_background">TikTok in background</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">הTikTok לא פועל או לא הופעל ב-Lsposed</string>    <string name="restart_tkk">יש צורך להפעיל מחדש את הTikTok כדי שהשינויים ב-Wa Enhancer ייכנסו לתוקף.\n\nהאם ברצונך להפעיל מחדש?</string>
+    <string name="version_s_not_listed">גרסת %s לא מופיעה בגרסאות הנתמכות!\nאנא השתמש בגרסת TikTok נתמכת!</string>
     <string name="media">מדיה</string>
     <string name="show_button_to_send_blue_tick">הצג כפתור לשליחת וי כחול</string>
     <string name="show_button_to_send_blue_tick_sum">הצג כפתור לשליחת סימון כחול (סמן כנקרא/נצפה)</string>
@@ -152,16 +152,16 @@
     <string name="seentick_screen">הצג כפתור במסך</string>
     <string name="verbose_logs">הפעל יומן מפורט עבור Debugger (אם יש באג, אז המפתח ידע לפתור אותו ע\"י הפעלת הפיצ\'ר הזה)</string>
     <string name="phone_call">שיחת טלפון</string>
-    <string name="whatsapp_call">שיחת ווצאפ</string>
+    <string name="whatsapp_call">שיחת TikTok</string>
     <string name="home_screen">מסך הבית</string>
     <string name="selection_of_call_type">אפשר בחירת סוג שיחה</string>
-    <string name="selection_of_call_type_sum">הצג אפשרות לבחור האם ברצונך להתקשר בשיחת טלפון או בשיחת ווצאפ</string>
+    <string name="selection_of_call_type_sum">הצג אפשרות לבחור האם ברצונך להתקשר בשיחת טלפון או בשיחת TikTok</string>
     <string name="yes">כן</string>
     <string name="no">לא</string>
     <string name="device_model">דגם המכשיר</string>
     <string name="device_name">שם המכשיר</string>
     <string name="disable_metaai">השבת את פונקציות Meta Ai</string>
-    <string name="disable_metaai_sum">השבת את הMeta AI רק עבור אלה שכבר מופעל להם</string>    <string name="list_tkk">רשימת הגרסאות הנתמכות בווצאפ:</string>
+    <string name="disable_metaai_sum">השבת את הMeta AI רק עבור אלה שכבר מופעל להם</string>    <string name="list_tkk">רשימת הגרסאות הנתמכות בTikTok:</string>
     <string name="title_image">תמונה</string>
     <string name="title_video">וידאו</string>
     <string name="enable_new_chat_button">אפשר לחצן צ\'אט חדש</string>
@@ -186,7 +186,7 @@
     <string name="backup_settings">גיבוי ההגדרות</string>
     <string name="import_settings">ייבוא</string>
     <string name="export_settings">ייצוא</string>
-    <string name="version_error">גרסת הווצאפ שבה אתה משתמש אינה תואמת וגורמת שגיאה בתכונות הבאות:\n\n</string>
+    <string name="version_error">גרסת הTikTok שבה אתה משתמש אינה תואמת וגורמת שגיאה בתכונות הבאות:\n\n</string>
     <string name="copy_to_clipboard">העתק למקלדת</string>
     <string name="copied_to_clipboard">הועתק למקלדת</string>
     <string name="error_detected">זוהתה שגיאה</string>
@@ -202,16 +202,16 @@
     <string name="toolbar_transparency">שקיפות סרגל הכלים</string>
     <string name="navigation_transparency">שקיפות ניווט</string>
     <string name="show_online_last_seen_in_conversation_list">הצג מחובר/ת או נראה לאחרונה במסך הבית</string>
-    <string name="show_online_last_seen_in_conversation_list_sum">הצג מחובר/ת או נראה לאחרונה במסך הבית\n(הערה: יש להפעיל את ההגדרה לכולם בתפריט הגדרות הפרטיות של ווצאפ)</string>
+    <string name="show_online_last_seen_in_conversation_list_sum">הצג מחובר/ת או נראה לאחרונה במסך הבית\n(הערה: יש להפעיל את ההגדרה לכולם בתפריט הגדרות הפרטיות של TikTok)</string>
     <string name="toast_online">%s מחובר/ת</string>
     <string name="show_toast_on_contact_online">הצג הודעה קופצת על איש קשר מחובר/ת</string>
     <string name="show_toast_on_contact_online_sum">הצג הודעה קופצת כאשר איש קשר מחובר</string>
     <string name="new_context_menu_ui">ממשק משתמש חדש של תפריט UI</string>
     <string name="new_context_menu_ui_sum">התפריט החדש של בחירת הודעות בסגנון iOS יופעל.</string>
     <string name="filter_items_by_id">סנן פריטים לפי id</string>
-    <string name="filter_items_by_id_sum">סנן פריטים בווצאפ לפי id</string>
+    <string name="filter_items_by_id_sum">סנן פריטים בTikTok לפי id</string>
     <string name="custom_theme_css">ערכת נושא מותאמת אישית CSS</string>
-    <string name="custom_theme_css_sum">התאם אישית את הווצאפ שלך באמצעות CSS</string>
+    <string name="custom_theme_css_sum">התאם אישית את הTikTok שלך באמצעות CSS</string>
     <string name="antidisappearing">שמור לצמיתות הודעות זמניות</string>
     <string name="antidisappearing_sum">הודעות זמניות לא יימחקו אצלך</string>
     <string name="title_audio">שמע</string>
@@ -220,7 +220,7 @@
     <string name="disable_default_emojis">השבת אימוג\'י ברירת מחדל</string>
     <string name="theme_mode">Wa Enhancer - ערכת נושא כהה</string>
     <string name="theme_mode_sum">הפעל מצב ערכת נושא ב-Wa Enhancer</string>
-    <string name="disable_default_emojis_sum">השבת את אימוג\'י ברירת המחדל של ווצאפ והשתמש באימוג\'י המערכת שבטלפון שלך\n(הערה: אימוג\'י הווצאפ ייעלמו מהמקלדת הרגילה של הווצאפ, לכן מומלץ להשתמש במקלדת של הטלפון שלכם בכדי לשלוח אימוג\'י).</string>
+    <string name="disable_default_emojis_sum">השבת את אימוג\'י ברירת המחדל של TikTok והשתמש באימוג\'י המערכת שבטלפון שלך\n(הערה: אימוג\'י הTikTok ייעלמו מהמקלדת הרגילה של הTikTok, לכן מומלץ להשתמש במקלדת של הטלפון שלכם בכדי לשלוח אימוג\'י).</string>
     <string name="other">אחר</string>
     <string name="enable_media_preview">אפשר תצוגה מקדימה של מדיה (①)</string>
     <string name="enable_media_preview_sum">הוסף כפתור לתצוגה מקדימה של מדיה בקובץ זמני (מבלי להוריד אותו לצמיתות)</string>
@@ -230,7 +230,7 @@
     <string name="call_blocking_type_sum">בחר מה יופיע למי שמתקשר אליך כשמופעלת חסימת שיחות.</string>
     <string name="call_type_buttons_no_internet">אין אינטרנט (\"מתקשר\")</string>
     <string name="call_type_buttons_declined">השיחה נדחתה</string>
-    <string name="call_type_buttons_uncallable">לא ניתן לקבל שיחות ווצאפ</string>
+    <string name="call_type_buttons_uncallable">לא ניתן לקבל שיחות TikTok</string>
     <string name="call_type_buttons_ended">השיחה לא נענתה</string>
     <string name="enable_tasker_automation">אפשר Tasker Automation</string>
     <string name="enable_tasker_automation_sum">הפעל את האפשרות לקבל ולשלוח הודעות ב-Tasker</string>
@@ -240,7 +240,7 @@
     <string name="toast_on_viewed_status_sum">מציג התראה אם מישהו צופה בסטטוס שלך</string>
     <string name="toast_on_viewed_message">הצג התראה קופצת כשמשתמש צופה בהודעה ששלחת לו</string>
     <string name="toast_on_viewed_message_sum">מציג התראה אם מישהו צופה בהודעה שלך</string>
-    <string name="textonahora_sum">הצג התראה קופצת ליד כל חותמת זמן באפליקציית ווצאפ</string>
+    <string name="textonahora_sum">הצג התראה קופצת ליד כל חותמת זמן באפליקציית TikTok</string>
     <string name="delete_for_me">מחק את הסטטוס (עבורי)</string>
     <string name="send_audio_as_voice_audio_note">שלח אודיו כהערת קול/שמע</string>
     <string name="send_audio_as_voice_audio_note_sum">שולח תמיד מדיה/העברה של אודיו כהערה קולית או הערת אודיו</string>
@@ -257,14 +257,14 @@
     <string name="reset_settings">אפס את ההגדרות</string>
     <string name="configs_reset">ההגדרות אופסו בהצלחה</string>
     <string name="hide_locked_chats">הסתר צ\'אטים נעולים</string>
-    <string name="hide_locked_chats_sum">הסתר צ\'אטים בארכיון, הצג אותם על ידי החזקת כותרת Whatsapp במסך הבית</string>
+    <string name="hide_locked_chats_sum">הסתר צ\'אטים בארכיון, הצג אותם על ידי החזקת כותרת TikTok במסך הבית</string>
     <string name="msg_text_status_not_downloadable">סטטוס טקסט אינו ניתן להורדה!</string>
     <string name="failed_save_directory">לא ניתן לשמור קבצים בתיקייה זו, בחר מיקום אחר</string>
     <string name="unable_to_read_this_file">לא ניתן לקרוא את הקובץ הזה</string>
     <string name="disabled">מושבת</string>
     <string name="share_as_status">שיתוף לסטטוס שלי</string>
     <string name="audio_transcription">תמלול אודיו</string>
-    <string name="audio_transcription_sum">אפשר תמלול אודיו מקורי של ווצאפ (בדוק את תפריט החיבור לאפשרויות תמלול)</string>
+    <string name="audio_transcription_sum">אפשר תמלול אודיו מקורי של TikTok (בדוק את תפריט החיבור לאפשרויות תמלול)</string>
     <string name="viewed_your_status">%s צפו בסטטוס שלך</string>
     <string name="viewed_your_message">%s צפו בהודעה שלך</string>
     <string name="old_statuses">סגנון סטטוס ישן</string>
@@ -273,7 +273,7 @@
     <string name="select_status_type">בחר סוג סטטוס</string>
     <string name="open_camera">פתח מצלמה</string>
     <string name="edit_text">ערוך טקסט</string>
-    <string name="about_info">הWa Enhancer הוא מודול Xposed שמשפר את חווית הווצאפ שלך על ידי מתן תכונות פרטיות מתקדמות, התאמה אישית של מסך הבית, שינויים כלליים ושיפורי מדיה.</string>
+    <string name="about_info">הWa Enhancer הוא מודול Xposed שמשפר את חווית הTikTok שלך על ידי מתן תכונות פרטיות מתקדמות, התאמה אישית של מסך הבית, שינויים כלליים ושיפורי מדיה.</string>
     <string name="installation">התקנה</string>
     <string name="installation_desc">1. ודא שהמכשיר שלך מושרש.\n2.  התקן את Xposed Framework במכשיר שלך.\n3.  הורד את Wa Enhancer מקטע הפעולות.\n4.  התקן את ה-APK של Wa Enhancer.\n5.  הפעל את מודול Wa Enhancer באפליקציית Xposed Installer.</string>
     <string name="go_to_telegram">לך לטלגרם</string>
@@ -287,8 +287,8 @@
     <string name="select_a_color">בחר צבע</string>
     <string name="custom_appearance">מראה מותאם אישית</string>
     <string name="custom_filters_sum">הפעל פילטר לפי מזהה ו-CSS מותאם אישית</string>
-    <string name="click_times">לחץ 5 פעמים על כותרת הווצאפ</string>
-    <string name="hold_title">לחץ ארוך על כותרת הווצאפ במסך הבית</string>
+    <string name="click_times">לחץ 5 פעמים על כותרת הTikTok</string>
+    <string name="hold_title">לחץ ארוך על כותרת הTikTok במסך הבית</string>
     <string name="read_all_mark_as_read">קרא הכל (סמן כנקרא)</string>
     <string name="enable_copy_status">הפעל מצב העתקה בסטטוס</string>
     <string name="enable_copy_status_sum">מפעיל את האפשרות להעתיק את התיאור והכיתוב של הסטטוסים על ידי החזקה בהם</string>
@@ -297,7 +297,7 @@
     <string name="vertical_status">סטטוס אנכי</string>
     <string name="vertical_status_sum">הצג סטטוס במצב אנכי בכרטיסיית העדכונים</string>
     <string name="disable_version_check">השבת את בדיקת הגרסה</string>
-    <string name="disable_version_check_sum">משבית את בדיקת הגרסה הנתמכת של ווצאפ במודול (ייתכנו באגים בגרסאות שלא נתמכות)</string>
+    <string name="disable_version_check_sum">משבית את בדיקת הגרסה הנתמכת של TikTok במודול (ייתכנו באגים בגרסאות שלא נתמכות)</string>
     <string name="invalid_zip_file">קובץ zip לא חוקי</string>
     <string name="theme_imported_successfully">ערכת הנושא יובאה בהצלחה</string>
     <string name="new_theme_name">שם ערכת נושא חדש</string>
@@ -319,7 +319,7 @@
     <string name="create_new_theme">צור ערכת נושא חדשה</string>
     <string name="import_theme">ייבא ערכת עיצוב</string>
     <string name="theme_manager">מנהל ערכת נושא</string>
-    <string name="manage_theme_sum">נהל ערכות נושא באמצעות CSS עבור ווצאפ</string>
+    <string name="manage_theme_sum">נהל ערכות נושא באמצעות CSS עבור TikTok</string>
     <string name="grant_permission">אנא הענק הרשאות לתמונות ולאחסון</string>
     <string name="one_row">שורה אחת</string>
     <string name="two_row">שתי שורות</string>
@@ -354,8 +354,8 @@
     <string name="starting_cache">הפעלת מטמון בוואטסאפ. זה עשוי לקחת זמן.</string>
     <string name="bridge_error">הפעולה נכשלה: הפעל את מסגרת המערכת ב-Lsposed ואתחל את הטלפון מחדש</string>
     <string name="disable_battery_optimization">השבת את אופטימיזציית הסוללה</string>
-    <string name="bootloader_spoofer">הסר חסימת ווצאפ</string>
-    <string name="bootloader_spoofer_sum">הפעל את תכונה זו אם נחסמת מווצאפ ואתה מקבל הודעה שאתה משתמש בגרסה לא רשמית</string>
+    <string name="bootloader_spoofer">הסר חסימת TikTok</string>
+    <string name="bootloader_spoofer_sum">הפעל את תכונה זו אם נחסמת מTikTok ואתה מקבל הודעה שאתה משתמש בגרסה לא רשמית</string>
     <string name="not_available">לא זמין</string>
     <string name="select_all">בחר הכל</string>
     <string name="custom_colors_for_text_status">צבעים מותאמים אישית עבור סטטוס טקסט</string>
@@ -371,28 +371,28 @@
     <string name="assemblyai_key">מפתח הAssemblyAI</string>
     <string name="assemblyai_key_sum">מפתח גישה ל-AssemblyAI API (התחבר לאתר וצור חשבון כדי לקבל את המפתח שלך)</string>
     <string name="google_translate">הפעל את גוגל תרגום</string>
-    <string name="google_translate_sum">מחליף את מתרגם ברירת המחדל של ווצאפ בגוגל תרגום</string>
+    <string name="google_translate_sum">מחליף את מתרגם ברירת המחדל של TikTok בגוגל תרגום</string>
     <string name="show_contact_info">הצג בפרטי יצירת קשר</string>
     <string name="show_contact_info_menu">הצג ב3 נקודות של פרטי איש הקשר</string>
     <string name="block_call">חסום שיחה</string>
     <string name="always_online">תמיד מחובר/ת</string>
-    <string name="always_online_sum">הראה שאתה תמיד מחובר בווצאפ - גם אם אתה יוצא מהווצאפ לאפליקציות אחרות (אך התכונה לא תעבוד אם אתה מסיר את הווצאפ מהכרטיסיות של האחרונים)</string>
+    <string name="always_online_sum">הראה שאתה תמיד מחובר בTikTok - גם אם אתה יוצא מהTikTok לאפליקציות אחרות (אך התכונה לא תעבוד אם אתה מסיר את הTikTok מהכרטיסיות של האחרונים)</string>
     <string name="additional_call_information">מידע נוסף על שיחות</string>
-    <string name="additional_call_information_sum">קבל התראה עם מידע נוסף לאחר סיום השיחה בווצאפ</string>
+    <string name="additional_call_information_sum">קבל התראה עם מידע נוסף לאחר סיום השיחה בTikTok</string>
     <string name="contact_s">איש קשר: %s</string>
     <string name="phone_number_s">מספר טלפון: +%s</string>
     <string name="country_s">מדינה: %s</string>
     <string name="city_s">עיר: %s</string>
     <string name="ip_s">מיקום מדוייק (IP): %s</string>
     <string name="platform_s">סוג טלפון: %s</string>
-    <string name="tkk_version_s">גרסת ווצאפ: %s</string>
+    <string name="tkk_version_s">גרסת TikTok: %s</string>
     <string name="call_information">מידע על השיחה</string>
     <string name="ask_download_folder">כדי להשתמש בפונקציות ההורדה של TikTok Enhancer, עליך לבחור תיקיה לשמירת הקבצים שהורדת.</string>
     <string name="download_folder_permission">הרשאת תיקייה</string>
     <string name="lite_mode">מצב לייט</string>
-    <string name="lite_mode_sum">מצב Lite משבית את רוב תכונות הנושא וגשר החיבור ששומר על WhatsApp תמיד פעיל כבוי.</string>
+    <string name="lite_mode_sum">מצב Lite משבית את רוב תכונות הנושא וגשר החיבור ששומר על TikTok תמיד פעיל כבוי.</string>
     <string name="update_check">בדוק אוטומטית אם יש עדכונים</string>
-    <string name="update_check_sum">הפעל או השבת את בדיקת העדכון האוטומטית. פעולה זו תשבית את החלון הקופץ של העדכונים בתוך הווצאפ.</string>
+    <string name="update_check_sum">הפעל או השבת את בדיקת העדכון האוטומטית. פעולה זו תשבית את החלון הקופץ של העדכונים בתוך הTikTok.</string>
     <string name="change_default_dpi">שנה את ברירת המחדל של DPI</string>
     <string name="change_default_dpi_sum">שנה את הגדרת DPI עבור היישום. השתמש ב-0 כדי לאפס לברירת המחדל.</string>
     <string name="no_contact_with_custom_privacy">אין קשר עם פרטיות מותאמת אישית!</string>
@@ -400,7 +400,7 @@
     <string name="show_chat_broadcast_icon_sum">מציג סמל אם איש הקשר שלח הודעה באמצעות רשימת תפוצה</string>
     <string name="select_contacts">בחר אנשי קשר</string>
     <string name="style_of_stories_status">סגנון עיצוב הסטטוס</string>
-    <string name="style_of_stories_status_sum">משנה את סגנון הסטטוס לכמה דגמים שזמינים בווצאפ</string>
+    <string name="style_of_stories_status_sum">משנה את סגנון הסטטוס לכמה דגמים שזמינים בTikTok</string>
     <string name="view_seen_tick">צפייה נראית טיק</string>
     <string name="view_seen_tick_sum">הצג סמל אם תצוגת ההודעה נשלחה לנמען או שנראתה תצוגה ייחודית</string>
     <string name="text_color">צבע טקסט</string>

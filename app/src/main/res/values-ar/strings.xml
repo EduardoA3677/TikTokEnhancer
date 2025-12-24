@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_desc">أداة تخصيص الواتساب</string>
+    <string name="app_desc">أداة تخصيص الTikTok</string>
     <string name="antirevoke">منع حذف الرسائل</string>
     <string name="antirevoke_sum">عند التنشيط، لن يتم حذف الرسائل نيابةً عنك.</string>
     <string name="ghostmode">إخفاء جارية الكتابة</string>
@@ -15,7 +15,7 @@
     <string name="hideread_sum">عندما يكون نشطًا، فإنه يسمح لك بقراءة الرسائل دون أن يعلم الشخص أنك قرأتها</string>
     <string name="perso">التخصيص </string>
     <string name="segundosnahora">عرض الثواني في الوقت المناسب</string>
-    <string name="segundosnahora_sum">إظهار الثواني بجانب الوقت في تطبيق واتساب</string>
+    <string name="segundosnahora_sum">إظهار الثواني بجانب الوقت في تطبيق TikTok</string>
     <string name="textonahora">النص بجانب الوقت</string>
     <string name="viewonce">عرض غير محدود مرة واحدة</string>
     <string name="viewonce_sum">يسمح لك بفتح عرض مرة واحدة للوسائط عدة مرات</string>
@@ -30,9 +30,9 @@
     <string name="videoquality">إرسال مقاطع الفيديو بجودة HD</string>
     <string name="videoquality_sum">إرسال مقاطع الفيديو بجودة HD</string>
     <string name="colors_customization">خصص ألوانك</string>
-    <string name="colors_customization_sum">تغيير كل الألوان في واتساب الخاص بك (يعمل فقط في السمة الداكنة)</string>
+    <string name="colors_customization_sum">تغيير كل الألوان في TikTok الخاص بك (يعمل فقط في السمة الداكنة)</string>
     <string name="general">عام</string>
-    <string name="restart_whatsapp">إعادة تشغيل واتساب</string>
+    <string name="restart_whatsapp">إعادة تشغيل TikTok</string>
     <string name="conversation">شاشة المحادثة</string>
     <string name="primary_color">اللون الأساسي</string>
     <string name="background_color">لون الخلفية </string>
@@ -47,7 +47,7 @@
     <string name="removeforwardlimit_sum">إزالة حد إعادة التوجيه لـ 5 دردشات (عادية) ودردشة واحدة (عدة مرات)\n(ملاحظة: استخدم بحذر، فقد يتم حظرك بسبب الرسائل غير المرغوب فيها)</string>
     <string name="removeforwardlimit">إزالة حد إعادة التوجيه</string>
     <string name="showname">إظهار الأسم</string>
-    <string name="showname_sum">أظهر اسم حسابك أعلى الشاشة الرئيسية، مع استبدال واتساب باسمك.</string>
+    <string name="showname_sum">أظهر اسم حسابك أعلى الشاشة الرئيسية، مع استبدال TikTok باسمك.</string>
     <string name="showbio_sum">اعرض سيرتك الذاتية أسفل عنوان شريط الأدوات</string>
     <string name="showbio">اعرض السيرة الذاتية</string>
     <string name="bubble_left">فقاعة اليسار</string>
@@ -62,13 +62,13 @@
     <string name="blueonreply">أرسل علامة زرقاء عند الرد</string>
     <string name="blueonreply_sum">إرسال علامات الصح الزرقاء بعد الرد على رسالة(ملاحظة: يجب أن يكون خِيار \"إخفاء العلامات الزرقاء\" نشطًا)</string>
     <string name="hide_archived_chat">إخفاء المحادثة المؤرشفة</string>
-    <string name="hide_archived_chat_sum">إخفاء الدردشات المؤرشفة، للوصول إليها انقر 5 مرات أو اضغط مع الاستمرار على عنوان \"WhatsApp\" في رأس الشاشة الرئيسية</string>
+    <string name="hide_archived_chat_sum">إخفاء الدردشات المؤرشفة، للوصول إليها انقر 5 مرات أو اضغط مع الاستمرار على عنوان \"TikTok\" في رأس الشاشة الرئيسية</string>
     <string name="hide_once_view_seen">إخفاء العرض بمجرد رؤيته</string>
     <string name="hide_once_view_seen_sum">إخفاء هذا العرض تمت رؤية إحدى الوسائط</string>
     <string name="call_blocker">حظر المكالمات</string>
-    <string name="call_blocker_sum">حظر مكالمات واتساب استناداً إلى نوع الخصوصية</string>
+    <string name="call_blocker_sum">حظر مكالمات TikTok استناداً إلى نوع الخصوصية</string>
     <string name="show_online_dot_in_conversation_list">إظهار نقطة الإنترنت في قائمة المحادثات</string>
-    <string name="show_online_dot_in_conversation_list_sum">إظهار نقطة خضراء عبر الإنترنت على الشاشة الرئيسية (ملاحظة: يجب تنشيط العرض عبر الإنترنت للجميع في قائمة إعدادات الخصوصية في واتساب)</string>
+    <string name="show_online_dot_in_conversation_list_sum">إظهار نقطة خضراء عبر الإنترنت على الشاشة الرئيسية (ملاحظة: يجب تنشيط العرض عبر الإنترنت للجميع في قائمة إعدادات الخصوصية في TikTok)</string>
     <string name="show_dnd_button">إظهار أيقونة وضع الطيران</string>
     <string name="show_dnd_button_sum">إظهار أيقونة وضع الطيران على شريط أدوات الشاشة الرئيسية</string>
     <string name="dev4mod">(مساهم)Dev4Mod</string>
@@ -94,7 +94,7 @@
     <string name="number_with_country_code">رَقْم مع رمز البلد</string>
     <string name="message">رسالة</string>
     <string name="download">تحميل</string>
-    <string name="reboot_whatsapp">(إعادة تشغيل واتساب)</string>
+    <string name="reboot_whatsapp">(إعادة تشغيل TikTok)</string>
     <string name="error_when_saving_try_again">حدث خطأ أثناء الحفظ، حاول مرة أخرى</string>
     <string name="saved_to">"تم الحفظ في "</string>
     <string name="hide_tabs_on_home">إخفاء علامات التبويب على الصفحة الرئيسة</string>
@@ -118,9 +118,9 @@
     <string name="module_enabled">تم تمكين الوحدة✔️</string>
     <string name="version_s">الإصدار %s</string>
     <string name="module_disabled">الوحدة معطلة🚫</string>
-    <string name="whatsapp_in_background">واتساب في الخلفية</string>
-    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">لا يعمل Whatsapp أو لم يتم تفعيله في Lsposed</string>    <string name="restart_tkk">من الضروري إعادة تشغيل WhatsApp لتفعيل التغييرات في Wa Encer. هل تريد إعادة التشغيل؟</string>
-    <string name="version_s_not_listed">الإصدار %s غير مدرج في الإصدارات المدعومة!\nالرجاء استخدام إصدار WhatsApp المدعوم!</string>
+    <string name="whatsapp_in_background">TikTok في الخلفية</string>
+    <string name="whatsapp_is_not_running_or_has_not_been_activated_in_lsposed">لا يعمل TikTok أو لم يتم تفعيله في Lsposed</string>    <string name="restart_tkk">من الضروري إعادة تشغيل TikTok لتفعيل التغييرات في Wa Encer. هل تريد إعادة التشغيل؟</string>
+    <string name="version_s_not_listed">الإصدار %s غير مدرج في الإصدارات المدعومة!\nالرجاء استخدام إصدار TikTok المدعوم!</string>
     <string name="media">الوسائط</string>
     <string name="show_button_to_send_blue_tick">إظهار أيقونة لإرسال علامة زرقاء✔️✔️</string>
     <string name="show_button_to_send_blue_tick_sum">إظهار أيقونة لإرسال علامة زرقاء (ضع علامة كمقروء/مشاهدة)</string>
@@ -152,16 +152,16 @@
     <string name="seentick_screen">إظهار الأزرار في الشاشة</string>
     <string name="verbose_logs">تمكين السجلات المطوّلة لمصحح الأخطاء</string>
     <string name="phone_call">مكالمة هاتفية</string>
-    <string name="whatsapp_call">مكالمة واتساب</string>
+    <string name="whatsapp_call">مكالمة TikTok</string>
     <string name="home_screen">الشاشة الرئيسية</string>
     <string name="selection_of_call_type">تمكين اختيار نوع المكالمة</string>
-    <string name="selection_of_call_type_sum">إظهار خيار لتحديد ما إذا كنت تريد مكالمة عبر الهاتف أو واتساب</string>
+    <string name="selection_of_call_type_sum">إظهار خيار لتحديد ما إذا كنت تريد مكالمة عبر الهاتف أو TikTok</string>
     <string name="yes">تأكيد</string>
     <string name="no">إلغاء</string>
     <string name="device_model">موديل الجهاز</string>
     <string name="device_name">اسم الجهاز</string>
     <string name="disable_metaai">تعطيل وظائف Meta Ai</string>
-    <string name="disable_metaai_sum">تعطيل ميتا آي فقط لأولئك الذين قاموا بتمكينه بشكل افتراضي</string>    <string name="list_tkk">قائمة واتساب المدعومة:</string>
+    <string name="disable_metaai_sum">تعطيل ميتا آي فقط لأولئك الذين قاموا بتمكينه بشكل افتراضي</string>    <string name="list_tkk">قائمة TikTok المدعومة:</string>
     <string name="title_image">صورة</string>
     <string name="title_video">فيديو</string>
     <string name="enable_new_chat_button">تمكين أيقونة الدردشة الجديد</string>
@@ -186,7 +186,7 @@
     <string name="backup_settings">إعدادات النسخ الاحتياطي</string>
     <string name="import_settings">استيراد</string>
     <string name="export_settings">تصدير</string>
-    <string name="version_error">إصدار واتساب الذي تستخدمه غير متوافق ويؤدي إلى حدوث خطأ في الميزات التالية:\n\n</string>
+    <string name="version_error">إصدار TikTok الذي تستخدمه غير متوافق ويؤدي إلى حدوث خطأ في الميزات التالية:\n\n</string>
     <string name="copy_to_clipboard">نسخ إلى الحافظة</string>
     <string name="copied_to_clipboard">تم النسخ إلى الحافظة</string>
     <string name="error_detected">تم اكتشاف خطأ</string>
@@ -202,7 +202,7 @@
     <string name="toolbar_transparency">شفافية شريط الأدوات</string>
     <string name="navigation_transparency">شفافية التنقل</string>
     <string name="show_online_last_seen_in_conversation_list">إظهار متصل الآن/آخر ظهور في قائمة المحادثات</string>
-    <string name="show_online_last_seen_in_conversation_list_sum">إظهار نقطة خضراء متصل الآن على الشاشة الرئيسية (ملاحظة: يجب تنشيط العرض عبر الإنترنت للجميع في قائمة إعدادات الخصوصية في واتساب)</string>
+    <string name="show_online_last_seen_in_conversation_list_sum">إظهار نقطة خضراء متصل الآن على الشاشة الرئيسية (ملاحظة: يجب تنشيط العرض عبر الإنترنت للجميع في قائمة إعدادات الخصوصية في TikTok)</string>
     <string name="toast_online">%s متصل الآن</string>
     <string name="show_toast_on_contact_online">إظهار إشعار جهة الاتصال متصل الآن</string>
     <string name="show_toast_on_contact_online_sum">إظهار إشعار عندما تكون جهة اتصال على الإنترنت</string>
@@ -211,7 +211,7 @@
     <string name="filter_items_by_id">تصفية العناصر حسب المعرف</string>
     <string name="filter_items_by_id_sum">تصفية العناصر حسب اسم المعرف</string>
     <string name="custom_theme_css">موضوع مخصص CSS</string>
-    <string name="custom_theme_css_sum">تخصيص واتساب باستخدام أنماط CSS</string>
+    <string name="custom_theme_css_sum">تخصيص TikTok باستخدام أنماط CSS</string>
     <string name="antidisappearing">الرسائل المؤقتة</string>
     <string name="antidisappearing_sum">لن يتم حذف الرسائل المؤقتة بالنسبة لك</string>
     <string name="title_audio">الصوت</string>
@@ -220,7 +220,7 @@
     <string name="disable_default_emojis">تعطيل الرموز التعبيرية الافتراضية</string>
     <string name="theme_mode">سمة داكنة</string>
     <string name="theme_mode_sum">تحديد سمة Wa Enhancer</string>
-    <string name="disable_default_emojis_sum">تعطيل الرموز التعبيرية الافتراضية لواتساب واستخدام الرموز التعبيرية للنظام \n(ملاحظة: ستختفي الرموز التعبيرية لواتساب من المحدد، استخدم لوحة المفاتيح لإدراجها).</string>
+    <string name="disable_default_emojis_sum">تعطيل الرموز التعبيرية الافتراضية لTikTok واستخدام الرموز التعبيرية للنظام \n(ملاحظة: ستختفي الرموز التعبيرية لTikTok من المحدد، استخدم لوحة المفاتيح لإدراجها).</string>
     <string name="other">غير ذلك</string>
     <string name="enable_media_preview">تمكين معاينة الوسائط</string>
     <string name="enable_media_preview_sum">إضافة أيقونة لمعاينة الوسائط في ملف مؤقت (دون تحميله بشكل دائم)</string>
@@ -230,7 +230,7 @@
     <string name="call_blocking_type_sum">حدد الطريقة التي سيتم بها حظر المكالمات.</string>
     <string name="call_type_buttons_no_internet">لا يوجد إنترنت (\"اتصال\")</string>
     <string name="call_type_buttons_declined">تم رفض المكالمة</string>
-    <string name="call_type_buttons_uncallable">غير قادر على تلقي مكالمات واتساب</string>
+    <string name="call_type_buttons_uncallable">غير قادر على تلقي مكالمات TikTok</string>
     <string name="call_type_buttons_ended">لم يتم الرد</string>
     <string name="enable_tasker_automation">تمكين التشغيل الآلي لتاسكر</string>
     <string name="enable_tasker_automation_sum">تمكين إمكانية استخدام نية استقبال وإرسال الرسائل في Tasker</string>
@@ -240,7 +240,7 @@
     <string name="toast_on_viewed_status_sum">يُظهر إشعار إذا شاهد شخص ما حالتك</string>
     <string name="toast_on_viewed_message">إظهار إشعار عند مشاهدة رسالتك</string>
     <string name="toast_on_viewed_message_sum">يُظهر إشعار منبثق إذا شاهد شخص ما رسالتك</string>
-    <string name="textonahora_sum">إظهار الثواني بجانب الوقت في تطبيق واتساب</string>
+    <string name="textonahora_sum">إظهار الثواني بجانب الوقت في تطبيق TikTok</string>
     <string name="delete_for_me">الحذف لدي</string>
     <string name="send_audio_as_voice_audio_note">إرسال الصوت كملاحظة صوتية/صوتية</string>
     <string name="send_audio_as_voice_audio_note_sum">إرسال الوسائط الصوتية/إعادة التوجيه دائماً كرسالة صوتية أو مقطع صوتية</string>
@@ -257,14 +257,14 @@
     <string name="reset_settings">استعادة الخيارات الإفتراضية</string>
     <string name="configs_reset">إعادة تعيين الإعدادات</string>
     <string name="hide_locked_chats">إخفاء المحادثة المقفلة</string>
-    <string name="hide_locked_chats_sum">إخفاء المحادثة المؤرشفة ، اعرضها من خلال الاحتفاظ بعنوان واتساب على الشاشة الرئيسية</string>
+    <string name="hide_locked_chats_sum">إخفاء المحادثة المؤرشفة ، اعرضها من خلال الاحتفاظ بعنوان TikTok على الشاشة الرئيسية</string>
     <string name="msg_text_status_not_downloadable">حالة النص غير قابلة للتحميل!</string>
     <string name="failed_save_directory">غير قادر على حفظ الملفات في هذا المجلد، حدد موقعا آخر</string>
     <string name="unable_to_read_this_file">تعذر قراءة هذا الملف</string>
     <string name="disabled">معطل</string>
     <string name="share_as_status">المشاركة كحالة</string>
     <string name="audio_transcription">النسخ الصوتي</string>
-    <string name="audio_transcription_sum">تمكين النسخ الصوتي الأصلي في واتساب (راجع قائمة الاتصال لمعرفة خيارات النسخ)</string>
+    <string name="audio_transcription_sum">تمكين النسخ الصوتي الأصلي في TikTok (راجع قائمة الاتصال لمعرفة خيارات النسخ)</string>
     <string name="viewed_your_status">%s شاهد حالتك</string>
     <string name="viewed_your_message">%s شاهد رسالتك</string>
     <string name="old_statuses">الحالات القديمة</string>
@@ -273,7 +273,7 @@
     <string name="select_status_type">تحديد نوع الحالة</string>
     <string name="open_camera">فتح الكاميرا</string>
     <string name="edit_text">تحرير النص</string>
-    <string name="about_info">( المُحسِّن) هو وحدة إكسبوزيد التي تعمل على تحسين تجربة واتساب من خلال تقديم ميزات خصوصية متقدمة، وتخصيص الشاشة الرئيسية، وتعديلات عامة، وتحسينات على الوسائط.</string>
+    <string name="about_info">( المُحسِّن) هو وحدة إكسبوزيد التي تعمل على تحسين تجربة TikTok من خلال تقديم ميزات خصوصية متقدمة، وتخصيص الشاشة الرئيسية، وتعديلات عامة، وتحسينات على الوسائط.</string>
     <string name="installation">تثبيت</string>
     <string name="installation_desc">1. تأكد من أن جهازك متجذر.\n2. قم بتثبيت إطار عمل Xposed Framework على جهازك.\n3. قم بتنزيل Wa Enhancer من قسم الإجراءات.\n4. قم بتثبيت ملف Wa Enhancer APK.\n5. قم بتمكين وحدة Wa Enhancer في تطبيق Xposed Installe.</string>
     <string name="go_to_telegram">الذهاب إلى تيليجرام</string>
@@ -286,8 +286,8 @@
     <string name="select_a_color">اختر اللون</string>
     <string name="custom_appearance">المظهر المخصص</string>
     <string name="custom_filters_sum">تفعيل الفلاتر حسب المعرف و CSS المخصص</string>
-    <string name="click_times">انقر 5 مرات على عنوان واتساب</string>
-    <string name="hold_title">اضغط على عنوان واتساب</string>
+    <string name="click_times">انقر 5 مرات على عنوان TikTok</string>
+    <string name="hold_title">اضغط على عنوان TikTok</string>
     <string name="read_all_mark_as_read">قراءة الكل (وضع علامة كمقروء)</string>
     <string name="enable_copy_status">تمكين نسخ الحالة</string>
     <string name="enable_copy_status_sum">تنشيط إمكانية نسخ الوصف والتعليق على الحالات من خلال الضغط عليها</string>
@@ -296,7 +296,7 @@
     <string name="vertical_status">الحالة العمودية</string>
     <string name="vertical_status_sum">إظهار الحالة في الوضع الرأسي في علامة التبويب \"التحديثات\"</string>
     <string name="disable_version_check">تعطيل التحقق من الإصدار</string>
-    <string name="disable_version_check_sum">تعطيل التحقق من الإصدار المدعوم من واتساب (قد تحدث أخطاء في الإصدارات غير المدعومة التي لن يتم إصلاحها قريباً)</string>
+    <string name="disable_version_check_sum">تعطيل التحقق من الإصدار المدعوم من TikTok (قد تحدث أخطاء في الإصدارات غير المدعومة التي لن يتم إصلاحها قريباً)</string>
     <string name="invalid_zip_file">ملف مضغوط غير صالح</string>
     <string name="theme_imported_successfully">تم استيراد السمة بنجاح</string>
     <string name="new_theme_name">اسم السمة الجديدة</string>
@@ -318,7 +318,7 @@
     <string name="create_new_theme">إنشاء سِمة جديد</string>
     <string name="import_theme">استيراد السمة</string>
     <string name="theme_manager">مدير السمة</string>
-    <string name="manage_theme_sum">إدارة القوالب باستخدام CSS لواتساب</string>
+    <string name="manage_theme_sum">إدارة القوالب باستخدام CSS لTikTok</string>
     <string name="grant_permission">يرجى منح الأذونات لقراءة الصور وقراءة التخزين الخارجي</string>
     <string name="one_row">صف واحد</string>
     <string name="two_row">صفين</string>
@@ -350,11 +350,11 @@
     <string name="local_download">مكان التحميل</string>
     <string name="show_menu_buttons_as_icons">إظهار أزرار القائمة كأيقونات</string>
     <string name="show_menu_buttons_as_icons_sum">إظهار أزرار القائمة على الشاشة الرئيسية كأيقونات لتسهيل الوصول إليها</string>
-    <string name="starting_cache">بدء ربط ذاكرة التخزين المؤقت في واتساب. قد يستغرق ذلك بعض الوقت.</string>
+    <string name="starting_cache">بدء ربط ذاكرة التخزين المؤقت في TikTok. قد يستغرق ذلك بعض الوقت.</string>
     <string name="bridge_error">فشل الربط: تمكين إطار النظام في Lsposed وإعادة تشغيل الجهاز</string>
     <string name="disable_battery_optimization">تعطيل تحسين البطارية</string>
     <string name="bootloader_spoofer">مخادع محمل الإقلاع(بوت لودر)</string>
-    <string name="bootloader_spoofer_sum">استخدم هذا إذا تم حظرك وتلقيت رسالة واتساب غير رسمي</string>
+    <string name="bootloader_spoofer_sum">استخدم هذا إذا تم حظرك وتلقيت رسالة TikTok غير رسمي</string>
     <string name="not_available">غير متوفر</string>
     <string name="select_all">تحديد الكل</string>
     <string name="custom_colors_for_text_status">ألوان مخصصة لحالة النص</string>
@@ -366,16 +366,16 @@
     <string name="custom_privacy_per_contact">خصوصية مخصصة لكل جهة اتصال</string>
     <string name="custom_privacy_per_contact_sum">قم بتنشيط الخصوصية المخصص على شاشة معلومات الاتصال</string>
     <string name="assemblyai">تمكين(AssemblyAI)</string>
-    <string name="assemblyai_sum">استبدال النسخ الافتراضي لـ WhatsApp بـ AssemblyAI</string>
+    <string name="assemblyai_sum">استبدال النسخ الافتراضي لـ TikTok بـ AssemblyAI</string>
     <string name="assemblyai_key">مفتاح AssemblyAI</string>
     <string name="assemblyai_key_sum">مفتاح الوصول API AssemblyAI (تسجيل الدخول إلى الموقع وإنشاء حساب للحصول على المفتاح الخاص بك)</string>
     <string name="google_translate">تمكين ترجمة جوجل</string>
-    <string name="google_translate_sum">يستبدل مترجم واتساب الأصلي بترجمة جوجل</string>
+    <string name="google_translate_sum">يستبدل مترجم TikTok الأصلي بترجمة جوجل</string>
     <string name="show_contact_info">إظهار في معلومات جهة الاتصال</string>
     <string name="show_contact_info_menu">إظهار في قائمة معلومات جهة الاتصال</string>
     <string name="block_call">حظر المكالمات</string>
     <string name="always_online">دائماً متصل</string>
-    <string name="always_online_sum">إظهار أنك متصل الآن حتى لو قمت بإغلاق واتساب (لا يعمل إذا قمت بإزالته من الإعدادات)</string>
+    <string name="always_online_sum">إظهار أنك متصل الآن حتى لو قمت بإغلاق TikTok (لا يعمل إذا قمت بإزالته من الإعدادات)</string>
     <string name="additional_call_information">معلومات إضافية عن المكالمة</string>
     <string name="additional_call_information_sum">تلقي إشعار مع معلومات إضافية بعد انتهاء المكالمة</string>
     <string name="contact_s">المُتصل: %s</string>
@@ -384,14 +384,14 @@
     <string name="city_s">المدينة: %s</string>
     <string name="ip_s">IP: %s</string>
     <string name="platform_s">المنصة: %s</string>
-    <string name="tkk_version_s">إصدار واتساب: %s</string>
+    <string name="tkk_version_s">إصدار TikTok: %s</string>
     <string name="call_information">معلومات المكالمة</string>
     <string name="ask_download_folder">لاستخدام وظائف التنزيل الخاصة بـ TikTok Enhancer، يجب عليك تحديد مجلد لحفظ الملفات التي تم تنزيلها.</string>
     <string name="download_folder_permission">إذن تحميل المجلد</string>
     <string name="lite_mode">الوضع الخفيف</string>
-    <string name="lite_mode_sum">يعطل الوضع الخفيف معظم ميزات الثيمات ويتم إيقاف تشغيل جسر الاتصال الذي يحافظ على WhatsApp نشطًا دائمًا.</string>
+    <string name="lite_mode_sum">يعطل الوضع الخفيف معظم ميزات الثيمات ويتم إيقاف تشغيل جسر الاتصال الذي يحافظ على TikTok نشطًا دائمًا.</string>
     <string name="update_check">التحقق من التحديثات تلقائيًا</string>
-    <string name="update_check_sum">تمكين أو تعطيل التحقق التلقائي من التحديث. سيؤدي هذا إلى تعطيل النوافذ المنبثقة داخل تطبيق واتساب.</string>
+    <string name="update_check_sum">تمكين أو تعطيل التحقق التلقائي من التحديث. سيؤدي هذا إلى تعطيل النوافذ المنبثقة داخل تطبيق TikTok.</string>
     <string name="change_default_dpi">تغيير DPI الافتراضي</string>
     <string name="change_default_dpi_sum">تغيير إعداد DPI للتطبيق. استخدم 0 لإعادة تعيين الافتراضي.</string>
     <string name="no_contact_with_custom_privacy">لا يوجد اتصال بخصوصية مخصصة!</string>
@@ -399,12 +399,12 @@
     <string name="show_chat_broadcast_icon_sum">يظهر رمزًا إذا أرسل جهة الاتصال رسالة عبر البث</string>
     <string name="select_contacts">حدد جهة الاتصال</string>
     <string name="style_of_stories_status">نمط القصص/الحالة</string>
-    <string name="style_of_stories_status_sum">تغيير نمط القصص/الحالات لبعض النماذج المتوفرة على واتساب</string>
+    <string name="style_of_stories_status_sum">تغيير نمط القصص/الحالات لبعض النماذج المتوفرة على TikTok</string>
     <string name="view_seen_tick">عرض علامة المشاهدة</string>
     <string name="view_seen_tick_sum">إظهار أيقونة إذا تم إرسال عرض الرسالة إلى المستلم أو إذا تمت رؤية عرض فريد</string>
     <string name="text_color">لون النص</string>
     <string name="disable_the_proximity_sensor">تعطيل إيقاف تشغيل الشاشة عند تشغيل مستشعر القرب</string>
-    <string name="disable_the_proximity_sensor_sum">تعطيل إيقاف تشغيل الشاشة على مستشعر القرب لتطبيق واتساب بالكامل</string>
+    <string name="disable_the_proximity_sensor_sum">تعطيل إيقاف تشغيل الشاشة على مستشعر القرب لتطبيق TikTok بالكامل</string>
     <string name="disable_status_in_the_profile_photo">تعطيل الحالة في صورة الملف الشخصي</string>
     <string name="disable_status_in_the_profile_photo_sum">يعطل الدائرة التي تظهر في صورة الملف الشخصي لكل جهة اتصال عند وجود حالة جديدة</string>
 </resources>

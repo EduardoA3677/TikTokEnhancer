@@ -196,6 +196,82 @@ public class PrivacyEnhancer extends Feature {
      */
     private void hookAnalytics() {
         try {
+            // Hook Firebase Analytics first (verified in smali)
+            hookFirebaseAnalytics();
+            
+            // Then hook TikTok analytics
+            hookTikTokAnalytics();
+            
+        } catch (Throwable e) {
+            log(e);
+        }
+    }
+
+    /**
+     * Hook Firebase Analytics - verified in smali
+     * Location: ./smali_classes22/com/google/firebase/analytics/FirebaseAnalytics.smali
+     */
+    private void hookFirebaseAnalytics() {
+        try {
+            Class<?> firebaseClass = null;
+
+            try {
+                firebaseClass = XposedHelpers.findClass(
+                    "com.google.firebase.analytics.FirebaseAnalytics",
+                    classLoader
+                );
+            } catch (Throwable e) {
+                logDebug("FirebaseAnalytics not found");
+                return;
+            }
+
+            if (firebaseClass != null) {
+                logDebug("Found FirebaseAnalytics: " + firebaseClass.getName());
+                hookFirebaseMethods(firebaseClass);
+            }
+
+        } catch (Throwable e) {
+            log(e);
+        }
+    }
+
+    /**
+     * Hook Firebase Analytics methods
+     */
+    private void hookFirebaseMethods(Class<?> firebaseClass) {
+        try {
+            Method[] methods = firebaseClass.getDeclaredMethods();
+            for (Method method : methods) {
+                String methodName = method.getName();
+
+                // Block all Firebase Analytics calls
+                if (methodName.toLowerCase().contains("log") ||
+                    methodName.toLowerCase().contains("event") ||
+                    methodName.toLowerCase().contains("screen") ||
+                    methodName.toLowerCase().contains("user")) {
+
+                    logDebug("Hooking Firebase method: " + methodName);
+
+                    XposedBridge.hookMethod(method, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            // Block Firebase analytics
+                            logDebug("Blocked Firebase Analytics: " + methodName);
+                            param.setResult(null);
+                        }
+                    });
+                }
+            }
+        } catch (Throwable e) {
+            log(e);
+        }
+    }
+
+    /**
+     * Hook TikTok-specific analytics
+     */
+    private void hookTikTokAnalytics() {
+        try {
             // Try to find analytics classes
             Class<?> analyticsClass = null;
 
@@ -211,13 +287,13 @@ public class PrivacyEnhancer extends Feature {
                         classLoader
                     );
                 } catch (Throwable e2) {
-                    logDebug("Analytics class not found");
+                    logDebug("TikTok Analytics class not found");
                     return;
                 }
             }
 
             if (analyticsClass != null) {
-                logDebug("Found analytics class: " + analyticsClass.getName());
+                logDebug("Found TikTok analytics class: " + analyticsClass.getName());
                 hookAnalyticsMethods(analyticsClass);
             }
 

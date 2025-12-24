@@ -300,16 +300,17 @@ public class FeatureLoader {
 
     private static void plugins(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, @NonNull String versionWpp) throws Exception {
 
-        // TikTok-specific features
-        // These features are designed for TikTok's video-sharing architecture
+        // TikTok-specific features - Corrected based on deep smali analysis
+        // All class names and methods verified against actual TikTok smali code
         var classes = new Class<?>[]{
                 DebugFeature.class,
-                com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,  // Download videos without watermark
-                com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,      // Block advertisements
-                com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class, // Control auto-play behavior
-                com.wmods.tkkenhancer.xposed.features.media.VideoQuality.class,   // Video quality enhancement
-                com.wmods.tkkenhancer.xposed.features.media.StoryDownload.class,  // Download user stories
-                com.wmods.tkkenhancer.xposed.features.privacy.PrivacyEnhancer.class // Privacy enhancement
+                com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,      // ✅ Verified: getDownloadNoWatermarkAddr()
+                com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,          // ✅ Verified: isAd()
+                com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class,    // Player control
+                com.wmods.tkkenhancer.xposed.features.media.VideoQuality.class,       // ✅ Corrected: RateSettingCombineModel, GearSet
+                com.wmods.tkkenhancer.xposed.features.media.StoryDownload.class,      // ✅ Verified: Story model
+                com.wmods.tkkenhancer.xposed.features.media.DownloadServiceHook.class, // 🆕 NEW: DownloadAwemeVideoServiceImpl.LIZ()
+                com.wmods.tkkenhancer.xposed.features.privacy.PrivacyEnhancer.class   // ✅ Enhanced: + FirebaseAnalytics
                 // CustomThemeV2.class,  // Commented out - needs TikTok-specific implementation
                 // LiteMode.class,  // Commented out - needs TikTok-specific implementation
                 // Others.class,  // Commented out - needs TikTok-specific implementation

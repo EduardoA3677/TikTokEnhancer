@@ -255,44 +255,41 @@ public class FeatureLoader {
 
     private static void plugins(@NonNull ClassLoader loader, @NonNull XSharedPreferences pref, @NonNull String versionTkk) throws Exception {
 
-        // TikTok-specific features - Enhanced based on smali analysis
-        // All class names and methods verified against actual TikTok smali code from
-        // https://github.com/Eduardob3677/com_zhiliaoapp_musically_6
+        // TikTok Features - Based on Smali Analysis of v43.0.0
+        // Repository: https://github.com/Eduardob3677/com_zhiliaoapp_musically_6
         // 
-        // IMPORTANT: Features are loaded asynchronously to prevent ANR during TikTok startup
+        // ONLY WORKING FEATURES ARE ENABLED
+        // Features load asynchronously to prevent ANR during startup
+        
         var classes = new Class<?>[]{
+                // Debug feature - always enabled for logging
                 DebugFeature.class,
                 
-                // Core features - loaded with high priority
-                com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,      // Original: getDownloadNoWatermarkAddr()
-                com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,          // Original: isAd()
-                com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class,    // Original: Player control
+                // ✅ WORKING FEATURES - Verified against smali
+                com.wmods.tkkenhancer.xposed.features.media.VideoDownload.class,      // Hooks: Video.getDownloadNoWatermarkAddr()
+                com.wmods.tkkenhancer.xposed.features.media.AdBlocker.class,          // Hooks: Aweme.isAd(), isAdTraffic()
                 
-                // Improved features - loaded after core features
-                com.wmods.tkkenhancer.xposed.features.media.VideoDownloadImproved.class, // ✅ NEW: Better URL extraction & prevent_download bypass
-                com.wmods.tkkenhancer.xposed.features.media.AdBlockerImproved.class,     // ✅ NEW: Direct field access, isAdTraffic(), commercialVideoInfo
-                com.wmods.tkkenhancer.xposed.features.media.StoryVideoSupport.class,     // ✅ NEW: Story video downloads
-                com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class        // ✅ NEW: Video quality/bitrate control
+                // ⚠️ PLACEHOLDER FEATURES - Need implementation
+                // com.wmods.tkkenhancer.xposed.features.media.AutoPlayControl.class, // TODO: Find TikTok player classes
                 
-                // Additional features - loaded in background to prevent startup delay
-                // These are commented out by default to prevent ANR - uncomment carefully
-                // com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class,    // ✅ NEW: Live stream download support
-                // com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,       // ✅ NEW: Enhanced comment functionality
-                // com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.java,        // ✅ NEW: Profile viewing enhancements
-                // com.wmods.tkkenhancer.xposed.features.media.FeedFilter.class,            // ✅ NEW: Custom feed filtering
-                // com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class     // ✅ NEW: Block analytics/tracking
-                
-                // Note: Commented out classes that need TikTok-specific implementation:
-                // - VideoQuality.class (replaced by BitrateControl)
-                // - StoryDownload.class (replaced by StoryVideoSupport) 
-                // - DownloadServiceHook.class (integrated into VideoDownloadImproved)
-                // - PrivacyEnhancer.class (updated with smali-based hooks in AnalyticsBlocker)
-                // - CustomThemeV2.class (needs TikTok theme system analysis)
+                // ❌ DISABLED - Need proper TikTok implementation
+                // com.wmods.tkkenhancer.xposed.features.media.VideoDownloadImproved.class,
+                // com.wmods.tkkenhancer.xposed.features.media.AdBlockerImproved.class,
+                // com.wmods.tkkenhancer.xposed.features.media.StoryVideoSupport.class,
+                // com.wmods.tkkenhancer.xposed.features.media.BitrateControl.class,
+                // com.wmods.tkkenhancer.xposed.features.media.LiveStreamDownload.class,
+                // com.wmods.tkkenhancer.xposed.features.media.CommentEnhancer.class,
+                // com.wmods.tkkenhancer.xposed.features.media.ProfileEnhancer.class,
+                // com.wmods.tkkenhancer.xposed.features.media.FeedFilter.class,
+                // com.wmods.tkkenhancer.xposed.features.privacy.AnalyticsBlocker.class,
         };
-        XposedBridge.log("Loading TikTok Plugins");
-        // Reduced thread pool size to prevent CPU overload during startup
-        var executorService = Executors.newWorkStealingPool(Math.min(Runtime.getRuntime().availableProcessors() / 2, 2));
+        
+        XposedBridge.log("Loading TikTok Plugins (Verified Features Only)");
+        
+        // Use single thread to prevent race conditions and CPU overload
+        var executorService = Executors.newFixedThreadPool(1);
         var times = new ArrayList<String>();
+        
         for (var classe : classes) {
             CompletableFuture.runAsync(() -> {
                 var timemillis = System.currentTimeMillis();
@@ -300,7 +297,9 @@ public class FeatureLoader {
                     var constructor = classe.getConstructor(ClassLoader.class, XSharedPreferences.class);
                     var plugin = (Feature) constructor.newInstance(loader, pref);
                     plugin.doHook();
+                    XposedBridge.log("✓ Loaded: " + classe.getSimpleName());
                 } catch (Throwable e) {
+                    XposedBridge.log("✗ Failed: " + classe.getSimpleName());
                     XposedBridge.log(e);
                     var error = new ErrorItem();
                     error.setPluginName(classe.getSimpleName());
@@ -314,9 +313,11 @@ public class FeatureLoader {
                 times.add("* Loaded Plugin " + classe.getSimpleName() + " in " + timemillis2 + "ms");
             }, executorService);
         }
+        
         executorService.shutdown();
-        // Reduced timeout to prevent blocking TikTok startup
-        executorService.awaitTermination(10, TimeUnit.SECONDS);
+        // Wait up to 15 seconds for all plugins to load
+        executorService.awaitTermination(15, TimeUnit.SECONDS);
+        
         if (DebugFeature.DEBUG) {
             for (var time : times) {
                 if (time != null)

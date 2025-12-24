@@ -136,6 +136,8 @@ public class FeatureLoader {
                         // For example: "43.xx" becomes "43."
                         String versionPrefix = pattern.replace(".xx", ".");
                         
+                        XposedBridge.log("  Checking pattern '" + pattern + "' (prefix: '" + versionPrefix + "')");
+                        
                         // Check if version matches the pattern
                         // For pattern "43.xx", versionPrefix is "43."
                         // We want to match "43.0.0", "43.1.5", but ensure proper major.minor matching
@@ -143,18 +145,23 @@ public class FeatureLoader {
                         if (packageInfo.versionName.equals(pattern)) {
                             // Exact match (unlikely with .xx pattern but supports non-pattern versions)
                             matches = true;
+                            XposedBridge.log("    -> Exact match!");
                         } else if (packageInfo.versionName.length() >= versionPrefix.length() && 
                                    packageInfo.versionName.startsWith(versionPrefix)) {
                             // Version starts with prefix and has additional characters
                             if (packageInfo.versionName.length() == versionPrefix.length()) {
                                 // Exact match with prefix (e.g., "43." matches "43.")
                                 matches = true;
+                                XposedBridge.log("    -> Prefix exact match!");
                             } else {
                                 // Check that the character after the prefix is a digit to ensure valid version format
                                 // This prevents "43." from matching invalid versions like "43.abc"
                                 char nextChar = packageInfo.versionName.charAt(versionPrefix.length());
                                 matches = Character.isDigit(nextChar);
+                                XposedBridge.log("    -> Next char '" + nextChar + "' is digit: " + matches);
                             }
+                        } else {
+                            XposedBridge.log("    -> No match (version doesn't start with prefix)");
                         }
                         
                         if (matches) {
